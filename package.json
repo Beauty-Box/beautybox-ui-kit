@@ -3,9 +3,6 @@
     "version": "1.0.0",
     "main": "",
     "license": "MIT",
-    "publishConfig": {
-        "access": "restricted"
-    },
     "scripts": {
         "story": "start-storybook -p 5555",
         "lint:scripts": "eslint --config ../../.eslintrc --fix --ext .js,.vue --ignore-path ../../.eslintignore .",
