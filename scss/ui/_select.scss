@@ -1,0 +1,28 @@
+.select-color {
+    .icon {
+        display: none;
+        width: 32px;
+        height: 32px;
+        fill: #fff;
+    }
+
+    .select-color__selected {
+        &::before {
+            display: none;
+        }
+
+        .icon {
+            display: block;
+        }
+    }
+
+    .v-slide-group {
+        &__content {
+            padding: 0;
+        }
+    }
+
+    .v-chip-group .v-chip {
+        margin: 0 10px 0 0 !important;
+    }
+}

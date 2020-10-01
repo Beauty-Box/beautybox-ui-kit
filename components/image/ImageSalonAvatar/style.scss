@@ -1,0 +1,10 @@
+.c-avatar {
+    &__letter {
+        font-size: calc(var(--size, 75rem) / 30);
+        font-weight: 500;
+    }
+
+    &--square {
+        border-radius: 8px;
+    }
+}

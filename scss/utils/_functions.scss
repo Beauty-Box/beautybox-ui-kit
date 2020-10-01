@@ -1,0 +1,69 @@
+//z-index function
+@function z($key) {
+    @if map-has-key($z-index, $key) {
+        @return map-get($z-index, $key);
+    }
+
+    @warn "Unknown `#{$key}` in $z-index.";
+    @return null;
+}
+
+// px to rem
+@function rem($pixels, $context: $mainFontSize) {
+    @if (unitless($pixels)) {
+        $pixels: $pixels * 1px;
+    }
+    @if (unitless($context)) {
+        $context: $context * 1px;
+    }
+    @return $pixels / $context * 1rem;
+}
+
+@function max($numbers...) {
+    @return m#{a}x(#{$numbers});
+}
+
+@function min($numbers...) {
+    @return m#{i}n(#{$numbers});
+}
+
+@function map-deep-get($map, $keys...) {
+    @each $key in $keys {
+        $map: map-get($map, $key);
+        @return $map;
+    }
+}
+
+@function map-deep-merge($parent-map, $child-map) {
+    $result: $parent-map;
+
+    @each $key, $child in $child-map {
+        $parent-has-key: map-has-key($result, $key);
+        $parent-value: map-get($result, $key);
+        $parent-type: type-of($parent-value);
+        $child-type: type-of($child);
+        $parent-is-map: $parent-type == map;
+        $child-is-map: $child-type == map;
+
+        @if (not $parent-has-key) or
+            ($parent-type != $child-type) or
+            (not ($parent-is-map and $child-is-map))
+        {
+            $result: map-merge(
+                $result,
+                (
+                    $key: $child,
+                )
+            );
+        } @else {
+            $result: map-merge(
+                $result,
+                (
+                    $key: map-deep-merge($parent-value, $child),
+                )
+            );
+        }
+    }
+
+    @return $result;
+}

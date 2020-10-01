@@ -1,0 +1,16 @@
+.cropper {
+    max-height: 400px;
+}
+
+.preview {
+    border: dashed 1px rgba(255, 255, 255, 0.25);
+}
+
+.handler {
+    border-radius: 50%;
+
+    &--hover {
+        width: 12px;
+        height: 12px;
+    }
+}

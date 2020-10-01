@@ -1,0 +1,104 @@
+$input-offset: $gutter / 2;
+
+.c-input {
+    &--inline {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        .c-input {
+            &__title {
+                flex-shrink: 0;
+                margin-right: $input-offset;
+                font-size: 13px;
+                font-weight: 600;
+                text-transform: uppercase;
+            } //.c-input--inline .c-input__title
+
+            &__field {
+                display: flex;
+                flex-grow: 1;
+                align-items: center;
+                justify-content: flex-end;
+
+                input {
+                    width: 100%;
+                    padding: 0 !important;
+
+                    &:focus {
+                        border: 0;
+                        outline: none;
+                    }
+                }
+
+                select {
+                    width: auto;
+                }
+
+                fieldset {
+                    padding: 0 !important;
+                    border: 0 !important;
+                }
+
+                .icon-rub {
+                    flex-shrink: 0;
+                    fill: #b7bcc3;
+                }
+
+                .v-input {
+                    &__slot {
+                        min-height: auto !important;
+                        margin-bottom: 0 !important;
+                        padding: 0 !important;
+                    }
+
+                    &--is-focused {
+                        fieldset {
+                            border: 0 !important;
+                        }
+                    } //.v-input--is-focused
+                }
+
+                .v-text-field {
+                    &__details {
+                        align-self: flex-end;
+                        margin-top: -5px;
+                        margin-bottom: 0 !important;
+                        padding: 0 !important;
+                        line-height: 1;
+                        text-align: right;
+                    }
+                }
+            } //.c-input--inline .c-input__field
+        }
+
+        .v-input {
+            &__slot {
+                &::before,
+                &::after {
+                    display: none !important;
+                }
+            }
+        }
+    } //.c-input--inline
+
+    &--reverce {
+        .c-input {
+            &__field {
+                input,
+                select {
+                    text-align: right;
+                }
+
+                input {
+                    margin-right: 3px;
+
+                    @include max(xs) {
+                        margin-top: 0 !important;
+                    }
+                }
+            }
+        }
+    } //.c-input--reverce
+} //.c-input

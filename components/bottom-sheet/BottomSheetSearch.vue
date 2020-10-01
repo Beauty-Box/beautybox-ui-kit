@@ -1,0 +1,196 @@
+<template>
+    <div>
+        <b-input
+            v-model="title"
+            readonly
+            :label="label"
+            :disabled="disabled"
+            :clearable="clearable"
+            :error-messages="errorMessages"
+            @click="openBottomSheet"
+            @click:clear="$emit('clear')"
+        />
+        <input type="hidden" :value="selected" :name="name" />
+        <v-bottom-sheet
+            v-model="modal"
+            scrollable
+            overlay-color="rgba(103, 118, 140, 0.5)"
+            overlay-opacity="1"
+            :hide-overlay="hideOverlay"
+            :now-items-length="nowItemsLength"
+            :all-items-length="allItemsLength"
+            content-class="c-bottom-sheet c-bottom-sheet--palette c-bottom-sheet--full-height"
+        >
+            <v-sheet>
+                <div class="c-bottom-sheet__inner">
+                    <div class="c-bottom-sheet__scroll-container" @scroll="onScroll">
+                        <div>
+                            <v-btn
+                                v-if="closeBtn"
+                                icon
+                                :ripple="false"
+                                class="c-bottom-sheet__btn-close"
+                                @click="onCancel"
+                            >
+                                <v-svg name="close" xs />
+                            </v-btn>
+                            <div
+                                v-if="titleDropdown || subTitleDropdown"
+                                class="c-bottom-sheet__header"
+                            >
+                                <h3 v-if="titleDropdown" class="c-bottom-sheet__title">
+                                    {{ titleDropdown }}
+                                </h3>
+                                <p v-if="subTitleDropdown" class="c-bottom-sheet__subtitle">
+                                    {{ subTitleDropdown }}
+                                </p>
+                            </div>
+
+                            <div class="c-bottom-sheet__search">
+                                <b-input
+                                    small
+                                    rounded
+                                    clearable
+                                    outlined
+                                    type="text"
+                                    height="44"
+                                    autocomplete="off"
+                                    append-icon="search"
+                                    :placeholder="searchPlaceholder"
+                                    @input="$emit('search', $event || '')"
+                                />
+                            </div>
+
+                            <slot />
+                        </div>
+                    </div>
+
+                    <div class="c-bottom-sheet__footer">
+                        <v-btn large block color="primary" :ripple="false" @click="modal = false">
+                            Готово
+                        </v-btn>
+                    </div>
+                </div>
+            </v-sheet>
+        </v-bottom-sheet>
+    </div>
+</template>
+
+<script>
+import { modalProps, scroll } from '../../mixins';
+
+export default {
+    name: 'BottomSheetSearch',
+    mixins: [modalProps, scroll],
+    props: {
+        selected: {
+            type: [Number, String],
+            required: true,
+        },
+        name: {
+            type: String,
+            default: '',
+        },
+        label: {
+            type: String,
+            default: '',
+        },
+        clearable: {
+            type: Boolean,
+            default: false,
+        },
+        title: {
+            type: String,
+            default: '',
+        },
+        subTitle: {
+            type: String,
+            default: '',
+        },
+        titleDropdown: {
+            type: String,
+            required: true,
+        },
+        subTitleDropdown: {
+            type: String,
+            default: '',
+        },
+        searchPlaceholder: {
+            type: String,
+            default: 'Поиск...',
+        },
+        hideOverlay: {
+            type: Boolean,
+            default: false,
+        },
+        closeBtn: {
+            type: Boolean,
+            default: false,
+        },
+        disabled: {
+            type: Boolean,
+            default: false,
+        },
+        errorMessages: {
+            type: Array,
+            default: () => [],
+        },
+        onScrollEndHandler: {
+            type: Function,
+            default: () => ({}),
+        },
+        nowItemsLength: {
+            type: Number,
+            default: 0,
+        },
+        allItemsLength: {
+            type: Number,
+            default: 0,
+        },
+        readyToGetElements: {
+            type: Boolean,
+            default: false,
+        },
+    },
+    data: () => ({
+        isScrolled: false,
+        heightForActiveScroll: 100,
+    }),
+    methods: {
+        openBottomSheet() {
+            this.modal = true;
+            this.$emit('open');
+        },
+        onSuccess() {
+            this.success();
+            this.modal = false;
+        },
+        onCancel() {
+            this.cancel();
+            this.modal = false;
+        },
+        onScroll(e) {
+            this.onScrollControl(e);
+
+            if (this.$refs.search) {
+                this.onScrollCheckFixedSearch(e);
+            }
+        },
+        //Метод для фиксацияя строки поиска по скролу
+        onScrollCheckFixedSearch(e) {
+            let search = this.$refs.search;
+            let searchOffsetTop = search.offsetHeight;
+
+            if (e.target.scrollTop >= searchOffsetTop) {
+                search.classList.add('is-fixed');
+                this.isScrolled = true;
+            } else {
+                search.classList.remove('is-fixed');
+                this.isScrolled = false;
+            }
+        },
+    },
+};
+</script>
+
+<style lang="scss" src="./bottom-sheet.scss" />

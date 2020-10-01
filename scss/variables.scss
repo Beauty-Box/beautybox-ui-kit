@@ -1,0 +1,164 @@
+@import './utils/_all';
+@import './base/_base64icons';
+@import '~vuetify/src/styles/styles.sass';
+
+// Vuetify vars
+$body-font-family: $font-family-base !default;
+$font-size-root: $font-size-base !default;
+$line-height-root: $line-height-base !default;
+$border-radius-root: $border-radius !default;
+
+//Card
+$card-title-font-size: 18px !default;
+$card-title-font-weight: 500 !default;
+$card-actions-padding: $base-indent !default;
+$card-btn-padding: 0 20px !default;
+$card-btn-margin-x: $base-indent !default;
+
+//Dialog
+//Dialog Card
+$dialog-card-title-font-size: 22px !default;
+$dialog-card-title-font-weight: $card-title-font-weight !default;
+$dialog-card-title-letter-spacing: 0 !default;
+$dialog-card-title-padding: $base-indent $gutter !default;
+$dialog-card-text-padding: $gutter !default;
+
+//Text Field
+$text-field-outlined-dense-label-position-y: -9px !default;
+$text-field-outlined-label-position-y: -9px !default;
+$text-field-outlined-dense-label-position-x: 18px !default;
+$text-field-outlined-fieldset-top: 0 !default;
+$text-field-outlined-fieldset-border: 1px solid currentColor !default;
+$text-field-filled-full-width-outlined-slot-min-height: 44px !default;
+$text-field-dense-icon-append-prepend-margin-top: 0 !default;
+
+$text-field-outlined-prepend-append-margin-top: auto !default;
+$text-field-dense-prepend-append-margin-top: auto !default;
+$text-field-append-prepend-margin: 0 !default;
+
+$text-field-details-margin-bottom: 4px;
+
+//Input
+$input-slot-margin-bottom: 4px;
+
+//Select
+$select-outlined-dense-selections-padding-top: 16px 0 0 !default;
+$select-chips-dense-selections-min-height: 56px !default;
+$select-dense-chip-margin: 4px !default;
+
+//TextArea
+$textarea-dense-box-enclosed-single-outlined-margin-top: 25px !default;
+$textarea-box-enclosed-single-outlined-margin-top: 21px !default;
+
+//Rating
+//$rating-padding: 0;
+
+//Switch
+$switch-track-opacity: 1 !default;
+$switch-thumb-elevation: 0 !default;
+$switch-track-border-radius: 20px !default;
+$switch-width: 42px !default;
+$switch-track-width: $switch-width !default;
+$switch-track-height: 29px !default;
+$switch-thumb-width: 25px !default;
+$switch-thumb-height: $switch-thumb-width !default;
+//$switch-dirty-offset-x: 17px !default;
+$switch-track-x: 0 !default;
+$switch-thumb-top: -1px !default;
+$switch-track-top: calc(50% - 15px) !default;
+$switch-dirty-offset-x: 13px !default;
+
+//Tabs
+$tab-font-size: 13px !default;
+$tab-font-weight: 600 !default;
+$tab-line-height: 16px !default;
+$tabs-item-letter-spacing: 0 !default;
+$tabs-item-min-width: auto !default;
+$tabs-item-padding: 0 !default;
+
+//Table
+$data-table-regular-header-font-size: 15px !default;
+
+//Skeleton
+$skeleton-loader-text-border-radius: $border-radius;
+
+//Buttons
+$btn-letter-spacing: 0 !default;
+$btn-font-sizes: (
+    'x-small': 12px,
+    'small': 13px,
+    'default': 14px,
+    'large': 14px,
+    'x-large': 15px,
+);
+$btn-sizes: (
+    'x-small': 20,
+    'small': 28,
+    'default': 36,
+    'large': 44,
+    'x-large': 56,
+);
+
+//Icon
+$icon-size: 22px !default;
+
+//Breakpoints
+$grid-breakpoints: (
+    'xs': 0,
+    'sm': 768px,
+    'md': 1024px,
+    'lg': 1366px,
+    'xl': 1367px,
+);
+
+//Theme Light
+$material-light: (
+    'tabs': rgba(16, 25, 40, 0.55),
+    'input-bottom-line': $color-border--lighten,
+    'dividers': $color-border--lighten,
+    'chips': $gray--lightest,
+    'text': (
+        'theme': map-get($shades, 'white'),
+        'primary': $color-text,
+        'secondary': $color-text--light,
+        'disabled': $color-disabled-text,
+        'link': $color-info,
+        'link-hover': rgba($color-info, 0.7),
+    ),
+    'inputs': (
+        'solo-inverted-focused-label': $color-text--light,
+    ),
+    'text-fields': (
+        'outlined': $gray--lighten,
+        'outlined-disabled': $gray--lightest,
+        'outlined-hover': $color-secondary,
+    ),
+    'selection-controls': (
+        'disabled': $gray--lightest,
+        'thumb': (
+            'inactive': #fff,
+            'disabled': #fff,
+        ),
+        'track': (
+            'inactive': $gray--lighten,
+            'disabled': $gray--lightest,
+        ),
+    ),
+    'icons': (
+        'active': $color-text--light,
+        'inactive': rgba(16, 25, 40, 0.55),
+    ),
+    'buttons': (
+        'disabled': $gray--light,
+        'focused': $gray--lighten,
+    ),
+    'table': (
+        'active': map-get($grey, 'lighten-4'),
+        'hover': $color-bg--hover,
+        'group': map-get($grey, 'lighten-3'),
+    ),
+);
+
+// $shadow-key-umbra-opacity: rgba(164, 173, 186, 0.25);
+// $shadow-key-penumbra-opacity: rgba(164, 173, 186, 0.20);
+// $shadow-key-ambient-opacity: rgba(164, 173, 186, 0.15);

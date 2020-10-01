@@ -1,0 +1,16 @@
+.c-avatar {
+    &__letter {
+        margin: auto;
+        font-size: calc(var(--size, 75rem) / 30);
+        font-weight: 600;
+    }
+
+    &--square {
+        border-radius: 8px;
+    }
+
+    &--shadow {
+        //box-shadow: 0 8px 16px #00000029;
+        box-shadow: rgba(16, 25, 40, 0.08) 0 8px 16px 0;
+    }
+}

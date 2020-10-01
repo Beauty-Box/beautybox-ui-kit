@@ -1,0 +1,81 @@
+@mixin tabsOffset() {
+    margin-right: -$base-indent;
+    margin-left: -$base-indent;
+    padding-right: $base-indent;
+    padding-left: $base-indent;
+}
+
+.c-tabs {
+    display: flex;
+    flex-direction: column;
+
+    &__title,
+    .v-tab {
+        margin: 0 $base-indent;
+        padding: 0;
+        transition: color 0.1s linear;
+        outline: none;
+        color: $color-text;
+        text-transform: uppercase;
+        white-space: nowrap;
+
+        @include max(md) {
+            margin: 0 8px;
+        }
+
+        &::before {
+            display: none;
+        }
+
+        &::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            opacity: 0;
+            display: block;
+            width: 100%;
+            height: 4px;
+            backface-visibility: hidden;
+            transition: opacity 0.1s linear;
+            border-radius: $border-radius;
+            background-color: $color-bg;
+        }
+
+        &:hover {
+            color: $color-text !important;
+
+            &::after {
+                opacity: 1;
+            }
+        }
+
+        &.v-tab--active {
+            color: $color-text;
+        }
+    } //.c-tabs__title
+
+    &__content,
+    .v-window-item {
+        padding: $base-indent;
+
+        .c-checkbox {
+            &--long {
+                max-width: none;
+                @include tabsOffset;
+            }
+        }
+    } //.c-tabs__content
+
+    .v-tabs-bar__content {
+        @include border(bottom);
+    } //.c-tabs .v-tabs-bar__content
+
+    .v-tabs-slider {
+        border-radius: $border-radius;
+    } //.c-tabs .v-tabs-slider
+
+    .v-tabs-bar {
+        flex-shrink: 0;
+    } //.c-tabs  .v-tabs-bar
+} //.c-tabs

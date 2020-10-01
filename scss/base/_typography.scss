@@ -1,0 +1,112 @@
+b,
+strong {
+    font-weight: 600;
+    font-weight: 600;
+}
+
+a {
+    outline: none;
+    color: $color-accent;
+    text-decoration: none;
+    @include tr;
+
+    &:hover {
+        color: lighten($color-accent, 10%);
+    }
+
+    @each $name, $color in $button-colors {
+        &.color-#{$name} {
+            color: $color;
+
+            &:hover {
+                color: $color;
+            }
+        }
+    }
+
+    &.is-disable {
+        pointer-events: none;
+    }
+}
+
+h1,
+.h1,
+h2,
+.h2,
+h3,
+.h3,
+h4,
+.h4,
+h5,
+.h5,
+h6,
+.h6 {
+    margin-top: 0;
+}
+
+h1,
+.h1 {
+    font-size: 48px;
+    font-weight: 600;
+    line-height: 1.05em;
+    @include max-screen(1024) {
+        font-size: 40px;
+        line-height: 1.125em;
+    }
+    @include max(sm) {
+        font-size: 32px;
+    }
+}
+
+h2,
+.h2 {
+    font-size: 36px;
+    font-weight: 600;
+    line-height: 1.4em;
+    @include max-screen(1024) {
+        font-size: 32px;
+        line-height: 1.25em;
+    }
+    @include max(sm) {
+        font-size: 26px;
+        line-height: 1.2em;
+    }
+}
+
+h3,
+.h3 {
+    font-size: 28px;
+    font-weight: 500;
+    line-height: 1.25em;
+    @include max-screen(1024) {
+        font-size: 24px;
+    }
+    @include max(sm) {
+        font-size: 22px;
+        line-height: 1.13636364em;
+    }
+}
+
+h4,
+.h4 {
+    margin-bottom: $half-indent;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 1.22222222em;
+    @include max(sm) {
+        line-height: 1.11111111em;
+    }
+}
+
+h5,
+.h5,
+h6,
+.h6 {
+    margin-bottom: $half-indent;
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 1.22222222em;
+    @include max(sm) {
+        line-height: 1.11111111em;
+    }
+}

@@ -1,0 +1,213 @@
+@mixin flex {
+    display: flex;
+    justify-content: space-between;
+}
+
+@mixin flexCenter {
+    display: flex;
+    align-items: center;
+}
+
+@mixin flexColumn {
+    display: flex;
+    flex-direction: column;
+}
+
+@mixin sectionOverlay($opacity: 0.3) {
+    &::before {
+        content: '';
+        display: block;
+        background-color: rgba(21, 21, 21, $opacity);
+        @include coverdiv;
+    }
+}
+
+@mixin border($direction, $color: $color-border--lighten) {
+    @if $direction == 'top' {
+        border-top: 1px solid $color
+    }
+    @if $direction == 'left' {
+        border-left: 1px solid $color
+    }
+    @if $direction == 'right' {
+        border-right: 1px solid $color
+    }
+    @if $direction == 'bottom' {
+        border-bottom: 1px solid $color
+    }
+    @if $direction == 'all' {
+        border: 1px solid $color
+    }
+}
+
+@mixin listIcon($positionTop: 12px, $color: $color-accent) {
+    position: relative;
+    padding-left: 15px;
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: $positionTop;
+        left: 0;
+        display: block;
+        width: 8px;
+        height: 2px;
+        background-color: $color;
+    }
+} //ul li &::before (-)
+
+@mixin checkIcon($color: #fff, $width: 6px, $height: 11px, $top: 0, $left: 4px) {
+    content: '';
+    position: absolute;
+    top: $top;
+    left: $left;
+    width: $width;
+    height: $height;
+    transform: rotate(45deg);
+    border: solid $color;
+    border-width: 0 2px 2px 0;
+}
+
+//Icon angle svg base64
+@mixin iconAngle(
+    $position: relative,
+    $right: 0,
+    $direction: bottom,
+    $width: 10px,
+    $height: 10px,
+    $icon: $base64-icon-angle
+) {
+    position: $position;
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        right: $right;
+        z-index: z(fixed) - 2;
+        display: block;
+        width: $width;
+        height: $height;
+        background-image: $icon;
+        fill: $color-icon;
+
+        @if $direction == bottom {
+            transform: translateY(-50%) rotate(90deg);
+        }
+
+        @if $direction == right {
+            transform: translateY(-50%);
+        }
+    }
+} //@include iconAngle($$position: relative, $right: 10px, $direction: bottom, $width: 10px, $height: 10px, $icon: $base64-icon-angle);
+
+//@mixin size($width, $height: $width) {
+//    width: $width;
+//    height: $height;
+//}
+
+@mixin toner {
+    position: relative;
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 0;
+        display: block;
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    & > * {
+        position: inherit;
+    }
+
+    .btn {
+        box-shadow: none;
+
+        &:hover {
+            transform: none;
+            box-shadow: none;
+        }
+    }
+}
+
+@mixin btnHalfSize {
+    & > div[role='button'],
+    button,
+    a {
+        flex-shrink: 1;
+        width: calc(50% - #{$base-indent} / 2);
+
+        &:not(:first-child):not(:only-child) {
+            margin-left: $base-indent;
+        }
+
+        &:only-child {
+            width: 100%;
+        }
+    }
+
+    ::v-deep & > div[role='button'],
+    ::v-deep button,
+    ::v-deep a {
+        flex-shrink: 1;
+        width: calc(50% - #{$base-indent} / 2);
+
+        &:not(:first-child):not(:only-child) {
+            margin-left: $base-indent;
+        }
+
+        &:only-child {
+            width: 100%;
+        }
+    }
+}
+
+@mixin footerBtnLayout {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: $base-indent $gutter;
+    @include border(top);
+    @include btnHalfSize;
+
+    @include max(xs) {
+        padding: $base-indent;
+    }
+}
+
+%img {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin: 0;
+
+    // font-family: $font-family-base;
+    // font-weight: 300;
+    // text-align: center;
+
+    // position: relative;
+
+    // &::after {
+    //     content: '\f1c5';
+    //     display: flex;
+    //     align-items: center;
+    //     justify-content: center;
+
+    //     font-size: 20px;
+    //     font-family: FontAwesome;
+    //     color: rgb(100, 100, 100);
+
+    //     position: absolute;
+    //     z-index: 2;
+    //     top: 0;
+    //     left: 0;
+    //     width: 100%;
+    //     height: 100%;
+    //     background-color: #fff;
+    // }
+}

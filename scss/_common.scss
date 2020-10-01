@@ -1,0 +1,100 @@
+[v-cloak] {
+    display: none;
+}
+
+.container {
+    @each $screen, $size in $breakpoints {
+        &--#{$screen} {
+            max-width: $size !important;
+        }
+    }
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: z(overlay);
+    background: rgba(103, 118, 140, 0.5);
+    //background: rgba(33,33,33, 0.46);
+
+    @include max(xs) {
+        cursor: pointer;
+    }
+
+    &:hover {
+        .overlay__btn {
+            visibility: visible;
+            opacity: 1;
+        }
+    }
+
+    &__btn {
+        top: 100px;
+        visibility: hidden;
+        opacity: 0;
+        @include tr;
+        @include centre();
+    } //.overlay__btn
+
+    &__icon {
+        align-items: center;
+        justify-content: center;
+        width: 55px;
+        height: 55px;
+        margin: auto auto 15px;
+        padding: 10px;
+        border-radius: 50%;
+        background-color: $color-bg--light;
+        box-shadow: 0 3px 20px rgba(0, 0, 0, 0.25);
+        cursor: pointer;
+        @include tr;
+        @include flexColumn;
+
+        &:hover {
+            background-color: $color-bg--lightest;
+
+            .icon {
+                @include rotate(90);
+            }
+        }
+
+        span {
+            margin-top: 5px;
+            color: $gray;
+            font-size: 14px;
+            font-weight: 600;
+            line-height: 1;
+            text-transform: uppercase;
+        }
+
+        .icon {
+            @include tr;
+        }
+    } //.overlay__icon
+
+    &__text {
+        color: #fff;
+        font-size: 14px;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+    } //.overlay__text
+
+    &--absolute {
+        position: absolute;
+    } //.overlay--absolute
+} //.overlay
+
+.c-sub-title {
+    flex-shrink: 0;
+    padding: $base-indent * 1.5 $base-indent 10px $base-indent;
+    background-color: $color-bg--lightest;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+    line-height: 1;
+    text-transform: uppercase;
+    @include border(bottom);
+} //.c-sub-title

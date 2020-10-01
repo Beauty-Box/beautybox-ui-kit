@@ -1,0 +1,148 @@
+<template>
+    <button class="c-fake-btn" :type="type" v-on="$listeners">
+        <span class="c-fake-btn__inner">
+            <span v-if="title" class="c-fake-btn__title">{{ title }}</span>
+            <span v-if="subTitle" class="c-fake-btn__subtitle">{{ subTitle }}</span>
+        </span>
+        <v-svg :name="iconSvg" class="c-fake-btn__icon" xs />
+    </button>
+</template>
+
+<script>
+export default {
+    name: 'AppBtnFake',
+    props: {
+        title: {
+            type: String,
+            default: '',
+        },
+        subTitle: {
+            type: String,
+            default: '',
+        },
+        iconSvg: {
+            type: String,
+            default: 'angle',
+        },
+        type: {
+            type: String,
+            default: 'button',
+        },
+    },
+};
+</script>
+
+<style lang="scss" scoped>
+.c-fake-btn {
+    position: relative;
+    display: flex;
+    flex-grow: 1;
+    align-items: center;
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+    outline: none;
+    @include border(bottom);
+
+    @include max(sm) {
+        padding-top: $gutter / 2;
+    }
+
+    &:active {
+        margin-bottom: -1px;
+        border-bottom-width: 2px;
+        border-color: $color-info;
+
+        .c-fake-btn {
+            &__label {
+                color: $color-info;
+            }
+        }
+    }
+
+    & + & {
+        margin-top: $gutter;
+    }
+
+    &__inner {
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+        align-items: flex-start;
+        justify-content: flex-end;
+        height: auto;
+        padding: $base-indent 0;
+    } //.c-fake-btn__inner
+
+    &__title {
+        max-width: 72%;
+        color: currentColor;
+        font-size: 17px;
+        line-height: 25px;
+        @include text-overflow;
+    } //.c-fake-btn__title
+
+    &__subtitle {
+        height: 20px;
+        font-size: 14px;
+        font-weight: 300;
+        line-height: 20px;
+    } //.c-fake-btn__subtitle
+
+    &__label {
+        min-height: 8px;
+        transform: translateY(0);
+        transform-origin: top left;
+        transition: 0.3s cubic-bezier(0.25, 0.8, 0.5, 1);
+        //margin-bottom: 2px;
+        //font-size: 12px;
+
+        font-size: 17px;
+    } //.c-fake-btn__label
+
+    &__icon {
+        width: 15px;
+        height: 15px;
+        margin-right: 4px;
+        fill: currentColor;
+        color: currentColor;
+
+        &.icon {
+            margin-right: 5px;
+            fill: currentColor;
+            color: currentColor;
+        }
+    } //.c-fake-btn__icon
+
+    &__errors {
+        position: absolute;
+        bottom: -20px;
+        left: 0;
+        min-height: 14px;
+        color: $color-error;
+        font-size: 12px;
+        line-height: 1;
+        text-align: left;
+
+        ::v-deep .v-icon {
+            color: $color-error;
+        }
+    } //.c-fake-btn__errors
+
+    &.is-active {
+        .c-fake-btn {
+            &__label {
+                transform: translateY(-2px) scale(0.75);
+            }
+        }
+    } //.c-fake-btn.is-active
+
+    &.is-disabled {
+    }
+
+    &.has-errors {
+        border-color: $color-error;
+        color: $color-error;
+    } //.c-fake-btn.has-errors
+} //.c-fake-btn
+</style>

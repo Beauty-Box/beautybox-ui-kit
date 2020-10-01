@@ -1,0 +1,121 @@
+$height: 50px;
+$btn-width: $height + 5;
+
+.c-modal {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden !important;
+
+    &__inner {
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+    }
+
+    &__header {
+        position: relative;
+        display: flex;
+        align-items: center;
+        height: $height;
+        padding: 0 $base-indent !important;
+        letter-spacing: 0;
+        line-height: $height;
+        @include border(bottom);
+
+        span,
+        div {
+            &:first-child {
+                &:not(:only-child) {
+                    margin-left: $btn-width - $base-indent;
+                }
+            }
+        }
+
+        button {
+            width: $btn-width !important;
+            height: $height !important;
+
+            &::before {
+                display: none;
+            }
+
+            &:hover {
+                .icon,
+                .v-icon {
+                    fill: $color-icon;
+                    color: $color-icon;
+                }
+            }
+
+            &:first-child {
+                margin-left: -$base-indent;
+            }
+
+            &:last-child {
+                margin-right: -$base-indent;
+            }
+
+            & + span,
+            div {
+                &:last-child {
+                    margin-right: $btn-width - $base-indent;
+                }
+            }
+        }
+    } //.c-modal__header
+
+    &__title {
+        flex-grow: 1;
+        font-size: 20px;
+        font-weight: 400;
+        text-align: center;
+        @include text-overflow;
+
+        @include max(xs) {
+            font-size: 18px;
+        }
+    } //.c-modal__title
+
+    &__body {
+        display: flex;
+        flex: inherit !important;
+        flex-direction: column;
+        flex-grow: 1 !important;
+        flex-shrink: 1 !important;
+        padding: 0 !important;
+        overflow-y: auto !important;
+
+        @include min(md) {
+            max-height: calc(100vh - 250px);
+        }
+
+        @include max(sm) {
+            max-height: calc(100vh - 50px);
+        }
+
+        .btn-wide {
+            border-top: 0 !important;
+        }
+    } //.c-modal__body
+
+    &__footer {
+        @include footerBtnLayout;
+    } //.c-modal__footer button, .c-modal__footer a
+
+    .v-card {
+        box-shadow: none;
+
+        &__text {
+            padding: $base-indent;
+            color: $color-text !important;
+        }
+    }
+
+    .loader,
+    .empty {
+        position: static;
+        min-height: 270px;
+        margin: auto;
+    }
+} //.c-modal

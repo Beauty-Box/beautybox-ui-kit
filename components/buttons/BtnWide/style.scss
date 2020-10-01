@@ -1,0 +1,25 @@
+.btn-wide {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    width: 100%;
+    height: 55px;
+    padding: 0 $base-indent 0 $base-indent - 1;
+    outline: none;
+    background-color: #fff;
+    color: $color-info;
+    font-size: 16px;
+    line-height: 55px;
+    cursor: pointer;
+    @include border(top);
+    @include border(bottom);
+
+    .icon {
+        width: map-get($icons-sizes, 'sm') + 1.5;
+        height: map-get($icons-sizes, 'sm') + 1.5;
+
+        &:first-child {
+            margin-right: 15px;
+        }
+    }
+}

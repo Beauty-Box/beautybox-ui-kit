@@ -1,0 +1,45 @@
+.v-alert {
+    box-shadow: 0 4px 12px var(--shadow, #2b72bd33);
+
+    ::v-deep &__dismissible {
+        align-self: flex-start;
+        margin: 0;
+
+        &::before,
+        &::after {
+            display: none;
+        }
+    }
+
+    ::v-deep &__icon {
+        color: var(--icon-color, #2b72bd);
+    }
+
+    .title {
+        margin-bottom: 10px;
+        font-size: 18px;
+        font-weight: 500;
+        line-height: 24px;
+    }
+
+    ::v-deep .description,
+    ::v-deep p,
+    ::v-deep div {
+        margin-bottom: 0;
+        font-size: 16px;
+        line-height: 22px;
+
+        & + p,
+        & + div,
+        & + .description {
+            margin-top: $base-indent;
+        }
+
+        button,
+        a {
+            margin-top: -1px;
+            font-size: inherit !important;
+            font-weight: inherit !important;
+        }
+    }
+}

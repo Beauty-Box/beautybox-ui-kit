@@ -1,0 +1,75 @@
+.c-avatar-upload {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+        .c-avatar-upload {
+            &__overlay {
+                visibility: visible;
+                opacity: 1;
+            }
+        }
+    }
+
+    &__image {
+        position: relative;
+
+        /*overflow: hidden;*/
+        border-radius: 50%;
+    }
+
+    &__overlay {
+        z-index: z(default);
+        visibility: hidden;
+        opacity: 0;
+        transition: opacity 0.2s ease-in-out;
+        border-radius: 50%;
+        background-color: $color-info;
+        @include noselect;
+        @include coverdiv;
+
+        .v-icon,
+        .icon {
+            z-index: z(default) + 1;
+            fill: #fff;
+            color: #fff;
+            font-size: 28px;
+            @include centre;
+        }
+    }
+
+    &__actions {
+        width: 100%;
+    }
+
+    &__btn {
+        padding: 0 !important;
+        font-weight: 400;
+        text-transform: initial;
+
+        &::before,
+        &::after {
+            display: none;
+        }
+
+        &:hover {
+            text-decoration: underline;
+        }
+
+        &--download {
+            height: auto !important;
+            padding: 21.5px 0 !important;
+        }
+    }
+
+    &.square {
+        .c-avatar-upload {
+            &__image,
+            &__overlay {
+                border-radius: $border-radius * 2;
+            }
+        }
+    }
+}

@@ -1,0 +1,61 @@
+.item {
+    --cursor: default;
+
+    flex-wrap: wrap;
+    background-color: #fff;
+    cursor: var(--cursor);
+
+    &::before,
+    &::after {
+        display: none;
+    }
+
+    &:hover {
+        background-color: $color-bg--hover;
+    }
+
+    & + & {
+        @include border(top);
+    }
+}
+
+.v-list-item {
+    &__icon {
+        &.item__color {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            min-width: auto;
+            height: 100%;
+            margin: 0 !important;
+
+            @include min(md) {
+                border-radius: $border-radius * 3;
+            }
+        }
+    }
+
+    &__action {
+        margin-right: $base-indent - 4 !important;
+        cursor: grab;
+
+        button {
+            &.btn-drag {
+                cursor: grab;
+            }
+        }
+    }
+
+    &__title {
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 21px;
+    }
+}
+
+.btn-menu {
+    &::before {
+        border-radius: $border-radius;
+    }
+}

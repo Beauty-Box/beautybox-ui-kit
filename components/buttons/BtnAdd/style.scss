@@ -1,0 +1,39 @@
+.btn-add {
+    .icon {
+        &:not(.icon-colpac) {
+            width: 20px;
+            height: 20px;
+            fill: #fff;
+        }
+    }
+
+    &.v-btn--right {
+        right: 12px;
+
+        @include min(md) {
+            right: $gutter;
+        }
+    }
+
+    &.v-btn--bottom {
+        bottom: 70px;
+
+        @include min(md) {
+            bottom: 30px;
+        }
+
+        @include iphoneX() {
+            bottom: 80px;
+        }
+    }
+
+    .icon-colpac {
+        position: absolute;
+        top: -80px;
+        left: -27px;
+        z-index: -2;
+        width: 100px;
+        height: 100px;
+        fill: initial;
+    }
+} // .btn-add

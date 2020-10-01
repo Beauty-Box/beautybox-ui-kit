@@ -1,0 +1,172 @@
+$font-family-system-fonts: -apple-system, BlinkMacSystemFont, Roboto, Open Sans, Helvetica Neue,
+    Noto Sans Armenian, Noto Sans Bengali, Noto Sans Cherokee, Noto Sans Devanagari,
+    Noto Sans Ethiopic, Noto Sans Georgian, Noto Sans Hebrew, Noto Sans Kannada, Noto Sans Khmer,
+    Noto Sans Lao, Noto Sans Osmanya, Noto Sans Tamil, Noto Sans Telugu, Noto Sans Thai, sans-serif !default;
+$font-family-arial: Arial, Textbook New, sans-serif;
+$font-family-roboto: Roboto, sans-serif !default;
+
+$font-family-base: $font-family-roboto;
+$font-weight-base: 400;
+$line-height-base: 1.5;
+$font-size-base: 16px;
+
+$max-width: 1200px;
+$spacer: 4px;
+
+//Отступы
+$gutter: $spacer * 6;
+$base-indent: $spacer * 4;
+$half-indent: $spacer * 3;
+
+//Base Variebles
+$color-accent: #ff8272;
+$color-primary: #101928;
+$color-secondary: #67768c;
+
+$color-success: #8cc152;
+$color-info: #2b72bd;
+$color-warning: #ffc107;
+$color-error: #f74969;
+
+$color-link: $color-info;
+
+$color-disabled: #67768c;
+$color-disabled-text: #67768c;
+
+//gray
+$gray--darkest: #242626; //#101928
+$gray--darken: #353737;
+$gray--dark: #464646;
+$gray: #585a59;
+$gray--light: #9b9b9b;
+$gray--lighten: #dee3e7; //#eff1f6
+$gray--lightest: #eef2f7; //muted color
+
+//text
+// $color-text--darkest : $gray--darkest;
+// $color-text--dark    : $gray--dark;
+$color-text: $color-primary; //$gray--darkest
+$color-text--light: $color-secondary; //#7e7e7e
+$color-text--lighten: $gray--light;
+$color-text--lightest: $gray--lighten;
+
+//border
+$color-border--darkest: $gray--darkest;
+$color-border--darken: $gray--darken;
+$color-border--dark: $gray;
+$color-border: #a5a5a5;
+$color-border--light: #c7c7c7;
+$color-border--lighten: $gray--lighten;
+$color-border--lightest: $gray--lightest;
+$color-border-very-light: #eef0f2; //#f2f2f2
+
+$input-height-mobile: 56px;
+$input-color-border: $color-border;
+$input-color-border--hover: $color-border--dark;
+$input-shadow--hover: 0 2px 4px 0 rgba(0, 0, 0, 0.05), 0 0 4px 0 rgba(0, 0, 0, 0.05);
+
+$border-radius: 3px;
+
+//bg
+$color-bg--darken: #191919;
+$color-bg--dark: #222;
+$color-bg: #2f2f2f;
+$color-bg--light: #eee;
+$color-bg--lighten: #f5f5f5;
+$color-bg--lightest: #f7f7f8;
+$color-bg--hover: #fbfbfb;
+$color-bg--instagram: linear-gradient(
+    to bottom left,
+    #962fbf 0%,
+    #d62976 35%,
+    #fa7e1e 70%,
+    #ffdc3e 100%
+);
+
+//Тень
+$box-shadow: 164, 173, 186;
+$box-shadow-base: 0 2px 5px 0 rgba(164, 173, 186, 0.25);
+$box-shadow-sticky-block: 0 15px 15px -15px rgba(222, 227, 231, 0.9);
+$box-shadow-base--hover: 0 5px 15px 5px rgba(164, 173, 186, 0.25);
+$box-shadow-base--active: 0 0 4px 0 rgba(16, 25, 40, 0.08);
+
+//Icon
+$color-icon: $color-text;
+$color-icon--light: $color-text--light;
+$color-icon--lighten: #a4adba;
+
+$icons-sizes: () !default;
+$icons-sizes: map-deep-merge(
+    (
+        'default': 20px,
+        'xs': 18px,
+        'sm': 28px,
+        'md': 44px,
+        'lg': 56px,
+        'xl': 70px,
+    ),
+    $icons-sizes
+);
+
+$icon-size: map-get($icons-sizes, 'default');
+$icon-size--xs: map-get($icons-sizes, 'xs');
+$icon-size--sm: map-get($icons-sizes, 'sm');
+$icon-size--md: map-get($icons-sizes, 'md');
+$icon-size--lg: map-get($icons-sizes, 'lg');
+
+//Transition
+$trs: all 0.4s ease-in-out;
+
+$text-colors: (
+    primary: $color-primary,
+    error: $color-error,
+    success: $color-success,
+) !default;
+
+$breakpoints: (
+    i5: 320px,
+    i7: 375px,
+    i8: 414px,
+    xs: 480px,
+    sm: 768px,
+    md: 1024px,
+    mdX: 1280px,
+    lg: 1366px,
+) !default;
+
+$breakpointsMin: (
+    i5: 319px,
+    i7: 374px,
+    i8: 413px,
+    xs: 479px,
+    sm: 767px,
+    md: 1023px,
+    mdX: 1280px,
+    lg: 1365px,
+) !default;
+
+//z-index
+$z-index: (
+    hidden: -1,
+    default: 1,
+    absolute: 5,
+    fixed: 10,
+    overlay: 1000,
+    modal: 1010,
+) !default;
+
+$iphoneX-fix-offset-bottom: 10px;
+
+:root {
+    --max-width: 1200px;
+    --gutter: 24px;
+    --base-indent: 16px;
+    --color-primary: #101928;
+    --color-secondary: #67768c;
+}
+
+@media screen and (max-width: 480px) {
+    :root {
+        --gutter: 16px;
+    }
+}

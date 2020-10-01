@@ -1,0 +1,70 @@
+.c-checkbox {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+
+    &--long {
+        margin-top: 0;
+        transition: background-color 0.1s linear;
+        cursor: pointer;
+
+        &:hover {
+            background-color: $color-bg--hover;
+        }
+
+        & + .c-checkbox--long {
+            @include border(top);
+        }
+
+        .v-label {
+            width: 100%;
+            padding: $gutter 0;
+            color: $color-text !important;
+        } //.c-checkbox--long .v-label
+
+        .v-input {
+            &__slot {
+                @include max(sm) {
+                    flex-direction: row-reverse;
+                }
+            }
+
+            &--selection-controls__input {
+                @include max(sm) {
+                    width: 30px;
+                    height: 30px;
+                    margin-right: 0 !important;
+                    margin-left: $base-indent / 2;
+                }
+            }
+        }
+
+        .v-icon {
+            @include max(sm) {
+                font-size: 28px !important;
+            }
+        }
+    } //.c-checkbox--long
+} //.c-checkbox
+
+.c-switch {
+    &--reverse {
+        .v-input__slot {
+            flex-direction: row-reverse;
+        }
+        .v-input--selection-controls__input {
+            height: 29px;
+            margin-right: 0 !important;
+            margin-left: $base-indent / 2;
+        }
+
+        .v-input--switch {
+            &__track {
+                top: calc(50% - 15px);
+            } //.c-switch--reverse .v-input--switch__track
+
+            &__thumb {
+                top: 2px;
+            } //.c-switch--reverse .v-input--switch__thumb
+        } //.c-switch--reverse .v-input--switch
+    } //.c-switch--reverse
+} //.c-switch
