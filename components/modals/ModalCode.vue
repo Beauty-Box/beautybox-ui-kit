@@ -57,7 +57,7 @@
 </template>
 
 <script>
-import { Provider } from '@beautybox/core/api';
+import { Api as Provider } from '@beautybox/core/api';
 import { setToken } from '@beautybox/core/utils/auth';
 import { modalProps } from '../../mixins/modalProps';
 import BSecurityCode from '../forms/inputs/InputSecurityCode/index';
