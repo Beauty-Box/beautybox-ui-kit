@@ -62,9 +62,9 @@ import { setToken } from '@beautybox/auth/src/utils';
 import { modalProps } from '@beautybox/ui-kit/mixins/modalProps';
 import BSecurityCode from '@beautybox/ui-kit/components/forms/inputs/InputSecurityCode/index';
 const BTimer = () =>
-    import(/* webpackChunkName: "Timer" */ '@beautybox/ui-kit/components/forms/Timer');
+    import(/* webpackChunkName: "Timer" */ '../forms/Timer');
 const BBtnClose = () =>
-    import(/* webpackChunkName: "BtnClose" */ '@beautybox/ui-kit/components/buttons/BtnClose');
+    import(/* webpackChunkName: "BtnClose" */ '../buttons/BtnClose');
 
 export default {
     name: 'BModalCode',
