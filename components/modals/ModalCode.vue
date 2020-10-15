@@ -57,10 +57,10 @@
 </template>
 
 <script>
-import { Provider } from '@beautybox/entity/Provider';
-import { setToken } from '@beautybox/auth/src/utils';
-import { modalProps } from '@beautybox/ui-kit/mixins/modalProps';
-import BSecurityCode from '@beautybox/ui-kit/components/forms/inputs/InputSecurityCode/index';
+import { Provider } from '@beautybox/core/api';
+import { setToken } from '@beautybox/core/utils/auth';
+import { modalProps } from '../../mixins/modalProps';
+import BSecurityCode from '../forms/inputs/InputSecurityCode/index';
 const BTimer = () =>
     import(/* webpackChunkName: "Timer" */ '../forms/Timer');
 const BBtnClose = () =>

@@ -10,6 +10,7 @@
         "lint": "yarn run lint:scripts && yarn run lint:styles"
     },
     "dependencies": {
+        "@beautybox/core": "git+ssh://git@gitlab.beautybox.ru:beautybox/frontend/beautybox-base.git",
         "cross-env": "^7.0.2",
         "react": "^16.13.1",
         "react-dom": "16.x",
