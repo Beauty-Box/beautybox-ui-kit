@@ -46,7 +46,7 @@
             Загрузить фото профиля
         </v-btn>-->
             <div v-else class="c-avatar-upload__actions">
-                <v-row style="flex-wrap: nowrap; margin-top: 10px;">
+                <v-row style="flex-wrap: nowrap; margin-top: 10px">
                     <v-col class="pt-0 pb-0 pl-0">
                         <v-btn
                             color="link"
@@ -87,7 +87,7 @@
 <script>
 import MUploadAvatar from '../modals/MUploadAvatar';
 import ImageUserAvatar from '../image/ImageUserAvatar';
-const BSvg = () => import(/* webpackChunkName: "BSvg" */ '@beautybox/ui-kit/components/icons/Svg');
+const BSvg = () => import(/* webpackChunkName: "Svg" */ '@beautybox/ui-kit/components/icons/Svg');
 
 export default {
     name: 'UploadAvatar',

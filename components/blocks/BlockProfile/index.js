@@ -1,5 +1,6 @@
 import './style.scss';
 
+import { mapGetters } from 'vuex';
 import ImageUserAvatar from '@beautybox/ui-kit/components/image/ImageUserAvatar';
 import AppMobileBottomOptions from '@beautybox/ui-kit/components/bottom-sheet/BottomSheetMobileOptions';
 import VChip from 'vuetify/lib/components/VChip';
@@ -44,11 +45,21 @@ export default {
     data: () => ({
         clientOptions: false,
     }),
+    computed: {
+        ...mapGetters(['CHECK_PERMISSION']),
+    },
+    methods: {
+        onOpenClientInfo() {
+            if (this.CHECK_PERMISSION(['all-show-phone-clients', 'all-show-clients-card'])) {
+                this.clientOptions = true;
+            }
+        },
+    },
     template: `<div
     class="widget-profile"
     :class="{ 'widget-profile--column': column, 'widget-profile--shadow': shadow }"
     :loading="loading"
-    @click="clientOptions = true"
+    @click="onOpenClientInfo"
 >
     <div class="widget-profile__content">
         <div class="widget-profile__avatar">
@@ -110,10 +121,11 @@ export default {
         v-if="$vuetify.breakpoint.smAndDown && mobileOptions"
         v-model="clientOptions"
     >
-        <v-list-item :ripple="false" tag="a" :href="'tel:' + data.phone">
+        <v-list-item v-if="CHECK_PERMISSION('all-show-phone-clients')" :ripple="false" tag="a" :href="'tel:' + data.phone">
             <span>Позвонить {{ data.phone }}</span>
         </v-list-item>
         <v-list-item
+            v-if="CHECK_PERMISSION('all-show-clients-card')"
             :ripple="false"
             @click="
                 $router.push({

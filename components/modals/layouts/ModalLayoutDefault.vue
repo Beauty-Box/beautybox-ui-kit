@@ -24,7 +24,7 @@
 
             <!-- BODY -->
             <v-card-text :class="{ 'is-relative': loading }">
-                <block-loader v-if="loading" />
+                <b-block-loader v-if="loading" />
                 <template v-else>
                     <slot />
                 </template>
@@ -42,13 +42,12 @@
 
 <script>
 import { modalProps } from '@beautybox/core/mixins/modalProps';
-const BSvg = () => import(/* webpackChunkName: "BSvg" */ '@beautybox/ui-kit/components/icons/Svg');
-const BlockLoader = () =>
+const BBlockLoader = () =>
     import(/* webpackChunkName: "BlockLoader" */ '@beautybox/ui-kit/components/blocks/BlockLoader');
 
 export default {
-    name: 'ModalLayoutDefault',
-    components: { BSvg, BlockLoader },
+    name: 'BModalLayoutDefault',
+    components: { BBlockLoader },
     mixins: [modalProps],
     props: {
         loading: {
@@ -110,18 +109,16 @@ export default {
 
         &.has-title {
             @include border(bottom);
-
-            ::v-deep .c-btn-close {
-                @include centre('y');
-                right: 14px;
-                z-index: z(absolute) + 1;
-            }
         }
 
         ::v-deep .c-btn-close {
             @include centre('y');
-            right: 14px;
+            right: 7px;
             z-index: z(absolute) + 1;
+
+            @include min(md) {
+                right: 13px;
+            }
         }
     }
 

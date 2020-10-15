@@ -36,6 +36,10 @@ export default {
             type: String,
             default: 'on',
         },
+        autofocus: {
+            ...VTextField.options.props.autofocus,
+            default: false,
+        },
     },
     computed: {
         classes() {

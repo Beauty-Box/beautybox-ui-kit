@@ -22,15 +22,7 @@
                 <div class="c-bottom-sheet__inner">
                     <div class="c-bottom-sheet__scroll-container">
                         <div>
-                            <v-btn
-                                v-if="closeBtn"
-                                icon
-                                :ripple="false"
-                                class="c-bottom-sheet__btn-close"
-                                @click="close"
-                            >
-                                <v-svg name="close" xs />
-                            </v-btn>
+                            <b-btn-close v-if="closeBtn" size="30" @click="close" />
                             <div
                                 v-if="titleDropdown || subTitleDropdown"
                                 class="c-bottom-sheet__header"
@@ -61,7 +53,7 @@
 import { modalProps } from '@beautybox/core/mixins/modalProps';
 
 export default {
-    name: 'BottomSheetSimple',
+    name: 'BBottomSheetSimple',
     mixins: [modalProps],
     props: {
         selected: {
@@ -122,4 +114,4 @@ export default {
 };
 </script>
 
-<style lang="scss" src="./bottom-sheet.scss" />
+<style lang="scss" src="./styles.scss" />

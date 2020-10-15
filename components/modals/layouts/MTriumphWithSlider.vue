@@ -17,18 +17,12 @@
         >
             <!-- HEADER -->
             <v-card-title class="c-modal-triumph__header">
-                <v-btn
+                <b-btn-close
+                    size="40"
                     class="full-screen__btn-close"
-                    small
-                    light
-                    tile
-                    text
                     type="reset"
-                    :ripple="false"
                     @click="modal = false"
-                >
-                    <v-svg name="close" />
-                </v-btn>
+                />
             </v-card-title>
 
             <!-- BODY -->
@@ -88,10 +82,13 @@
 </template>
 
 <script>
-import { modalProps } from '../../../mixins/modalProps';
+import { modalProps } from '@beautybox/core/mixins/modalProps';
+const BBtnClose = () =>
+    import(/* webpackChunkName: "BtnClose" */ '@beautybox/ui-kit/components/buttons/BtnClose');
 
 export default {
     name: 'MTriumphWithSlider',
+    components: { BBtnClose },
     mixins: [modalProps],
     props: {
         title: {
@@ -259,14 +256,13 @@ $min-height: 664px;
         min-height: $min-height;
         padding-top: 50px;
         overflow: hidden;
-        background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PGNpcmNsZSBmaWxsPSIjRkZERTc4IiBjeD0iMTIiIGN5PSIxMiIgcj0iMTIiIC8+PC9zdmc+Cg==')
-            no-repeat -2% 50%/180% 200%;
+        background: url('~@beautybox/core/static/image/yellow-circle.svg') no-repeat -2% 50%/180% 200%;
 
         @include max(sm) {
             min-height: 555px;
             padding: 0 0 86px;
-            background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PGNpcmNsZSBmaWxsPSIjRkZERTc4IiBjeD0iMTIiIGN5PSIxMiIgcj0iMTIiIC8+PC9zdmc+Cg==')
-                no-repeat 50% 17%/1600px 2180px;
+            background: url('~@beautybox/core/static/image/yellow-circle.svg') no-repeat 50% 17%/1600px
+                2180px;
         }
 
         ::v-deep p {

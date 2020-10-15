@@ -7,7 +7,7 @@
             :disabled="disabled"
             :clearable="clearable"
             :error-messages="errorMessages"
-            @click="openBottomSheet"
+            @click="modal = true"
             @click:clear="$emit('clear')"
         />
         <input type="hidden" :value="selected" :name="name" />
@@ -19,21 +19,15 @@
             :hide-overlay="hideOverlay"
             :now-items-length="nowItemsLength"
             :all-items-length="allItemsLength"
+            :retain-focus="false"
             content-class="c-bottom-sheet c-bottom-sheet--palette c-bottom-sheet--full-height"
         >
             <v-sheet>
                 <div class="c-bottom-sheet__inner">
                     <div class="c-bottom-sheet__scroll-container" @scroll="onScroll">
                         <div>
-                            <v-btn
-                                v-if="closeBtn"
-                                icon
-                                :ripple="false"
-                                class="c-bottom-sheet__btn-close"
-                                @click="onCancel"
-                            >
-                                <v-svg name="close" xs />
-                            </v-btn>
+                            <b-btn-close v-if="closeBtn" size="30" @click="modal = false" />
+
                             <div
                                 v-if="titleDropdown || subTitleDropdown"
                                 class="c-bottom-sheet__header"
@@ -47,15 +41,13 @@
                             </div>
 
                             <div class="c-bottom-sheet__search">
-                                <b-input
-                                    small
-                                    rounded
-                                    clearable
-                                    outlined
-                                    type="text"
-                                    height="44"
+                                <b-input-search
                                     autocomplete="off"
-                                    append-icon="search"
+                                    color="secondary"
+                                    clearable
+                                    hide-details
+                                    height="44"
+                                    :autofocus="false"
                                     :placeholder="searchPlaceholder"
                                     @input="$emit('search', $event || '')"
                                 />
@@ -77,10 +69,13 @@
 </template>
 
 <script>
-import { modalProps, scroll } from '../../mixins';
+import { modalProps, scroll } from '@beautybox/ui-kit/mixins';
+const BBtnClose = () =>
+    import(/* webpackChunkName: "BtnClose" */ '@beautybox/ui-kit/components/buttons/BtnClose');
 
 export default {
-    name: 'BottomSheetSearch',
+    name: 'BBottomSheetSearch',
+    components: { BBtnClose },
     mixins: [modalProps, scroll],
     props: {
         selected: {
@@ -157,18 +152,6 @@ export default {
         heightForActiveScroll: 100,
     }),
     methods: {
-        openBottomSheet() {
-            this.modal = true;
-            this.$emit('open');
-        },
-        onSuccess() {
-            this.success();
-            this.modal = false;
-        },
-        onCancel() {
-            this.cancel();
-            this.modal = false;
-        },
         onScroll(e) {
             this.onScrollControl(e);
 
@@ -193,4 +176,4 @@ export default {
 };
 </script>
 
-<style lang="scss" src="./bottom-sheet.scss" />
+<style lang="scss" src="./styles.scss" />

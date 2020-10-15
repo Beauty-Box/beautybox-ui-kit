@@ -1,20 +1,19 @@
 import './style.scss';
 
-import VProgressCircular from 'vuetify/lib/components/VProgressCircular';
+import { VProgressCircular } from 'vuetify/lib';
+import { isNumber } from '@beautybox/utils';
 
 export default {
-    name: 'BlockLoader',
-    components: {
-        VProgressCircular,
-    },
+    name: 'BBlockLoader',
+    components: { VProgressCircular },
     props: {
+        bgc: {
+            type: String,
+            default: 'transparent',
+        },
         color: {
             type: String,
             default: 'primary',
-        },
-        className: {
-            type: String,
-            default: null,
         },
         position: {
             type: String,
@@ -23,17 +22,13 @@ export default {
                 return ['fixed', 'absolute', 'relative', 'static', 'sticky'].indexOf(value) !== -1;
             },
         },
-        bgc: {
-            type: String,
-            default: 'transparent',
+        minHeight: {
+            type: [Number, String],
+            default: 'auto',
         },
         zIndex: {
             type: [String, Number],
             default: 10,
-        },
-        indeterminate: {
-            type: Boolean,
-            default: true,
         },
         size: {
             type: [String, Number],
@@ -43,25 +38,39 @@ export default {
             type: Number,
             default: 3,
         },
+        indeterminate: {
+            type: Boolean,
+            default: true,
+        },
     },
-    template: ` <div
-    class="loader"
-    :class="{
-        className,
-    }"
-    :style="{
-        '--bg-color': bgc,
-        '--position': position,
-        '--z-index': zIndex,
-    }"
->
-    <div>
-        <v-progress-circular
-            :color="color"
-            :indeterminate="indeterminate"
-            :size="size"
-            :width="width"
-        />
-    </div>
-</div>`,
+    render(h) {
+        return h(
+            'div',
+            {
+                class: {
+                    'c-loader': true,
+                },
+                style: {
+                    '--bg-color': this.bgc,
+                    '--position': this.position,
+                    '--z-index': this.zIndex,
+                    '--min-height': isNumber(this.minHeight)
+                        ? this.minHeight + 'px'
+                        : this.minHeight,
+                },
+            },
+            [
+                h('div', [
+                    h('v-progress-circular', {
+                        props: {
+                            color: this.color,
+                            indeterminate: this.indeterminate,
+                            size: this.size,
+                            width: this.width,
+                        },
+                    }),
+                ]),
+            ]
+        );
+    },
 };

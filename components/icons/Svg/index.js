@@ -11,25 +11,15 @@ export default {
                 style: this.styles,
                 attrs: {
                     xmlns: 'http://www.w3.org/2000/svg',
-                    'aria-labelledby': 'title',
+                    'aria-labelledby': this.name,
                     focusable: false,
                     role: 'img',
                     ...this.$attrs,
                 },
             },
             [
-                h(
-                    'title',
-                    {
-                        attrs: {
-                            id: 'title',
-                        },
-                    },
-                    this.name
-                ),
                 h('use', {
                     attrs: {
-                        role: 'presentation',
                         href: this.iconPath,
                         xmlns: 'http://www.w3.org/2000/svg',
                     },
@@ -75,13 +65,9 @@ export default {
             };
         },
         styles() {
-            if (this.fill) {
-                return {
-                    fill: this.fill,
-                };
-            } else {
-                return false;
-            }
+            return {
+                fill: this.fill,
+            };
         },
         iconPath() {
             let icon = require(`@beautybox/ui-kit/assets/spriteSVG/${this.name}.svg`);

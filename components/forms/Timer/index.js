@@ -1,8 +1,5 @@
 export default {
     name: 'BTimer',
-    render(h) {
-        h('span', this.timerTime);
-    },
     props: {
         time: {
             type: [Number, String],
@@ -11,7 +8,7 @@ export default {
     },
     data: (vm) => ({
         timer: null,
-        timerTime: vm.time,
+        propsTime: vm.time,
     }),
     mounted() {
         this.$nextTick(() => {
@@ -24,13 +21,16 @@ export default {
     methods: {
         startTimer() {
             this.timer = setInterval(() => {
-                if (this.timerTime > 0) {
-                    this.timerTime--;
+                if (this.propsTime > 0) {
+                    this.propsTime--;
                 } else {
                     clearInterval(this.timer);
-                    this.$emit('afterEnd');
+                    this.$emit('end');
                 }
             }, 1000);
         },
+    },
+    render(h) {
+        return h('span', this.propsTime);
     },
 };

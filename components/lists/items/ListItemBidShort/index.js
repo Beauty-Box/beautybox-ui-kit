@@ -34,4 +34,33 @@ export default {
         </div>
     </div>
 </div>`,
+    // render(h) {
+    //     return h(
+    //         'div',
+    //         {
+    //             class: {
+    //                 'bid-item': true,
+    //                 'bid-item--short': true,
+    //             },
+    //         },
+    //         [
+    //             h('div', { class: { 'bid-item__left': true } }, [
+    //                 h(
+    //                     'span',
+    //                     {
+    //                         class: {
+    //                             'bid-item__time': true,
+    //                         },
+    //                     },
+    //                     this.bid.timeFrom
+    //                 ),
+    //             ]),
+    //             h('div', {
+    //                 class: {
+    //                     'bid-item__inner': true,
+    //                 },
+    //             }),
+    //         ]
+    //     );
+    // },
 };

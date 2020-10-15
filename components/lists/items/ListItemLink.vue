@@ -6,6 +6,7 @@
         :style="{ '--cursor': cursor }"
         :to="to"
         :href="href"
+        :ripple="ripple"
         :tag="tag"
         v-on="$listeners"
     >
@@ -48,6 +49,10 @@ export default {
         square: {
             type: Boolean,
             default: false,
+        },
+        ripple: {
+            type: Boolean,
+            default: true,
         },
         angle: {
             type: Boolean,

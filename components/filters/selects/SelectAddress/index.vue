@@ -3,7 +3,7 @@
         :items="ADDRESSES"
         label="Салон"
         type="number"
-        :value="SELECT_ADDRESS"
+        :value="SELECTED_ADDRESS"
         @change="SET_ADDRESS"
         v-on="$listeners"
     />
@@ -19,7 +19,7 @@ export default {
         BFilterSelect,
     },
     computed: {
-        ...mapGetters(['SELECT_ADDRESS', 'ADDRESSES']),
+        ...mapGetters(['SELECTED_ADDRESS', 'ADDRESSES']),
     },
     methods: {
         ...mapMutations(['SET_ADDRESS']),

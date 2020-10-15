@@ -13,7 +13,7 @@
 </template>
 
 <script>
-const BSvg = () => import(/* webpackChunkName: "BSvg" */ '../icons/Svg');
+const BSvg = () => import(/* webpackChunkName: "Svg" */ '../icons/Svg');
 
 export default {
     name: 'BlockEmpty',

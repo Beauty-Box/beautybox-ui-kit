@@ -101,39 +101,6 @@ $header-height--mobile: 52px;
         position: absolute !important;
         top: 0;
         right: 0;
-        width: $header-height !important;
-        height: $header-height !important;
-        padding: 0 !important;
-
-        @include max(sm) {
-            width: $header-height--mobile - 2px !important;
-            height: $header-height--mobile - 2px !important;
-        }
-
-        &::before,
-        &::after {
-            display: none;
-        }
-
-        &:hover {
-            .icon {
-                fill: $color-icon;
-            }
-        }
-
-        i {
-            font-size: 25px !important;
-        }
-
-        .icon {
-            fill: $color-icon--light;
-
-            @include max(sm) {
-                width: 16px;
-                height: 16px;
-                fill: $color-icon;
-            }
-        }
     } //.full-screen__btn-close
 
     &__form {

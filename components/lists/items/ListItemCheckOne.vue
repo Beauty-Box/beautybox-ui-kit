@@ -19,6 +19,7 @@
                     :input-value="active"
                     off-icon="radio_button_unchecked"
                     on-icon="radio_button_checked"
+                    color="info"
                 />
             </v-list-item-action>
             <div class="d-flex flex-column align-start" style="width: 100%">
@@ -41,6 +42,7 @@
                     :input-value="active"
                     off-icon="radio_button_unchecked"
                     on-icon="radio_button_checked"
+                    color="info"
                 />
             </v-list-item-action>
         </template>
@@ -51,7 +53,7 @@
 import mix from './mixin';
 
 export default {
-    name: 'ListItemCheckOne',
+    name: 'BListItemCheckOne',
     mixins: [mix],
 };
 </script>

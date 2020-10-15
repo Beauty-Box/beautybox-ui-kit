@@ -3,7 +3,7 @@
         class="widget-profile"
         :class="{ 'widget-profile--column': column, 'widget-profile--shadow': shadow }"
         :loading="loading"
-        @click="clientOptions = true"
+        @click="onOpenClientInfo"
     >
         <div class="widget-profile__content">
             <div class="widget-profile__avatar">
@@ -20,7 +20,7 @@
                 </div>
                 <template
                     v-if="
-                        checkPermission('all-show-phone-clients') &&
+                        CHECK_PERMISSION('all-show-phone-clients') &&
                         data.phone &&
                         !$slots.subcontent &&
                         showPhone
@@ -62,13 +62,19 @@
 
         <!-- MOBILE OPTIONS -->
         <app-mobile-bottom-options
-            v-if="$vuetify.breakpoint.smAndDown && mobileOptions"
+            v-if="$vuetify.breakpoint.mobile && checkShowClient && mobileOptions"
             v-model="clientOptions"
         >
-            <v-list-item :ripple="false" tag="a" :href="'tel:' + data.phone">
+            <v-list-item
+                v-if="CHECK_PERMISSION('all-show-phone-clients')"
+                :ripple="false"
+                tag="a"
+                :href="'tel:' + data.phone"
+            >
                 <span>Позвонить {{ data.phone }}</span>
             </v-list-item>
             <v-list-item
+                v-if="CHECK_PERMISSION('all-show-clients-card')"
                 :ripple="false"
                 @click="
                     $router.push({
@@ -88,6 +94,8 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+
 const ImageUserAvatar = () =>
     import(
         /* webpackChunkName: "ImageUserAvatar" */ '@beautybox/ui-kit/components/image/ImageUserAvatar'
@@ -134,6 +142,19 @@ export default {
     data: () => ({
         clientOptions: false,
     }),
+    computed: {
+        ...mapGetters(['CHECK_PERMISSION']),
+        checkShowClient() {
+            return this.CHECK_PERMISSION(['all-show-phone-clients', 'all-show-clients-card']);
+        },
+    },
+    methods: {
+        onOpenClientInfo() {
+            if (this.checkShowClient) {
+                this.clientOptions = true;
+            }
+        },
+    },
 };
 </script>
 

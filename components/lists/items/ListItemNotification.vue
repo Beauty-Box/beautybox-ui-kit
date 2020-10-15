@@ -1,68 +1,65 @@
 <template>
     <v-list-item
-        v-if="oData.hasOwnProperty('message') && oData.message.bid"
-        :key="oData.itemID"
+        v-if="Object.keys(item.message).length && Object.keys(item.message.bid).length"
+        :key="item.itemID"
         class="bid-info"
         tag="a"
         :ripple="false"
         @click="
-            checkPermission(['all-show-bids', 'your-show-bids']) &&
+            CHECK_PERMISSION(['all-show-bids', 'your-show-bids']) &&
                 $router.push({
                     name: 'bids-info',
-                    params: { id: parseInt(oData.message.bidID) },
+                    params: { id: parseInt(item.message.bidID) },
                 })
         "
     >
-        <template v-if="oData.hasOwnProperty('message') && oData.message.bid">
-            <v-list-item-avatar size="60">
-                <image-user-avatar
-                    class="mt-2"
-                    size="60"
-                    :image="oData.message.bid.client.avatar"
-                    :name="oData.message.bid.client.name"
-                />
-                <span class="avatar-icon">
-                    <v-icon :color="icons[oData.message.message].color">{{
-                        icons[oData.message.message].icon
-                    }}</v-icon>
-                </span>
-            </v-list-item-avatar>
-            <v-list-item-content>
-                <p v-if="oData.message.bid.isOnline" class="bid-info__online">
-                    онлайн-запись
-                </p>
-                <v-list-item-title class="bid-info__title">
-                    {{ oData.message.message }}
-                </v-list-item-title>
-                <v-list-item-subtitle class="bid-info__text">
-                    {{ oData.message.bid.date.weekday }},
-                    {{ oData.message.bid.date.day }}
-                    {{ oData.message.bid.date.month }},
-                    {{ oData.message.bid.date.timeFrom }}
-                </v-list-item-subtitle>
-                <!--<v-list-item-title>
-                {{ oData.message.message }}
+        <v-list-item-avatar size="60">
+            <image-user-avatar
+                class="mt-2"
+                size="60"
+                :image="item.message.bid.client.avatar"
+                :name="item.message.bid.client.name"
+            />
+            <span v-if="item.message.message.length" class="avatar-icon">
+                <v-icon :color="icons[item.message.message].color">
+                    {{ icons[item.message.message].icon }}
+                </v-icon>
+            </span>
+        </v-list-item-avatar>
+        <v-list-item-content>
+            <p v-if="item.message.bid.isOnline" class="bid-info__online">онлайн-запись</p>
+            <v-list-item-title class="bid-info__title">
+                {{ item.message.message }}
+            </v-list-item-title>
+            <v-list-item-subtitle class="bid-info__text">
+                {{ item.message.bid.date.weekday }},
+                {{ item.message.bid.date.day }}
+                {{ item.message.bid.date.month }},
+                {{ item.message.bid.date.timeFrom }}
+            </v-list-item-subtitle>
+            <!--<v-list-item-title>
+                {{ item.message.message }}
             </v-list-item-title>-->
-                <v-list-item-subtitle class="bid-info__text">
-                    Услуга:
-                    {{ oData.message.bid.services.title }}
-                </v-list-item-subtitle>
-                <v-list-item-subtitle v-if="USER_INFO_ROLE !== 'master'" class="bid-info__text">
-                    Клиент:
-                    {{ oData.message.bid.client.name }}
-                </v-list-item-subtitle>
-                <v-list-item-subtitle class="bid-info__text">
-                    Мастер:
-                    {{ oData.message.bid.master.name || 'Любой мастер' }}
-                </v-list-item-subtitle>
-                <!--                <v-list-item-subtitle class="text-body-2 ma-0 text&#45;&#45;primary font-weight-normral">-->
-                <!--                    Салон:-->
-                <!--                    {{ oData.message.bid.address.nameCrm }}-->
-                <!--                </v-list-item-subtitle>-->
-            </v-list-item-content>
-        </template>
+            <v-list-item-subtitle class="bid-info__text">
+                Услуга:
+                {{ item.message.bid.services.title }}
+            </v-list-item-subtitle>
+            <v-list-item-subtitle v-if="USER_INFO_ROLE !== 'master'" class="bid-info__text">
+                Клиент:
+                {{ item.message.bid.client.name }}
+            </v-list-item-subtitle>
+            <v-list-item-subtitle class="bid-info__text">
+                Мастер:
+                {{ item.message.bid.master.name || 'Любой мастер' }}
+            </v-list-item-subtitle>
+            <!-- <v-list-item-subtitle class="text-body-2 ma-0 text&#45;&#45;primary font-weight-normral">
+                        Салон:
+                        {{ item.message.bid.address.nameCrm }}
+                    </v-list-item-subtitle>-->
+        </v-list-item-content>
     </v-list-item>
 </template>
+
 <script>
 import { mapGetters } from 'vuex';
 const ImageUserAvatar = () =>
@@ -74,7 +71,7 @@ export default {
     name: 'ListItemNotification',
     components: { ImageUserAvatar },
     props: {
-        oData: {
+        item: {
             type: Object,
             default: () => ({}),
         },
@@ -87,7 +84,7 @@ export default {
         },
     }),
     computed: {
-        ...mapGetters(['USER_INFO_ROLE']),
+        ...mapGetters(['USER_INFO_ROLE', 'CHECK_PERMISSION']),
     },
 };
 </script>

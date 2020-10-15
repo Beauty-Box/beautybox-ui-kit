@@ -19,7 +19,7 @@
                     ref="uploadFiles"
                     type="file"
                     name="files[]"
-                    style="display: none;"
+                    style="display: none"
                     :accept="accept.join(',')"
                     :multiple="maxFiles > 1"
                     @change="upload"

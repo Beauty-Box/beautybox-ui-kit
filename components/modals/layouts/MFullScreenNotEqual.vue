@@ -9,7 +9,7 @@
         tag="form"
     >
         <form class="full-screen__form" :class="contentClass" @submit.prevent="submit">
-            <block-loader v-if="loading" />
+            <b-block-loader v-if="loading" />
             <template v-else>
                 <!-- HEADER -->
                 <div ref="header" class="full-screen__header">
@@ -21,17 +21,7 @@
                             {{ $route.meta.title }}
                         </h2>
                     </div>
-                    <v-btn
-                        class="full-screen__btn-close"
-                        small
-                        light
-                        tile
-                        text
-                        :ripple="false"
-                        @click="redirect"
-                    >
-                        <v-svg name="close" />
-                    </v-btn>
+                    <b-btn-close size="40" class="full-screen__btn-close" @click="redirect" />
                 </div>
 
                 <!-- CONTENT -->
@@ -49,7 +39,7 @@
                     <div
                         v-if="$slots.leftContent"
                         class="full-screen-content__left"
-                        :style="{ '--bg-color-left-content': bgcl }"
+                        :style="{ '--bg-color-left-content': bgc }"
                     >
                         <slot name="leftContent" />
                     </div>
@@ -89,15 +79,18 @@
 </template>
 
 <script>
-import { dialogProps } from '../../../mixins/dialogProps';
-import BlockLoader from '../../blocks/BlockLoader';
+import { dialogProps } from '@beautybox/ui-kit/mixins/dialogProps';
+const BBlockLoader = () =>
+    import(/* webpackChunkName: "BlockLoader" */ '@beautybox/ui-kit/components/blocks/BlockLoader');
+const BBtnClose = () =>
+    import(/* webpackChunkName: "BtnClose" */ '@beautybox/ui-kit/components/buttons/BtnClose');
 
 export default {
     name: 'MFullScreenNotEqual',
-    components: { BlockLoader },
+    components: { BBlockLoader, BBtnClose },
     mixins: [dialogProps],
     props: {
-        bgcl: {
+        bgc: {
             type: String,
             default: '#fff',
         },

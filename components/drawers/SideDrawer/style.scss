@@ -1,0 +1,24 @@
+::v-deep .v-navigation-drawer {
+    &__prepend,
+    &__append,
+    &__content {
+        display: flex;
+        padding: 0;
+    }
+
+    &__prepend {
+        flex-wrap: wrap;
+    }
+
+    &__append {
+        border-top: 0;
+        @include footerBtnLayout;
+    }
+
+    &__content {
+        flex-direction: column;
+        & > * {
+            flex-grow: 0;
+        }
+    }
+}

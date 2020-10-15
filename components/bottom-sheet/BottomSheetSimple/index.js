@@ -1,4 +1,4 @@
-import '../bottom-sheet.scss';
+import '../styles.scss';
 
 import { modalProps } from '@beautybox/core/mixins/modalProps';
 

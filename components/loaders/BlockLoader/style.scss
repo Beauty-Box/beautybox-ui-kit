@@ -1,4 +1,4 @@
-.loader {
+.c-loader {
     position: var(--position, absolute);
     top: 0;
     right: 0;
@@ -16,4 +16,4 @@
     & > div {
         margin: auto;
     }
-} //.loader
+} //.c-loader

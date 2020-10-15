@@ -1,6 +1,6 @@
 <template>
     <v-dialog
-        v-model="openModal"
+        v-model="modal"
         width="320"
         content-class="c-modal-alert"
         overlay-opacity="1"
@@ -9,16 +9,16 @@
         @click:outside="$emit('cancel')"
     >
         <v-card :loading="loading" tag="form" @submit.prevent="$emit('submit', $event)">
-            <v-card-title class="c-modal-alert__header">
+            <v-card-title v-if="title || $slots.header" class="c-modal-alert__header">
                 <slot name="header">
                     <template>
-                        <div v-if="title" class="c-modal-alert__title headline">
+                        <div class="c-modal-alert__title headline">
                             {{ title }}
                         </div>
                     </template>
                 </slot>
             </v-card-title>
-            <v-card-text class="c-modal-alert__body">
+            <v-card-text v-if="text || $slots.default" class="c-modal-alert__body">
                 <slot>
                     {{ text }}
                 </slot>
@@ -54,13 +54,12 @@
 </template>
 
 <script>
+import { modalProps } from '@beautybox/ui-kit/mixins/modalProps';
+
 export default {
     name: 'MAlert',
+    mixins: [modalProps],
     props: {
-        value: {
-            type: Boolean,
-            required: true,
-        },
         actions: {
             type: Boolean,
             default: true,
@@ -108,16 +107,6 @@ export default {
         cancelBtnColor: {
             type: String,
             default: 'primary',
-        },
-    },
-    computed: {
-        openModal: {
-            get() {
-                return this.value;
-            },
-            set(value) {
-                this.$emit('input', value);
-            },
         },
     },
 };

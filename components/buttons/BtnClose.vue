@@ -16,7 +16,7 @@
 </template>
 
 <script>
-const BSvg = () => import(/* webpackChunkName: "BSvg" */ '@beautybox/ui-kit/components/icons/Svg');
+const BSvg = () => import(/* webpackChunkName: "Svg" */ '@beautybox/ui-kit/components/icons/Svg');
 
 export default {
     name: 'BtnClose',

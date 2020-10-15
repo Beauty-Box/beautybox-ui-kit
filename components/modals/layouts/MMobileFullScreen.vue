@@ -27,7 +27,8 @@
 
                 <b-btn-close
                     type="button"
-                    style="position: absolute; top: 10px; right: 10px"
+                    size="40"
+                    class="full-screen__btn-close"
                     @click="onClickCloseModal"
                 />
             </v-card-title>
@@ -56,11 +57,13 @@
 </template>
 
 <script>
-import { dialogProps } from '../../../mixins/dialogProps';
-import { modalProps } from '../../../mixins/modalProps';
-import BBlockLoader from '../../blocks/BlockLoader';
-const BSvg = () => import(/* webpackChunkName: "BSvg" */ '../../icons/Svg');
-import BBtnClose from '../../buttons/BtnClose';
+import { dialogProps } from '@beautybox/ui-kit/mixins/dialogProps';
+import { modalProps } from '@beautybox/ui-kit/mixins/modalProps';
+const BBlockLoader = () =>
+    import(/* webpackChunkName: "BlockLoader" */ '@beautybox/ui-kit/components/blocks/BlockLoader');
+const BSvg = () => import(/* webpackChunkName: "Svg" */ '@beautybox/ui-kit/components/icons/Svg');
+const BBtnClose = () =>
+    import(/* webpackChunkName: "BtnClose" */ '@beautybox/ui-kit/components/buttons/BtnClose');
 
 export default {
     name: 'MMobileFullScreen',

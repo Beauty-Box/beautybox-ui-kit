@@ -49,36 +49,17 @@ export default {
             }
         },
     },
-    //     template: `<v-autocomplete
-    //     v-if="show && firstItem ? elems.length > 2 : elems.length > 1"
-    //     :value="value"
-    //     hide-details
-    //     :solo="$vuetify.breakpoint.mdAndDown ? false : true"
-    //     :dense="$vuetify.breakpoint.mdAndDown ? false : true"
-    //     :height="$vuetify.breakpoint.mdAndDown ? 32 : 44"
-    //     :items="elems"
-    //     :item-text="itemText"
-    //     :item-value="itemValue"
-    //     :label="label"
-    //     v-on="$listeners"
-    // />`,
-    render(h) {
-        if (this.show && this.firstItem ? this.elems.length > 2 : this.elems.length > 1) {
-            return;
-        }
-        return h('v-autocomplete', {
-            props: {
-                ...this.$attrs,
-                'hide-details': true,
-                solo: !this.$vuetify.breakpoint.mobile,
-                dense: !this.$vuetify.breakpoint.mobile,
-                height: this.$vuetify.breakpoint.mobile ? 32 : 44,
-                items: this.elems,
-                itemText: this.itemText,
-                itemValue: this.itemValue,
-                label: this.label,
-            },
-            on: this.$listeners,
-        });
-    },
+    template: `<v-autocomplete
+    v-if="show && firstItem ? elems.length > 2 : elems.length > 1"
+    :value="value"
+    hide-details
+    :solo="$vuetify.breakpoint.mdAndDown ? false : true"
+    :dense="$vuetify.breakpoint.mdAndDown ? false : true"
+    :height="$vuetify.breakpoint.mdAndDown ? 32 : 44"
+    :items="elems"
+    :item-text="itemText"
+    :item-value="itemValue"
+    :label="label"
+    v-on="$listeners"
+/>`,
 };

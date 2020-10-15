@@ -3,14 +3,13 @@
         v-if="show && firstItem ? elems.length > 2 : elems.length > 1"
         :value="value"
         hide-details
-        :solo="!$vuetify.breakpoint.mobile"
-        :dense="!$vuetify.breakpoint.mobile"
-        :height="$vuetify.breakpoint.mobile ? 32 : 44"
+        :solo="$vuetify.breakpoint.mdAndDown ? false : true"
+        :dense="$vuetify.breakpoint.mdAndDown ? false : true"
+        :height="$vuetify.breakpoint.mdAndDown ? 32 : 44"
         :items="elems"
         :item-text="itemText"
         :item-value="itemValue"
         :label="label"
-        v-bind="$attrs"
         v-on="$listeners"
     />
 </template>

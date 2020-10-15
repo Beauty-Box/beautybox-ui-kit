@@ -14,22 +14,12 @@
                 <h2 ref="title" class="full-screen__title">
                     {{ $route.meta.title }}
                 </h2>
-                <v-btn
-                    class="full-screen__btn-close"
-                    small
-                    light
-                    tile
-                    text
-                    :ripple="false"
-                    @click="redirect"
-                >
-                    <v-svg name="close" />
-                </v-btn>
+                <b-btn-close size="40" class="full-screen__btn-close" @click="redirect" />
             </div>
 
             <!-- CONTENT -->
             <div class="full-screen__content full-screen-content" @scroll="onScroll">
-                <block-loader v-if="loading" />
+                <b-block-loader v-if="loading" />
                 <template v-else>
                     <div v-if="$vuetify.breakpoint.smAndDown" class="full-screen-content__title">
                         <div ref="contentTitle">{{ $route.meta.title }}</div>
@@ -55,12 +45,15 @@
 </template>
 
 <script>
-import { dialogProps } from '../../../mixins/dialogProps';
-import BlockLoader from '../../blocks/BlockLoader';
+import { dialogProps } from '@beautybox/ui-kit/mixins/dialogProps';
+const BBlockLoader = () =>
+    import(/* webpackChunkName: "BlockLoader" */ '@beautybox/ui-kit/components/blocks/BlockLoader');
+const BBtnClose = () =>
+    import(/* webpackChunkName: "BtnClose" */ '@beautybox/ui-kit/components/buttons/BtnClose');
 
 export default {
     name: 'MFullScreen',
-    components: { BlockLoader },
+    components: { BBlockLoader, BBtnClose },
     mixins: [dialogProps],
     props: {
         tag: {
