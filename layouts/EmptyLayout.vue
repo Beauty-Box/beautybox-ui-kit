@@ -9,7 +9,7 @@
 
 <script>
 const BlockLoader = () =>
-    import(/* webpackChunkName: "BlockLoader" */ '@beautybox/ui-kit/components/blocks/BlockLoader');
+    import(/* webpackChunkName: "BlockLoader" */ '../components/blocks/BlockLoader');
 export default {
     components: { BlockLoader },
     data: () => ({

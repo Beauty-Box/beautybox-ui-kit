@@ -21,7 +21,7 @@
 </template>
 <script>
 export default {
-    name: 'TableScrollHorizont',
+    name: 'BTableScrollHorizontal',
     props: {
         arrayLength: {
             type: Number,

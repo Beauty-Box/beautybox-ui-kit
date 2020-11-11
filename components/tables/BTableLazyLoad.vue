@@ -17,12 +17,12 @@
 </template>
 
 <script>
-import { scroll } from '@beautybox/core/mixins/ScrollControl';
+import { scroll } from '../../mixins';
 const BBlockLoader = () =>
     import(/* webpackChunkName: "BlockLoader" */ '../blocks/BlockLoader');
 
 export default {
-    name: 'TableLazyLoad',
+    name: 'BTableLazyLoad',
     components: { BBlockLoader },
     mixins: [scroll],
     props: {
