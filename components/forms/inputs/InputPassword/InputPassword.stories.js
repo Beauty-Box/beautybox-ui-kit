@@ -1,13 +1,11 @@
-import { withKnobs, text } from '@storybook/addon-knobs';
+import { withKnobs, text, boolean, array, number } from '@storybook/addon-knobs';
 
 import BInputPassword from './index';
-import {inputStoriesMixins} from '../mixins'
 
 export default { title: 'forms/inputs', decorators: [withKnobs] };
 
 export const password = () => ({
     components: { BInputPassword },
-    mixins: [inputStoriesMixins],
     props: {
         label: {
             default: text('label', 'Пароль'),
@@ -17,6 +15,36 @@ export const password = () => ({
         },
         name: {
             default: text('name', 'password'),
+        },
+        color: {
+            default: text('color', 'info'),
+        },
+        error: {
+            default: boolean('errorState', false),
+        },
+        errorMessages: {
+            default: array('errors array', []),
+        },
+        height: {
+            default: number('height', 56),
+        },
+        hideDetails: {
+            default: boolean('hideDetails', false),
+        },
+        hint: {
+            default: text('hint', ''),
+        },
+        maxlength: {
+            default: text('maxlength', 'auto'),
+        },
+        outlined: {
+            default: boolean('outlined', true),
+        },
+        rounded: {
+            default: boolean('rounded', false),
+        },
+        small: {
+            default: boolean('small', false),
         },
     },
     template: '<b-input-password value="password" v-bind="$props"/>',
