@@ -8,16 +8,15 @@ const pathToSvg = /spriteSVG/;
 module.exports = {
     stories: ['../components/**/*.stories.js'],
     webpackFinal: (config) => {
-        config.output.publicPath ='/ui-kit/';
         config.module.rules.push({
             test: /\.sass$/i,
             use: [
                 'style-loader',
-                'css-loader?url=false',
+                'css-loader',
                 {
                     loader: 'sass-loader',
                     options: {
-                        additionalData: '@import "@ui-kit/scss/variables.scss"',
+                        additionalData: '@import "@beautybox/ui-kit/scss/variables.scss"',
                         implementation: require('sass'),
                     },
                 },
@@ -27,11 +26,11 @@ module.exports = {
             test: /\.scss$/i,
             use: [
                 'style-loader',
-                'css-loader?url=false',
+                'css-loader',
                 {
                     loader: 'sass-loader',
                     options: {
-                        additionalData: '@import "@ui-kit/scss/variables.scss";',
+                        additionalData: '@import "@beautybox/ui-kit/scss/variables.scss";',
                         implementation: require('sass'),
                     },
                 },
@@ -54,7 +53,7 @@ module.exports = {
             ],
             // include: svgList,
         });
-        config.resolve.alias = { ...config.resolve.alias, '@ui-kit': resolve(__dirname, '..'), '@crm': resolve(__dirname, '..', '..', 'crm', 'src') };
+        config.resolve.alias = { ...config.resolve.alias, '@beautybox/ui-kit': resolve(__dirname, '..'), '@crm': resolve(__dirname, '..', '..', 'crm', 'src') };
         config.plugins.push(new VuetifyLoaderPlugin());
         config.plugins.push(
             new SpriteLoaderPlugin({

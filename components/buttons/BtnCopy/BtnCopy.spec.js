@@ -1,7 +1,7 @@
 import { shallowMount, mount } from '@vue/test-utils';
 
 import BtnCopy from './index';
-import { vuetify } from '@ui-kit/plugins/vuetify.js';
+import { vuetify } from '@beautybox/ui-kit/plugins/vuetify.js';
 
 describe('BtnCopy', () => {
     it('has button tag', () => {

@@ -1,4 +1,4 @@
-import UploadFile from '@ui-kit/components/actions/UploadFile';
+import UploadFile from '@beautybox/ui-kit/components/actions/UploadFile';
 
 export default {
     name: 'UploadFileResize',

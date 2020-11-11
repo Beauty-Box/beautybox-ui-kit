@@ -1,9 +1,9 @@
 import './style.scss';
 
-import MUploadAvatar from '@ui-kit/components/modals/MUploadAvatar';
-import ImageUserAvatar from '@ui-kit/components/image/ImageUserAvatar';
+import MUploadAvatar from '@beautybox/ui-kit/components/modals/MUploadAvatar';
+import ImageUserAvatar from '@beautybox/ui-kit/components/image/ImageUserAvatar';
 import VBtn from 'vuetify/lib/components/VBtn';
-import VSvg from '@ui-kit/components/icons/Svg';
+import VSvg from '@beautybox/ui-kit/components/icons/Svg';
 
 export default {
     name: 'UploadAvatar',
