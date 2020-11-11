@@ -82,14 +82,14 @@
 </template>
 
 <script>
-import { modalMixinToggle } from '../../../mixins';
+import { modalToggleMixin } from '../../../mixins';
 const BBtnClose = () =>
     import(/* webpackChunkName: "BtnClose" */ '../../buttons/BtnClose');
 
 export default {
     name: 'MTriumphWithSlider',
     components: { BBtnClose },
-    mixins: [modalMixinToggle],
+    mixins: [modalToggleMixin],
     props: {
         title: {
             type: String,

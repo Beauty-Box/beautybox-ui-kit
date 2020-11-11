@@ -1,6 +1,6 @@
 import './style.scss';
 
-import { modalMixinToggle } from '../../../mixins';
+import { modalToggleMixin } from '../../../mixins';
 
 import VNavigationDrawer from 'vuetify/lib/components/VNavigationDrawer';
 import VBtn from 'vuetify/lib/components/VBtn';
@@ -9,7 +9,7 @@ import VIcon from 'vuetify/lib/components/VIcon';
 export default {
     name: 'BSideDrawer',
     components: { VNavigationDrawer, VBtn, VIcon },
-    mixins: [modalMixinToggle],
+    mixins: [modalToggleMixin],
     props: {
         title: {
             type: String,

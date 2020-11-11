@@ -1,2 +1,2 @@
 export * from './modalMixin';
-export * from './modalMixinToggle';
+export * from './modalToggleMixin';

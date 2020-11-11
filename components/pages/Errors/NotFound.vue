@@ -30,8 +30,8 @@
 
 <script>
 const BlockEmpty = () =>
-    import(/* webpackChunkName: "BlockEmpty" */ '@beautybox/ui-kit/components/blocks/BlockEmpty');
-const BSvg = () => import(/* webpackChunkName: "Svg" */ '@beautybox/ui-kit/components/icons/Svg');
+    import(/* webpackChunkName: "BlockEmpty" */ '../../../components/blocks/BlockEmpty');
+const BSvg = () => import(/* webpackChunkName: "Svg" */ '../../../components/icons/Svg');
 
 export default {
     components: {

@@ -1,4 +1,4 @@
-const modalMixinToggle = {
+const modalToggleMixin = {
     props: {
         value: {
             type: [Boolean, String, Array, Number, Object],
@@ -17,5 +17,5 @@ const modalMixinToggle = {
     },
 };
 
-export { modalMixinToggle };
-export default modalMixinToggle;
+export { modalToggleMixin };
+export default modalToggleMixin;

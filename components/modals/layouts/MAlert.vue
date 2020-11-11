@@ -55,11 +55,11 @@
 </template>
 
 <script>
-import { modalMixinToggle } from '../../../mixins';
+import { modalToggleMixin } from '../../../mixins';
 
 export default {
     name: 'MAlert',
-    mixins: [modalMixinToggle],
+    mixins: [modalToggleMixin],
     props: {
         actions: {
             type: Boolean,

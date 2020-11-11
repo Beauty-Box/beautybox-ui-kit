@@ -41,14 +41,14 @@
 </template>
 
 <script>
-import { modalMixinToggle } from '../../../mixins';
+import { modalToggleMixin } from '../../../mixins';
 const BBlockLoader = () =>
     import(/* webpackChunkName: "BlockLoader" */ '../../blocks/BlockLoader');
 
 export default {
     name: 'BModalLayoutDefault',
     components: { BBlockLoader },
-    mixins: [modalMixinToggle],
+    mixins: [modalToggleMixin],
     props: {
         tag: {
             type: String,
