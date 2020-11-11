@@ -1,5 +1,6 @@
 const VuetifyLoaderPlugin = require('vuetify-loader/lib/plugin');
 const SpriteLoaderPlugin = require('svg-sprite-loader/plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const { resolve } = require('path');
 
 const pathToSvg = /spriteSVG/;
@@ -7,6 +8,7 @@ const pathToSvg = /spriteSVG/;
 module.exports = {
     stories: ['../components/**/*.stories.js'],
     webpackFinal: (config) => {
+        config.output.publicPath ='/ui-kit/';
         config.module.rules.push({
             test: /\.sass$/i,
             use: [
@@ -58,6 +60,19 @@ module.exports = {
             new SpriteLoaderPlugin({
                 plainSprite: true,
             })
+        );
+        config.plugins.push(
+            new CopyWebpackPlugin({
+                patterns: [
+                    {
+                        from: 'assets',
+                        to: 'assets',
+                        globOptions: {
+                            ignore: ['**/spriteSVG/**'],
+                        },
+                    },
+                ],
+            }),
         );
         return config;
     },

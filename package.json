@@ -4,7 +4,8 @@
     "main": "",
     "license": "MIT",
     "scripts": {
-        "story": "start-storybook -p 5555 -s ./",
+        "serve": "start-storybook -p 5555 -s ./",
+        "build": "build-storybook -o ./dist",
         "lint:scripts": "eslint --config ../../.eslintrc --fix --ext .js,.vue --ignore-path ../../.eslintignore .",
         "lint:styles": "stylelint --config ../../.stylelintrc --fix **/*.{scss,sass}",
         "lint": "yarn run lint:scripts && yarn run lint:styles"
@@ -12,6 +13,7 @@
     "dependencies": {
         "@beautybox/core": "git+ssh://git@gitlab.beautybox.ru:beautybox/frontend/beautybox-base.git",
         "cross-env": "^7.0.2",
+        "express": "^4.17.1",
         "react": "^16.13.1",
         "react-dom": "16.x",
         "react-is": "^16.8.0",
@@ -40,6 +42,8 @@
         "autoprefixer": "^10.0.2",
         "babel-loader": "^8.1.0",
         "babel-preset-vue": "^2.0.2",
+        "connect-history-api-fallback": "^1.6.0",
+        "copy-webpack-plugin": "^6.3.0",
         "cross-env": "^7.0.2",
         "css-loader": "^4.2.2",
         "css-mqpacker": "^7.0.0",
