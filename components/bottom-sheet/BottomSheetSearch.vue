@@ -14,8 +14,8 @@
         <v-bottom-sheet
             v-model="modal"
             scrollable
-            overlay-color="rgba(103, 118, 140, 0.5)"
-            overlay-opacity="1"
+            :overlay-color="overlayColor"
+            :overlay-opacity="overlayOpacity"
             :hide-overlay="hideOverlay"
             :now-items-length="nowItemsLength"
             :all-items-length="allItemsLength"
@@ -69,14 +69,18 @@
 </template>
 
 <script>
-import { modalProps, scroll } from '../../mixins';
+import { scroll, modalToggleMixin, modalOverlayColorMixin } from '../../mixins';
 const BBtnClose = () =>
     import(/* webpackChunkName: "BtnClose" */ '../buttons/BtnClose');
+const BInput = () =>
+    import(/* webpackChunkName: "Input" */ '../forms/inputs/Input');
+const BInputSearch = () =>
+    import(/* webpackChunkName: "InputSearch" */ '../forms/inputs/InputSearch');
 
 export default {
     name: 'BBottomSheetSearch',
-    components: { BBtnClose },
-    mixins: [modalProps, scroll],
+    components: { BBtnClose, BInput, BInputSearch },
+    mixins: [scroll, modalToggleMixin, modalOverlayColorMixin],
     props: {
         selected: {
             type: [Number, String],

@@ -3,8 +3,8 @@
         v-model="modal"
         width="100%"
         max-width="400"
-        overlay-opacity="1"
-        overlay-color="rgba(103, 118, 140, 0.5)"
+        :overlay-color="overlayColor"
+        :overlay-opacity="overlayOpacity"
         persistent
     >
         <v-card>
@@ -58,8 +58,9 @@
 
 <script>
 import { Api as Provider } from '@beautybox/core/api';
-import { modalProps } from '../../mixins';
-import BSecurityCode from '../forms/inputs/InputSecurityCode';
+import { modalToggleMixin, modalOverlayColorMixin } from '../../mixins';
+const BSecurityCode = () =>
+    import(/* webpackChunkName: "SecurityCode" */ '../forms/inputs/InputSecurityCode');
 const BTimer = () =>
     import(/* webpackChunkName: "Timer" */ '../forms/Timer');
 const BBtnClose = () =>
@@ -68,7 +69,7 @@ const BBtnClose = () =>
 export default {
     name: 'BModalCode',
     components: { BTimer, BBtnClose, BSecurityCode },
-    mixins: [modalProps],
+    mixins: [modalToggleMixin, modalOverlayColorMixin],
     props: {
         phone: {
             type: [String, Number],
@@ -114,22 +115,18 @@ export default {
     },
     methods: {
         async getSuccessCode() {
-            console.log('--- getSuccessCode');
-
+            let response = {};
             let data = {
                 code: this.code,
                 userID: this.userId,
                 password: this.password,
                 phone: this.phone,
             };
-            let response = {};
 
             ({ errors: this.errors = {}, ...response } = await new Provider('auth')._provider.post(
                 '/confirm-sms',
                 data
             ));
-
-            console.log('--- getSuccessCode response', response);
 
             if (!Object.keys(this.errors).length) {
                 if (response.hasOwnProperty('step')) {

@@ -2,8 +2,8 @@
     <v-dialog
         v-model="modal"
         width="500"
-        overlay-color="rgba(103, 118, 140, 0.5)"
-        overlay-opacity="1"
+        :overlay-opacity="overlayOpacity"
+        :overlay-color="overlayColor"
         :transition="transition"
         :persistent="persistent"
         scrollable
@@ -41,14 +41,14 @@
 </template>
 
 <script>
-import { modalToggleMixin } from '../../../mixins';
+import { modalToggleMixin, modalOverlayColorMixin } from '../../../mixins';
 const BBlockLoader = () =>
     import(/* webpackChunkName: "BlockLoader" */ '../../blocks/BlockLoader');
 
 export default {
     name: 'BModalLayoutDefault',
     components: { BBlockLoader },
-    mixins: [modalToggleMixin],
+    mixins: [modalToggleMixin, modalOverlayColorMixin],
     props: {
         tag: {
             type: String,

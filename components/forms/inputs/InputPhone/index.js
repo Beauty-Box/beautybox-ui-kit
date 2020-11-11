@@ -3,27 +3,15 @@ import { mask } from 'vue-the-mask';
 
 export default {
     name: 'InputPhone',
+    components: { BInput },
+    directives: {
+        mask,
+    },
     props: {
         label: {
             type: String,
             default: 'Телефон',
         },
-    },
-    components: { BInput },
-    directives: {
-        mask,
-    },
-    render(h) {
-        return h('b-input', {
-            on: this.$listeners,
-            attrs: { ...this.attributes, type: 'tel' },
-            directives: [
-                {
-                    name: 'mask',
-                    value: this.customTokens,
-                },
-            ],
-        });
     },
     data: () => ({
         customTokens: {
@@ -55,5 +43,17 @@ export default {
                 label: this.label,
             };
         },
+    },
+    render(h) {
+        return h('b-input', {
+            on: this.$listeners,
+            attrs: { ...this.attributes, type: 'tel' },
+            directives: [
+                {
+                    name: 'mask',
+                    value: this.customTokens,
+                },
+            ],
+        });
     },
 };

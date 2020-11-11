@@ -20,9 +20,6 @@ export default {
         outlined: {
             ...VTextField.options.props.outlined,
             default: true,
-            // default() {
-            //     return !this.$vuetify.breakpoint.mobile || this.rounded;
-            // },
         },
         hint: {
             ...VTextField.options.props.hint,

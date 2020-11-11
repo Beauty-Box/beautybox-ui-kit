@@ -3,8 +3,8 @@
         v-model="modal"
         scrollable
         retain-focus
-        overlay-color="rgba(103, 118, 140, 0.5)"
-        overlay-opacity="1"
+        :overlay-color="overlayColor"
+        :overlay-opacity="overlayOpacity"
         v-bind="{ hideOverlay, nowItemsLength, allItemsLength, contentClass }"
         @click:outside="$emit('click:close')"
     >
@@ -48,12 +48,14 @@
 </template>
 
 <script>
-import { modalProps } from '../../mixins/modalProps';
-import { scroll } from '../../mixins/ScrollControl';
+import { scroll, modalToggleMixin, modalOverlayColorMixin } from '../../mixins';
+const BBtnClose = () =>
+    import(/* webpackChunkName: "BtnClose" */ '../buttons/BtnClose');
 
 export default {
     name: 'BBottomSheet',
-    mixins: [modalProps, scroll],
+    mixins: [scroll, modalToggleMixin, modalOverlayColorMixin],
+    components: { BBtnClose },
     props: {
         tag: {
             type: String,

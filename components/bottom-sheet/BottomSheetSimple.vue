@@ -13,8 +13,8 @@
         <v-bottom-sheet
             v-model="modal"
             scrollable
-            overlay-color="rgba(103, 118, 140, 0.5)"
-            overlay-opacity="1"
+            :overlay-color="overlayColor"
+            :overlay-opacity="overlayOpacity"
             :hide-overlay="hideOverlay"
             content-class="c-bottom-sheet c-bottom-sheet--palette"
         >
@@ -50,11 +50,18 @@
 </template>
 
 <script>
-import { modalProps } from '@beautybox/core/mixins/modalProps';
+import { modalToggleMixin, modalOverlayColorMixin } from '../../mixins';
+const BBtnClose = () =>
+    import(/* webpackChunkName: "BtnClose" */ '../buttons/BtnClose');
+const BInput = () =>
+    import(/* webpackChunkName: "Input" */ '../forms/inputs/Input');
+const BInputSearch = () =>
+    import(/* webpackChunkName: "InputSearch" */ '../forms/inputs/InputSearch');
 
 export default {
     name: 'BBottomSheetSimple',
-    mixins: [modalProps],
+    components: { BBtnClose, BInput, BInputSearch },
+    mixins: [modalToggleMixin, modalOverlayColorMixin],
     props: {
         selected: {
             type: [Number, String],

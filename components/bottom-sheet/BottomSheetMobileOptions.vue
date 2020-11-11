@@ -3,8 +3,8 @@
         v-if="$vuetify.breakpoint.mobile"
         v-model="modal"
         scrollable
-        overlay-color="rgba(103, 118, 140, 0.5)"
-        overlay-opacity="1"
+        :overlay-color="overlayColor"
+        :overlay-opacity="overlayOpacity"
         content-class="c-bottom-sheet u-no-padding"
     >
         <v-sheet>
@@ -24,11 +24,11 @@
 </template>
 
 <script>
-import { modalProps } from '../../mixins';
+import { modalToggleMixin, modalOverlayColorMixin } from '../../mixins';
 
 export default {
     name: 'BBottomSheetMobileOptions',
-    mixins: [modalProps],
+    mixins: [modalToggleMixin, modalOverlayColorMixin],
     methods: {
         onClose() {
             this.$emit('click:close');

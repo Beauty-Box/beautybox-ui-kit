@@ -12,6 +12,10 @@ export default {
             type: Boolean,
             default: false,
         },
+        large: {
+            type: Boolean,
+            default: false,
+        },
         outlined: {
             type: Boolean,
             default: false,
@@ -34,7 +38,7 @@ export default {
         },
         text: {
             type: Boolean,
-            default: true,
+            default: false,
         },
         color: {
             type: String,
@@ -50,13 +54,24 @@ export default {
         },
     },
     template: `<v-btn
-        v-clipboard:copy="copyText"
-        v-clipboard:success="onCopy"
-        v-clipboard:error="onError"
-        class="u-text-small"
-        v-bind="$props"
-        @click.stop
-    >
-        <slot />
-    </v-btn>`,
+                            v-clipboard:copy="copyText"
+                            v-clipboard:success="onCopy"
+                            v-clipboard:error="onError"
+                            class="u-text-initial"
+                            v-bind="$props"
+                            @click.stop
+                        >
+                            <slot />
+                        </v-btn>`,
+    /*render(h) {
+        return(h, 'v-btn', {
+            class: {
+                'u-text-small': true,
+            },
+            attrs: {
+                type: this.type,
+            },
+            on: this.$listeners,
+        })
+    }*/
 };

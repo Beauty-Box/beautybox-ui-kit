@@ -3,8 +3,8 @@
         v-model="modal"
         persistent
         width="1200"
-        overlay-opacity="1"
-        overlay-color="rgba(103, 118, 140, 0.5)"
+        :overlay-color="overlayColor"
+        :overlay-opacity="overlayOpacity"
         content-class="c-modal-triumph"
         transition="slide-y-reverse-transition"
         :fullscreen="$vuetify.breakpoint.mobile"
@@ -82,14 +82,14 @@
 </template>
 
 <script>
-import { modalToggleMixin } from '../../../mixins';
+import { modalToggleMixin, modalOverlayColorMixin } from '../../../mixins';
 const BBtnClose = () =>
     import(/* webpackChunkName: "BtnClose" */ '../../buttons/BtnClose');
 
 export default {
     name: 'MTriumphWithSlider',
     components: { BBtnClose },
-    mixins: [modalToggleMixin],
+    mixins: [modalToggleMixin, modalOverlayColorMixin],
     props: {
         title: {
             type: String,

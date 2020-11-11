@@ -13,8 +13,8 @@ import mixins from '@beautybox/core/mixins.global';
 import '@beautybox/core/filters.global';
 
 Vue.use(mixins);
-Vue.use(VueClipboard);
 Vue.use(toastMessage);
+Vue.use(VueClipboard);
 
 
 // import results from '../.jest-test-results.json';
@@ -31,15 +31,13 @@ addParameters({
 
 addDecorator((storyFn) => ({
     vuetify,
-    template: `<v-app>
-                 <v-main>
-                    <v-row class="justify-center align-center">
-                        <v-col cols="6">
+    template: `
+                        <div
+                            class="v-application v-application--is-ltr container--sm"
+                            style="display:flex; flex-direction: column; margin: 0 auto;"
+                       >
                             <story />
-                        </v-col>
-                    </v-row>
-                 </v-main>
-                </v-app>`,
+                        </div>`,
 }));
 
 // addDecorator(withTests({ results }));

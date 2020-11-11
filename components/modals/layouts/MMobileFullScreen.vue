@@ -3,8 +3,8 @@
         v-model="modal"
         :width="width"
         min-heigth="300"
-        overlay-color="rgba(103, 118, 140, 0.5)"
-        overlay-opacity="1"
+        :overlay-opacity="overlayOpacity"
+        :overlay-color="overlayColor"
         :hide-overlay="hideOverlay"
         :transition="transition"
         :persistent="persistent"
@@ -63,7 +63,7 @@
 </template>
 
 <script>
-import { modalMixin, modalToggleMixin  } from '../../../mixins';
+import { modalMixin, modalToggleMixin, modalOverlayColorMixin  } from '../../../mixins';
 const BBlockLoader = () =>
     import(/* webpackChunkName: "BlockLoader" */ '../../blocks/BlockLoader');
 const BSvg = () => import(/* webpackChunkName: "Svg" */ '../../icons/Svg');
@@ -73,7 +73,7 @@ const BBtnClose = () =>
 export default {
     name: 'MMobileFullScreen',
     components: { BBlockLoader, BSvg, BBtnClose },
-    mixins: [modalMixin, modalToggleMixin],
+    mixins: [modalMixin, modalToggleMixin, modalOverlayColorMixin],
     props: {
         loading: {
             type: Boolean,

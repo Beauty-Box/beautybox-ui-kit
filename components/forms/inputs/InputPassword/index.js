@@ -15,15 +15,6 @@ export default {
             default: 'Пароль',
         },
     },
-    render(h) {
-        return h('b-input', {
-            attrs: this.customProps,
-            on: {
-                ...this.$listeners,
-                'click:append': () => (this.hidePassword = !this.hidePassword),
-            },
-        });
-    },
     data() {
         return {
             hidePassword: true,
@@ -45,5 +36,14 @@ export default {
                 type: this.inputType,
             };
         },
+    },
+    render(h) {
+        return h('b-input', {
+            attrs: this.customProps,
+            on: {
+                ...this.$listeners,
+                'click:append': () => (this.hidePassword = !this.hidePassword),
+            },
+        });
     },
 };

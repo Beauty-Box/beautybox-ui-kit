@@ -3,8 +3,8 @@
         v-model="modal"
         width="320"
         content-class="c-modal-alert"
-        overlay-opacity="1"
-        overlay-color="rgba(103, 118, 140, 0.5)"
+        :overlay-opacity="overlayOpacity"
+        :overlay-color="overlayColor"
         :persistent="persistent"
         @click:outside="$emit('cancel')"
     >
@@ -55,11 +55,11 @@
 </template>
 
 <script>
-import { modalToggleMixin } from '../../../mixins';
+import { modalToggleMixin, modalOverlayColorMixin } from '../../../mixins';
 
 export default {
     name: 'MAlert',
-    mixins: [modalToggleMixin],
+    mixins: [modalToggleMixin, modalOverlayColorMixin],
     props: {
         actions: {
             type: Boolean,
