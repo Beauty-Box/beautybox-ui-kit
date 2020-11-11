@@ -2,7 +2,7 @@
 @import './base/_base64icons';
 @import '~vuetify/src/styles/styles.sass';
 
-// Vuetify vars
+// General
 $body-font-family: $font-family-base !default;
 $font-size-root: $font-size-base !default;
 $line-height-root: $line-height-base !default;
@@ -51,7 +51,10 @@ $textarea-dense-box-enclosed-single-outlined-margin-top: 25px !default;
 $textarea-box-enclosed-single-outlined-margin-top: 21px !default;
 
 //Rating
-//$rating-padding: 0;
+$rating-padding: 0;
+
+//VListItem
+$list-item-action-icon-margin: $base-indent;
 
 //Switch
 $switch-track-opacity: 1 !default;
@@ -67,6 +70,9 @@ $switch-track-x: 0 !default;
 $switch-thumb-top: -1px !default;
 $switch-track-top: calc(50% - 15px) !default;
 $switch-dirty-offset-x: 13px !default;
+
+//Radio
+$radio-group-padding: $base-indent !default;
 
 //Tabs
 $tab-font-size: 13px !default;

@@ -5,6 +5,8 @@
         v-clipboard:error="onError"
         :icon="icon"
         :small="small"
+        :large="large"
+        :x-large="xLarge"
         :block="block"
         :outlined="outlined"
         :disabled="disabled"
@@ -21,12 +23,21 @@
 
 <script>
 export default {
+    name: 'BBtnCopy',
     props: {
         copyText: {
             type: String,
             required: true,
         },
         small: {
+            type: Boolean,
+            default: false,
+        },
+        large: {
+            type: Boolean,
+            default: false,
+        },
+        xLarge: {
             type: Boolean,
             default: false,
         },

@@ -1,7 +1,5 @@
 import { withKnobs, number, boolean } from '@storybook/addon-knobs';
 
-import 'swiper/css/swiper.css';
-
 import SwiperSlider from './index';
 import VImg from 'vuetify/lib/components/VImg';
 

@@ -23,5 +23,5 @@ export const blockEmpty = () => ({
             default: boolean('bigSize', false),
         },
     },
-    template: '<block-empty v-bind="$props"></block-empty>',
+    template: '<b-block-empty v-bind="$props"></b-block-empty>',
 });

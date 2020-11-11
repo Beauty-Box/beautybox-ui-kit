@@ -2,22 +2,24 @@
     <v-bottom-sheet
         v-model="modal"
         scrollable
+        retain-focus
         overlay-color="rgba(103, 118, 140, 0.5)"
         overlay-opacity="1"
         v-bind="{ hideOverlay, nowItemsLength, allItemsLength, contentClass }"
+        @click:outside="$emit('click:close')"
     >
-        <v-sheet>
+        <v-sheet :tag="tag" @submit.prevent="onSubmit">
             <div class="c-bottom-sheet__inner">
                 <div class="c-bottom-sheet__scroll-container" @scroll="onScroll">
                     <div>
-                        <b-btn-close v-if="closeBtn" size="30" @click="onClose" />
+                        <b-btn-close v-if="closeBtn" has-bg size="30" @click="onClose" />
 
                         <div v-if="title || subTitle" class="c-bottom-sheet__header">
                             <h3 v-if="title" class="c-bottom-sheet__title">{{ title }}</h3>
                             <p v-if="subTitle" class="c-bottom-sheet__subtitle">{{ subTitle }}</p>
                         </div>
 
-                        <div v-if="!!$slots.search" ref="search" class="c-bottom-sheet__search">
+                        <div v-if="$slots.search" ref="search" class="c-bottom-sheet__search">
                             <slot name="search" />
                         </div>
 
@@ -25,10 +27,18 @@
                     </div>
                 </div>
 
-                <div class="c-bottom-sheet__footer">
+                <div v-if="!hideFooter" class="c-bottom-sheet__footer">
                     <slot name="footer">
-                        <v-btn large block color="primary" :ripple="false" @click="modal = false">
-                            Готово
+                        <v-btn
+                            large
+                            block
+                            color="primary"
+                            type="submit"
+                            :ripple="false"
+                            :loading="btnLoading"
+                            :disabled="btnDisabled"
+                        >
+                            {{ btnText }}
                         </v-btn>
                     </slot>
                 </div>
@@ -45,15 +55,23 @@ export default {
     name: 'BBottomSheet',
     mixins: [modalProps, scroll],
     props: {
+        tag: {
+            type: String,
+            default: 'form',
+        },
         title: {
             type: String,
             default: '',
+        },
+        btnText: {
+            type: String,
+            default: 'Готово',
         },
         subTitle: {
             type: String,
             default: '',
         },
-        hideOverlay: {
+        simple: {
             type: Boolean,
             default: false,
         },
@@ -61,17 +79,37 @@ export default {
             type: Boolean,
             default: false,
         },
-        onScrollEndHandler: {
-            type: Function,
-            default: () => ({}),
+        btnLoading: {
+            type: Boolean,
+            default: false,
+        },
+        hideFooter: {
+            type: Boolean,
+            default: false,
+        },
+        btnDisabled: {
+            type: Boolean,
+            default: false,
+        },
+        hideOverlay: {
+            type: Boolean,
+            default: false,
+        },
+        closeIsDisabled: {
+            type: Boolean,
+            default: false,
+        },
+        allItemsLength: {
+            type: Number,
+            default: 0,
         },
         nowItemsLength: {
             type: Number,
             default: 0,
         },
-        allItemsLength: {
-            type: Number,
-            default: 0,
+        onScrollEndHandler: {
+            type: Function,
+            default: () => ({}),
         },
         readyToGetElements: {
             type: Boolean,
@@ -84,18 +122,28 @@ export default {
     }),
     computed: {
         contentClass() {
-            return !!this.$slots.search
-                ? 'c-bottom-sheet c-bottom-sheet--palette c-bottom-sheet--full-height'
-                : 'c-bottom-sheet c-bottom-sheet--palette';
+            const baseClass = 'c-bottom-sheet c-bottom-sheet--palette';
+
+            if (this.simple) {
+                return `${baseClass} c-bottom-sheet--simple`;
+            }
+
+            if (!!this.$slots.search) {
+                return `${baseClass} c-bottom-sheet--full-height`;
+            } else {
+                return baseClass;
+            }
         },
     },
     methods: {
-        onClose() {
-            this.$emit('close');
-            this.modal = false;
+        onSubmit() {
+            this.$emit('submit');
+            if (!this.closeIsDisabled) {
+                this.modal = false;
+            }
         },
-        onSuccess() {
-            this.$emit('success');
+        onClose() {
+            this.$emit('click:close');
             this.modal = false;
         },
         onScroll(e) {

@@ -24,19 +24,19 @@
 
 @mixin border($direction, $color: $color-border--lighten) {
     @if $direction == 'top' {
-        border-top: 1px solid $color
+        border-top: 1px solid $color;
     }
     @if $direction == 'left' {
-        border-left: 1px solid $color
+        border-left: 1px solid $color;
     }
     @if $direction == 'right' {
-        border-right: 1px solid $color
+        border-right: 1px solid $color;
     }
     @if $direction == 'bottom' {
-        border-bottom: 1px solid $color
+        border-bottom: 1px solid $color;
     }
     @if $direction == 'all' {
-        border: 1px solid $color
+        border: 1px solid $color;
     }
 }
 
@@ -136,7 +136,7 @@
 }
 
 @mixin btnHalfSize {
-    & > div[role='button'],
+    & > div[class*='btn'],
     button,
     a {
         flex-shrink: 1;
@@ -151,7 +151,7 @@
         }
     }
 
-    ::v-deep & > div[role='button'],
+    ::v-deep & > div[class*='btn'],
     ::v-deep button,
     ::v-deep a {
         flex-shrink: 1;

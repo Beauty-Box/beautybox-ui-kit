@@ -1,6 +1,6 @@
 const ImageUserAvatar = () =>
     import(
-        /* webpackChunkName: "ImageUserAvatar" */ '@beautybox/ui-kit/components/image/ImageUserAvatar'
+        /* webpackChunkName: "ImageUserAvatar" */ '../../image/ImageUserAvatar'
     );
 
 export default {

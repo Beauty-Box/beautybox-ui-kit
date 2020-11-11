@@ -34,10 +34,10 @@ export const selectProps = (module) => {
                     return !this.$vuetify.breakpoint.smAndDown;
                 },*/
             },
-            menuProps: {
+            /*menuProps: {
                 ...module.options.props.menuProps,
                 default: 'auto',
-            },
+            },*/ //НЕ РАСКОМЕНТИРОВАТЬ ЭТУ ДИЧЬ!!!
         },
     };
 };

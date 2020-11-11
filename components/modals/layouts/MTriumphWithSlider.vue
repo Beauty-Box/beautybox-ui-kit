@@ -7,7 +7,7 @@
         overlay-color="rgba(103, 118, 140, 0.5)"
         content-class="c-modal-triumph"
         transition="slide-y-reverse-transition"
-        :fullscreen="$vuetify.breakpoint.smAndDown"
+        :fullscreen="$vuetify.breakpoint.mobile"
     >
         <v-card
             tag="form"
@@ -31,7 +31,7 @@
                     <h1 class="c-modal-triumph__title">{{ title }}</h1>
                     <slot name="text" />
                     <v-card-actions
-                        v-if="!$vuetify.breakpoint.smAndDown"
+                        v-if="!$vuetify.breakpoint.mobile"
                         class="c-modal-triumph__actions"
                     >
                         <v-btn
@@ -59,7 +59,7 @@
             </v-card-text>
 
             <v-card-actions
-                v-if="$vuetify.breakpoint.smAndDown"
+                v-if="$vuetify.breakpoint.mobile"
                 class="c-modal-triumph__actions"
                 :style="{ 'background-color': bottom ? '#ffde78' : 'white' }"
             >
@@ -82,14 +82,14 @@
 </template>
 
 <script>
-import { modalProps } from '@beautybox/core/mixins/modalProps';
+import { modalMixinToggle } from '../../../mixins';
 const BBtnClose = () =>
-    import(/* webpackChunkName: "BtnClose" */ '@beautybox/ui-kit/components/buttons/BtnClose');
+    import(/* webpackChunkName: "BtnClose" */ '../../buttons/BtnClose');
 
 export default {
     name: 'MTriumphWithSlider',
     components: { BBtnClose },
-    mixins: [modalProps],
+    mixins: [modalMixinToggle],
     props: {
         title: {
             type: String,
@@ -306,5 +306,11 @@ $min-height: 664px;
             }
         }
     }
+}
+
+.c-btn-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
 }
 </style>

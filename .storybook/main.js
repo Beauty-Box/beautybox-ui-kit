@@ -11,11 +11,11 @@ module.exports = {
             test: /\.sass$/i,
             use: [
                 'style-loader',
-                'css-loader',
+                'css-loader?url=false',
                 {
                     loader: 'sass-loader',
                     options: {
-                        prependData: '@import "@ui-kit/scss/variables.scss"',
+                        additionalData: '@import "@ui-kit/scss/variables.scss"',
                         implementation: require('sass'),
                     },
                 },
@@ -25,11 +25,11 @@ module.exports = {
             test: /\.scss$/i,
             use: [
                 'style-loader',
-                'css-loader',
+                'css-loader?url=false',
                 {
                     loader: 'sass-loader',
                     options: {
-                        prependData: '@import "@ui-kit/scss/variables.scss";',
+                        additionalData: '@import "@ui-kit/scss/variables.scss";',
                         implementation: require('sass'),
                     },
                 },

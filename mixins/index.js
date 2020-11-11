@@ -1,3 +1,4 @@
 export * from './select';
-export * from './modals';
-export * from './lists';
+export * from './modal';
+export * from './ScrollControl';
+

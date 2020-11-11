@@ -1,41 +1,62 @@
 import './style.scss';
 
 import VIcon from 'vuetify/lib/components/VIcon';
-import VSpacer from 'vuetify/lib/components/VGrid/VSpacer';
 
 export default {
-    name: 'BtnWide',
-    components: { VIcon, VSpacer },
+    name: 'BBtnWide',
+    components: { VIcon },
     props: {
-        text: {
-            type: String,
-            default: '',
-        },
         type: {
             type: String,
             default: 'button',
         },
+        color: {
+            type: String,
+            default: 'info',
+        },
         icon: {
             type: String,
-            default: 'add_circle',
-        },
-        iconColor: {
-            type: String,
-            default: 'primary',
+            default: 'control_point',
         },
         iconSize: {
             type: [String, Number],
             default: 28,
         },
-        iconSvg: {
-            type: String,
-            default: 'plus--filled',
+    },
+    computed: {
+        textColor() {
+            return `${this.iconColor}--text`;
         },
     },
-    template: `<button class="btn-wide" :type="type" v-on="$listeners">
-    <!--<v-svg v-if="iconSvg" :name="iconSvg" />-->
-    <v-icon :size="iconSize" :color="iconColor" style="margin-right: 12px;">{{ icon }}</v-icon>
-    <v-spacer v-if="!text" />
-    {{ text }}
-</button>`,
+    render(h, context) {
+        return h(
+            'button',
+            {
+                attrs: {
+                    type: this.type,
+                },
+                class: {
+                    'c-btn-wide': true,
+                    [this.color + '--text']: true,
+                },
+                on: this.$listeners,
+            },
+            [
+                h('span', this.$slots.default),
+                h(
+                    'v-icon',
+                    {
+                        props: {
+                            size: this.iconSize,
+                            color: this.color,
+                        },
+                        class: {
+                            'ml-auto': true,
+                        },
+                    },
+                    [this.icon]
+                ),
+            ]
+        );
+    },
 };

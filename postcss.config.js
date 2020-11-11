@@ -1,4 +1,4 @@
-//npm i postcss-loader autoprefixer css-mqpacker cssnano -D
+//yarn add -D postcss-loader autoprefixer css-mqpacker cssnano
 
 module.exports = {
     plugins: [

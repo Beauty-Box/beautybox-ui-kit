@@ -34,7 +34,7 @@ export default {
         },
         autocomplete: {
             type: String,
-            default: 'on',
+            default: 'off',
         },
         autofocus: {
             ...VTextField.options.props.autofocus,
@@ -51,6 +51,49 @@ export default {
                 'c-input--clearable': this.clearable,
                 'placeholder-is-visible': this.placeholder && !this.label,
             };
+        },
+    },
+    methods: {
+        ...VTextField.options.methods,
+        genInput() {
+            const listeners = Object.assign({}, this.listeners$);
+            delete listeners['change']; // Change should not be bound externally
+
+            return this.$createElement('input', {
+                style: {},
+                domProps: {
+                    value:
+                        this.type === 'number' && Object.is(this.lazyValue, -0)
+                            ? '-0'
+                            : this.lazyValue,
+                },
+                attrs: {
+                    ...this.attrs$,
+                    autofocus: this.autofocus,
+                    disabled: this.isDisabled,
+                    id: this.computedId,
+                    placeholder: this.placeholder,
+                    readonly: this.isReadonly,
+                    type: this.type,
+                    autocomplete: this.autocomplete,
+                },
+                on: Object.assign(listeners, {
+                    blur: this.onBlur,
+                    input: this.onInput,
+                    focus: this.onFocus,
+                    keydown: this.onKeyDown,
+                }),
+                ref: 'input',
+                directives: [
+                    {
+                        name: 'resize',
+                        modifiers: {
+                            quiet: true,
+                        },
+                        value: this.onResize,
+                    },
+                ],
+            });
         },
     },
 };

@@ -1,6 +1,6 @@
 import './style.scss';
 
-import { modalProps } from '../../../mixins/modalProps';
+import { modalMixinToggle } from '../../../mixins';
 
 import VNavigationDrawer from 'vuetify/lib/components/VNavigationDrawer';
 import VBtn from 'vuetify/lib/components/VBtn';
@@ -9,7 +9,7 @@ import VIcon from 'vuetify/lib/components/VIcon';
 export default {
     name: 'BSideDrawer',
     components: { VNavigationDrawer, VBtn, VIcon },
-    mixins: [modalProps],
+    mixins: [modalMixinToggle],
     props: {
         title: {
             type: String,
@@ -45,7 +45,7 @@ export default {
                                 </header>
 
                                 <v-btn icon type="button" @click.stop="modal = false">
-                                    <v-icon color="primary" class="_hide-before">close</v-icon>
+                                    <v-icon color="primary" class="u-hide-before">close</v-icon>
                                 </v-btn>
 
                                 <slot name="header" />

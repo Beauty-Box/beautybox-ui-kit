@@ -1,6 +1,6 @@
-import '@beautybox/ui-kit/components/lists/items/style.scss';
+import '../../items/style.scss';
 
-import userAvatarMixin from '@beautybox/ui-kit/components/lists/items/mixin';
+import userAvatarMixin from '../../items/mixin';
 
 import {
     VListItemContent,
@@ -11,7 +11,7 @@ import {
 } from 'vuetify/lib/components/VList';
 
 import VIcon from 'vuetify/lib/components/VIcon';
-import VSvg from '@beautybox/ui-kit/components/icons/Svg';
+import VSvg from '../../../icons/Svg';
 
 export default {
     name: 'ListItemLink',

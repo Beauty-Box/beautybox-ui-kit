@@ -1,6 +1,6 @@
 import FSelect from '../Select';
 const VIcon = () => import(/* webpackChunkName: "VIcon" */ 'vuetify/lib/components/VIcon');
-import { genFullTime } from '@beautybox/utils';
+import { genFullTime } from '@beautybox/core/utils';
 import './styles.scss';
 
 export default {

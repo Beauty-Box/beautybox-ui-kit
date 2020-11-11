@@ -1,17 +1,17 @@
 import './style.scss';
 
 export default {
-    name: 'ImagePreview',
+    name: 'BScrollPhotosGallery',
     props: {
-        data: {
+        items: {
             type: Array,
             required: true,
         },
     },
     computed: {
         photos() {
-            console.log('--- photos', this.data);
-            return this.data.map((item) => ({
+            console.log('--- photos', this.items);
+            return this.items.map((item) => ({
                 src: item,
                 msrc: item,
                 w: 480,
@@ -19,5 +19,5 @@ export default {
             }));
         },
     },
-    template: '<vue-preview :slides="photos" class="c-gallary" />',
+    template: '<vue-preview :slides="photos" class="c-gallery" />',
 };

@@ -66,7 +66,6 @@ export default {
 
     &__title {
         display: block;
-        margin-bottom: 10px;
         color: $color-text;
         font-size: 21px;
         font-weight: 300;
@@ -74,6 +73,10 @@ export default {
 
         @include max(xs) {
             font-size: 21px;
+        }
+
+        & + .empty__text {
+            margin-top: 10px;
         }
     } //.empty__title
 

@@ -1,7 +1,7 @@
 import './style.scss';
 
 import { VProgressCircular } from 'vuetify/lib';
-import { isNumber } from '@beautybox/utils';
+import { isNumber } from '@beautybox/core/utils';
 
 export default {
     name: 'BBlockLoader',
@@ -23,6 +23,10 @@ export default {
             },
         },
         minHeight: {
+            type: [Number, String],
+            default: 'auto',
+        },
+        maxHeight: {
             type: [Number, String],
             default: 'auto',
         },
@@ -57,6 +61,9 @@ export default {
                     '--min-height': isNumber(this.minHeight)
                         ? this.minHeight + 'px'
                         : this.minHeight,
+                    '--max-height': isNumber(this.maxHeight)
+                        ? this.maxHeight + 'px'
+                        : this.maxHeight,
                 },
             },
             [

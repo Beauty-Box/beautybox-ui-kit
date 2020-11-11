@@ -41,6 +41,7 @@
                     :class="{ 'order-first': btnRevert }"
                     :color="actionBtnColor"
                     :type="actionBtnType"
+                    :loading="loadingBtn"
                     :ripple="false"
                     large
                     text
@@ -54,17 +55,21 @@
 </template>
 
 <script>
-import { modalProps } from '@beautybox/ui-kit/mixins/modalProps';
+import { modalMixinToggle } from '../../../mixins';
 
 export default {
     name: 'MAlert',
-    mixins: [modalProps],
+    mixins: [modalMixinToggle],
     props: {
         actions: {
             type: Boolean,
             default: true,
         },
         loading: {
+            type: Boolean,
+            default: false,
+        },
+        loadingBtn: {
             type: Boolean,
             default: false,
         },

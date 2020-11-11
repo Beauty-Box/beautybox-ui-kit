@@ -70,7 +70,7 @@ export default {
             };
         },
         iconPath() {
-            let icon = require(`@beautybox/ui-kit/assets/spriteSVG/${this.name}.svg`);
+            let icon = require(`../../../assets/spriteSVG/${this.name}.svg`);
             if (Object.prototype.hasOwnProperty.call(icon, 'default')) {
                 icon = icon.default;
             }

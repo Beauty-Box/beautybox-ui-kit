@@ -8,7 +8,7 @@ $btn-width: $height + 5;
     overflow: hidden !important;
 
     &__inner {
-        display: flex;
+        display: flex !important;
         flex-direction: column;
         overflow: hidden;
     }
@@ -97,6 +97,10 @@ $btn-width: $height + 5;
         .btn-wide {
             border-top: 0 !important;
         }
+
+        .v-input {
+            flex: initial;
+        }
     } //.c-modal__body
 
     &__footer {
@@ -112,7 +116,7 @@ $btn-width: $height + 5;
         }
     }
 
-    .loader,
+    .c-loader,
     .empty {
         position: static;
         min-height: 270px;

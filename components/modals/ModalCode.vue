@@ -58,9 +58,8 @@
 
 <script>
 import { Api as Provider } from '@beautybox/core/api';
-import { setToken } from '@beautybox/core/utils/auth';
-import { modalProps } from '../../mixins/modalProps';
-import BSecurityCode from '../forms/inputs/InputSecurityCode/index';
+import { modalProps } from '../../mixins';
+import BSecurityCode from '../forms/inputs/InputSecurityCode';
 const BTimer = () =>
     import(/* webpackChunkName: "Timer" */ '../forms/Timer');
 const BBtnClose = () =>
@@ -141,10 +140,11 @@ export default {
                             secret: response.secret,
                         },
                     });
+                    return;
                 }
                 localStorage.removeItem('auth_type');
                 this.$emit('success', this.code);
-                await setToken(response);
+                // redirectToBack();
                 this.modal = false;
             }
         },

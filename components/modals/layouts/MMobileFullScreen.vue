@@ -1,28 +1,24 @@
 <template>
     <v-dialog
         v-model="modal"
-        width="500"
+        :width="width"
         min-heigth="300"
         overlay-color="rgba(103, 118, 140, 0.5)"
         overlay-opacity="1"
+        :hide-overlay="hideOverlay"
         :transition="transition"
         :persistent="persistent"
         scrollable
-        :fullscreen="$vuetify.breakpoint.smAndDown"
+        :fullscreen="$vuetify.breakpoint.mobile"
         @click:outside="$emit('click:outside', $event)"
     >
         <v-card
-            tag="form"
+            :tag="tag"
             @submit.prevent="$emit('submit', $event)"
             @reset.prevent="$emit('reset', $event)"
         >
             <!-- HEADER -->
-            <v-card-title
-                v-if="title"
-                ref="header"
-                class="full-screen__header"
-                :class="{ 'justify-center': titleCenter }"
-            >
+            <v-card-title v-if="title" ref="header" class="full-screen__header">
                 <span ref="title" class="full-screen__title">{{ title }}</span>
 
                 <b-btn-close
@@ -34,10 +30,20 @@
             </v-card-title>
 
             <!-- BODY -->
-            <v-card-text :class="({ 'is-scrolled': scroll }, bodyClass)" @scroll="onScroll">
-                <b-block-loader v-if="loading" />
+            <v-card-text
+                :class="{ 'is-scrolled': scroll }"
+                :style="{
+                    minHeight: loading && !!loadingMinHeight ? loadingMinHeight + 'px' : '',
+                }"
+                @scroll="onScroll"
+            >
+                <b-block-loader
+                    v-if="loading"
+                    :max-height="loadingMaxHeight"
+                    :min-height="loadingMinHeight"
+                />
                 <template v-else>
-                    <div v-if="$vuetify.breakpoint.smAndDown" class="full-screen-content__title">
+                    <div v-if="$vuetify.breakpoint.mobile" class="full-screen-content__title">
                         <div ref="contentTitle">{{ title }}</div>
                         <p v-if="description">{{ description }}</p>
                     </div>
@@ -46,7 +52,7 @@
                 </template>
             </v-card-text>
 
-            <v-spacer v-if="$vuetify.breakpoint.mdAndUp" />
+            <v-spacer v-if="!$vuetify.breakpoint.mobile" />
 
             <!-- FOOTER -->
             <v-card-actions v-if="$slots.btns">
@@ -57,22 +63,29 @@
 </template>
 
 <script>
-import { dialogProps } from '@beautybox/ui-kit/mixins/dialogProps';
-import { modalProps } from '@beautybox/ui-kit/mixins/modalProps';
+import { modalMixin, modalMixinToggle  } from '../../../mixins';
 const BBlockLoader = () =>
-    import(/* webpackChunkName: "BlockLoader" */ '@beautybox/ui-kit/components/blocks/BlockLoader');
-const BSvg = () => import(/* webpackChunkName: "Svg" */ '@beautybox/ui-kit/components/icons/Svg');
+    import(/* webpackChunkName: "BlockLoader" */ '../../blocks/BlockLoader');
+const BSvg = () => import(/* webpackChunkName: "Svg" */ '../../icons/Svg');
 const BBtnClose = () =>
-    import(/* webpackChunkName: "BtnClose" */ '@beautybox/ui-kit/components/buttons/BtnClose');
+    import(/* webpackChunkName: "BtnClose" */ '../../buttons/BtnClose');
 
 export default {
     name: 'MMobileFullScreen',
     components: { BBlockLoader, BSvg, BBtnClose },
-    mixins: [dialogProps, modalProps],
+    mixins: [modalMixin, modalMixinToggle],
     props: {
         loading: {
             type: Boolean,
             default: false,
+        },
+        loadingMaxHeight: {
+            type: [String, Number],
+            default: '300',
+        },
+        loadingMinHeight: {
+            type: [String, Number],
+            default: '300',
         },
         title: {
             type: String,
@@ -82,15 +95,23 @@ export default {
             type: String,
             default: '',
         },
+        tag: {
+            type: String,
+            default: 'form',
+        },
         transition: {
             type: String,
             default: 'slide-y-reverse-transition',
         },
-        titleCenter: {
+        persistent: {
             type: Boolean,
             default: false,
         },
-        persistent: {
+        width: {
+            type: [Number, String],
+            default: 600,
+        },
+        hideOverlay: {
             type: Boolean,
             default: false,
         },
@@ -98,30 +119,20 @@ export default {
             type: Boolean,
             default: true,
         },
-        bodyClass: {
-            type: String,
-            default: '',
-        },
-        callbackClose: {
-            type: Function,
-            default: () => ({}),
-        },
     },
     methods: {
         onClickCloseModal() {
+            this.$emit('click:close');
             this.modal = false;
-            this.callbackClose();
         },
     },
 };
 </script>
 
 <style lang="scss" scoped>
-@import './FullScreen';
-.v-card {
-    display: flex;
-    flex-direction: column;
+@import './style';
 
+.v-card {
     &__title {
         line-height: 1;
         text-align: center;
@@ -156,16 +167,22 @@ export default {
         position: relative;
         flex-grow: 1;
         overflow-y: hidden;
+        display: flex;
+        flex-direction: column;
 
         @include max(sm) {
             padding: 0 $base-indent !important;
         }
 
+        /*&.is-loading {
+            min-height: 300px;
+        }*/
+
         &.is-scrolled {
             overflow-y: auto;
         }
 
-        .full-screen-content__title {
+        ::v-deep .full-screen-content__title {
             padding-top: 0;
             padding-right: 0;
             padding-left: 0;
@@ -174,7 +191,7 @@ export default {
     }
 
     &__actions {
-        padding: $base-indent $gutter;
+        padding: $gutter;
         @include border(top);
 
         @include max(sm) {
@@ -183,6 +200,22 @@ export default {
 
         @include max(xs) {
             @include btnHalfSize;
+        }
+    }
+}
+
+::v-deep {
+    .wrap {
+        position: relative;
+        margin: calc(var(--gutter) * -1);
+    }
+    .c-btn-wide {
+        @include min(md) {
+            padding-left: $base-indent + 4;
+        }
+
+        @include max(sm) {
+            padding-right: $base-indent - 4;
         }
     }
 }

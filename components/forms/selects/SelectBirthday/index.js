@@ -1,5 +1,5 @@
-import { genDayArrayForSelect, genNumberStringArrayRevert } from '@beautybox/utils';
-import { monthArray } from '@beautybox/utils/helpers';
+import { genDayArrayForSelect, genNumberStringArrayRevert } from '@beautybox/core/utils';
+import { monthArray } from '@beautybox/core/utils/helpers';
 import { VRow, VCol, VBtn } from 'vuetify/lib/components';
 import BAutoComplete from '../AutoComplete';
 

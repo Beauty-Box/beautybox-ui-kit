@@ -15,7 +15,7 @@
                 :image="item.avatar"
             />
             <v-list-item-action v-else class="list-item__action">
-                <v-checkbox :input-value="active" />
+                <v-checkbox :input-value="active" hide-details />
             </v-list-item-action>
             <v-list-item-content>
                 <v-list-item-title>

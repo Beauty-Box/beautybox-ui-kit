@@ -1,5 +1,5 @@
-import '@beautybox/ui-kit/components/lists/items/style.scss';
-import userAvatarMixin from '@beautybox/ui-kit/components/lists/items/mixin';
+import '../style.scss';
+import userAvatarMixin from '../mixin';
 
 import {
     VListItem,

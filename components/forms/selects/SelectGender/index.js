@@ -1,5 +1,5 @@
 import FSelect from '../Select';
-import { genderArray } from '@beautybox/utils/helpers';
+import { genderArray } from '@beautybox/core/utils/helpers';
 
 export default {
     name: 'FSelectGender',

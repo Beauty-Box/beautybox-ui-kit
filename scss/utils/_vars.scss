@@ -24,9 +24,10 @@ $color-primary: #101928;
 $color-secondary: #67768c;
 
 $color-success: #8cc152;
-$color-info: #2b72bd;
+$color-info: #037aff;
 $color-warning: #ffc107;
 $color-error: #f74969;
+$color-anchor: #037aff;
 
 $color-link: $color-info;
 
@@ -60,12 +61,12 @@ $color-border--lighten: $gray--lighten;
 $color-border--lightest: $gray--lightest;
 $color-border-very-light: #eef0f2; //#f2f2f2
 
-$input-height-mobile: 56px;
+$input-height: 56px;
 $input-color-border: $color-border;
 $input-color-border--hover: $color-border--dark;
 $input-shadow--hover: 0 2px 4px 0 rgba(0, 0, 0, 0.05), 0 0 4px 0 rgba(0, 0, 0, 0.05);
 
-$border-radius: 3px;
+$border-radius: 4px;
 
 //bg
 $color-bg--darken: #191919;

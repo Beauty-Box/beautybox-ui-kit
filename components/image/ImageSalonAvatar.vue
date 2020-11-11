@@ -38,7 +38,7 @@
 </template>
 
 <script>
-import { imageMixin } from '@beautybox/ui-kit/components/image/image.mixin';
+import { imageMixin } from '../image/image.mixin';
 
 export default {
     name: 'ImageSalonAvatar',

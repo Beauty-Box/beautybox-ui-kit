@@ -1,12 +1,11 @@
 <template>
     <v-simple-table>
         <template v-slot:default>
-            <thead v-if="!$vuetify.breakpoint.xsOnly">
+            <thead v-if="!$vuetify.breakpoint.mobile">
                 <slot name="table-head" />
             </thead>
             <tbody v-scroll:#main="onScrollControl">
-                <slot name="table-body" />
-
+                <slot v-if="$slots['table-body']" name="table-body" />
                 <tr v-if="loading">
                     <td colspan="100%" align="center" :style="{ position: 'relative' }">
                         <b-block-loader position="static" size="30" style="max-height: 60px" />
@@ -20,7 +19,7 @@
 <script>
 import { scroll } from '@beautybox/core/mixins/ScrollControl';
 const BBlockLoader = () =>
-    import(/* webpackChunkName: "BlockLoader" */ '@beautybox/ui-kit/components/blocks/BlockLoader');
+    import(/* webpackChunkName: "BlockLoader" */ '../blocks/BlockLoader');
 
 export default {
     name: 'TableLazyLoad',

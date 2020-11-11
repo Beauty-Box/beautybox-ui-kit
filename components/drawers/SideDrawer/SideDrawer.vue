@@ -33,15 +33,15 @@
 </template>
 
 <script>
-import { modalProps } from '@beautybox/core/mixins/modalProps';
-const BSvg = () => import(/* webpackChunkName: "Svg" */ '@beautybox/ui-kit/components/icons/Svg');
+import { modalMixinToggle } from '../../../mixins';
+const BSvg = () => import(/* webpackChunkName: "Svg" */ '../../icons/Svg');
 const BBtnClose = () =>
-    import(/* webpackChunkName: "BtnClose" */ '@beautybox/ui-kit/components/buttons/BtnClose');
+    import(/* webpackChunkName: "BtnClose" */ '../../buttons/BtnClose');
 
 export default {
     name: 'BSideDrawer',
     components: { BSvg, BBtnClose },
-    mixins: [modalProps],
+    mixins: [modalMixinToggle],
     props: {
         title: {
             type: String,

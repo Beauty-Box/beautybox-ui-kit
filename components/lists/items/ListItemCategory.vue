@@ -13,7 +13,7 @@
             class="item__color"
         />
         <v-list-item-action v-if="iconPrepend">
-            <v-btn icon small :ripple="false" :rounded="false" class="btn-drag _hide-before">
+            <v-btn icon small :ripple="false" :rounded="false" class="btn-drag u-hide-before">
                 <v-icon
                     :size="iconPrependSize"
                     :color="iconPrependColor ? iconPrependColor : 'secondary'"

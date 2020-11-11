@@ -1,6 +1,6 @@
 import './style.scss';
 
-import ImageUserAvatar from '@beautybox/ui-kit/components/image/ImageUserAvatar';
+import ImageUserAvatar from '../../../image/ImageUserAvatar';
 export default {
     name: 'ListItemNotification',
     components: { ImageUserAvatar },

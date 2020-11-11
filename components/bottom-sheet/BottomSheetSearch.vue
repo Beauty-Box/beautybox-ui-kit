@@ -69,9 +69,9 @@
 </template>
 
 <script>
-import { modalProps, scroll } from '@beautybox/ui-kit/mixins';
+import { modalProps, scroll } from '../../mixins';
 const BBtnClose = () =>
-    import(/* webpackChunkName: "BtnClose" */ '@beautybox/ui-kit/components/buttons/BtnClose');
+    import(/* webpackChunkName: "BtnClose" */ '../buttons/BtnClose');
 
 export default {
     name: 'BBottomSheetSearch',

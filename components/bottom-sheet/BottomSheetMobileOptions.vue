@@ -24,15 +24,15 @@
 </template>
 
 <script>
-import { modalProps } from '@beautybox/ui-kit/mixins';
+import { modalProps } from '../../mixins';
 
 export default {
     name: 'BBottomSheetMobileOptions',
     mixins: [modalProps],
     methods: {
         onClose() {
-            this.modal = false;
             this.$emit('click:close');
+            this.modal = false;
         },
     },
 };

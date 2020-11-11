@@ -1,29 +1,23 @@
 import '../scss/main.scss';
 import '../scss/storybook.scss';
 import { configure, addDecorator } from '@storybook/vue';
-import {addParameters} from '@storybook/client-api';
+import { addParameters } from '@storybook/client-api';
 
 import Vue from 'vue';
 
-import { vuetify } from '@ui-kit/plugins/vuetify';
+import { vuetify } from '../plugins/vuetify';
 
 import VueClipboard from 'vue-clipboard2';
 import toastMessage from '@beautybox/core/mixins/toastMessage';
-import checkPermission from '@beautybox/core/mixins/checkPermission';
-import store from '@crm/store';
 import mixins from '@beautybox/core/mixins.global';
-import VuePreview from 'vue-preview';
 import '@beautybox/core/filters.global';
 
-
-Vue.use(VuePreview);
 Vue.use(mixins);
-Vue.use(checkPermission, { store });
 Vue.use(VueClipboard);
 Vue.use(toastMessage);
 
 
-import results from '@ui-kit/.jest-test-results.json';
+// import results from '../.jest-test-results.json';
 
 import { withTests } from '@storybook/addon-jest';
 
@@ -48,6 +42,6 @@ addDecorator((storyFn) => ({
                 </v-app>`,
 }));
 
-addDecorator(withTests({ results }));
+// addDecorator(withTests({ results }));
 
 configure(require.context('../components', true, /\.stories\.js$/), module);

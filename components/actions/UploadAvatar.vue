@@ -87,7 +87,7 @@
 <script>
 import MUploadAvatar from '../modals/MUploadAvatar';
 import ImageUserAvatar from '../image/ImageUserAvatar';
-const BSvg = () => import(/* webpackChunkName: "Svg" */ '@beautybox/ui-kit/components/icons/Svg');
+const BSvg = () => import(/* webpackChunkName: "Svg" */ '../icons/Svg');
 
 export default {
     name: 'UploadAvatar',

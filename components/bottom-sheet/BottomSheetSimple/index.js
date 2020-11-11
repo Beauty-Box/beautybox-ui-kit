@@ -4,7 +4,7 @@ import { modalProps } from '@beautybox/core/mixins/modalProps';
 
 import { VBottomSheet, VBtn, VSheet } from 'vuetify/lib';
 
-import FInput from '@ui-kit/components/forms/inputs/Input';
+import FInput from '../../forms/inputs/Input';
 
 export default {
     name: 'BottomSheetSimple',

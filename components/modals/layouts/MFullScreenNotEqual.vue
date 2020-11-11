@@ -6,15 +6,19 @@
         :transition="transition"
         hide-overlay
         content-class="full-screen full-screen--not-equal"
-        tag="form"
     >
-        <form class="full-screen__form" :class="contentClass" @submit.prevent="submit">
+        <form
+            class="full-screen__form"
+            :class="contentClass"
+            :disabled="disabled"
+            @submit.prevent="submit"
+        >
             <b-block-loader v-if="loading" />
             <template v-else>
                 <!-- HEADER -->
                 <div ref="header" class="full-screen__header">
                     <div ref="title">
-                        <div v-if="hasCustomTitle" class="full-screen__title">
+                        <div v-if="!!$slots.customTitle" class="full-screen__title">
                             <slot name="customTitle" />
                         </div>
                         <h2 v-else class="full-screen__title">
@@ -28,11 +32,13 @@
                 <div class="full-screen__content full-screen-content" @scroll="onScroll">
                     <div v-if="$vuetify.breakpoint.smAndDown" class="full-screen-content__title">
                         <div ref="contentTitle">
-                            <template v-if="hasCustomTitle">
+                            <template v-if="!!$slots.customTitle">
                                 <slot name="customTitle" />
                             </template>
-                            <template v-else>{{ $route.meta.title }}</template>
-                            <p v-if="$route.meta.description">{{ $route.meta.description }}</p>
+                            <template v-else>{{ $route.meta.title || title }}</template>
+                            <p v-if="$route.meta.description || description">
+                                {{ $route.meta.description || description }}
+                            </p>
                         </div>
                     </div>
 
@@ -72,6 +78,7 @@
                     </div>
                 </div>
 
+                <!-- DIALOG's -->
                 <slot name="dialog" />
             </template>
         </form>
@@ -79,22 +86,32 @@
 </template>
 
 <script>
-import { dialogProps } from '@beautybox/ui-kit/mixins/dialogProps';
-const BBlockLoader = () =>
-    import(/* webpackChunkName: "BlockLoader" */ '@beautybox/ui-kit/components/blocks/BlockLoader');
-const BBtnClose = () =>
-    import(/* webpackChunkName: "BtnClose" */ '@beautybox/ui-kit/components/buttons/BtnClose');
+import { modalMixin } from '../../../mixins';
+const BBtnClose = () => import(/* webpackChunkName: "BtnClose" */ '../../buttons/BtnClose');
+const BBlockLoader = () => import(/* webpackChunkName: "BlockLoader" */ '../../blocks/BlockLoader');
 
 export default {
     name: 'MFullScreenNotEqual',
     components: { BBlockLoader, BBtnClose },
-    mixins: [dialogProps],
+    mixins: [modalMixin],
     props: {
         bgc: {
             type: String,
             default: '#fff',
         },
+        tag: {
+            type: String,
+            default: 'form',
+        },
         contentClass: {
+            type: String,
+            default: '',
+        },
+        title: {
+            type: String,
+            default: '',
+        },
+        description: {
             type: String,
             default: '',
         },
@@ -102,11 +119,12 @@ export default {
             type: Boolean,
             default: false,
         },
+        disabled: {
+            type: Boolean,
+            dafault: false,
+        },
     },
     computed: {
-        hasCustomTitle() {
-            return !!this.$slots.customTitle;
-        },
         overlay: {
             get() {
                 return this.overlayIsVisible;
@@ -132,3 +150,5 @@ export default {
     },
 };
 </script>
+
+<style lang="scss" scoped src="./style.scss" />

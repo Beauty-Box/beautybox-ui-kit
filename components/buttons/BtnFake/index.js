@@ -1,9 +1,9 @@
 import './style.scss';
-import VSvg from '@ui-kit/components/icons/Svg';
+import BSvg from '../../icons/Svg';
 
 export default {
     name: 'BtnFake',
-    components: { VSvg },
+    components: { BSvg },
     props: {
         title: {
             type: String,
@@ -22,11 +22,64 @@ export default {
             default: 'button',
         },
     },
-    template: `<button class="c-fake-btn" :type="type" v-on="$listeners">
-    <span class="c-fake-btn__inner">
-        <span v-if="title" class="c-fake-btn__title">{{ title }}</span>
-        <span v-if="subTitle" class="c-fake-btn__subtitle">{{ subTitle }}</span>
-    </span>
-    <v-svg :name="iconSvg" class="c-fake-btn__icon" xs />
-</button>`,
+    /*template: `<button class="c-fake-btn" :type="type" v-on="$listeners">
+                            <span class="c-fake-btn__inner">
+                                <span v-if="title" class="c-fake-btn__title">{{ title }}</span>
+                                <span v-if="subTitle" class="c-fake-btn__subtitle">{{ subTitle }}</span>
+                            </span>
+                            <v-svg :name="iconSvg" class="c-fake-btn__icon" xs />
+                        </button>`,*/
+    render(h) {
+        return h(
+            'button',
+            {
+                class: {
+                    'c-fake-btn': true,
+                },
+                attrs: {
+                    type: this.type,
+                },
+                on: this.$listeners,
+            },
+            [
+                h(
+                    'span',
+                    {
+                        class: {
+                            'c-fake-btn__inner': true,
+                        },
+                    },
+                    [
+                        h(
+                            'span',
+                            {
+                                class: {
+                                    'c-fake-btn__title': true,
+                                },
+                            },
+                            this.title
+                        ),
+                        h(
+                            'span',
+                            {
+                                class: {
+                                    'c-fake-btn__subtitle': true,
+                                },
+                            },
+                            this.subTitle
+                        ),
+                    ]
+                ),
+                h('b-svg', {
+                    class: {
+                        'c-fake-btn__icon': true,
+                    },
+                    props: {
+                        name: this.iconSvg,
+                        xs: true,
+                    },
+                }),
+            ]
+        );
+    },
 };

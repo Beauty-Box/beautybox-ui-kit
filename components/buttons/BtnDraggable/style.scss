@@ -1,0 +1,18 @@
+.c-btn-draggable {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: grab;
+
+    &::before,
+    &::after {
+        display: none;
+    }
+
+    .icon {
+        width: 15px;
+        height: 15px;
+        margin: auto;
+        fill: $color-icon--lighten;
+    }
+}

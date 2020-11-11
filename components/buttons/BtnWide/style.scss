@@ -1,25 +1,27 @@
-.btn-wide {
+.c-btn-wide {
     display: flex;
     flex-shrink: 0;
     align-items: center;
     width: 100%;
-    height: 55px;
-    padding: 0 $base-indent 0 $base-indent - 1;
+    min-height: 56px;
+    padding: 0 $base-indent;
     outline: none;
     background-color: #fff;
-    color: $color-info;
-    font-size: 16px;
+    font-size: 18px;
     line-height: 55px;
     cursor: pointer;
-    @include border(top);
-    @include border(bottom);
 
-    .icon {
-        width: map-get($icons-sizes, 'sm') + 1.5;
-        height: map-get($icons-sizes, 'sm') + 1.5;
+    @include min(md) {
+        flex-direction: row-reverse;
+        font-size: 16px;
 
-        &:first-child {
-            margin-right: 15px;
+        .v-icon {
+            margin-right: $base-indent;
         }
+    }
+
+    & > span {
+        flex-grow: 1;
+        text-align: left;
     }
 }

@@ -2,17 +2,13 @@ import './style.scss';
 
 import VBtn from 'vuetify/lib/components/VBtn';
 import { VFabTransition } from 'vuetify/lib/components/transitions';
-import VSvg from '@ui-kit/components/icons/Svg';
+import BSvg from '../../icons/Svg';
 
 export default {
-    name: 'BtnAdd',
-    components: { VBtn, VSvg, VFabTransition },
+    name: 'BBtnAdd',
+    components: { VBtn, BSvg, VFabTransition },
     props: {
         ...VBtn.options.props,
-        transition: {
-            ...VBtn.options.transition,
-            default: () => 'slide-y-reverse-transition',
-        },
         fab: {
             ...VBtn.options.fab,
             default: true,
@@ -29,17 +25,17 @@ export default {
             ...VBtn.options.right,
             default: true,
         },
+        ripple: {
+            ...VBtn.options.ripple,
+            default: false,
+        },
         bottom: {
             ...VBtn.options.bottom,
             default: true,
         },
-        color: {
-            ...VBtn.options.color,
-            default: 'primary',
-        },
-        ripple: {
-            ...VBtn.options.ripple,
-            default: false,
+        transition: {
+            ...VBtn.options.transition,
+            default: () => 'slide-y-reverse-transition',
         },
         to: {
             type: Object,
@@ -49,19 +45,44 @@ export default {
             type: Boolean,
             default: false,
         },
+        color: {
+            ...VBtn.options.color,
+            default: 'primary',
+        },
     },
-    computed: {
-        classes: () => ({ ...VBtn.options.computed.classes.call(this), 'btn-add': true }),
+    render(h) {
+        if (this.$vuetify.breakpoint.mobile) {
+            return h('v-fab-transition', {}, [
+                h(
+                    'v-btn',
+                    {
+                        class: {
+                            'c-btn-add': true,
+                        },
+                        props: {
+                            transition: this.transition,
+                            fab: this.fab,
+                            dark: this.dark,
+                            fixed: this.fixed,
+                            right: this.right,
+                            bottom: this.bottom,
+                            color: this.color,
+                            ripple: this.ripple,
+                            to: this.to,
+                            forever: this.forever,
+                        },
+                        on: this.$listeners,
+                    },
+                    [
+                        this.$slots.default,
+                        h('b-svg', {
+                            props: {
+                                name: 'plus--bold',
+                            },
+                        }),
+                    ]
+                ),
+            ]);
+        }
     },
-    template: `<v-fab-transition v-if="$vuetify.breakpoint.mdAndDown || forever">
-    <v-btn
-        v-bind="{...$props, ...$attrs}"
-        v-on="$listeners"
-    >
-        <slot>
-            <v-svg name="plus--bold" />
-        </slot>
-        <!-- <img src="/assets/temp/colpac.svg" class="icon-colpac" alt="happy new year" />-->
-    </v-btn>
-</v-fab-transition>`,
 };

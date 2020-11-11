@@ -46,7 +46,7 @@ import UploadFile from '../actions/UploadFile';
 const CropImage = () => import('../actions/CropImage');
 import ImageUserAvatar from '../image/ImageUserAvatar';
 import UploadFileResize from '../actions/UploadFileResize';
-import MMobileFullScreen from '@beautybox/ui-kit/components/modals/layouts/MMobileFullScreen';
+import MMobileFullScreen from '../modals/layouts/MMobileFullScreen';
 
 export default {
     name: 'MUploadAvatar',

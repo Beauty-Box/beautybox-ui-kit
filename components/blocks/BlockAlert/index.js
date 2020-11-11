@@ -35,19 +35,47 @@ export default {
             default: true,
         },
     },
-    template: ` <v-alert
-    :icon="icon"
-    :color="color"
-    transition="slide-y-transition"
-    :dismissible="dismissible"
-    :style="{
-        '--shadow': shadow,
-        '--icon-color': iconColor,
-    }"
->
-    <h3 class="title">{{ title }}</h3>
-    <p v-if="!$slots.description" class="description">{{ description }}</p>
-
-    <slot name="description" />
-</v-alert>`,
+    render(h) {
+        let children = [
+            h(
+                'h3',
+                {
+                    class: {
+                        title: true,
+                    },
+                },
+                this.title
+            ),
+            this.$slots.description,
+        ];
+        if (!this.$slots.description) {
+            children.push(
+                h(
+                    'p',
+                    {
+                        class: {
+                            description: true,
+                        },
+                    },
+                    this.description
+                )
+            );
+        }
+        return h(
+            'v-alert',
+            {
+                props: {
+                    icon: this.icon,
+                    color: this.color,
+                    transition: this.transition,
+                    dismissible: this.dismissible,
+                },
+                style: {
+                    '--shadow': this.shadow,
+                    '--icon-color': this.iconColor,
+                },
+            },
+            children
+        );
+    },
 };

@@ -2,61 +2,73 @@
     <v-dialog
         v-model="modal"
         width="500"
-        min-heigth="300"
         overlay-color="rgba(103, 118, 140, 0.5)"
         overlay-opacity="1"
         :transition="transition"
         :persistent="persistent"
         scrollable
-        :fullscreen="$vuetify.breakpoint.mobile"
+        :fullscreen="isMobile"
         @click:outside="$emit('click:outside', $event)"
     >
         <v-card
-            tag="form"
+            :tag="tag"
             @submit.prevent="$emit('submit', $event)"
             @reset.prevent="$emit('reset', $event)"
         >
+            <b-btn-close type="button" @click="onClickCloseModal" />
+
             <!-- HEADER -->
-            <v-card-title :class="{ 'has-title': title }">
+            <v-card-title v-if="title">
                 <span v-if="title">{{ title }}</span>
-                <b-btn-close type="button" @click="onClickCloseModal" />
             </v-card-title>
 
             <!-- BODY -->
-            <v-card-text :class="{ 'is-relative': loading }">
+            <v-card-text :class="[{ 'is-relative': loading }, bodyClass]">
                 <b-block-loader v-if="loading" />
                 <template v-else>
                     <slot />
                 </template>
             </v-card-text>
 
-            <v-spacer v-if="!$vuetify.breakpoint.mobile" />
+            <v-spacer v-if="!isMobile && $slots.footer" />
 
             <!-- FOOTER -->
-            <v-card-actions v-if="$slots.btns">
-                <slot name="btns" />
+            <v-card-actions v-if="$slots.footer">
+                <slot name="footer" />
             </v-card-actions>
         </v-card>
     </v-dialog>
 </template>
 
 <script>
-import { modalProps } from '@beautybox/core/mixins/modalProps';
+import { modalMixinToggle } from '../../../mixins';
 const BBlockLoader = () =>
-    import(/* webpackChunkName: "BlockLoader" */ '@beautybox/ui-kit/components/blocks/BlockLoader');
+    import(/* webpackChunkName: "BlockLoader" */ '../../blocks/BlockLoader');
 
 export default {
     name: 'BModalLayoutDefault',
     components: { BBlockLoader },
-    mixins: [modalProps],
+    mixins: [modalMixinToggle],
     props: {
-        loading: {
-            type: Boolean,
-            default: false,
+        tag: {
+            type: String,
+            default: 'form',
         },
         title: {
             type: String,
             default: '',
+        },
+        bodyClass: {
+            type: String,
+            default: '',
+        },
+        loading: {
+            type: Boolean,
+            default: false,
+        },
+        scrollable: {
+            type: Boolean,
+            default: true,
         },
         transition: {
             type: String,
@@ -66,11 +78,18 @@ export default {
             type: Boolean,
             default: false,
         },
+        closeIsDisabled: {
+            type: Boolean,
+            default: false,
+        },
     },
     methods: {
         onClickCloseModal() {
+            if (this.closeIsDisabled) {
+                return false;
+            }
             this.modal = false;
-            this.$emit('close');
+            this.$emit('click:close');
         },
     },
 };
@@ -78,6 +97,7 @@ export default {
 
 <style lang="scss" scoped>
 .v-card {
+    min-height: 420px;
     display: flex;
     flex-direction: column;
 
@@ -85,6 +105,7 @@ export default {
         height: 60px;
         padding: 0 !important;
         position: relative;
+        @include border(bottom);
 
         @include max(sm) {
             height: 50px;
@@ -106,20 +127,6 @@ export default {
                 line-height: 16px;
             }
         }
-
-        &.has-title {
-            @include border(bottom);
-        }
-
-        ::v-deep .c-btn-close {
-            @include centre('y');
-            right: 7px;
-            z-index: z(absolute) + 1;
-
-            @include min(md) {
-                right: 13px;
-            }
-        }
     }
 
     &__text,
@@ -133,7 +140,7 @@ export default {
     &__text {
         flex-grow: 1;
         overflow-y: hidden;
-        padding: var(--gutter) !important;
+        padding: var(--gutter);
 
         &.is-scrolled {
             overflow-y: auto;
@@ -155,6 +162,16 @@ export default {
         @include max(xs) {
             @include btnHalfSize;
         }
+    }
+}
+
+.c-btn-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+
+    @include max(xs) {
+        right: 7px;
     }
 }
 </style>

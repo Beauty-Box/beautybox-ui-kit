@@ -1,20 +1,19 @@
 <template>
-    <vue-preview :slides="photos" class="c-gallary" />
+    <vue-preview :slides="photos" class="c-gallery" />
 </template>
 
 <script>
 export default {
     name: 'BScrollPhotosGallery',
     props: {
-        data: {
+        items: {
             type: Array,
             required: true,
         },
     },
     computed: {
         photos() {
-            console.log('--- photos', this.data);
-            return this.data.map((item) => ({
+            return this.items.map((item) => ({
                 src: item,
                 msrc: item,
                 w: 480,
@@ -26,7 +25,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.c-gallary {
+.c-gallery {
     overflow: hidden;
 
     ::v-deep .my-gallery {

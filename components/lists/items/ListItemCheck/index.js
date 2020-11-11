@@ -1,6 +1,6 @@
-import '@ui-kit/components/lists/items/style.scss';
+import '../style.scss';
 
-import userAvatarMixin from '@beautybox/ui-kit/components/lists/items/mixin.js';
+import userAvatarMixin from '../mixin.js';
 
 import { VCheckbox } from 'vuetify/lib/components/VCheckbox';
 
