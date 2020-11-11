@@ -52,7 +52,7 @@
 </template>
 
 <script>
-import { modalMixin, modalMixinToggle } from '../../../mixins';
+import { modalMixin, modalToggleMixin } from '../../../mixins';
 const BBlockLoader = () =>
     import(/* webpackChunkName: "BlockLoader" */ '../../blocks/BlockLoader');
 const BBtnClose = () =>
@@ -61,7 +61,7 @@ const BBtnClose = () =>
 export default {
     name: 'BModalLayoutFullScreen',
     components: { BBlockLoader, BBtnClose },
-    mixins: [modalMixin, modalMixinToggle],
+    mixins: [modalMixin, modalToggleMixin],
     props: {
         tag: {
             type: String,

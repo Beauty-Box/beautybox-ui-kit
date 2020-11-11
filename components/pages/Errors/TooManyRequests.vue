@@ -34,9 +34,9 @@
 </template>
 
 <script>
-const BSvg = () => import(/* webpackChunkName: "BSvg" */ '@beautybox/ui-kit/components/icons/Svg');
+const BSvg = () => import(/* webpackChunkName: "BSvg" */ '../../../components/icons/Svg');
 const BlockEmpty = () =>
-    import(/* webpackChunkName: "BlockEmpty" */ '@beautybox/ui-kit/components/blocks/BlockEmpty');
+    import(/* webpackChunkName: "BlockEmpty" */ '../../../components/blocks/BlockEmpty');
 
 export default {
     components: {

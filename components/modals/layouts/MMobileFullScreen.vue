@@ -63,7 +63,7 @@
 </template>
 
 <script>
-import { modalMixin, modalMixinToggle  } from '../../../mixins';
+import { modalMixin, modalToggleMixin  } from '../../../mixins';
 const BBlockLoader = () =>
     import(/* webpackChunkName: "BlockLoader" */ '../../blocks/BlockLoader');
 const BSvg = () => import(/* webpackChunkName: "Svg" */ '../../icons/Svg');
@@ -73,7 +73,7 @@ const BBtnClose = () =>
 export default {
     name: 'MMobileFullScreen',
     components: { BBlockLoader, BSvg, BBtnClose },
-    mixins: [modalMixin, modalMixinToggle],
+    mixins: [modalMixin, modalToggleMixin],
     props: {
         loading: {
             type: Boolean,
