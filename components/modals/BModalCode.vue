@@ -61,7 +61,7 @@ import { Api as Provider } from '@beautybox/core/api';
 import { modalToggleMixin, modalOverlayColorMixin } from '../../mixins';
 const BSecurityCode = () =>
     import(/* webpackChunkName: "SecurityCode" */ '../forms/inputs/InputSecurityCode');
-const BTimer = () => import(/* webpackChunkName: "timer" */ '../forms/timer');
+const BTimer = () => import(/* webpackChunkName: "timer" */ '../forms/Timer');
 const BBtnClose = () => import(/* webpackChunkName: "BtnClose" */ '../buttons/BtnClose');
 
 export default {
