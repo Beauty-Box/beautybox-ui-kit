@@ -15,11 +15,8 @@ const UnknownError = () =>
         /* webpackChunkName: "UnknownError" */ '../components/pages/Errors/UnknownError'
     );
 
-import Errors from '@beautybox/core/store/modules/errors';
+import { mapGetters } from 'vuex';
 
-import { createNamespacedHelpers } from 'vuex';
-
-const { mapGetters } = createNamespacedHelpers('Errors');
 
 const app = {
     components: {
@@ -41,11 +38,6 @@ const app = {
             }
         },
     },
-    created() {
-        if (!this.$store.hasModule('Errors')) {
-            this.$store.registerModule('Errors', Errors);
-        }
-    }
 };
 
 export { app };
