@@ -15,6 +15,9 @@ const UnknownError = () =>
         /* webpackChunkName: "UnknownError" */ '../components/pages/Errors/UnknownError'
     );
 
+import { mapGetters } from 'vuex';
+
+
 const app = {
     components: {
         EmptyLayout,
@@ -26,8 +29,13 @@ const app = {
         UnknownError,
     },
     computed: {
+        ...mapGetters(['ERROR', 'TYPE']),
         layout() {
-            return (this.$route.meta.layout || 'empty') + '-layout';
+            if (this.ERROR) {
+                return this.TYPE;
+            } else {
+                return (this.$route.meta.layout || 'empty') + '-layout';
+            }
         },
     },
 };
