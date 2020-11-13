@@ -47,8 +47,6 @@ export const search = () => ({
     template: '<b-input-search v-bind="$props" />',
 });
 
-search.story = {
-    parameters: {
-        jest: ['InputSearch.spec.js'],
-    },
+search.parameters = {
+    jest: ['InputSearch.spec.js'],
 };

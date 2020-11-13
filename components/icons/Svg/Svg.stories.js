@@ -1,9 +1,9 @@
-import BSvg from './index';
 import { text, withKnobs } from '@storybook/addon-knobs';
+import BSvg from './index';
 
-export default { title: 'icons', decorators: [withKnobs] };
+export default { title: 'icons' };
 
-export const user = () => ({
+export const Svg = () => ({
     components: { BSvg },
     props: {
         name: {
@@ -12,3 +12,7 @@ export const user = () => ({
     },
     template: '<b-svg v-bind="$props" />',
 });
+
+Svg.storyName = 'Svg';
+Svg.parameters = { jest: ['Svg.spec.js'] };
+Svg.decorators = [withKnobs];

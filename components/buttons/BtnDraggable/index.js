@@ -1,11 +1,12 @@
 import './style.scss';
 
 import VBtn from 'vuetify/lib/components/VBtn';
-import BSvg from '../../icons/Svg';
+import VIcon from 'vuetify/lib/components/VIcon';
+// import BSvg from '../../icons/Svg';
 
 export default {
     name: 'BBtnDraggable',
-    components: { VBtn, BSvg },
+    components: { VBtn, VIcon },
     props: {
         type: {
             type: String,
@@ -13,15 +14,15 @@ export default {
         },
         color: {
             type: String,
-            default: 'info',
+            default: 'secondary',
         },
         icon: {
             type: String,
-            default: 'hamburger',
+            default: 'menu',
         },
         iconSize: {
             type: [String, Number],
-            default: 28,
+            default: 22,
         },
     },
     render(h) {
@@ -43,13 +44,23 @@ export default {
                 on: this.$listeners,
             },
             [
-                h('b-svg', {
+                /*h('b-svg', {
                     props: {
                         size: this.iconSize,
                         color: this.color,
                         name: this.icon,
                     },
-                }),
+                }),*/
+                h(
+                    'v-icon',
+                    {
+                        props: {
+                            size: this.iconSize,
+                            color: this.color,
+                        },
+                    },
+                    [this.icon]
+                ),
             ]
         );
     },

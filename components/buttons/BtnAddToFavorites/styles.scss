@@ -1,0 +1,41 @@
+.theme--light {
+    &.v-btn {
+        &.c-btn-favorite {
+            color: rgba(16, 25, 40, 0.5);
+
+            &--active {
+                color: $color-error;
+            }
+
+            svg {
+                fill: currentColor;
+            }
+        }
+    }
+}
+
+.v-btn.c-btn-favorite {
+    &--active {
+        svg {
+            animation: 500ms ease-in-out 0s 1 normal none running addToFav;
+        }
+    }
+}
+
+@keyframes addToFav {
+    0% {
+        transform: scale(1);
+    }
+    25% {
+        transform: scale(1.3);
+    }
+    50% {
+        transform: scale(1);
+    }
+    75% {
+        transform: scale(1.3);
+    }
+    100% {
+        transform: scale(1);
+    }
+}

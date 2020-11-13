@@ -1,20 +1,23 @@
 import { withKnobs, text, boolean } from '@storybook/addon-knobs';
 
-import BlockEmpty from './index';
+import BBlockEmpty from './index';
 
-export default { title: 'blocks', decorators: [withKnobs] };
+export default { title: 'blocks' };
 
-export const blockEmpty = () => ({
-    components: { BlockEmpty },
+export const BlockEmpty = () => ({
+    components: { BBlockEmpty },
     props: {
         icon: {
-            default: text('icon', ''),
+            default: text('icon', 'empty-star'),
         },
         title: {
-            default: text('title', ''),
+            default: text('title', 'Тестовый заголовок'),
         },
         text: {
-            default: text('text', ''),
+            default: text('text', 'Тестовый текст'),
+        },
+        textWidth: {
+            default: text('textWidth', '35'),
         },
         center: {
             default: boolean('center', false),
@@ -23,5 +26,9 @@ export const blockEmpty = () => ({
             default: boolean('bigSize', false),
         },
     },
-    template: '<b-block-empty v-bind="$props"></b-block-empty>',
+    template: '<b-block-empty v-bind="$props" />',
 });
+
+BlockEmpty.storyName = 'BlockEmpty';
+BlockEmpty.parameters = { jest: ['BlockEmpty.spec.js'] };
+BlockEmpty.decorators = [withKnobs];

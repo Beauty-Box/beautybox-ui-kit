@@ -1,10 +1,9 @@
 import { withKnobs, radios, boolean, text } from '@storybook/addon-knobs';
 
-import BtnAdd from './index';
-export default { title: 'buttons', decorators: [withKnobs] };
+import BBtnAdd from './index';
 
-export const addButton = () => ({
-    components: { BtnAdd },
+export const AddButton = () => ({
+    components: { BBtnAdd },
     props: {
         transition: {
             default: radios(
@@ -31,11 +30,9 @@ export const addButton = () => ({
             default: boolean('ripple', false),
         },
     },
-    template: '<btn-add v-bind="$props"></btn-add>',
+    template: '<b-btn-add v-bind="$props"></b-btn-add>',
 });
 
-addButton.story = {
-    parameters: {
-        jest: ['BtnAdd.spec.js'],
-    },
-};
+AddButton.storyName = 'AddButton';
+AddButton.parameters = { jest: ['AddButton.spec.js'] };
+AddButton.decorators = [withKnobs];

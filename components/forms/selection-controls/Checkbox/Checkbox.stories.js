@@ -1,21 +1,17 @@
 import { withKnobs, text } from '@storybook/addon-knobs';
 
-import Checkbox from './index';
+import BCheckbox from './index';
 
-export default { title: 'forms/selection-controls', decorators: [withKnobs] };
-
-export const checkbox = () => ({
-    components: { Checkbox },
+export const Checkbox = () => ({
+    components: { BCheckbox },
     props: {
         label: {
             default: text('label', 'Элемент 1'),
         },
     },
-    template: '<checkbox v-bind="$props"></checkbox>',
+    template: '<b-checkbox v-bind="$props"></b-checkbox>',
 });
 
-checkbox.story = {
-    parameters: {
-        jest: ['Checkbox.spec.js'],
-    },
-};
+Checkbox.storyName = 'Checkbox';
+Checkbox.parameters = { jest: ['Checkbox.spec.js'] };
+Checkbox.decorators = [withKnobs];

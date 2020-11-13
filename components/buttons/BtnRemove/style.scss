@@ -1,0 +1,38 @@
+.v-btn.c-btn-remove {
+    padding: 0 !important;
+    transition: none !important;
+
+    &::before,
+    &::after {
+        display: none !important;
+    }
+
+    &:hover {
+        svg,
+        .v-icon {
+            transform: rotate(90deg);
+            transition: transform 0.15s ease-in-out;
+            fill: $color-icon;
+            color: $color-icon;
+        }
+    }
+
+    ::v-deep &__content {
+        width: inherit;
+        height: inherit;
+    }
+
+    .v-icon {
+        transition: none;
+    }
+
+    svg {
+        fill: $color-icon--light;
+
+        @include max(sm) {
+            width: 16px;
+            height: 16px;
+            fill: $color-icon;
+        }
+    }
+}

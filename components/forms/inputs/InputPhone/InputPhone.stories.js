@@ -47,8 +47,6 @@ export const phone = () => ({
     template: '<b-input-phone v-bind="$props"/>',
 });
 
-phone.story = {
-    parameters: {
-        jest: ['InputPhone.spec.js'],
-    },
+phone.parameters = {
+    jest: ['InputPhone.spec.js'],
 };

@@ -1,11 +1,11 @@
 import { withKnobs, text, object, boolean } from '@storybook/addon-knobs';
 
-import CropImage from './index';
+import BCropImage from './index';
 
 export default { title: 'actions', decorators: [withKnobs] };
 
 export const cropImage = () => ({
-    components: { CropImage },
+    components: { BCropImage },
     props: {
         image: {
             default: text(
@@ -20,5 +20,9 @@ export const cropImage = () => ({
             default: boolean('box', false),
         },
     },
-    template: '<crop-image v-bind="$props"></crop-image>',
+    template: '<b-crop-image v-bind="$props"></b-crop-image>',
 });
+
+cropImage.parameters = {
+    jest: ['CropImage.spec.js'],
+};

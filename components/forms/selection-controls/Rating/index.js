@@ -1,7 +1,7 @@
 import VRating from 'vuetify/lib/components/VRating';
 
 export default {
-    name: 'bRating',
+    name: 'BRating',
     extends: VRating,
     props: {
         color: {

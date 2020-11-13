@@ -1,17 +1,15 @@
 import { withKnobs, text, boolean } from '@storybook/addon-knobs';
 
-import BtnCopy from './index';
+import BBtnCopy from './index';
 
-export default { title: 'buttons', decorators: [withKnobs] };
-
-export const copyButton = () => ({
-    components: { BtnCopy },
+export const CopyButton = () => ({
+    components: { BBtnCopy },
     props: {
-        message: {
-            default: text('message', 'Скопировать'),
-        },
         copyText: {
             default: text('copyText', 'Hello, world!'),
+        },
+        color: {
+            default: text('color', 'primary'),
         },
         small: {
             default: boolean('small', false),
@@ -32,17 +30,15 @@ export const copyButton = () => ({
             default: boolean('depressed', false),
         },
         text: {
-            default: boolean('text', true),
+            default: boolean('text', false),
         },
-        color: {
-            default: text('color', ''),
+        large: {
+            default: boolean('large', true),
         },
     },
-    template: '<btn-copy v-bind="$props">{{ message }}</btn-copy>',
+    template: '<b-btn-copy v-bind="$props">Скопировать</b-btn-copy>',
 });
 
-copyButton.story = {
-    parameters: {
-        jest: ['BtnCopy.spec.js'],
-    },
-};
+CopyButton.storyName = 'CopyButton';
+CopyButton.parameters = { jest: ['CopyButton.spec.js'] };
+CopyButton.decorators = [withKnobs];

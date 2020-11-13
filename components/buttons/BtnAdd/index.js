@@ -1,4 +1,4 @@
-import './style.scss';
+import './styles.scss';
 
 import VBtn from 'vuetify/lib/components/VBtn';
 import { VFabTransition } from 'vuetify/lib/components/transitions';

@@ -22,13 +22,6 @@ export default {
             default: 'button',
         },
     },
-    /*template: `<button class="c-fake-btn" :type="type" v-on="$listeners">
-                            <span class="c-fake-btn__inner">
-                                <span v-if="title" class="c-fake-btn__title">{{ title }}</span>
-                                <span v-if="subTitle" class="c-fake-btn__subtitle">{{ subTitle }}</span>
-                            </span>
-                            <v-svg :name="iconSvg" class="c-fake-btn__icon" xs />
-                        </button>`,*/
     render(h) {
         return h(
             'button',

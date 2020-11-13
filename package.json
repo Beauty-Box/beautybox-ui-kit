@@ -1,7 +1,11 @@
 {
     "name": "@beautybox/ui-kit",
     "version": "1.0.0",
-    "main": "",
+    "private": true,
+    "repository": {
+        "type": "git",
+        "url": "https://gitlab.beautybox.ru/beautybox/frontend/beautybox-ui-kit"
+    },
     "license": "MIT",
     "scripts": {
         "serve": "start-storybook -p 5555 -s ./",
@@ -10,6 +14,18 @@
         "lint:styles": "stylelint --config ../../.stylelintrc --fix **/*.{scss,sass}",
         "lint": "yarn run lint:scripts && yarn run lint:styles"
     },
+    "husky": {
+        "hooks": {
+            "pre-commit": "lint-staged"
+        }
+    },
+    "lint-staged": {
+        "*.{js,vue}": "eslint --fix --config ./.eslintrc --ignore-path ./.eslintignore",
+        "*.{scss,sass}": [
+            "stylelint --fix --config ./.stylelintrc",
+            "prettier --write"
+        ]
+    },
     "dependencies": {
         "@beautybox/core": "git+ssh://git@gitlab.beautybox.ru:beautybox/frontend/beautybox-base.git",
         "cross-env": "^7.0.2",
@@ -17,9 +33,6 @@
         "react": "^16.13.1",
         "react-dom": "16.x",
         "react-is": "^16.8.0",
-        "stylelint-order": "^4.1.0",
-        "stylelint-scss": "^3.18.0",
-        "stylelint-selector-bem-pattern": "^2.1.0",
         "svgo-loader": "^2.2.1",
         "swiper": "^6.1.2",
         "vue": "^2.6.12",
@@ -40,8 +53,12 @@
         "@storybook/addon-viewport": "^6.0.28",
         "@storybook/core": "^6.0.21",
         "@storybook/vue": "^6.0.21",
+        "@types/jest": "^26.0.15",
+        "@vue/cli-plugin-eslint": "^4.5.4",
+        "@vue/eslint-config-prettier": "^6.0.0",
         "@vue/test-utils": "^1.1.1",
         "autoprefixer": "^10.0.2",
+        "babel-eslint": "^10.0.1",
         "babel-loader": "^8.1.0",
         "babel-preset-vue": "^2.0.2",
         "connect-history-api-fallback": "^1.6.0",
@@ -50,13 +67,28 @@
         "css-loader": "^4.2.2",
         "css-mqpacker": "^7.0.0",
         "cssnano": "^4.1.10",
+        "eslint": "^7.8.0",
+        "eslint-config-prettier": "^6.11.0",
+        "eslint-plugin-import": "^2.20.2",
+        "eslint-plugin-prettier": "^3.1.3",
+        "eslint-plugin-vue": "^6.2.2",
+        "husky": "^4.2.5",
+        "jest": "^26.6.3",
+        "lint-staged": "^10.2.13",
         "preload-webpack-plugin": "3.0.0-beta.3",
+        "prettier": "^2.1.1",
         "regenerator-runtime": "*",
         "sass": "^1.26.9",
         "sass-loader": "^10.0.1",
         "script-ext-html-webpack-plugin": "^2.1.4",
         "style-loader": "^1.2.1",
         "stylelint": "^13.7.0",
+        "stylelint-config-prettier": "^8.0.1",
+        "stylelint-config-standard": "^20.0.0",
+        "stylelint-order": "^4.1.0",
+        "stylelint-scss": "^3.18.0",
+        "stylelint-selector-bem-pattern": "^2.1.0",
+        "stylelint-webpack-plugin": "^2.0.0",
         "svg-loader": "^0.0.2",
         "svg-sprite-loader": "^5.0.0",
         "svgo": "^1.3.2",

@@ -1,9 +1,12 @@
+import VueClipboard from 'vue-clipboard2';
 import VBtn from 'vuetify/lib/components/VBtn';
 
 export default {
-    name: 'BtnCopy',
+    name: 'BBtnCopy',
     components: { VBtn },
+    // directives: { VueClipboard },
     props: {
+        ...VBtn.options.props,
         copyText: {
             type: String,
             required: true,
@@ -42,6 +45,10 @@ export default {
         },
         color: {
             type: String,
+            default: 'primary',
+        },
+        type: {
+            type: String,
             default: '',
         },
     },
@@ -53,25 +60,49 @@ export default {
             this.messageError('Произошла ошибка при копировании');
         },
     },
-    template: `<v-btn
+    /*template: `<v-btn
                             v-clipboard:copy="copyText"
                             v-clipboard:success="onCopy"
                             v-clipboard:error="onError"
-                            class="u-text-initial"
                             v-bind="$props"
                             @click.stop
                         >
                             <slot />
-                        </v-btn>`,
-    /*render(h) {
-        return(h, 'v-btn', {
-            class: {
-                'u-text-small': true,
+                        </v-btn>`,*/
+    render(h) {
+        return h(
+            'v-btn',
+            {
+                props: {
+                    ...this.$props,
+                },
+                attrs: {
+                    ...this.$attrs,
+                    type: this.type,
+                },
+                on: {
+                    ...this.$listeners,
+                    click: (e) => e.preventDefault(),
+                },
+                directives: [
+                    {
+                        name: 'v-clipboard',
+                        arg: 'copy',
+                        value: this.copyText,
+                    },
+                    {
+                        name: 'v-clipboard',
+                        arg: 'success',
+                        value: this.onCopy,
+                    },
+                    {
+                        name: 'v-clipboard',
+                        arg: 'error',
+                        value: this.onError,
+                    },
+                ],
             },
-            attrs: {
-                type: this.type,
-            },
-            on: this.$listeners,
-        })
-    }*/
+            this.$slots.default
+        );
+    },
 };

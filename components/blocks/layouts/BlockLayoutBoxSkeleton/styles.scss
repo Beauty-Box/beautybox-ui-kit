@@ -1,0 +1,89 @@
+.c-box {
+    background-color: #fff;
+
+    @include min(md) {
+        border-radius: $border-radius;
+        box-shadow: $box-shadow-base;
+    }
+
+    &__header {
+        display: flex;
+        justify-content: space-between;
+        padding: $gutter;
+        background-color: #fff;
+
+        @include min(md) {
+            border-radius: $border-radius $border-radius 0 0;
+        }
+
+        @include max(xs) {
+            padding: $base-indent;
+        }
+
+        & + .c-box__body {
+            padding-top: 0;
+        }
+
+        h3 {
+            font-weight: $card-title-font-weight;
+            letter-spacing: map-deep-get($headings, 'h6', 'letter-spacing');
+
+            &:not(.small-title) {
+                font-size: 22px;
+
+                @include min(md) {
+                    font-size: 24px;
+                    line-height: 32px;
+                }
+            }
+
+            &.small-title {
+                font-size: $card-title-font-size;
+            }
+        }
+
+        .v-btn {
+            border-radius: $border-radius;
+            letter-spacing: 0;
+        }
+    }
+
+    &__body {
+        padding: $gutter;
+
+        @include min(md) {
+            border-radius: 0 0 $border-radius $border-radius;
+        }
+
+        @include max(xs) {
+            padding: $base-indent;
+        }
+    }
+
+    &.is-loading {
+        .c-box {
+            &__header {
+                & + .c-box__body {
+                    @include max(xs) {
+                        padding-top: 0;
+                    }
+                }
+            }
+        }
+    }
+
+    .v-card {
+        padding: 0;
+        border-radius: 0 !important;
+        box-shadow: none !important;
+    }
+}
+
+.v-skeleton-loader {
+    width: 100%;
+
+    &__list-item {
+        height: 16px;
+        padding: 0;
+    }
+}

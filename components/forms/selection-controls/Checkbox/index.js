@@ -1,6 +1,6 @@
 import VCheckbox from 'vuetify/lib/components/VCheckbox/VCheckbox';
 
 export default {
-    name: 'Checkbox',
+    name: 'BCheckbox',
     extends: VCheckbox,
 };

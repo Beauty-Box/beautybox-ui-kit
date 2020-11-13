@@ -3,7 +3,7 @@ import './style.scss';
 import { Cropper, CircleStencil, RectangleStencil } from 'vue-advanced-cropper';
 
 export default {
-    name: 'CropImage',
+    name: 'BCropImage',
     components: { Cropper, CircleStencil, RectangleStencil },
     props: {
         image: {
@@ -62,20 +62,20 @@ export default {
         },
     },
     template: `<cropper
-    :default-position="defaultPosition"
-    :default-size="defaultSize"
-    classname="cropper"
-    :stencil-component="
-        !box ? $options.components.CircleStencil : $options.components.RectangleStencil
-    "
-    :src="image"
-    :stencil-props="{
-        aspectRatio: 1,
-        previewClassname: 'preview',
-        handlersClassnames: {
-            default: 'handler',
-        },
-    }"
-    @change="changeCrop"
-/>`,
+                            :default-position="defaultPosition"
+                            :default-size="defaultSize"
+                            classname="cropper"
+                            :stencil-component="
+                                !box ? $options.components.CircleStencil : $options.components.RectangleStencil
+                            "
+                            :src="image"
+                            :stencil-props="{
+                                aspectRatio: 1,
+                                previewClassname: 'preview',
+                                handlersClassnames: {
+                                    default: 'handler',
+                                },
+                            }"
+                            @change="changeCrop"
+                        />`,
 };

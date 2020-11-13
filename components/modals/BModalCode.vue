@@ -61,10 +61,8 @@ import { Api as Provider } from '@beautybox/core/api';
 import { modalToggleMixin, modalOverlayColorMixin } from '../../mixins';
 const BSecurityCode = () =>
     import(/* webpackChunkName: "SecurityCode" */ '../forms/inputs/InputSecurityCode');
-const BTimer = () =>
-    import(/* webpackChunkName: "Timer" */ '../forms/Timer');
-const BBtnClose = () =>
-    import(/* webpackChunkName: "BtnClose" */ '../buttons/BtnClose');
+const BTimer = () => import(/* webpackChunkName: "timer" */ '../forms/timer');
+const BBtnClose = () => import(/* webpackChunkName: "BtnClose" */ '../buttons/BtnClose');
 
 export default {
     name: 'BModalCode',
@@ -123,10 +121,10 @@ export default {
                 phone: this.phone,
             };
 
-            ({ errors: this.errors = {}, ...response } = await new Provider(process.env.BASE_URL,'auth')._provider.post(
-                '/confirm-sms',
-                data
-            ));
+            ({ errors: this.errors = {}, ...response } = await new Provider(
+                process.env.BASE_URL,
+                'auth'
+            )._provider.post('/confirm-sms', data));
 
             if (!Object.keys(this.errors).length) {
                 if (response.hasOwnProperty('step')) {

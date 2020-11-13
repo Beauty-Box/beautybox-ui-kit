@@ -1,6 +1,6 @@
 import './style.scss';
 
-import { VAlert } from 'vuetify/lib';
+import VAlert from 'vuetify/lib/components/VAlert';
 
 export default {
     name: 'BlockAlert',

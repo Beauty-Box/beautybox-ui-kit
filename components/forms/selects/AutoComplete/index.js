@@ -1,6 +1,6 @@
 import VAutocomplete from 'vuetify/lib/components/VAutocomplete';
 import { selectProps } from '../../../../mixins';
-
+console.log(VAutocomplete.options.data());
 export default {
     name: 'AutoComplete',
     extends: VAutocomplete,
@@ -17,6 +17,7 @@ export default {
                 ...VAutocomplete.options.computed.classes.call(this),
                 'c-select': true,
                 'c-select--clearable': true,
+                [this.customID]: true,
             };
         },
     },

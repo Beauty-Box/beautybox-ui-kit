@@ -5,9 +5,9 @@ export default {
     name: 'BRadioGenders',
     components: { VRadioGroup, VRadio },
     props: {
-        data: {
+        items: {
             type: [Array],
-            default: null,
+            default: () => [],
         },
         name: {
             type: String,
@@ -28,13 +28,38 @@ export default {
             },
         },
     },
-    template: `<v-radio-group v-if="data && data.length" v-model="input" row>
-    <v-radio
-        v-for="item in data"
-        :key="item.genderID"
-        :name="name"
-        :label="item.title"
-        :value="item.genderID"
-    />
-</v-radio-group>`,
+    /*template: `<v-radio-group v-if="items.length" v-model="input" row>
+                            <v-radio
+                                v-for="item in items"
+                                :key="item.genderID"
+                                :name="name"
+                                :label="item.title"
+                                :value="item.genderID"
+                            />
+                        </v-radio-group>`,*/
+    render(h) {
+        if (this.items.length) {
+            return h(
+                'v-radio-group',
+                {
+                    props: {
+                        row: true,
+                        value: this.input,
+                    },
+                },
+                [
+                    this.items.map((item) => {
+                        return h('v-radio', {
+                            props: {
+                                key: item.genderID,
+                                name: this.name,
+                                label: item.title,
+                                value: item.genderID,
+                            },
+                        });
+                    }),
+                ]
+            );
+        }
+    },
 };

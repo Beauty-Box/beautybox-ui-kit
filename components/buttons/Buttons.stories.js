@@ -1,0 +1,10 @@
+export default { title: 'buttons' };
+export * from './BtnAdd/BtnAdd.stories';
+export * from './BtnAddToFavorites/BtnAddToFavorites.stories';
+export * from './BtnClose/BtnClose.stories';
+export * from './BtnCopy/BtnCopy.stories';
+export * from './BtnDraggable/BtnDraggable.stories';
+export * from './BtnFake/BtnFake.stories';
+export * from './BtnIcon/BtnIcon.stories';
+export * from './BtnRemove/BtnRemove.stories';
+export * from './BtnWide/BtnWide.stories';

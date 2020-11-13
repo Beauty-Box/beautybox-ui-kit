@@ -1,9 +1,7 @@
 import BSwitch from './index';
 import { withKnobs, text, boolean } from '@storybook/addon-knobs';
 
-export default { title: 'forms/selection-controls', decorators: [withKnobs] };
-
-export const BeautySwitch = () => ({
+export const Switch = () => ({
     components: { BSwitch },
     props: {
         label: {
@@ -16,8 +14,6 @@ export const BeautySwitch = () => ({
     template: '<b-switch v-bind="$props"></b-switch>',
 });
 
-BeautySwitch.story = {
-    parameters: {
-        jest: ['Switch.spec.js'],
-    },
-};
+Switch.storyName = 'Switch';
+Switch.parameters = { jest: ['Switch.spec.js'] };
+Switch.decorators = [withKnobs];

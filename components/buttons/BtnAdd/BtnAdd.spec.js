@@ -1,7 +1,7 @@
 import { shallowMount, mount } from '@vue/test-utils';
 
 import BtnAdd from './index';
-import { vuetify } from '@beautybox/ui-kit/plugins/vuetify.js';
+import { vuetify } from '../plugins/vuetify';
 
 describe('BtnAdd', () => {
     it('has button tag', () => {

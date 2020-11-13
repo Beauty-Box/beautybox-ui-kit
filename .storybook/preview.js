@@ -1,10 +1,9 @@
 import '../scss/main.scss';
 import '../scss/storybook.scss';
-import { configure, addDecorator } from '@storybook/vue';
-import { addParameters } from '@storybook/client-api';
+import { addDecorator } from '@storybook/vue';
+// import { addParameters } from '@storybook/client-api';
 
 import Vue from 'vue';
-
 import { vuetify } from '../plugins/vuetify';
 
 import VueClipboard from 'vue-clipboard2';
@@ -23,23 +22,24 @@ import { withTests } from '@storybook/addon-jest';
 
 import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport';
 
-addParameters({
+export const parameters = {
     viewport: {
         viewports: INITIAL_VIEWPORTS,
     }
-})
+}
 
-addDecorator((storyFn) => ({
+addDecorator(() => ({
     vuetify,
     template: `
-                        <div
+                        <v-app
+                            id="app"
                             class="v-application v-application--is-ltr container--sm"
                             style="display:flex; flex-direction: column; margin: 0 auto;"
                        >
                             <story />
-                        </div>`,
+                        </v-app>`,
 }));
 
 // addDecorator(withTests({ results }));
 
-configure(require.context('../components', true, /\.stories\.js$/), module);
+// configure(require.context('../components', true, /\.stories\.js$/), module);

@@ -1,11 +1,9 @@
 import { withKnobs, text, number } from '@storybook/addon-knobs';
 
-import BtnWide from './index';
+import BBtnWide from './index';
 
-export default { title: 'buttons', decorators: [withKnobs] };
-
-export const wideButton = () => ({
-    components: { BtnWide },
+export const WideButton = () => ({
+    components: { BBtnWide },
     props: {
         text: {
             default: text('text', ''),
@@ -26,11 +24,9 @@ export const wideButton = () => ({
             default: text('plus--filled'),
         },
     },
-    template: '<btn-wide v-bind="$props"></btn-wide>',
+    template: '<b-btn-wide v-bind="$props"></b-btn-wide>',
 });
 
-wideButton.story = {
-    parameters: {
-        jest: ['BtnWide.spec.js'],
-    },
-};
+WideButton.storyName = 'WideButton';
+WideButton.parameters = { jest: ['WideButton.spec.js'] };
+WideButton.decorators = [withKnobs];

@@ -1,8 +1,5 @@
-import BRadioGenders from './index';
-
 import { withKnobs, array } from '@storybook/addon-knobs';
-
-export default { title: 'forms/selection-controls', decorators: [withKnobs] };
+import BRadioGenders from './index';
 
 const genders = [
     {
@@ -19,18 +16,16 @@ const genders = [
     },
 ];
 
-export const radioGenders = () => ({
+export const RadioGenders = () => ({
     components: { BRadioGenders },
     props: {
         data: {
-            default: array('data', genders),
+            default: array('items', genders),
         },
     },
     template: '<b-radio-genders v-bind="$props"></b-radio-genders>',
 });
 
-radioGenders.story = {
-    parameters: {
-        jest: ['RadioGenders.spec.js'],
-    },
-};
+RadioGenders.storyName = 'RadioGenders';
+RadioGenders.parameters = { jest: ['RadioGenders.spec.js'] };
+RadioGenders.decorators = [withKnobs];

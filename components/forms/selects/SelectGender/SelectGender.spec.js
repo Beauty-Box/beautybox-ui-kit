@@ -1,7 +1,6 @@
 import { shallowMount, mount } from '@vue/test-utils';
-
 import SelectGender from './index';
-import { vuetify } from '@beautybox/ui-kit/plugins/vuetify.js';
+import { vuetify } from '../../../../plugins/vuetify';
 
 describe('SelectGender', () => {
     it('has input tag', () => {

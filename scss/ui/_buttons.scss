@@ -102,7 +102,7 @@
     } //.btn-close .icon
 } //.btn-close
 
-.btn-icon {
+/*.btn-icon {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -117,15 +117,6 @@
 
     &:hover {
         svg {
-        }
-    }
-
-    @each $theme, $color in $text-colors {
-        &--#{$theme} {
-            svg {
-                fill: $color;
-                color: $color;
-            }
         }
     }
 
@@ -149,7 +140,7 @@
             box-shadow: none !important;
         }
     }
-} //.btn-icon
+} //.btn-icon*/
 
 .btn-add-tooltip {
     padding: 2px 8px !important;

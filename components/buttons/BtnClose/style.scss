@@ -1,0 +1,51 @@
+.theme--light {
+    .v-btn.c-btn-close--bg {
+        &::before,
+        &::after {
+            opacity: 0.1;
+        }
+    }
+}
+
+.v-btn.c-btn-close {
+    padding: 0 !important;
+
+    &:hover {
+        svg {
+            fill: $color-icon;
+        }
+    }
+
+    ::v-deep &__content {
+        width: inherit;
+        height: inherit;
+    }
+
+    svg {
+        fill: $color-icon--light;
+
+        @include max(sm) {
+            width: 16px;
+            height: 16px;
+            fill: $color-icon;
+        }
+    }
+}
+
+.c-btn-close {
+    &:not(.c-btn-close--bg) {
+        &::before,
+        &::after {
+            display: none !important;
+        }
+    }
+
+    &--bg {
+        border-radius: 50% !important;
+
+        &::before,
+        &::after {
+            border-radius: inherit;
+        }
+    }
+}

@@ -1,11 +1,9 @@
 import { withKnobs, text } from '@storybook/addon-knobs';
 
-import Rating from './index';
+import BRating from './index';
 
-export default { title: 'forms/selection-controls', decorators: [withKnobs] };
-
-export const rating = () => ({
-    components: { Rating },
+export const Rating = () => ({
+    components: { BRating },
     props: {
         color: {
             default: text('color', 'orange'),
@@ -14,11 +12,9 @@ export const rating = () => ({
             default: text('backgroundColor', 'grey lighten-2'),
         },
     },
-    template: '<rating v-bind="$props" />',
+    template: '<b-rating v-bind="$props" />',
 });
 
-rating.story = {
-    parameters: {
-        jest: ['Rating.spec.js'],
-    },
-};
+Rating.storyName = 'Rating';
+Rating.parameters = { jest: ['Rating.spec.js'] };
+Rating.decorators = [withKnobs];

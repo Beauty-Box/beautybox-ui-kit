@@ -1,7 +1,6 @@
 import { shallowMount, mount } from '@vue/test-utils';
-
+import { vuetify } from '../../../../plugins/vuetify';
 import RadioGenders from './index';
-import { vuetify } from '@beautybox/ui-kit/plugins/vuetify.js';
 
 describe('RadioGenders', () => {
     it('has input tag', () => {

@@ -1,11 +1,8 @@
 import { withKnobs, array, text } from '@storybook/addon-knobs';
 
 import BSelect from './index';
-import BSelectBirthday from '../SelectBirthday';
 
-export default { title: 'forms/selects', decorators: [withKnobs] };
-
-export const simple = () => ({
+export const Simple = () => ({
     components: { BSelect },
     props: {
         items: {
@@ -18,8 +15,6 @@ export const simple = () => ({
     template: '<b-select v-bind="$props"/>',
 });
 
-simple.story = {
-    parameters: {
-        jest: ['Select.spec.js'],
-    },
-};
+Simple.storyName = 'Simple';
+Simple.parameters = { jest: ['Simple.spec.js'] };
+Simple.decorators = [withKnobs];

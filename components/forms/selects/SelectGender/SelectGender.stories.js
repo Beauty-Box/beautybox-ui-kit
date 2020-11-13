@@ -2,15 +2,11 @@ import { withKnobs } from '@storybook/addon-knobs';
 
 import BSelectGender from './index';
 
-export default { title: 'forms/selects', decorators: [withKnobs] };
-
-export const gender = () => ({
+export const SelectGender = () => ({
     components: { BSelectGender },
     template: '<b-select-gender lable="test" />',
 });
 
-gender.story = {
-    parameters: {
-        jest: ['SelectGender.spec.js'],
-    },
-};
+SelectGender.storyName = 'SelectGender';
+SelectGender.parameters = { jest: ['SelectGender.spec.js'] };
+SelectGender.decorators = [withKnobs];

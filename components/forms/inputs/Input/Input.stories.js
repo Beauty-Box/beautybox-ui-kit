@@ -50,8 +50,6 @@ export const simple = () => ({
     template: '<b-input v-bind="$props" />',
 });
 
-simple.story = {
-    parameters: {
-        jest: ['Input.spec.js'],
-    },
+simple.parameters = {
+    jest: ['Input.spec.js'],
 };

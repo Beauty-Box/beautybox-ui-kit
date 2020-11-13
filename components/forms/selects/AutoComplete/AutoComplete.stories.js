@@ -2,9 +2,7 @@ import { text, boolean, array, withKnobs } from '@storybook/addon-knobs';
 
 import BAutoComplete from './index';
 
-export default { title: 'forms/selects', decorators: [withKnobs] };
-
-export const autoComplete = () => ({
+export const AutoComplete = () => ({
     components: { BAutoComplete },
     props: {
         clearable: {
@@ -20,8 +18,6 @@ export const autoComplete = () => ({
     template: '<b-auto-complete v-bind="$props" />',
 });
 
-autoComplete.story = {
-    parameters: {
-        jest: ['AutoComplete.spec.js'],
-    },
-};
+AutoComplete.storyName = 'AutoComplete';
+AutoComplete.parameters = { jest: ['AutoComplete.spec.js'] };
+AutoComplete.decorators = [withKnobs];

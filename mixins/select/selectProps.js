@@ -1,16 +1,16 @@
 export const selectProps = (module) => {
     return {
         props: {
-            appendIcon: {
+            /*appendIcon: {
                 ...module.options.props.appendIcon,
                 default() {
-                    if (this.$vuetify.breakpoint.smAndDown) {
+                    if (this.$vuetify.breakpoint.mobile) {
                         return this.disabled ? '⌀' : 'arrow_drop_down';
                     } else {
                         return 'arrow_drop_down';
                     }
                 },
-            },
+            },*/
             height: {
                 ...module.options.props.height,
                 default: 56,
@@ -18,26 +18,29 @@ export const selectProps = (module) => {
             color: {
                 ...module.options.props.color,
                 default() {
-                    return this.$vuetify.breakpoint.smAndDown ? 'info' : 'secondary';
+                    return this.$vuetify.breakpoint.mobile ? 'info' : 'secondary';
                 },
             },
             dense: {
                 ...module.options.props.dense,
                 default() {
-                    return !this.$vuetify.breakpoint.smAndDown;
+                    return !this.$vuetify.breakpoint.mobile;
                 },
             },
             outlined: {
-                ...module.options.props.dense,
+                ...module.options.props.outlined,
                 default: true,
-                /*default() {
-                    return !this.$vuetify.breakpoint.smAndDown;
-                },*/
             },
-            /*menuProps: {
+            menuProps: {
                 ...module.options.props.menuProps,
-                default: 'auto',
-            },*/ //НЕ РАСКОМЕНТИРОВАТЬ ЭТУ ДИЧЬ!!!
+                default() {
+                    return {
+                        auto: true,
+                        closeOnClick: true,
+                        nudgeLeft: -16,
+                    };
+                },
+            },
         },
     };
 };

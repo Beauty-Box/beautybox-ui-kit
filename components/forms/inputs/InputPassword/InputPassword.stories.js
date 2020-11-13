@@ -50,8 +50,6 @@ export const password = () => ({
     template: '<b-input-password value="password" v-bind="$props"/>',
 });
 
-password.story = {
-    parameters: {
-        jest: ['InputPassword.spec.js'],
-    },
+password.parameters = {
+    jest: ['InputPassword.spec.js'],
 };

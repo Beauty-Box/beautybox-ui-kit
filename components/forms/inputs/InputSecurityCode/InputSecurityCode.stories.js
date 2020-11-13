@@ -26,8 +26,6 @@ export const securityCode = () => ({
     template: '<b-input-security-code v-bind="$props" value="1234" />',
 });
 
-securityCode.story = {
-    parameters: {
-        jest: ['InputSecurityCode.spec.js'],
-    },
+securityCode.parameters = {
+    jest: ['InputSecurityCode.spec.js'],
 };

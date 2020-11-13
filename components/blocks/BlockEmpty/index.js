@@ -1,6 +1,7 @@
 import './style.scss';
 
 import VSvg from '../../icons/Svg';
+import { isNumber } from '@beautybox/core/utils';
 
 export default {
     name: 'BlockEmpty',
@@ -26,16 +27,78 @@ export default {
             type: Boolean,
             default: false,
         },
+        textWidth: {
+            type: [String, Number],
+            default: '35',
+        },
     },
-    template: `<div class="empty" :class="{ 'empty--centre': center, 'empty--big': bigSize }">
-                            <slot name="image">
-                                <v-svg v-if="icon" :name="icon" class="icon empty__icon" :class="'icon-' + icon" />
-                            </slot>
-                            <span v-if="title" class="empty__title">{{ title }}</span>
-                            <p v-if="text || !!$slots.text" class="empty__text">
-                                {{ text }}
-                                <slot name="text" />
-                            </p>
-                          <slot name="buttons" />
-                      </div>`,
+    render(h) {
+        const textWidth = isNumber(this.textWidth) ? `${this.textWidth}ch` : this.textWidth;
+        let children = [this.$slots.image];
+
+        if (!this.$slots.image && this.icon) {
+            children.push(
+                h('v-svg', {
+                    class: {
+                        'icon c-empty__icon': true,
+                        ['icon-' + this.icon]: true,
+                    },
+                    props: {
+                        name: this.icon,
+                    },
+                    slot: 'image',
+                })
+            );
+        }
+
+        if (this.title.length) {
+            children.push(
+                h(
+                    'h4',
+                    {
+                        class: {
+                            'c-empty__title': true,
+                        },
+                        style: {
+                            maxWidth: textWidth,
+                        },
+                    },
+                    [this.title]
+                )
+            );
+        }
+
+        if (this.text.length) {
+            children.push(
+                h(
+                    'p',
+                    {
+                        class: {
+                            'c-empty__text': true,
+                        },
+                        style: {
+                            maxWidth: textWidth,
+                        },
+                    },
+                    [this.text]
+                )
+            );
+        }
+
+        if (this.$slots.buttons) {
+            children.push(this.$slots.buttons);
+        }
+
+        return h(
+            'div',
+            {
+                class: {
+                    'c-empty': true,
+                    'c-empty--centre': this.center,
+                    'c-empty--big': this.bigSize,
+                },
+            },
+            children
+        );
+    },
 };

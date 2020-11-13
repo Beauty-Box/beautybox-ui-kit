@@ -1,10 +1,8 @@
 import { withKnobs, text } from '@storybook/addon-knobs';
-import BtnFake from './index';
+import BBtnFake from './index';
 
-export default { title: 'buttons', decorators: [withKnobs] };
-
-export const fakeButton = () => ({
-    components: { BtnFake },
+export const FakeButton = () => ({
+    components: { BBtnFake },
     props: {
         title: {
             default: text('title', ''),
@@ -19,11 +17,9 @@ export const fakeButton = () => ({
             default: text('type', 'button'),
         },
     },
-    template: '<btn-fake v-bind="$props" v-on="$listeners"></btn-fake>',
+    template: '<b-btn-fake v-bind="$props" v-on="$listeners"></b-btn-fake>',
 });
 
-fakeButton.story = {
-    parameters: {
-        jest: ['BtnFake'],
-    },
-};
+FakeButton.storyName = 'FakeButton';
+FakeButton.parameters = { jest: ['FakeButton.spec.js'] };
+FakeButton.decorators = [withKnobs];
