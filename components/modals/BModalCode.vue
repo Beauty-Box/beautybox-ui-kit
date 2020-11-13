@@ -123,7 +123,7 @@ export default {
                 phone: this.phone,
             };
 
-            ({ errors: this.errors = {}, ...response } = await new Provider('auth')._provider.post(
+            ({ errors: this.errors = {}, ...response } = await new Provider(process.env.BASE_URL,'auth')._provider.post(
                 '/confirm-sms',
                 data
             ));
