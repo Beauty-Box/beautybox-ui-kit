@@ -168,7 +168,6 @@ export default {
         }
     }
 }
-
 .c-btn-close {
     position: absolute;
     top: 10px;
