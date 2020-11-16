@@ -1,4 +1,4 @@
-import './style.scss';
+import './SwiperSlider.scss';
 import 'swiper/swiper.scss';
 
 import { Swiper, directive } from 'vue-awesome-swiper';

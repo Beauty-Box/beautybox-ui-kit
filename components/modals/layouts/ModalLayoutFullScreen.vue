@@ -53,10 +53,8 @@
 
 <script>
 import { modalMixin, modalToggleMixin } from '../../../mixins';
-const BBlockLoader = () =>
-    import(/* webpackChunkName: "BlockLoader" */ '../../blocks/BlockLoader');
-const BBtnClose = () =>
-    import(/* webpackChunkName: "BtnClose" */ '../../buttons/BtnClose');
+const BBlockLoader = () => import(/* webpackChunkName: "BlockLoader" */ '../../blocks/BlockLoader');
+const BBtnClose = () => import(/* webpackChunkName: "BtnClose" */ '../../buttons/BtnClose');
 
 export default {
     name: 'BModalLayoutFullScreen',
@@ -100,4 +98,4 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped src="./style.scss" />
+<style lang="scss" scoped src="ModalLayout.scss" />

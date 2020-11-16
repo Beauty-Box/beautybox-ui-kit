@@ -51,10 +51,8 @@
 
 <script>
 import { modalToggleMixin, modalOverlayColorMixin } from '../../mixins';
-const BBtnClose = () =>
-    import(/* webpackChunkName: "BtnClose" */ '../buttons/BtnClose');
-const BInput = () =>
-    import(/* webpackChunkName: "Input" */ '../forms/inputs/Input');
+const BBtnClose = () => import(/* webpackChunkName: "BtnClose" */ '../buttons/BtnClose');
+const BInput = () => import(/* webpackChunkName: "Input" */ '../forms/inputs/Input');
 const BInputSearch = () =>
     import(/* webpackChunkName: "InputSearch" */ '../forms/inputs/InputSearch');
 
@@ -121,4 +119,4 @@ export default {
 };
 </script>
 
-<style lang="scss" src="./styles.scss" />
+<style lang="scss" src="BottomSheet.scss" />

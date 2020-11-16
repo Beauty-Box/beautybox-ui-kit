@@ -1,4 +1,4 @@
-import './styles.scss';
+import './BlockLayoutBoxSkeleton.scss';
 
 import VBtn from 'vuetify/lib/components/VBtn';
 import VSkeletonLoader from 'vuetify/lib/components/VSkeletonLoader';

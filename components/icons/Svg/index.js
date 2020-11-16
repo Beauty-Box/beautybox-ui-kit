@@ -1,4 +1,4 @@
-import './style.scss';
+import './Svg.scss';
 
 export default {
     name: 'BSvg',

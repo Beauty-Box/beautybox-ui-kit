@@ -1,4 +1,4 @@
-import './style.scss';
+import './BlockEmpty.scss';
 
 import VSvg from '../../icons/Svg';
 import { isNumber } from '@beautybox/core/utils';

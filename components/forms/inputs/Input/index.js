@@ -1,5 +1,5 @@
 import VTextField from 'vuetify/lib/components/VTextField';
-import '../styles.scss';
+import '../Input.scss';
 
 export default {
     name: 'FInput',

@@ -63,12 +63,10 @@
 </template>
 
 <script>
-import { modalMixin, modalToggleMixin, modalOverlayColorMixin  } from '../../../mixins';
-const BBlockLoader = () =>
-    import(/* webpackChunkName: "BlockLoader" */ '../../blocks/BlockLoader');
+import { modalMixin, modalToggleMixin, modalOverlayColorMixin } from '../../../mixins';
+const BBlockLoader = () => import(/* webpackChunkName: "BlockLoader" */ '../../blocks/BlockLoader');
 const BSvg = () => import(/* webpackChunkName: "Svg" */ '../../icons/Svg');
-const BBtnClose = () =>
-    import(/* webpackChunkName: "BtnClose" */ '../../buttons/BtnClose');
+const BBtnClose = () => import(/* webpackChunkName: "BtnClose" */ '../../buttons/BtnClose');
 
 export default {
     name: 'MMobileFullScreen',
@@ -130,7 +128,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import './style';
+@import 'ModalLayout';
 
 .v-card {
     &__title {

@@ -1,4 +1,4 @@
-import './style.scss';
+import './BlockAlert.scss';
 
 import VAlert from 'vuetify/lib/components/VAlert';
 

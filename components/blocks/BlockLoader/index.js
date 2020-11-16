@@ -1,4 +1,4 @@
-import './style.scss';
+import './BlockLoader.scss';
 
 import VProgressCircular from 'vuetify/lib/components/VProgressCircular';
 import { isNumber } from '@beautybox/core/utils';

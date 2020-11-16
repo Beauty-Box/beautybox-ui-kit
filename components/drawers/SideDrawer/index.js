@@ -1,4 +1,4 @@
-import './style.scss';
+import './SideDrawer.scss';
 
 import { modalToggleMixin } from '../../../mixins';
 
