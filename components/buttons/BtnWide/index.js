@@ -1,4 +1,4 @@
-import './style.scss';
+import './BtnWide.scss';
 
 import VIcon from 'vuetify/lib/components/VIcon';
 
