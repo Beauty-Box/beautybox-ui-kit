@@ -13,7 +13,7 @@
 
 <script>
 import { Swiper, directive } from 'vue-awesome-swiper';
-import 'swiper/swiper.scss';
+import 'swiper/swiper-bundle.css';
 
 export default {
     name: 'SwiperSlider',
