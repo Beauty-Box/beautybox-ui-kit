@@ -51,7 +51,6 @@ export default {
                 return this.active;
             },
             set(value) {
-                console.log('--- isActive', value);
                 this.$emit('update:active', value);
             },
         },
