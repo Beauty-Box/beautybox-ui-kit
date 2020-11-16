@@ -124,7 +124,7 @@ export default {
             ({ errors: this.errors = {}, ...response } = await new Provider(
                 process.env.BASE_URL,
                 'auth'
-            )._provider.post('/confirm-sms', data));
+            ).post('/confirm-sms', data));
 
             if (!Object.keys(this.errors).length) {
                 if (response.hasOwnProperty('step')) {
@@ -159,8 +159,9 @@ export default {
             };
 
             ({ left: this.countSms, errors = {}, ...response } = await new Provider(
+                process.env.BASE_URL,
                 'auth'
-            )._provider.post('/send-sms', data));
+            ).post('/send-sms', data));
 
             if (Object.keys(errors).length) {
                 this.messageError(errors.message, 5000);
