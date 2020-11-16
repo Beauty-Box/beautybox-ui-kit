@@ -83,7 +83,7 @@
     width: 100%;
 
     &__list-item {
-        height: 16px;
-        padding: 0;
+        height: 16px !important;
+        padding: 0 !important;
     }
 }
