@@ -71,7 +71,7 @@
                 <div v-if="overlay" class="overlay" @click="overlay = false">
                     <div class="overlay__btn">
                         <div class="overlay__icon">
-                            <v-svg name="close" />
+                            <b-svg name="close" />
                             <span>esc</span>
                         </div>
                         <div class="overlay__text">Нажмите esc чтобы закрыть</div>
@@ -87,12 +87,13 @@
 
 <script>
 import { modalMixin } from '../../../mixins';
+import BSvg from '../../icons/Svg';
 const BBtnClose = () => import(/* webpackChunkName: "BtnClose" */ '../../buttons/BtnClose');
 const BBlockLoader = () => import(/* webpackChunkName: "BlockLoader" */ '../../blocks/BlockLoader');
 
 export default {
     name: 'MFullScreenNotEqual',
-    components: { BBlockLoader, BBtnClose },
+    components: { BBlockLoader, BBtnClose, BSvg },
     mixins: [modalMixin],
     props: {
         bgc: {
@@ -137,7 +138,7 @@ export default {
     async created() {
         document.addEventListener('keyup', this.removeOverlay);
     },
-    beforeDestroy(e) {
+    beforeDestroy() {
         document.removeEventListener('keyup', this.removeOverlay);
     },
     methods: {
@@ -151,4 +152,4 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped src="ModalLayout.scss" />
+<style lang="scss" scoped src="./ModalLayout.scss" />
