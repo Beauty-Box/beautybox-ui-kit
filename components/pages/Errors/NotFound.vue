@@ -29,14 +29,14 @@
 </template>
 
 <script>
-const BlockEmpty = () =>
-    import(/* webpackChunkName: "BlockEmpty" */ '../../../components/blocks/BlockEmpty');
 const BSvg = () => import(/* webpackChunkName: "Svg" */ '../../../components/icons/Svg');
+const BBlockEmpty = () =>
+    import(/* webpackChunkName: "BlockEmpty" */ '../../../components/blocks/BlockEmpty');
 
 export default {
     components: {
         BSvg,
-        BlockEmpty,
+        BBlockEmpty,
     },
     methods: {
         goHome() {

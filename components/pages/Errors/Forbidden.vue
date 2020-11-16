@@ -31,13 +31,13 @@
 
 <script>
 const BSvg = () => import(/* webpackChunkName: "Svg" */ '../../../components/icons/Svg');
-const BlockEmpty = () =>
+const BBlockEmpty = () =>
     import(/* webpackChunkName: "BlockEmpty" */ '../../../components/blocks/BlockEmpty');
 
 export default {
     components: {
         BSvg,
-        BlockEmpty,
+        BBlockEmpty,
     },
     computed: {
         checkHistory() {
