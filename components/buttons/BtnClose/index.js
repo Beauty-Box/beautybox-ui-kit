@@ -57,7 +57,7 @@ export default {
             children.push(
                 h('b-svg', {
                     props: {
-                        name: 'plus--bold',
+                        name: 'close',
                     },
                     attrs: {
                         style: { width: this.size / 2, height: this.size / 2 },
