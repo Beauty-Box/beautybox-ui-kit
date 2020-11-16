@@ -1,13 +1,13 @@
 <template>
     <v-dialog
         v-model="modal"
-        width="500"
-        :overlay-opacity="overlayOpacity"
-        :overlay-color="overlayColor"
-        :transition="transition"
-        :persistent="persistent"
         scrollable
-        :fullscreen="isMobile"
+        :width="width"
+        :persistent="persistent"
+        :transition="transition"
+        :overlay-color="overlayColor"
+        :overlay-opacity="overlayOpacity"
+        :fullscreen="$vuetify.breakpoint.mobile"
         @click:outside="$emit('click:outside', $event)"
     >
         <v-card
@@ -30,7 +30,7 @@
                 </template>
             </v-card-text>
 
-            <v-spacer v-if="!isMobile && $slots.footer" />
+            <v-spacer v-if="!$vuetify.breakpoint.mobile && $slots.footer" />
 
             <!-- FOOTER -->
             <v-card-actions v-if="$slots.footer">
@@ -42,12 +42,12 @@
 
 <script>
 import { modalToggleMixin, modalOverlayColorMixin } from '../../../mixins';
-const BBlockLoader = () =>
-    import(/* webpackChunkName: "BlockLoader" */ '../../blocks/BlockLoader');
+const BBtnClose = () => import(/* webpackChunkName: "BlockLoader" */ '../../buttons/BtnClose');
+const BBlockLoader = () => import(/* webpackChunkName: "BlockLoader" */ '../../blocks/BlockLoader');
 
 export default {
     name: 'BModalLayoutDefault',
-    components: { BBlockLoader },
+    components: { BBtnClose, BBlockLoader },
     mixins: [modalToggleMixin, modalOverlayColorMixin],
     props: {
         tag: {
@@ -74,6 +74,10 @@ export default {
             type: String,
             default: 'slide-y-reverse-transition',
         },
+        width: {
+            type: [String, Number],
+            default: '500',
+        },
         persistent: {
             type: Boolean,
             default: false,
@@ -97,14 +101,14 @@ export default {
 
 <style lang="scss" scoped>
 .v-card {
-    min-height: 420px;
     display: flex;
     flex-direction: column;
+    min-height: 420px;
 
     &__title {
+        position: relative;
         height: 60px;
         padding: 0 !important;
-        position: relative;
         @include border(bottom);
 
         @include max(sm) {
@@ -139,8 +143,8 @@ export default {
 
     &__text {
         flex-grow: 1;
-        overflow-y: hidden;
         padding: var(--gutter);
+        overflow-y: hidden;
 
         &.is-scrolled {
             overflow-y: auto;
