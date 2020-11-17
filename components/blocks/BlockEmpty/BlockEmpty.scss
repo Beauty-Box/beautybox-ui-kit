@@ -58,13 +58,12 @@
         }
 
         & + .empty__text {
-            margin-top: 10px;
+            margin-top: $base-indent / 2;
         }
     } //.empty__title
 
     &__text {
         display: block;
-        margin-top: $base-indent / 2;
         margin-right: auto;
         margin-bottom: 0 !important;
         margin-left: auto;
