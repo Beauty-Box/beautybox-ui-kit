@@ -1,7 +1,7 @@
 <template>
     <v-simple-table>
         <template v-slot:default>
-            <thead v-if="!$vuetify.breakpoint.mobile">
+            <thead v-if="showHeaderAll || !$vuetify.breakpoint.mobile">
                 <slot name="table-head" />
             </thead>
             <tbody v-scroll:#main="onScrollControl">
@@ -46,6 +46,10 @@ export default {
             type: Number,
             default: 0,
         },
+        showHeaderAll: {
+            type: Boolean,
+            default: false,
+        }
     },
 };
 </script>
