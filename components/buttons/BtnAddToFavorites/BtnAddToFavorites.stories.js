@@ -18,8 +18,14 @@ export const AddToFavoritesButton = () => ({
             default: number('height', 40),
         },
     },
-    template:
-        '<b-btn-add-to-favorites v-bind="$props">Добавить в избранное</b-btn-add-to-favorites>',
+    template: `<b-btn-add-to-favorites
+                            :title="title"
+                            :width="width"
+                            :height="height"
+                            :active.sync="active"
+                        >
+                            Добавить в избранное
+                        </b-btn-add-to-favorites>`,
 });
 
 AddToFavoritesButton.storyName = 'AddToFavoritesButton';

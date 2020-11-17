@@ -1,4 +1,4 @@
-import './style.scss';
+import './BtnFake.scss';
 import BSvg from '../../icons/Svg';
 
 export default {

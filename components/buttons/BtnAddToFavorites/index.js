@@ -1,4 +1,4 @@
-import './styles.scss';
+import './BtnAddToFavorites.scss';
 import VBtn from 'vuetify/lib/components/VBtn';
 
 const icon = `<svg
@@ -22,7 +22,7 @@ export default {
         ...VBtn.options.props,
         active: {
             type: Boolean,
-            default: false,
+            required: true,
         },
         title: {
             type: String,
@@ -51,40 +51,31 @@ export default {
                 return this.active;
             },
             set(value) {
-                console.log('--- isActive', value);
                 this.$emit('update:active', value);
             },
         },
     },
     methods: {
-        async addToFavorite() {
-            await this.$emit('add');
+        addToFavorite() {
+            this.$emit('add');
             this.isActive = true;
             this.messageSuccess('Добавлено в избранное');
         },
-        async removeFromFavorite() {
-            await this.$emit('remove');
+        removeFromFavorite() {
+            this.$emit('remove');
             this.isActive = false;
             this.messageSuccess('Удалено из избранного');
         },
-        async onToggleFavorite() {
+        onToggleFavorite() {
             if (this.isActive) {
-                await this.removeFromFavorite();
+                this.removeFromFavorite();
             } else {
-                await this.addToFavorite();
+                this.addToFavorite();
             }
-            this.isActive = !this.isActive;
         },
     },
     render(h) {
         return h('v-btn', {
-            class: {
-                'u-hide-before c-btn-favorite': true,
-                'c-btn-favorite--active': this.isActive,
-            },
-            attrs: {
-                title: this.title,
-            },
             props: {
                 ...this.$props,
                 active: this.active,
@@ -93,12 +84,23 @@ export default {
                 height: this.height,
                 ripple: this.ripple,
             },
+            attrs: {
+                title: this.title,
+            },
             domProps: {
                 innerHTML: icon,
+            },
+            class: {
+                'u-hide-before c-btn-favorite': true,
+                'c-btn-favorite--active': this.isActive,
             },
             on: {
                 ...this.$listeners,
                 click: () => this.onToggleFavorite(),
+                // 'update:active': ($event) => {
+                //     console.log('--- update:active', $event);
+                //     this.active = $event;
+                // },
             },
         });
     },

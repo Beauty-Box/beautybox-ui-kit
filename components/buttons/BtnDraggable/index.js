@@ -1,4 +1,4 @@
-import './style.scss';
+import './BtnDraggable.scss';
 
 import VBtn from 'vuetify/lib/components/VBtn';
 import VIcon from 'vuetify/lib/components/VIcon';
