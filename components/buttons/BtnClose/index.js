@@ -50,7 +50,7 @@ export default {
                             size: this.size,
                         },
                     },
-                    'close'
+                    'close--bold'
                 )
             );
         } else {
