@@ -55,6 +55,7 @@ export default {
                     'c-btn-remove--animate-rotate': this.animateRotate,
                 },
                 props: {
+                    ripple: this.ripple,
                     width: this.size,
                     minWidth: this.size,
                     height: this.size,
