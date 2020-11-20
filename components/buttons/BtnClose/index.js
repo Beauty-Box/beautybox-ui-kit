@@ -42,26 +42,12 @@ export default {
     render(h) {
         let children = [];
         if (this.hasBg) {
-            children.push(
-                h(
-                    'v-icon',
-                    {
-                        props: {
-                            size: this.size,
-                        },
-                    },
-                    'close'
-                )
-            );
+            children.push(h('v-icon', { props: { size: this.size } }, 'close'));
         } else {
             children.push(
                 h('b-svg', {
-                    props: {
-                        name: 'close--bold',
-                    },
-                    attrs: {
-                        style: { width: this.size / 2, height: this.size / 2 },
-                    },
+                    props: { name: 'close' },
+                    attrs: { style: { width: this.size / 2, height: this.size / 2 } },
                 })
             );
         }
