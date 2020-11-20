@@ -198,13 +198,11 @@
             }
         }
 
-        .service-item-small {
+        .с-service-item-small {
             &__text {
                 display: -webkit-box;
                 overflow: hidden;
                 font-size: 18px;
-                font-weight: 400;
-                line-height: 20px;
                 text-overflow: ellipsis;
                 -webkit-line-clamp: 3;
             }
