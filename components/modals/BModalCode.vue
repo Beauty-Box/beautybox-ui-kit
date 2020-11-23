@@ -127,7 +127,7 @@ export default {
             ).post('/confirm-sms', data));
 
             if (!Object.keys(this.errors).length) {
-                if (response.hasOwnProperty('step')) {
+                if (response.hasOwnProperty('step') && response.step) {
                     await this.$router.push({
                         name: response.step,
                         query: {
