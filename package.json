@@ -28,6 +28,7 @@
         ]
     },
     "dependencies": {
+        "@beautybox/core": "git+ssh://git@gitlab.beautybox.ru:beautybox/frontend/beautybox-base.git",
         "cross-env": "^7.0.2",
         "express": "^4.17.1",
         "react": "^16.13.1",
