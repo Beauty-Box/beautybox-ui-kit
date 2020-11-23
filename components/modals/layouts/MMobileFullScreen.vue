@@ -31,7 +31,7 @@
 
             <!-- BODY -->
             <v-card-text
-                :class="{ 'is-scrolled': scroll }"
+                :class="[{ 'is-scrolled': scroll }, bodyClass]"
                 :style="{
                     minHeight: loading && !!loadingMinHeight ? loadingMinHeight + 'px' : '',
                 }"
@@ -94,6 +94,10 @@ export default {
             default: '',
         },
         tag: {
+            type: String,
+            default: 'form',
+        },
+        bodyClass: {
             type: String,
             default: 'form',
         },
@@ -163,10 +167,10 @@ export default {
 
     &__text {
         position: relative;
-        flex-grow: 1;
-        overflow-y: hidden;
         display: flex;
         flex-direction: column;
+        flex-grow: 1;
+        overflow-y: hidden;
 
         @include max(sm) {
             padding: 0 $base-indent !important;
