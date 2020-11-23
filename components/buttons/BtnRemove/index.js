@@ -15,7 +15,7 @@ export default {
         },
         icon: {
             type: String,
-            default: '',
+            default: 'close',
         },
         iconColor: {
             type: String,
@@ -41,6 +41,10 @@ export default {
             type: Boolean,
             default: true,
         },
+        animateRotate: {
+            type: Boolean,
+            default: false,
+        },
     },
     render(h) {
         return h(
@@ -48,8 +52,10 @@ export default {
             {
                 class: {
                     'c-btn-remove': true,
+                    'c-btn-remove--animate-rotate': this.animateRotate,
                 },
                 props: {
+                    ripple: this.ripple,
                     width: this.size,
                     minWidth: this.size,
                     height: this.size,

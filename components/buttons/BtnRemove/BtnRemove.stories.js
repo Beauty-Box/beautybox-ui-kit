@@ -1,4 +1,4 @@
-import { withKnobs, number, text } from '@storybook/addon-knobs';
+import { withKnobs, number, text, boolean } from '@storybook/addon-knobs';
 
 import BBtnRemove from './index';
 
@@ -13,6 +13,9 @@ export const RemoveButton = () => ({
         },
         iconColor: {
             default: text('iconColor', 'error'),
+        },
+        animateRotate: {
+            default: boolean('animateRotate', false),
         },
     },
     template: '<b-btn-remove v-bind="$props"></b-btn-remove>',

@@ -15,5 +15,5 @@ export const Simple = () => ({
 });
 
 Simple.storyName = 'Simple';
-Simple.parameters = { jest: ['Simple.spec.js'] };
+Simple.parameters = { jest: ['SimpleSlider.spec.js'] };
 Simple.decorators = [withKnobs];

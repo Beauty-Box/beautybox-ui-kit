@@ -118,7 +118,7 @@ $text-weight: (
 
     @each $direction in top, bottom, left, right {
         &--#{$direction} {
-            @include border(#{$direction}, $color-border-very-light);
+            @include border(#{$direction}, $color-border--lighten);
         }
     }
 

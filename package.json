@@ -21,8 +21,8 @@
     },
     "lint-staged": {
         "*.{js,vue}": "eslint --fix --config ./.eslintrc --ignore-path ./.eslintignore",
-        "*.{scss,sass}": [
-            "stylelint --fix --config ./.stylelintrc",
+        "**/*.{scss,sass}": [
+            "stylelint --config /.stylelintrc --fix",
             "prettier --write"
         ]
     },
