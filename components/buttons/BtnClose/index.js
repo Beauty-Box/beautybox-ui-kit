@@ -62,6 +62,7 @@ export default {
                 props: {
                     hasBg: this.hasBg,
                     width: this.size,
+                    ripple: this.ripple,
                     minWidth: this.size,
                     height: this.size,
                     small: this.small,
