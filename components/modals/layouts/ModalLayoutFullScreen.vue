@@ -13,7 +13,7 @@
         </div>
         <form class="full-screen__form" @submit.prevent="submit">
             <!-- HEADER -->
-            <div ref="header" class="full-screen__header">
+            <div ref="header" class="full-screen__header" :class="[headerClass]">
                 <h2 ref="title" class="full-screen__title">
                     {{ title || $route.meta.title }}
                 </h2>
@@ -66,6 +66,10 @@ export default {
             default: 'form',
         },
         title: {
+            type: String,
+            default: '',
+        },
+        headerClass: {
             type: String,
             default: '',
         },
