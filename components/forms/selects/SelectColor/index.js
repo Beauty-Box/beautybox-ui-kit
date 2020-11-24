@@ -32,7 +32,7 @@ export default {
         },
         value: {
             type: String,
-            default: '#fe0061',
+            default: '',
             validator(value) {
                 return (
                     value === '' || /^#([0-9A-Fa-f]{8}|[0-9A-Fa-f]{6}|[0-9A-Fa-f]{3})$/.test(value)
