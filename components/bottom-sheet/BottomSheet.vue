@@ -14,7 +14,11 @@
                     <div>
                         <b-btn-close v-if="closeBtn" has-bg size="30" @click="onClose" />
 
-                        <div v-if="title || subTitle" class="c-bottom-sheet__header">
+                        <div
+                            v-if="title || subTitle"
+                            class="c-bottom-sheet__header"
+                            :class="{ 'mr-8': closeBtn }"
+                        >
                             <h3 v-if="title" class="c-bottom-sheet__title">{{ title }}</h3>
                             <p v-if="subTitle" class="c-bottom-sheet__subtitle">{{ subTitle }}</p>
                         </div>
