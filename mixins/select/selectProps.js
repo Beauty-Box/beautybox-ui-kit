@@ -33,13 +33,15 @@ export const selectProps = (module) => {
             },
             menuProps: {
                 ...module.options.props.menuProps,
-                default() {
-                    return {
-                        auto: true,
-                        closeOnClick: true,
-                        nudgeLeft: -16,
-                    };
-                },
+                // Бизнес решил, что эта дич нужнее внешнего вида
+                default: 'auto',
+                // default() {
+                //     return {
+                //         auto: true,
+                //         closeOnClick: true,
+                //         nudgeLeft: -16,
+                //     };
+                // },
             },
         },
     };
