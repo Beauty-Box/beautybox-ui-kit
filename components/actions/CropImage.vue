@@ -57,7 +57,10 @@ export default {
         },
     },
     methods: {
-        changeCrop({ coordinates, canvas }) {
+        changeCrop({ coordinates, canvas, visibleArea }) {
+            if (!visibleArea) {
+                return;
+            }
             let image = canvas.toDataURL();
             let crop = {
                 x: coordinates.left,
