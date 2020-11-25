@@ -38,11 +38,7 @@ export default {
         },
     },
     methods: {
-        changeCrop({ coordinates, canvas, visibleArea }) {
-            if (!visibleArea) {
-                return;
-            }
-            console.log(canvas.width);
+        changeCrop({ coordinates, canvas }) {
             let image = canvas.toDataURL();
             console.log('coordinates', coordinates);
             let crop = {
@@ -51,7 +47,6 @@ export default {
                 width: coordinates.width,
                 height: coordinates.height,
             };
-            console.log('crop', { image, crop });
             this.$emit('change', { image, crop });
         },
         defaultVisibleArea() {
