@@ -38,15 +38,29 @@ export default {
         },
     },
     methods: {
-        changeCrop({ coordinates, canvas }) {
+        changeCrop({ coordinates, canvas, visibleArea }) {
+            if (!visibleArea) {
+                return;
+            }
+            console.log(canvas.width);
             let image = canvas.toDataURL();
+            console.log('coordinates', coordinates);
             let crop = {
                 x: coordinates.left,
                 y: coordinates.top,
                 width: coordinates.width,
                 height: coordinates.height,
             };
+            console.log('crop', { image, crop });
             this.$emit('change', { image, crop });
+        },
+        defaultVisibleArea() {
+            return {
+                left: this.sanitizedCrop.x,
+                top: this.sanitizedCrop.y,
+                height: this.sanitizedCrop.height,
+                width: this.sanitizedCrop.width,
+            };
         },
         defaultPosition(cropper) {
             return {
@@ -55,27 +69,36 @@ export default {
             };
         },
         defaultSize(cropper) {
+            console.log('sanitizedCrop', this.sanitizedCrop);
             return {
                 height: this.sanitizedCrop.height,
                 width: this.sanitizedCrop.width,
             };
         },
     },
-    template: `<cropper
-                            :default-position="defaultPosition"
-                            :default-size="defaultSize"
-                            classname="cropper"
-                            :stencil-component="
-                                !box ? $options.components.CircleStencil : $options.components.RectangleStencil
-                            "
-                            :src="image"
-                            :stencil-props="{
-                                aspectRatio: 1,
-                                previewClassname: 'preview',
-                                handlersClassnames: {
-                                    default: 'handler',
-                                },
-                            }"
-                            @change="changeCrop"
-                        />`,
+    render(h) {
+        return h('cropper', {
+            attrs: {
+                defaultPosition: this.defaultPosition,
+                defaultSize: this.defaultSize,
+                stencilComponent: !this.box
+                    ? this.$options.components.CircleStencil
+                    : this.$options.components.RectangleStencil,
+                src: this.image,
+                stencilProps: {
+                    aspectRatio: 1,
+                    previewClassname: 'preview',
+                    handlersClassnames: {
+                        default: 'handler',
+                    },
+                },
+            },
+            on: {
+                change: this.changeCrop,
+                ready: () => {
+                    console.log('ready');
+                },
+            },
+        });
+    },
 };

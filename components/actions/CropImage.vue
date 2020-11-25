@@ -65,6 +65,7 @@ export default {
                 width: coordinates.width,
                 height: coordinates.height,
             };
+            console.log('crop', { image, crop });
             this.$emit('change', { image, crop });
         },
         defaultPosition(cropper) {
