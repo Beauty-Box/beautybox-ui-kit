@@ -6,7 +6,7 @@
             :label="label"
             :disabled="disabled"
             :clearable="clearable"
-            :error-messages="errorMessages"
+            :error-messages="disabled ? [] : errorMessages"
             @click="modal = true"
             @click:clear="$emit('clear')"
         />

@@ -73,7 +73,7 @@ $color-bg--darken: #191919;
 $color-bg--dark: #222;
 $color-bg: #2f2f2f;
 $color-bg--light: #eee;
-$color-bg--lighten: #f5f5f5;
+$color-bg--lighten: $gray--lighten;
 $color-bg--lightest: #f7f7f8;
 $color-bg--hover: #fbfbfb;
 $color-bg--instagram: linear-gradient(
