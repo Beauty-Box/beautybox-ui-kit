@@ -1,12 +1,12 @@
-import FSelect from '../Select';
+import BSelect from '../Select';
 const VIcon = () => import(/* webpackChunkName: "VIcon" */ 'vuetify/lib/components/VIcon');
 import { genFullTime } from '@beautybox/core/utils';
 import './SelectTime.scss';
 
 export default {
     name: 'FSelectTime',
-    extends: FSelect,
-    components: { FSelect, VIcon },
+    extends: BSelect,
+    components: { BSelect, VIcon },
     props: {
         startWith: {
             type: [Number, String],
@@ -31,12 +31,15 @@ export default {
         },
     },
     render(h) {
-        return h('f-select', {
+        return h('b-select', {
             attrs: {
                 ...this.$attrs,
                 value: this.value,
-                items: this.elements,
                 name: this.name,
+            },
+            props: {
+                ...this.$props,
+                items: this.elements,
                 label: this.label,
             },
             on: this.$listeners,
