@@ -13,15 +13,16 @@ $font-size-base: 16px;
 $max-width: 1200px;
 $spacer: 4px;
 
-//Отступы
+// Indent's
 $gutter: $spacer * 6;
 $base-indent: $spacer * 4;
 $half-indent: $spacer * 3;
 
-//Base Variebles
+//Base Variables
 $color-accent: #ff8272;
 $color-primary: #101928;
 $color-secondary: #67768c;
+$color-muted: #eef2f7;
 
 $color-success: #8cc152;
 $color-info: #037aff;
@@ -34,7 +35,7 @@ $color-link: $color-info;
 $color-disabled: #67768c;
 $color-disabled-text: #67768c;
 
-//gray
+// Gray color's
 $gray--darkest: #242626; //#101928
 $gray--darken: #353737;
 $gray--dark: #464646;
@@ -43,7 +44,7 @@ $gray--light: #9b9b9b;
 $gray--lighten: #dee3e7; //#eff1f6
 $gray--lightest: #eef2f7; //muted color
 
-//text
+// Text color's
 // $color-text--darkest : $gray--darkest;
 // $color-text--dark    : $gray--dark;
 $color-text: $color-primary; //$gray--darkest
@@ -51,7 +52,13 @@ $color-text--light: $color-secondary; //#7e7e7e
 $color-text--lighten: $gray--light;
 $color-text--lightest: $gray--lighten;
 
-//border
+$text-colors: (
+    primary: $color-primary,
+    error: $color-error,
+    success: $color-success,
+) !default;
+
+// Border color's
 $color-border--darkest: $gray--darkest;
 $color-border--darken: $gray--darken;
 $color-border--dark: $gray;
@@ -68,7 +75,7 @@ $input-shadow--hover: 0 2px 4px 0 rgba(0, 0, 0, 0.05), 0 0 4px 0 rgba(0, 0, 0, 0
 
 $border-radius: 8px;
 
-//bg
+// Background color's
 $color-bg--darken: #191919;
 $color-bg--dark: #222;
 $color-bg: #2f2f2f;
@@ -84,18 +91,19 @@ $color-bg--instagram: linear-gradient(
     #ffdc3e 100%
 );
 
-//Тень
+// Shadow color's
 $box-shadow: 164, 173, 186;
 $box-shadow-base: 0 2px 5px 0 rgba(164, 173, 186, 0.25);
 $box-shadow-sticky-block: 0 15px 15px -15px rgba(222, 227, 231, 0.9);
 $box-shadow-base--hover: 0 5px 15px 5px rgba(164, 173, 186, 0.25);
 $box-shadow-base--active: 0 0 4px 0 rgba(16, 25, 40, 0.08);
 
-//Icon
+// Icon color's
 $color-icon: $color-text;
 $color-icon--light: $color-text--light;
 $color-icon--lighten: #a4adba;
 
+// Icon size's
 $icons-sizes: () !default;
 $icons-sizes: map-deep-merge(
     (
@@ -115,14 +123,8 @@ $icon-size--sm: map-get($icons-sizes, 'sm');
 $icon-size--md: map-get($icons-sizes, 'md');
 $icon-size--lg: map-get($icons-sizes, 'lg');
 
-//Transition
+// Transition
 $trs: all 0.4s ease-in-out;
-
-$text-colors: (
-    primary: $color-primary,
-    error: $color-error,
-    success: $color-success,
-) !default;
 
 $breakpoints: (
     i5: 320px,
@@ -146,7 +148,7 @@ $breakpointsMin: (
     lg: 1365px,
 ) !default;
 
-//z-index
+// Z-index
 $z-index: (
     hidden: -1,
     default: 1,
