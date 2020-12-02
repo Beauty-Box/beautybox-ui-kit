@@ -62,7 +62,8 @@ export default {
 <style lang="scss" scoped>
 .v-list-item {
     min-height: 42px;
-    width: 100%;
+    //width: 100%;
+    flex-grow: 1;
     cursor: var(--cursor, pointer);
     flex-shrink: 0;
 
