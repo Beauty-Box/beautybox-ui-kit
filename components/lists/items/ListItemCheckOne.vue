@@ -74,6 +74,9 @@ export default {
         margin-bottom: 0;
         font-weight: 400;
         line-height: 24px;
+        white-space: normal;
+        text-overflow: initial;
+        overflow: initial;
     }
 
     &__subtitle {
