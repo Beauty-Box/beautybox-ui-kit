@@ -6,7 +6,7 @@
 $body-font-family: $font-family-base !default;
 $font-size-root: $font-size-base !default;
 $line-height-root: $line-height-base !default;
-$border-radius-root: $border-radius !default;
+$border-radius-root: $border-radius;
 
 //Card
 $card-title-font-size: 18px !default;
@@ -89,14 +89,18 @@ $data-table-regular-header-font-size: 15px !default;
 $skeleton-loader-text-border-radius: $border-radius;
 
 //Buttons
-$btn-letter-spacing: 0 !default;
+$btn-font-weight: 400;
+$btn-letter-spacing: 0;
+$btn-text-transform: initial;
+
 $btn-font-sizes: (
-    'x-small': 12px,
-    'small': 13px,
-    'default': 14px,
-    'large': 14px,
-    'x-large': 15px,
+    'x-small': 13px,
+    'small': 14px,
+    'default': 15px,
+    'large': 16px,
+    'x-large': 17px,
 );
+
 $btn-sizes: (
     'x-small': 20,
     'small': 28,
