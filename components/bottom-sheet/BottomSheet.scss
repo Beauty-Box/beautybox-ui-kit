@@ -157,8 +157,8 @@
 
         .c-bottom-sheet {
             &__search {
-                border-top-left-radius: inherit;
-                border-top-right-radius: inherit;
+                border-top-left-radius: $border-radius * 3;
+                border-top-right-radius: $border-radius * 3;
             }
             &__footer {
                 padding: $base-indent;
@@ -198,7 +198,7 @@
             }
         }*/
 
-        .с-service-item-small {
+        /*.с-service-item-small {
             &__text {
                 display: -webkit-box;
                 overflow: hidden;
@@ -206,7 +206,7 @@
                 text-overflow: ellipsis;
                 -webkit-line-clamp: 3;
             }
-        }
+        }*/
 
         .list {
             width: 100%;

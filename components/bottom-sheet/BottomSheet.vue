@@ -8,7 +8,7 @@
         v-bind="{ hideOverlay, nowItemsLength, allItemsLength, contentClass }"
         @click:outside="$emit('click:close')"
     >
-        <v-sheet :tag="tag" @submit.prevent="onSubmit">
+        <v-sheet :tag="tag" elevation="0" @submit.prevent="onSubmit">
             <div class="c-bottom-sheet__inner">
                 <div class="c-bottom-sheet__scroll-container" @scroll="onScroll">
                     <div>

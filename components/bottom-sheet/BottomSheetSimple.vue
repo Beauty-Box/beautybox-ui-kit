@@ -18,7 +18,7 @@
             :hide-overlay="hideOverlay"
             content-class="c-bottom-sheet c-bottom-sheet--palette"
         >
-            <v-sheet>
+            <v-sheet elevation="0">
                 <div class="c-bottom-sheet__inner">
                     <div class="c-bottom-sheet__scroll-container">
                         <div>
