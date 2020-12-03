@@ -36,5 +36,5 @@ export const BlockLayoutBoxSkeleton = () => ({
 });
 
 BlockLayoutBoxSkeleton.storyName = 'BlockLayoutBoxSkeleton';
-BlockLayoutBoxSkeleton.parameters = { jest: ['BlockLayoutBoxSkeleton.spec.js'] };
+// BlockLayoutBoxSkeleton.parameters = { jest: ['BlockLayoutBoxSkeleton.spec.js'] };
 BlockLayoutBoxSkeleton.decorators = [withKnobs];

@@ -1,10 +1,8 @@
-import VueClipboard from 'vue-clipboard2';
 import VBtn from 'vuetify/lib/components/VBtn';
 
 export default {
     name: 'BBtnCopy',
     components: { VBtn },
-    // directives: { VueClipboard },
     props: {
         ...VBtn.options.props,
         copyText: {
@@ -54,10 +52,12 @@ export default {
     },
     methods: {
         onCopy() {
-            this.messageSuccess('Ссылка скопирована');
+            console.log('copied');
+            // this.messageSuccess('Ссылка скопирована');
         },
         onError() {
-            this.messageError('Произошла ошибка при копировании');
+            console.log('error');
+            // this.messageError('Произошла ошибка при копировании');
         },
     },
     /*template: `<v-btn
@@ -82,21 +82,21 @@ export default {
                 },
                 on: {
                     ...this.$listeners,
-                    click: (e) => e.preventDefault(),
+                    // click: (e) => e.preventDefault(),
                 },
                 directives: [
                     {
-                        name: 'v-clipboard',
+                        name: 'clipboard',
                         arg: 'copy',
                         value: this.copyText,
                     },
                     {
-                        name: 'v-clipboard',
+                        name: 'clipboard',
                         arg: 'success',
                         value: this.onCopy,
                     },
                     {
-                        name: 'v-clipboard',
+                        name: 'clipboard',
                         arg: 'error',
                         value: this.onError,
                     },
