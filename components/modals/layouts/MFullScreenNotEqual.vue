@@ -35,7 +35,7 @@ export default {
         },
         disabled: {
             type: Boolean,
-            dafault: false,
+            default: false,
         },
     },
     computed: {
@@ -48,7 +48,7 @@ export default {
             },
         },
     },
-    async created() {
+    created() {
         document.addEventListener('keyup', this.removeOverlay);
     },
     beforeDestroy() {

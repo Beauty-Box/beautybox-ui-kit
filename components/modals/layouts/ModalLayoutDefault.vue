@@ -7,11 +7,12 @@
         :transition="transition"
         :overlay-color="overlayColor"
         :overlay-opacity="overlayOpacity"
-        :fullscreen="$vuetify.breakpoint.mobile"
+        :fullscreen="computedFullScreen"
         @click:outside="$emit('click:outside', $event)"
     >
         <v-card
             :tag="tag"
+            :style="{ minHeight: isNumber(minHeight) ? minHeight + 'px' : minHeight }"
             @submit.prevent="$emit('submit', $event)"
             @reset.prevent="$emit('reset', $event)"
         >
@@ -19,7 +20,7 @@
 
             <!-- HEADER -->
             <v-card-title v-if="title">
-                <span v-if="title">{{ title }}</span>
+                <span>{{ title }}</span>
             </v-card-title>
 
             <!-- BODY -->
@@ -41,6 +42,7 @@
 </template>
 
 <script>
+import { isNumber } from '@beautybox/core/helpers';
 import { modalToggleMixin, modalOverlayColorMixin } from '../../../mixins';
 const BBtnClose = () => import(/* webpackChunkName: "BlockLoader" */ '../../buttons/BtnClose');
 const BBlockLoader = () => import(/* webpackChunkName: "BlockLoader" */ '../../blocks/BlockLoader');
@@ -50,6 +52,10 @@ export default {
     components: { BBtnClose, BBlockLoader },
     mixins: [modalToggleMixin, modalOverlayColorMixin],
     props: {
+        minHeight: {
+            type: String,
+            default: '420',
+        },
         tag: {
             type: String,
             default: 'form',
@@ -70,6 +76,10 @@ export default {
             type: Boolean,
             default: true,
         },
+        fullscreen: {
+            type: Boolean,
+            default: true,
+        },
         transition: {
             type: String,
             default: 'slide-y-reverse-transition',
@@ -87,7 +97,13 @@ export default {
             default: false,
         },
     },
+    computed: {
+        computedFullScreen() {
+            return this.fullscreen ? this.$vuetify.breakpoint.mobile : this.fullscreen;
+        },
+    },
     methods: {
+        isNumber,
         onClickCloseModal() {
             if (this.closeIsDisabled) {
                 return false;
@@ -103,7 +119,6 @@ export default {
 .v-card {
     display: flex;
     flex-direction: column;
-    min-height: 420px;
 
     &__title {
         position: relative;
@@ -143,7 +158,7 @@ export default {
 
     &__text {
         flex-grow: 1;
-        padding: var(--gutter);
+        padding: var(--gutter) !important;
         overflow-y: hidden;
 
         &.is-scrolled {
@@ -168,13 +183,16 @@ export default {
         }
     }
 }
+
 .c-btn-close {
     position: absolute;
     top: 10px;
     right: 10px;
+    z-index: z(fixed);
 
     @include max(xs) {
-        right: 7px;
+        top: 5px;
+        right: 5px;
     }
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-    <swiper ref="mySwiper" :options="swiperOption" class="c-slider">
+    <swiper :options="swiperOption" class="c-slider">
         <slot name="default" />
 
         <div slot="button-prev" class="swiper-button-prev">
@@ -12,15 +12,12 @@
 </template>
 
 <script>
-import { Swiper, directive } from 'vue-awesome-swiper';
-import 'swiper/swiper-bundle.css';
+import { Swiper } from 'vue-awesome-swiper';
+import 'swiper/css/swiper.min.css';
 
 export default {
     name: 'SwiperSlider',
     components: { Swiper },
-    directives: {
-        swiper: directive,
-    },
     props: {
         sliderSlidesPerView: {
             type: [Number, String],
@@ -54,11 +51,6 @@ export default {
             },*/
         },
     }),
-    computed: {
-        swiper() {
-            return this.$refs.mySwiper.swiper;
-        },
-    },
 };
 </script>
 
