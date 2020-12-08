@@ -18,5 +18,5 @@ deploy:
 	docker-compose exec nodejs yarn deploy
 
 dep:
-	git pull && yarn && yarn upgrade @beautybox/core && yarn deploy && rm -rf dist && mv dist_new dist
+	git pull && yarn && yarn build
 
