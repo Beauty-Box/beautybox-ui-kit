@@ -7,7 +7,7 @@
         :overlay-opacity="overlayOpacity"
         content-class="c-bottom-sheet u-no-padding"
     >
-        <v-sheet>
+        <v-sheet elevation="0">
             <v-list>
                 <slot />
             </v-list>

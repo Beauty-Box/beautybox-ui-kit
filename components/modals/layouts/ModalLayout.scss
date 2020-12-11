@@ -86,13 +86,16 @@ $image-width: 450px;
 
             .full-screen__title {
                 @include max(sm) {
-                    & > * {
+                    &::v-deep > * {
                         margin-top: 0 !important;
-                    }
 
-                    ._hide-on-scroll {
-                        display: none !important;
+                        &._hide-on-scroll {
+                            display: none !important;
+                        }
                     }
+                }
+                &::v-deep > * {
+                    justify-content: center !important;
                 }
             }
         }

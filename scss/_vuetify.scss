@@ -401,7 +401,7 @@ $box-shadow-dropdown: 0 5px 5px -3px rgba(164, 173, 186, 0.25),
     &.v-input--is-dirty {
         &.c-select--clearable,
         &.c-input--clearable {
-            &:not(.c-select-services__input) {
+            &:not(.c-input--with-clear-icon) {
                 .v-input__append-inner {
                     &:last-of-type {
                         display: none !important;

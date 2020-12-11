@@ -6,6 +6,8 @@
             :label="label"
             :disabled="disabled"
             :clearable="clearable"
+            :loading="loading"
+            color="primary"
             :error-messages="disabled ? [] : errorMessages"
             @click="modal = true"
             @click:clear="$emit('clear')"
@@ -22,7 +24,7 @@
             :retain-focus="false"
             content-class="c-bottom-sheet c-bottom-sheet--palette c-bottom-sheet--full-height"
         >
-            <v-sheet>
+            <v-sheet elevation="0">
                 <div class="c-bottom-sheet__inner">
                     <div class="c-bottom-sheet__scroll-container" @scroll="onScroll">
                         <div>
@@ -40,7 +42,7 @@
                                 </p>
                             </div>
 
-                            <div class="c-bottom-sheet__search">
+                            <div ref="search" class="c-bottom-sheet__search">
                                 <b-input-search
                                     autocomplete="off"
                                     color="secondary"
@@ -128,10 +130,15 @@ export default {
             type: Boolean,
             default: false,
         },
+        loading: {
+            type: Boolean,
+            default: false,
+        },
         errorMessages: {
             type: Array,
             default: () => [],
         },
+        // Scroll download
         onScrollEndHandler: {
             type: Function,
             default: () => ({}),
