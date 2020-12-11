@@ -1,72 +1,8 @@
-<template>
-    <v-dialog
-        v-model="modal"
-        :width="width"
-        min-heigth="300"
-        :overlay-opacity="overlayOpacity"
-        :overlay-color="overlayColor"
-        :hide-overlay="hideOverlay"
-        :transition="transition"
-        :persistent="persistent"
-        scrollable
-        :fullscreen="$vuetify.breakpoint.mobile"
-        @click:outside="$emit('click:outside', $event)"
-    >
-        <v-card
-            :tag="tag"
-            @submit.prevent="$emit('submit', $event)"
-            @reset.prevent="$emit('reset', $event)"
-        >
-            <!-- HEADER -->
-            <v-card-title v-if="title" ref="header" class="full-screen__header">
-                <span ref="title" class="full-screen__title">{{ title }}</span>
-
-                <b-btn-close
-                    type="button"
-                    size="40"
-                    class="full-screen__btn-close"
-                    @click="onClickCloseModal"
-                />
-            </v-card-title>
-
-            <!-- BODY -->
-            <v-card-text
-                :class="[{ 'is-scrolled': scroll }, bodyClass]"
-                :style="{
-                    minHeight: loading && !!loadingMinHeight ? loadingMinHeight + 'px' : '',
-                }"
-                @scroll="onScroll"
-            >
-                <b-block-loader
-                    v-if="loading"
-                    :max-height="loadingMaxHeight"
-                    :min-height="loadingMinHeight"
-                />
-                <template v-else>
-                    <div v-if="$vuetify.breakpoint.mobile" class="full-screen-content__title">
-                        <div ref="contentTitle">{{ title }}</div>
-                        <p v-if="description">{{ description }}</p>
-                    </div>
-
-                    <slot />
-                </template>
-            </v-card-text>
-
-            <v-spacer v-if="!$vuetify.breakpoint.mobile" />
-
-            <!-- FOOTER -->
-            <v-card-actions v-if="$slots.btns">
-                <slot name="btns" />
-            </v-card-actions>
-        </v-card>
-    </v-dialog>
-</template>
-
 <script>
 import { modalMixin, modalToggleMixin, modalOverlayColorMixin } from '../../../mixins';
 const BBlockLoader = () => import(/* webpackChunkName: "BlockLoader" */ '../../blocks/BlockLoader');
-const BSvg = () => import(/* webpackChunkName: "Svg" */ '../../icons/Svg');
 const BBtnClose = () => import(/* webpackChunkName: "BtnClose" */ '../../buttons/BtnClose');
+const BSvg = () => import(/* webpackChunkName: "Svg" */ '../../icons/Svg');
 
 export default {
     name: 'MMobileFullScreen',
@@ -130,6 +66,70 @@ export default {
     },
 };
 </script>
+
+<template>
+    <v-dialog
+        v-model="modal"
+        :width="width"
+        min-heigth="300"
+        :overlay-opacity="overlayOpacity"
+        :overlay-color="overlayColor"
+        :hide-overlay="hideOverlay"
+        :transition="transition"
+        :persistent="persistent"
+        scrollable
+        :fullscreen="$vuetify.breakpoint.mobile"
+        @click:outside="$emit('click:outside', $event)"
+    >
+        <v-card
+            :tag="tag"
+            @submit.prevent="$emit('submit', $event)"
+            @reset.prevent="$emit('reset', $event)"
+        >
+            <!-- HEADER -->
+            <v-card-title v-if="title" ref="header" class="full-screen__header">
+                <span ref="title" class="full-screen__title">{{ title }}</span>
+
+                <b-btn-close
+                    type="button"
+                    size="40"
+                    class="full-screen__btn-close"
+                    @click="onClickCloseModal"
+                />
+            </v-card-title>
+
+            <!-- BODY -->
+            <v-card-text
+                :class="[{ 'is-scrolled': scroll }, bodyClass]"
+                :style="{
+                    minHeight: loading && !!loadingMinHeight ? loadingMinHeight + 'px' : '',
+                }"
+                @scroll="onScroll"
+            >
+                <b-block-loader
+                    v-if="loading"
+                    :max-height="loadingMaxHeight"
+                    :min-height="loadingMinHeight"
+                />
+                <template v-else>
+                    <div v-if="$vuetify.breakpoint.mobile" class="full-screen-content__title">
+                        <div ref="contentTitle">{{ title }}</div>
+                        <p v-if="description">{{ description }}</p>
+                    </div>
+
+                    <slot />
+                </template>
+            </v-card-text>
+
+            <v-spacer v-if="!$vuetify.breakpoint.mobile" />
+
+            <!-- FOOTER -->
+            <v-card-actions v-if="$slots.btns">
+                <slot name="btns" />
+            </v-card-actions>
+        </v-card>
+    </v-dialog>
+</template>
 
 <style lang="scss" scoped>
 @import 'ModalLayout';

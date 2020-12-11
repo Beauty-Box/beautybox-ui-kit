@@ -73,7 +73,7 @@ export default {
                     'v-btn',
                     {
                         class: {
-                            'u-text-initial ml-auto': true,
+                            'u-text-initial font-weight-medium ml-auto': true,
                         },
                         props: {
                             depressed: true,
