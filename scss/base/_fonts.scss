@@ -1,19 +1,21 @@
-/* @font-face {
-    font-family: 'Material Icons';
-    font-style: normal;
-    font-weight: 400;
-    font-display: swap;
-    src: url('~@beautybox/ui-kit/assets/fonts/material-icons.woff2') format('woff2'),
-    url('~@beautybox/ui-kit/assets/fonts/material-icons.woff') format('woff');
-} */
+@mixin font-face($font-family, $file-name, $weight: normal, $style: normal) {
+    @font-face {
+        font-family: $font-family;
+        font-style: $style;
+        font-weight: $weight;
+        src: url('~@beautybox/ui-kit/assets/fonts/#{$file-name}.woff') format('woff'),
+            url('~@beautybox/ui-kit/assets/fonts/#{$file-name}.woff2') format('woff2');
+        font-display: block;
+    }
+}
 
 @font-face {
     font-family: 'Material Icons Round';
     font-style: normal;
     font-weight: 400;
     font-display: block;
-    src: url('~@beautybox/ui-kit/assets/fonts/material-icons-round-v3.0.1.woff2') format('woff2'),
-        url('~@beautybox/ui-kit/assets/fonts/material-icons-round-v3.0.1.woff') format('woff');
+    src: url('~@beautybox/ui-kit/assets/fonts/MaterialIconsRound-Regular.woff2') format('woff2'),
+        url('~@beautybox/ui-kit/assets/fonts/MaterialIconsRound-Regular.woff') format('woff');
 }
 
 .material-icons {
