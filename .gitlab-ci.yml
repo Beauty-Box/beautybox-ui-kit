@@ -1,0 +1,8 @@
+image: node:12-alpine
+
+build:
+  tags: [build]
+  script:
+    - cp .env.example .env
+    - yarn
+    - yarn build
