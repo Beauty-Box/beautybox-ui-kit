@@ -54,6 +54,7 @@ export const vuetify = new Vuetify({
                 ripple: '#67768c', //* Задано
                 colorText: '#101928', //* Задано
                 'background--light': '#f7f7f8', //* Задано
+                'color-border': '#dee3e7', //* Задано
                 // Social color
                 whatsapp: '#23d364',
                 viber: '#7d3daf',
