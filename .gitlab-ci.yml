@@ -12,5 +12,5 @@ build:
   tags: [build]
   script:
     - cp .env.example .env
-    - yarn
-    - yarn build
+    # - yarn
+    # - yarn build
