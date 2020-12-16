@@ -5,7 +5,7 @@ import Rating from './index';
 describe('Rating', () => {
     it('has input tag', () => {
         const wrapper = mount(Rating, { vuetify });
-        const inputWrapper = wrapper.find('input');
-        expect(inputWrapper.element.tagName).toBe('INPUT');
+        const button = wrapper.find('button');
+        expect(button.exists()).toBe(true);
     });
 });

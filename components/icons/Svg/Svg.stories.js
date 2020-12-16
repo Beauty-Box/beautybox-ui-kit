@@ -14,5 +14,5 @@ export const Svg = () => ({
 });
 
 Svg.storyName = 'Svg';
-Svg.parameters = { jest: ['Svg.spec.js'] };
+// Svg.parameters = { jest: ['Svg.spec.js'] };
 Svg.decorators = [withKnobs];

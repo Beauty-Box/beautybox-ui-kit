@@ -6,8 +6,21 @@ export default {
     components: { VRadioGroup, VRadio },
     props: {
         items: {
-            type: [Array],
-            default: () => [],
+            type: Array,
+            default: () => [
+                {
+                    title: 'Мужской',
+                    genderID: 0,
+                },
+                {
+                    title: 'Женский',
+                    genderID: 1,
+                },
+                {
+                    title: 'Небинарный',
+                    genderID: 2,
+                },
+            ],
         },
         name: {
             type: String,
@@ -28,15 +41,6 @@ export default {
             },
         },
     },
-    /*template: `<v-radio-group v-if="items.length" v-model="input" row>
-                            <v-radio
-                                v-for="item in items"
-                                :key="item.genderID"
-                                :name="name"
-                                :label="item.title"
-                                :value="item.genderID"
-                            />
-                        </v-radio-group>`,*/
     render(h) {
         if (this.items.length) {
             return h(

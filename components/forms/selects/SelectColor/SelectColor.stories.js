@@ -8,5 +8,5 @@ export const SelectColor = () => ({
 });
 
 SelectColor.storyName = 'SelectColor';
-SelectColor.parameters = { jest: ['SelectColor.spec.js'] };
+// SelectColor.parameters = { jest: ['SelectColor.spec.js'] };
 SelectColor.decorators = [withKnobs];
