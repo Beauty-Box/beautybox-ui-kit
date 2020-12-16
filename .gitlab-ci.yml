@@ -8,8 +8,6 @@ before_script:
   - chmod 700 ~/.ssh
   - ssh-keyscan gitlab.beautybox.ru >> ~/.ssh/known_hosts
   - chmod 644 ~/.ssh/known_hosts
-  #- '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
-  # - ssh gitlab.beautybox.ru
   - git config --global user.email "webmaster@beautybox.ru"
   - git config --global user.name "Webmaster Admin"
   - ssh gitlab.beautybox.ru
@@ -26,3 +24,8 @@ build:
     - yarn
     - yarn link "@beautybox/core"
     - yarn build
+
+testing:
+  tags: [test]
+  script:
+    - yarn test
