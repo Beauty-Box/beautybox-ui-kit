@@ -12,19 +12,16 @@ before_script:
   # - ssh gitlab.beautybox.ru
   - git config --global user.email "webmaster@beautybox.ru"
   - git config --global user.name "Webmaster Admin"
+  - ssh gitlab.beautybox.ru
+  - git clone git@gitlab.beautybox.ru:beautybox/frontend/beautybox-base.git
+  - cd beautybox-base
+  - yarn
+  - yarn link
 
-Test SSH:
+build:
   tags: [build]
   script:
-    - ssh gitlab.beautybox.ru
-    - git clone git@gitlab.beautybox.ru:beautybox/frontend/beautybox-base.git
-    - cd beautybox-base
+    - cp .env.example .env
     - yarn
-    - yarn link
-
-# build:
-#   tags: [build]
-#   script:
-#     - cp .env.example .env
-    # - yarn
-    # - yarn build
+    - yarn link "@beautybox/core"
+    - yarn build
