@@ -16,7 +16,7 @@ before_script:
   - yarn
   - yarn link
 
-build:
+Building:
   tags: [build]
   script:
     - cd /builds/beautybox/frontend/beautybox-ui-kit
@@ -25,7 +25,7 @@ build:
     - yarn link "@beautybox/core"
     - yarn build
 
-testing:
+Testing:
   tags: [test]
   script:
     - yarn test
