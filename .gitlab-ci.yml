@@ -1,12 +1,12 @@
 image: node:12-alpine
 
-before_script:  
-  - apt-get update -qq && apt-get install
+before_script:
+  - apk update && apk upgrade && apk add --no-cache bash git openssh
   - ssh gitlab.beautybox.ru
 
-build:
-  tags: [build]
-  script:
-    - cp .env.example .env
-    - yarn
-    - yarn build
+# build:
+#   tags: [build]
+#   script:
+#     - cp .env.example .env
+#     - yarn
+#     - yarn build
