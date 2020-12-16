@@ -17,6 +17,7 @@ Test SSH:
   tags: [build]
   script:
     - ssh gitlab.beautybox.ru
+    - git clone git@gitlab.beautybox.ru:beautybox/frontend/beautybox-base.git
 
 # build:
 #   tags: [build]
