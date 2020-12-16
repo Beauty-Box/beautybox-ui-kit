@@ -16,16 +16,13 @@ before_script:
   - yarn
   - yarn link
 
-Building:
-  tags: [build]
+Build and testing:
+  tags: [test]
   script:
     - cd /builds/beautybox/frontend/beautybox-ui-kit
     - cp .env.example .env
     - yarn
     - yarn link "@beautybox/core"
     - yarn build
-
-Testing:
-  tags: [test]
-  script:
     - yarn test
+    
