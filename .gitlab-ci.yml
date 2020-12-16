@@ -19,9 +19,6 @@ before_script:
   - yarn link
 
 build:
-  image:
-    name: dsf
-    
   tags: [build]
   script:
     - cd /builds/beautybox/frontend/beautybox-ui-kit
