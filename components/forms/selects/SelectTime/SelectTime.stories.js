@@ -11,5 +11,5 @@ export const SelectTime = () => ({
 });
 
 SelectTime.storyName = 'SelectTime';
-SelectTime.parameters = { jest: ['SelectTime.spec.js'] };
+// SelectTime.parameters = { jest: ['SelectTime.spec.js'] };
 SelectTime.decorators = [withKnobs];
