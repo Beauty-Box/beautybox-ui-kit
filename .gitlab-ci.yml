@@ -10,14 +10,17 @@ before_script:
   - chmod 644 ~/.ssh/known_hosts
   #- '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
   # - ssh gitlab.beautybox.ru
-  - git config --global user.email "darth@empire.com"
-  - git config --global user.name "Darth Vader"
+  - git config --global user.email "webmaster@beautybox.ru"
+  - git config --global user.name "Webmaster Admin"
 
 Test SSH:
   tags: [build]
   script:
     - ssh gitlab.beautybox.ru
     - git clone git@gitlab.beautybox.ru:beautybox/frontend/beautybox-base.git
+    - cd beautybox-base
+    - yarn
+    - yarn link
 
 # build:
 #   tags: [build]
