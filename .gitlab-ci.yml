@@ -1,8 +1,28 @@
 image: node:12-alpine
 
-build:
-  tags: [build]
+before_script:
+  - apk update && apk upgrade && apk add --no-cache bash git openssh
+  - eval $(ssh-agent -s)
+  - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
+  - mkdir -p ~/.ssh
+  - chmod 700 ~/.ssh
+  - ssh-keyscan gitlab.beautybox.ru >> ~/.ssh/known_hosts
+  - chmod 644 ~/.ssh/known_hosts
+  - git config --global user.email "webmaster@beautybox.ru"
+  - git config --global user.name "Webmaster Admin"
+  - ssh gitlab.beautybox.ru
+  - git clone git@gitlab.beautybox.ru:beautybox/frontend/beautybox-base.git
+  - cd beautybox-base
+  - yarn
+  - yarn link
+
+Build and testing:
+  tags: [test]
   script:
+    - cd /builds/beautybox/frontend/beautybox-ui-kit
     - cp .env.example .env
     - yarn
+    - yarn link "@beautybox/core"
     - yarn build
+    - yarn test
+    
