@@ -1,5 +1,9 @@
 image: node:12-alpine
 
+before_script:  
+  - apt-get update -qq && apt-get install
+  - ssh gitlab.beautybox.ru
+
 build:
   tags: [build]
   script:
