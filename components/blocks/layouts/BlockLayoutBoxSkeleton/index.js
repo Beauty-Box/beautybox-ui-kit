@@ -1,15 +1,21 @@
 import './BlockLayoutBoxSkeleton.scss';
 
 import VBtn from 'vuetify/lib/components/VBtn';
+import VIcon from 'vuetify/lib/components/VIcon';
 import VSkeletonLoader from 'vuetify/lib/components/VSkeletonLoader';
+const BSvg = () => import(/* webpackChunkName: "icon-svg" */ '../../../icons/Svg');
 
 export default {
     name: 'BBlockLayoutBoxSkeleton',
-    components: { VBtn, VSkeletonLoader },
+    components: { VBtn, VIcon, BSvg, VSkeletonLoader },
     props: {
         loading: {
             type: Boolean,
             required: true,
+        },
+        tag: {
+            type: String,
+            default: 'div',
         },
         hideHeader: {
             type: Boolean,
@@ -39,6 +45,10 @@ export default {
             type: Boolean,
             default: true,
         },
+        backBtn: {
+            type: Boolean,
+            default: false,
+        },
     },
     computed: {
         titleIsVisible() {
@@ -53,9 +63,10 @@ export default {
         const renderSkeleton = (type = '') => h('v-skeleton-loader', { props: { type } });
         let children = [];
         let headerBtn = [];
+        let headerBtnBack = [];
         let title = [];
 
-        if (this.title && this.titleIsVisible) {
+        if (this.title && this.titleIsVisible && !this.hideHeader) {
             title.push(h('h3', { class: { 'small-title': this.titleIsSmall } }, this.title));
 
             if (this.description && !this.$slots.description) {
@@ -65,6 +76,36 @@ export default {
             if (this.$slots.description) {
                 title.push(this.$slots.description);
             }
+        }
+
+        if (this.backBtn && !this.hideHeader) {
+            headerBtnBack.push(
+                h(
+                    'v-btn',
+                    {
+                        class: {
+                            'c-box__btn-back': true,
+                        },
+                        attrs: {
+                            title: 'Назад',
+                        },
+                        props: {
+                            depressed: true,
+                            ripple: false,
+                            icon: true,
+                            width: 44,
+                            minWidth: 44,
+                            height: 44,
+                        },
+                        on: {
+                            ...this.$listeners,
+                            click: () => this.$emit('click:back'),
+                        },
+                    },
+                    // [h('v-icon', {}, 'west')]
+                    [h('b-svg', { props: { name: 'arrow-long--left', sm: true } })]
+                )
+            );
         }
 
         if (this.btnText && this.btnIsVisible) {
@@ -105,9 +146,10 @@ export default {
                             {
                                 class: {
                                     'c-box__header': true,
+                                    'justify-start': this.backBtn,
                                 },
                             },
-                            [h('div', title), headerBtn]
+                            [headerBtnBack, h('div', title), headerBtn]
                         )
                     );
                 }
@@ -119,12 +161,13 @@ export default {
         }
 
         return h(
-            'div',
+            this.tag,
             {
                 class: {
                     'c-box': true,
                     'is-loading': this.loading,
                 },
+                on: this.$listeners,
             },
             children
         );

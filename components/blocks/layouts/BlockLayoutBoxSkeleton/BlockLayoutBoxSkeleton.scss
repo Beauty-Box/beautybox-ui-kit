@@ -46,6 +46,11 @@
             border-radius: $border-radius;
             letter-spacing: 0;
         }
+
+        & > div {
+            display: flex;
+            align-items: center;
+        }
     }
 
     &__body {
@@ -57,6 +62,14 @@
 
         @include max(xs) {
             padding: $base-indent;
+        }
+    }
+
+    &__btn-back {
+        margin-right: $gutter;
+
+        @include max(xs) {
+            margin-right: $base-indent;
         }
     }
 
