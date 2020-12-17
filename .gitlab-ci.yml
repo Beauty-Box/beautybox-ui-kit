@@ -23,6 +23,5 @@ Build and testing:
     - cp .env.example .env
     - yarn
     - yarn link "@beautybox/core"
-    - yarn build
     - yarn test
-    
+    - yarn build
