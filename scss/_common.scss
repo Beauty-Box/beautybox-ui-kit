@@ -7,10 +7,10 @@
         &--#{$screen} {
             max-width: $size !important;
 
-            @include min(#{$screen}) {
-                padding-right: 0 !important;
-                padding-left: 0 !important;
-            }
+            //@include min(#{$screen}) {
+            //    padding-right: 0 !important;
+            //    padding-left: 0 !important;
+            //}
         }
     }
 }

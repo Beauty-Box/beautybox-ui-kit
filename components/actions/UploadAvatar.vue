@@ -4,7 +4,7 @@
             <div class="c-avatar-upload__image">
                 <image-user-avatar
                     :class="activatorClass"
-                    size="80"
+                    :size="avatarSize"
                     :image="avatar"
                     :name="name"
                     :square="avatarSquare"
@@ -34,17 +34,17 @@
                 Загрузить фото
             </v-btn>
             <!--<v-btn
-            v-if="!avatar"
-            color="muted"
-            medium
-            depressed
-            class="u-text-initial font-weight-medium c-avatar-upload__btn c-avatar-upload__btn&#45;&#45;download"
-            :ripple="false"
-            @click="loadPhoto"
-        >
-            <v-icon>add_a_photo</v-icon>
-            Загрузить фото профиля
-        </v-btn>-->
+                v-if="!avatar"
+                color="muted"
+                medium
+                depressed
+                class="u-text-initial font-weight-medium c-avatar-upload__btn c-avatar-upload__btn&#45;&#45;download"
+                :ripple="false"
+                @click="loadPhoto"
+            >
+                <v-icon>add_a_photo</v-icon>
+                Загрузить фото профиля
+            </v-btn>-->
             <div v-else class="c-avatar-upload__actions">
                 <v-row style="flex-wrap: nowrap; margin-top: 10px">
                     <v-col class="pt-0 pb-0 pl-0">
@@ -85,9 +85,11 @@
 </template>
 
 <script>
-import MUploadAvatar from '../modals/MUploadAvatar';
-import ImageUserAvatar from '../image/ImageUserAvatar';
-const BSvg = () => import(/* webpackChunkName: "Svg" */ '../icons/Svg');
+const BSvg = () => import(/* webpackChunkName: "icon-svg" */ '../icons/Svg');
+const MUploadAvatar = () =>
+    import(/* webpackChunkName: "MUploadAvatar" */ '../modals/MUploadAvatar');
+const ImageUserAvatar = () =>
+    import(/* webpackChunkName: "ImageUserAvatar" */ '../image/ImageUserAvatar');
 
 export default {
     name: 'UploadAvatar',
@@ -117,7 +119,7 @@ export default {
         },
         avatarSize: {
             type: [Number, String],
-            default: '',
+            default: '80',
         },
         imgType: {
             type: String,
