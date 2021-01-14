@@ -149,7 +149,20 @@ export default {
                                     'justify-start': this.backBtn,
                                 },
                             },
-                            [headerBtnBack, h('div', title), headerBtn]
+                            [
+                                headerBtnBack,
+                                h(
+                                    'div',
+                                    {
+                                        class: {
+                                            'flex-column align-start':
+                                                this.$slots.description || this.description.length,
+                                        },
+                                    },
+                                    title
+                                ),
+                                headerBtn,
+                            ]
                         )
                     );
                 }
