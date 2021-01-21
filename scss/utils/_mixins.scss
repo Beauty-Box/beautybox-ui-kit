@@ -257,8 +257,8 @@
 }
 
 @mixin min($breakpoint) {
-    @if map-has-key($breakpointsMin, $breakpoint) {
-        @media screen and (min-width: #{map-get($breakpointsMin, $breakpoint)}) {
+    @if map-has-key($breakpoints-min, $breakpoint) {
+        @media screen and (min-width: #{map-get($breakpoints-min, $breakpoint)}) {
             @content;
         }
     } @else {

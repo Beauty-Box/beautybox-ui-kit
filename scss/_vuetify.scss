@@ -488,12 +488,14 @@ $box-shadow-dropdown: 0 5px 5px -3px rgba(164, 173, 186, 0.25),
         margin: 15px 4px 10px !important;
     } //.v-select .v-chip*/
 
-    &__selection--comma {
-        @include max(xs) {
-            margin-top: 16px !important;
-            margin-bottom: 0 !important;
-        }
-    } //.v-select__selection--comma
+    &:not(.v-text-field--solo) {
+        .v-select__selection--comma {
+            @include max(xs) {
+                margin-top: 16px !important;
+                margin-bottom: 0 !important;
+            }
+        } //.v-select__selection--comma
+    }
 
     &.v-select--chips {
         &.v-select--is-multi {

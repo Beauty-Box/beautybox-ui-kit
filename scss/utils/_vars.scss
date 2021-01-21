@@ -36,26 +36,27 @@ $color-disabled: #67768c;
 $color-disabled-text: #67768c;
 
 // Gray color's
-$gray--darkest: #242626; //#101928
+$gray--darkest: #242626;
 $gray--darken: #353737;
 $gray--dark: #464646;
 $gray: #585a59;
 $gray--light: #9b9b9b;
-$gray--lighten: #dee3e7; //#eff1f6
-$gray--lightest: #eef2f7; //muted color
+$gray--lighten: #dee3e7;
+$gray--lightest: $color-muted;
 
 // Text color's
 // $color-text--darkest : $gray--darkest;
 // $color-text--dark    : $gray--dark;
-$color-text: $color-primary; //$gray--darkest
-$color-text--light: $color-secondary; //#7e7e7e
+$color-text: $color-primary;
+$color-text--light: $color-secondary;
 $color-text--lighten: $gray--light;
-$color-text--lightest: $gray--lighten;
+//$color-text--lightest: $gray--lighten;
 
 $text-colors: (
-    primary: $color-primary,
-    error: $color-error,
+    primary: $color-text,
+    light: $color-text--light,
     success: $color-success,
+    error: $color-error,
 ) !default;
 
 // Border color's
@@ -66,7 +67,13 @@ $color-border: #a5a5a5;
 $color-border--light: #c7c7c7;
 $color-border--lighten: $gray--lighten;
 $color-border--lightest: $gray--lightest;
-$color-border-very-light: #eef0f2; //#f2f2f2
+$color-border-very-light: #eef0f2;
+
+//$color-border--darken: $gray;
+//$color-border--dark: $gray--light;
+//$color-border: $gray--lighten;
+//$color-border--light: $gray--lightest;
+//$color-border--lighten: $color-muted;
 
 $input-height: 56px;
 $input-color-border: $color-border;
@@ -122,44 +129,44 @@ $icon-size--xs: map-get($icons-sizes, 'xs');
 $icon-size--sm: map-get($icons-sizes, 'sm');
 $icon-size--md: map-get($icons-sizes, 'md');
 $icon-size--lg: map-get($icons-sizes, 'lg');
+$icon-size--xl: map-get($icons-sizes, 'xl');
 
 // Transition
 $trs: all 0.4s ease-in-out;
 
 $breakpoints: (
-    i5: 320px,
-    i7: 375px,
-    i8: 414px,
-    xs: 480px,
-    sm: 768px,
-    md: 1024px,
-    mdX: 1280px,
-    lg: 1366px,
+    'i5': 320px,
+    'i7': 375px,
+    'i8': 414px,
+    'xs': 480px,
+    'sm': 768px,
+    'md': 1024px,
+    'mdX': 1280px,
+    'lg': 1366px,
 ) !default;
 
-$breakpointsMin: (
-    i5: 319px,
-    i7: 374px,
-    i8: 413px,
-    xs: 479px,
-    sm: 767px,
-    md: 1023px,
-    mdX: 1280px,
-    lg: 1365px,
+$breakpoints-min: (
+    'i5': 319px,
+    'i7': 374px,
+    'i8': 413px,
+    'xs': 479px,
+    'sm': 767px,
+    'md': 1023px,
+    'mdX': 1280px,
+    'lg': 1365px,
 ) !default;
 
 // Z-index
 $z-index: (
-    hidden: -1,
-    default: 1,
-    absolute: 5,
-    fixed: 10,
-    overlay: 1000,
-    modal: 1010,
+    'hidden': -1,
+    'default': 1,
+    'absolute': 5,
+    'fixed': 10,
+    'overlay': 1000,
+    'modal': 1010,
 ) !default;
 
-$iphoneX-fix-offset-bottom: 10px;
-
+// CSS Variables
 :root {
     --max-width: 1200px;
     --gutter: 24px;

@@ -41,21 +41,26 @@ export const vuetify = new Vuetify({
         },
         themes: {
             light: {
+                // Base colors
                 primary: '#101928', //* Задано
                 secondary: '#67768c', //* Задано
                 muted: '#eef2f7', //* Задано
                 accent: '#ff8272', //* Задано
-                background: '#101928', //* Задано
                 success: '#43B581', //* Задано
                 warning: '#ffc107', //* Задано
                 error: '#f74969', //* Задано
                 info: '#037aff', //* Задано
                 link: '#2b72bd', //* Задано
                 ripple: '#67768c', //* Задано
-                colorText: '#101928', //* Задано
-                'background--light': '#f7f7f8', //* Задано
+                // Background colors
+                background: '#101928', // Задано
+                'background--light': '#eef0f2', // Задано
+                'background--lighten': '#f7f7f8', // Задано
+                // Text colors
+                'color-text': '#101928', //* Задано
+                // Border colors
                 'color-border': '#dee3e7', //* Задано
-                // Social color
+                // Social colors
                 whatsapp: '#23d364',
                 viber: '#7d3daf',
                 vk: '#4a76a8',

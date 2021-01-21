@@ -159,7 +159,7 @@ $text-weight: (
 
     &--circle {
         border-radius: 50% !important;
-    } //.u-border--rounded
+    } //.u-border--circle
 } //.u-border
 
 .u-box-shadow {
@@ -168,14 +168,22 @@ $text-weight: (
     @each $screen, $number in $breakpoints {
         @include min(#{$screen}) {
             &--#{$screen} {
-                border-radius: $border-radius;
                 box-shadow: $box-shadow-base !important;
             }
         }
         @include max(#{$screen}) {
             &--#{$screen} {
-                border-radius: 0 !important;
                 box-shadow: none !important;
+            }
+        }
+    }
+
+    &-secondary {
+        @each $screen, $number in $breakpoints {
+            @include min(#{$screen}) {
+                &--#{$screen} {
+                    box-shadow: $box-shadow-base !important;
+                }
             }
         }
     }

@@ -1,6 +1,6 @@
 <template>
     <v-btn
-        v-clipboard:copy="copyText"
+        v-clipboard:copy.stop="copyText"
         v-clipboard:success="onCopy"
         v-clipboard:error="onError"
         :icon="icon"
