@@ -57,7 +57,7 @@ $box-shadow-dropdown: 0 5px 5px -3px rgba(164, 173, 186, 0.25),
     }
 
     .v-btn {
-        &:not(.v-btn--depressed):not(.v-btn--disabled):not(.v-btn--flat):not(.v-btn--text) {
+        &:not(.v-btn--depressed):not(.v-btn--disabled):not(.v-btn--flat):not(.v-btn--text):not(.v-btn--icon) {
             &:not(.white) {
                 box-shadow: 0 4px 6px 0 rgba(16, 25, 40, 0.1) !important;
 
@@ -234,6 +234,11 @@ $box-shadow-dropdown: 0 5px 5px -3px rgba(164, 173, 186, 0.25),
             //}
         }
     }
+}
+
+.row {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
 }
 
 /*===== Components =====*/
