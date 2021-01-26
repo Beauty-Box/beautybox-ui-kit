@@ -103,7 +103,7 @@ $box-shadow-base: 0 2px 5px 0 rgba(164, 173, 186, 0.25);
 $box-shadow-base--active: 0 0 4px 0 rgba(16, 25, 40, 0.08);
 $box-shadow-base--hover: 0 5px 15px 5px rgba(164, 173, 186, 0.25);
 $box-shadow-secondary: rgba($color-secondary, 0.2) 0 8px 16px;
-$box-shadow-secondary--hover: rgba($color-secondary, 0.15) 0 8px 40px;
+$box-shadow-secondary--hover: rgba($color-secondary, 0.2) 0 8px 32px;
 $box-shadow-sticky-block: 0 15px 15px -15px rgba(222, 227, 231, 0.9);
 
 // Icon color's
@@ -131,9 +131,6 @@ $icon-size--sm: map-get($icons-sizes, 'sm');
 $icon-size--md: map-get($icons-sizes, 'md');
 $icon-size--lg: map-get($icons-sizes, 'lg');
 $icon-size--xl: map-get($icons-sizes, 'xl');
-
-// Transition
-$trs: all 0.4s ease-in-out;
 
 $breakpoints: (
     'i5': 320px,
