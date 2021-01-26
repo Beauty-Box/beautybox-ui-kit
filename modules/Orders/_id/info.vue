@@ -38,7 +38,7 @@ export default {
     async created() {
         await Order.createProvider({
             baseUrl: process.env.BASE_URL,
-            module: process.env.MODULE_NAME,
+            module: 'market',
             token: localStorage.getItem('access_token'),
         });
         await this.getData();
@@ -72,12 +72,12 @@ export default {
         <template v-else>
             <div :class="{ 'mx-4': isMobile, 'mb-8': !isMobile }">
                 <!-- TITLE -->
-                <div class="d-flex align-center mt-6">
+                <div class="title-wrap">
                     <div class="title">Заказ от {{ order.date }}</div>
                     <!-- STATUS -->
                     <app-order-item-status v-if="!isMobile" v-bind="order.status" class="ml-4" />
                 </div>
-                <p class="text--secondary d-flex" :class="{ 'mb-2': isMobile, 'mb-0': !isMobile }">
+                <div class="text--secondary d-flex" :class="{ 'mb-2': isMobile }">
                     Номер заказа: &nbsp;
                     <app-btn-copy
                         :copy-text="String(order.orderID)"
@@ -90,7 +90,7 @@ export default {
                     >
                         {{ order.orderID }}
                     </app-btn-copy>
-                </p>
+                </div>
 
                 <!-- STATUS -->
                 <app-order-item-status
@@ -167,11 +167,24 @@ export default {
 </template>
 
 <style lang="scss" scoped>
-.v-application .title {
-    font-size: 28px !important;
-    font-weight: 600 !important;
-    line-height: 42px;
-} //.title
+.beauty-link {
+    .title-wrap {
+        margin-top: $gutter;
+    }
+}
+
+.v-application {
+    .title {
+        font-size: 28px !important;
+        font-weight: 600 !important;
+        line-height: 42px;
+    } //.title
+}
+
+.title-wrap {
+    display: flex;
+    align-items: center;
+}
 
 .c-orders-list {
     @include max(sm) {

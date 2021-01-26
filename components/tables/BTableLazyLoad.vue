@@ -1,10 +1,10 @@
 <template>
     <v-simple-table>
-        <template v-slot:default>
+        <template #default>
             <thead v-if="showHeaderAll || !$vuetify.breakpoint.mobile">
                 <slot name="table-head" />
             </thead>
-            <tbody v-scroll:#main="onScrollControl">
+            <tbody v-scroll:#scroll-container="onScrollControl">
                 <slot v-if="$slots['table-body']" name="table-body" />
                 <tr v-if="loading">
                     <td colspan="100%" align="center" :style="{ position: 'relative' }">
@@ -18,11 +18,10 @@
 
 <script>
 import { scroll } from '../../mixins';
-const BBlockLoader = () =>
-    import(/* webpackChunkName: "BlockLoader" */ '../blocks/BlockLoader');
+const BBlockLoader = () => import(/* webpackChunkName: "BlockLoader" */ '../blocks/BlockLoader');
 
 export default {
-    name: 'BTableLazyLoad',
+    name: 'b-table-lazy-load',
     components: { BBlockLoader },
     mixins: [scroll],
     props: {
@@ -49,7 +48,7 @@ export default {
         showHeaderAll: {
             type: Boolean,
             default: false,
-        }
+        },
     },
 };
 </script>

@@ -52,7 +52,7 @@ export default {
     async created() {
         Orders.createProvider({
             baseUrl: process.env.BASE_URL,
-            module: process.env.MODULE_NAME,
+            module: 'market',
             token: localStorage.getItem('access_token'),
         });
         await this.getOrders();
@@ -96,7 +96,7 @@ export default {
         <template v-else>
             <v-list
                 v-if="orders.items.length"
-                v-scroll:#main="onScrollControl"
+                v-scroll:#scroll-container="onScrollControl"
                 class="c-list-orders"
             >
                 <app-order-item

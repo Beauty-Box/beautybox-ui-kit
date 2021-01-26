@@ -42,7 +42,7 @@
                                 :complete-icon="index + 1 === current ? 'done' : ''"
                                 :complete="index < current"
                             >
-                                <div>
+                                <div class="d-flex justify-space-between" style="width: 100%">
                                     <span>{{ item.sum }}</span>
                                     <span>{{ item.percent }}%</span>
                                 </div>
@@ -87,7 +87,7 @@ export default {
     created() {
         Sales.createProvider({
             baseUrl: process.env.BASE_URL,
-            module: process.env.MODULE_NAME,
+            module: 'market',
             token: localStorage.getItem('access_token'),
         });
         this.requestAll([this.getPercent(), this.getLevel(), this.getDiscount()]);
@@ -145,10 +145,6 @@ export default {
 }
 
 .v-stepper {
-    &__label {
-        width: 100%;
-    }
-
     &__step {
         &:not(.v-stepper__step--complete) {
             ::v-deep .v-stepper__step__step {
@@ -181,6 +177,10 @@ export default {
             &:not(:last-child) {
             }
         }
+    }
+
+    ::v-deep &__label {
+        width: 100%;
     }
 }
 
