@@ -99,12 +99,12 @@ $color-bg--instagram: linear-gradient(
 );
 
 // Shadow color's
-$box-shadow: 164, 173, 186;
 $box-shadow-base: 0 2px 5px 0 rgba(164, 173, 186, 0.25);
-$box-shadow-secondary: rgba($color-secondary, 0.2) 0 8px 16px;
-$box-shadow-sticky-block: 0 15px 15px -15px rgba(222, 227, 231, 0.9);
-$box-shadow-base--hover: 0 5px 15px 5px rgba(164, 173, 186, 0.25);
 $box-shadow-base--active: 0 0 4px 0 rgba(16, 25, 40, 0.08);
+$box-shadow-base--hover: 0 5px 15px 5px rgba(164, 173, 186, 0.25);
+$box-shadow-secondary: rgba($color-secondary, 0.2) 0 8px 16px;
+$box-shadow-secondary--hover: rgba($color-secondary, 0.15) 0 8px 40px;
+$box-shadow-sticky-block: 0 15px 15px -15px rgba(222, 227, 231, 0.9);
 
 // Icon color's
 $color-icon: $color-text;
