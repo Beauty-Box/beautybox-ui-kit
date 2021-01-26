@@ -36,12 +36,11 @@ export default {
         },
     },
     async created() {
-        const config = {
+        await Order.createProvider({
             baseUrl: process.env.BASE_URL,
-            module: 'link',
+            module: process.env.MODULE_NAME,
             token: localStorage.getItem('access_token'),
-        };
-        await Order.createProvider(config);
+        });
         await this.getData();
         this.loading = false;
     },
@@ -68,8 +67,8 @@ export default {
 </script>
 
 <template>
-    <v-container class="container--md" :class="{ 'px-0 pb-0': isMobile }">
-        <app-block-loader v-if="loading" position="fixed" bgc="#fff" />
+    <v-container class="container--md" :class="{ 'background--lighten px-0 pb-0': isMobile }">
+        <app-block-loader v-if="loading" bgc="#f2f2f7" />
         <template v-else>
             <div :class="{ 'mx-4': isMobile, 'mb-8': !isMobile }">
                 <!-- TITLE -->
@@ -168,7 +167,7 @@ export default {
 </template>
 
 <style lang="scss" scoped>
-.title {
+.v-application .title {
     font-size: 28px !important;
     font-weight: 600 !important;
     line-height: 42px;

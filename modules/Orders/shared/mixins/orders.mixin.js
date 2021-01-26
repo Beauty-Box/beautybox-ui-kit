@@ -6,13 +6,20 @@ const ordersMixin = {
         modelOrderStatus: 0,
         orders: new Orders(),
     }),
+    async mounted() {
+        await this.getStatuses();
+
+        if (this.$route.query.status !== undefined) {
+            this.modelOrderStatus = parseInt(this.$route.query.status);
+        }
+
+        if (this.$route.query.orderID !== undefined) {
+            this.modelOrderId = this.$route.query.orderID;
+        }
+    },
     methods: {
         async getStatuses() {
             ({ status: this.orders.status } = await Orders.getOrderStatuses());
-
-            if (this.$route.query.status !== undefined) {
-                this.modelOrderStatus = parseInt(this.$route.query.status);
-            }
         },
         changeStatus() {
             if (this.modelOrderStatus === 0) {
@@ -26,14 +33,14 @@ const ordersMixin = {
             }
         },
         changeOrderId() {
-            if (this.modelOrderId.length > 0) {
+            if (this.modelOrderId && this.modelOrderId.length > 0) {
                 this.$router.push({
                     query: Object.assign({}, this.$route.query, {
-                        order_id: this.modelOrderId,
+                        orderID: this.modelOrderId,
                     }),
                 });
             } else {
-                this.deleteQuery('order_id');
+                this.deleteQuery('orderID');
             }
         },
         deleteQuery(queryName = '') {

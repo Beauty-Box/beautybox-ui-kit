@@ -21,8 +21,6 @@ export default {
         ordersLoading: false,
         count: null,
         orders: new Orders(),
-        orderStatuses: [],
-        modelStatusOrder: 0,
 
         // For scroll loading
         heightForActiveScroll: 100,
@@ -36,21 +34,6 @@ export default {
         },
     },
     watch: {
-        modelStatusOrder(modelStatusOrder) {
-            if (modelStatusOrder === 0) {
-                let query = Object.assign({}, this.$route.query);
-                delete query.status;
-                this.$router.push({ query });
-            }
-
-            if (modelStatusOrder > 0) {
-                this.$router.push({
-                    query: Object.assign({}, this.$route.query, { status: modelStatusOrder }),
-                });
-            }
-
-            this.getOrders();
-        },
         '$route.query.status': {
             handler() {
                 this.getOrders();
@@ -60,23 +43,20 @@ export default {
         },
         '$route.query.orderID': {
             handler() {
-                this.getOrders();
+                setTimeout(() => this.getOrders(), 900);
             },
             deep: true,
             immediate: true,
         },
     },
-    created() {
-        const config = {
+    async created() {
+        Orders.createProvider({
             baseUrl: process.env.BASE_URL,
-            module: 'link',
+            module: process.env.MODULE_NAME,
             token: localStorage.getItem('access_token'),
-        };
-        Orders.createProvider(config);
-        this.requestAll([this.getStatuses(), this.getOrders()]);
-        this.requestEnd(() => {
-            this.loading = false;
         });
+        await this.getOrders();
+        this.loading = false;
     },
     methods: {
         async getOrders() {
@@ -87,11 +67,7 @@ export default {
             this.allItemsLength = this.orders.count;
             this.nowItemsLength = this.orders.items.length;
         },
-        async getStatuses() {
-            ({ status: this.orders.status } = await Orders.getOrderStatuses());
-        },
         async onScrollEndHandler() {
-            console.log('--- onScrollEndHandler');
             this.ordersLoading = true;
             this.readyToGetElements = false;
 
@@ -112,39 +88,12 @@ export default {
 </script>
 
 <template>
-    <v-container class="container--md" :class="{ 'px-0 pb-0': isMobile }">
-        <app-block-loader v-if="loading" position="fixed" bgc="#fff" />
+    <v-container
+        class="container--md d-flex flex-column flex-grow-1"
+        :class="{ 'px-0 pb-0': isMobile }"
+    >
+        <app-block-loader v-if="loading" bgc="#fff" />
         <template v-else>
-            <!-- <v-row
-                no-gutters
-                align="center"
-                justify="space-between"
-                class="flex-grow-0 mb-6"
-                :class="{ 'px-4': isMobile }"
-            >
-                <v-col cols="12" lg="4">
-                    <app-select
-                        v-model="modelStatusOrder"
-                        :items="orders.status"
-                        class="flex-grow-0"
-                        hide-details
-                        solo
-                        flat
-                    />
-                </v-col>
-                <v-col v-if="!isMobile" cols="12" lg="4" class="d-flex">
-                    <v-btn
-                        large
-                        :ripple="false"
-                        color="primary"
-                        class="u-hide-before font-weight-regular ml-auto"
-                        target="_blank"
-                        href="https://beautybox.ru/market"
-                    >
-                        Перейти в магазин
-                    </v-btn>
-                </v-col>
-            </v-row>-->
             <v-list
                 v-if="orders.items.length"
                 v-scroll:#main="onScrollControl"
