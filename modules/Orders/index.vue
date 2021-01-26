@@ -9,7 +9,7 @@ const AppBlockEmpty = () =>
     import(/* webpackChunkName: "BlockEmpty" */ '../../components/blocks/BlockEmpty');
 const AppSelect = () =>
     import(/* webpackChunkName: "Select" */ '../../components/forms/selects/Select');
-import AppOrderItem from './shared/components/order-item';
+import AppOrderItem from './shared/components/order-item/order-item';
 
 export default {
     name: 'app-orders-page',

@@ -2,7 +2,7 @@
 import { EMPTY_PHOTO } from '@/constants';
 import AppOrderItemStatus from './order-item-status';
 const AppBtnCopy = () =>
-    import(/* webpackChunkName: "BtnCopy" */ '../../../../components/buttons/AppBtnCopy');
+    import(/* webpackChunkName: "BtnCopy" */ '../../../../../components/buttons/AppBtnCopy');
 
 export default {
     name: 'app-order-item',

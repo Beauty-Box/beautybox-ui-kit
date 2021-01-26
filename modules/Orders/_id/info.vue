@@ -7,11 +7,11 @@ const AppBtnCopy = () =>
     import(/* webpackChunkName: "BtnCopy" */ '../../../components/buttons/AppBtnCopy');
 
 import AppBottomSheet from '../../../components/bottom-sheet/BottomSheet';
-import AppProductPhoto from '../shared/components/order-item-product-photo';
-import AppOrderItemProduct from '../shared/components/order-item-product';
-import AppOrderItemStatus from '../shared/components/order-item-status';
-import AppOrderItemShort from '../shared/components/order-item-short';
-import AppOrderItemInfo from '../shared/components/order-item-info';
+import AppProductPhoto from '../shared/components/order-item/order-item-product-photo';
+import AppOrderItemProduct from '../shared/components/order-item/order-item-product';
+import AppOrderItemStatus from '../shared/components/order-item/order-item-status';
+import AppOrderItemShort from '../shared/components/order-item/order-item-short';
+import AppOrderItemInfo from '../shared/components/order-item/order-item-info';
 
 export default {
     name: 'app-order-info',
