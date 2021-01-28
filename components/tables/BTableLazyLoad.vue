@@ -17,13 +17,13 @@
 </template>
 
 <script>
-import { scroll } from '../../mixins';
+import { getOnScrollMixin } from '../../mixins';
 const BBlockLoader = () => import(/* webpackChunkName: "BlockLoader" */ '../blocks/BlockLoader');
 
 export default {
     name: 'b-table-lazy-load',
     components: { BBlockLoader },
-    mixins: [scroll],
+    mixins: [getOnScrollMixin],
     props: {
         loading: {
             type: Boolean,

@@ -12,14 +12,14 @@
 
 <script>
 const draggable = () => import(/* webpackChunkName: "Vuedraggable" */ 'vuedraggable');
-import { modalProps } from '@beautybox/core/mixins/modalProps';
+import { modalToggleMixin } from '../../mixins';
 
 export default {
-    name: 'ListDraggable',
+    name: 'list-draggable',
     components: {
         draggable,
     },
-    mixins: [modalProps],
+    mixins: [modalToggleMixin],
     props: {
         handle: {
             type: String,

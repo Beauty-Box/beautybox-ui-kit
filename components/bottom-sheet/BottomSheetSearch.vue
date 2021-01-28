@@ -1,7 +1,7 @@
 <template>
     <div>
         <b-input
-            v-model="title"
+            v-model="computedTitle"
             readonly
             :label="label"
             :disabled="disabled"
@@ -71,16 +71,16 @@
 </template>
 
 <script>
-import { scroll, modalToggleMixin, modalOverlayColorMixin } from '../../mixins';
+import { getOnScrollMixin, modalToggleMixin, modalOverlayColorMixin } from '../../mixins';
 const BBtnClose = () => import(/* webpackChunkName: "BtnClose" */ '../buttons/BtnClose');
 const BInput = () => import(/* webpackChunkName: "Input" */ '../forms/inputs/Input');
 const BInputSearch = () =>
     import(/* webpackChunkName: "InputSearch" */ '../forms/inputs/InputSearch');
 
 export default {
-    name: 'BBottomSheetSearch',
+    name: 'b-bottom-sheet-search',
     components: { BBtnClose, BInput, BInputSearch },
-    mixins: [scroll, modalToggleMixin, modalOverlayColorMixin],
+    mixins: [getOnScrollMixin, modalToggleMixin, modalOverlayColorMixin],
     props: {
         selected: {
             type: [Number, String],
@@ -160,6 +160,16 @@ export default {
         isScrolled: false,
         heightForActiveScroll: 100,
     }),
+    computed: {
+        computedTitle: {
+            get() {
+                return this.title;
+            },
+            set(value) {
+                this.$emit('update:title', value);
+            },
+        },
+    },
     methods: {
         onScroll(e) {
             this.onScrollControl(e);

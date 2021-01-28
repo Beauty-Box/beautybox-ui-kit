@@ -7,10 +7,10 @@
     </v-list>
 </template>
 <script>
-import { modalProps } from '@beautybox/core/mixins/modalProps';
+import { modalToggleMixin } from '../../mixins';
 export default {
-    name: 'BListSimple',
-    mixins: [modalProps],
+    name: 'b-list-simple',
+    mixins: [modalToggleMixin],
     props: {
         multiple: {
             type: Boolean,

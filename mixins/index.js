@@ -1,3 +1,4 @@
 export * from './select';
 export * from './modal';
-export * from './ScrollControl';
+export * from './get-on-scroll.mixin';
+export * from './update-route.mixin';

@@ -1,6 +1,6 @@
 import '.././BottomSheet.scss';
 
-import { modalProps } from '@beautybox/core/mixins/modalProps';
+import { modalToggleMixin } from '../../../mixins';
 
 import { VBottomSheet, VBtn, VSheet } from 'vuetify/lib';
 
@@ -8,7 +8,7 @@ import FInput from '../../forms/inputs/Input';
 
 export default {
     name: 'BottomSheetSimple',
-    mixins: [modalProps],
+    mixins: [modalToggleMixin],
     components: { VBottomSheet, VBtn, FInput, VSheet },
     props: {
         selected: {

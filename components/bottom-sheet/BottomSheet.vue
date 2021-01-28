@@ -52,13 +52,13 @@
 </template>
 
 <script>
-import { scroll, modalToggleMixin, modalOverlayColorMixin } from '../../mixins';
+import { getOnScrollMixin, modalToggleMixin, modalOverlayColorMixin } from '../../mixins';
 const BBtnClose = () => import(/* webpackChunkName: "BtnClose" */ '../buttons/BtnClose');
 
 export default {
-    name: 'BBottomSheet',
+    name: 'b-bottom-sheet',
     components: { BBtnClose },
-    mixins: [scroll, modalToggleMixin, modalOverlayColorMixin],
+    mixins: [getOnScrollMixin, modalToggleMixin, modalOverlayColorMixin],
     props: {
         tag: {
             type: String,

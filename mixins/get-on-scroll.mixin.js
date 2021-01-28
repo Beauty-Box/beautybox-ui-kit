@@ -7,7 +7,7 @@
  * @param {Number} heightForActiveScroll - Количество пикселей до срабатывания функции по умолчанию 800
  * */
 
-const scroll = {
+const getOnScrollMixin = {
     data: () => ({
         bottom: false,
         heightForActiveScroll: 800,
@@ -49,5 +49,5 @@ const scroll = {
     },
 };
 
-export { scroll };
-export default scroll;
+export { getOnScrollMixin };
+export default getOnScrollMixin;
