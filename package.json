@@ -12,7 +12,7 @@
         "build": "build-storybook -o ./dist",
         "deploy": "build-storybook -o ./dist_new",
         "lint:scripts": "eslint --config ./.eslintrc --fix --ext .js,.vue --ignore-path ./.eslintignore",
-        "lint:styles": "stylelint --config /.stylelintrc --fix scss/*.{scss,sass}",
+        "lint:styles": "stylelint --config /.stylelintrc --fix **/*.{scss,sass} --ignore-path ./.stylelintignore",
         "lint": "yarn run lint:scripts && yarn run lint:styles",
         "test": "jest -u"
     },
@@ -22,7 +22,11 @@
         }
     },
     "lint-staged": {
-        "*.{js,vue}": "eslint --config ./.eslintrc --fix --ext .js,.vue --ignore-path ./.eslintignore"
+        "*.{js,vue}": "eslint --config ./.eslintrc --fix --ext .js,.vue --ignore-path ./.eslintignore",
+        "*.{scss,sass}": [
+            "stylelint --config /.stylelintrc --fix **/*.{scss,sass} --ignore-path ./.stylelintignore",
+            "prettier --write"
+        ]
     },
     "dependencies": {
         "@storybook/addon-storyshots": "^6.1.9",
