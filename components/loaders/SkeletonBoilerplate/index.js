@@ -1,7 +1,7 @@
 import { VSkeletonLoader } from 'vuetify/lib';
 
 export default {
-    name: 'BSkeletonBoilerplate',
+    name: 'app-skeleton-boilerplate',
     functional: true,
 
     render(h, { data, props, children }) {

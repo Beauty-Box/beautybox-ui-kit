@@ -1,9 +1,9 @@
 .theme--light {
     &.v-btn {
         &.c-btn-favorite {
-            color: rgba(16, 25, 40, 0.5);
+            color: rgba($color-primary, 0.5);
 
-            &--active {
+            &.c-btn-favorite--active {
                 color: $color-error;
             }
 
@@ -14,11 +14,9 @@
     }
 }
 
-.v-btn.c-btn-favorite {
-    &--active {
-        svg {
-            animation: 500ms ease-in-out 0s 1 normal none running addToFav;
-        }
+.v-btn.c-btn-favorite--active {
+    svg {
+        animation: 500ms ease-in-out 0s 1 normal none running addToFav;
     }
 }
 

@@ -16,7 +16,7 @@ const icon = `<svg
                         </svg>`;
 
 export default {
-    name: 'BBtnAdd',
+    name: 'app-btn-add-to-favorite',
     components: { VBtn },
     props: {
         ...VBtn.options.props,
