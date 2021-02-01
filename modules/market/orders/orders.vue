@@ -1,20 +1,20 @@
 <script>
 import { Orders } from '@beautybox/core/entity/Orders';
 import { objectToURLParams } from '@beautybox/core/utils';
-import { scroll } from '../../mixins/ScrollControl';
+import { getOnScrollMixin } from '../../../mixins/get-on-scroll.mixin';
 
 const AppBlockLoader = () =>
-    import(/* webpackChunkName: "BlockLoader" */ '../../components/blocks/BlockLoader');
+    import(/* webpackChunkName: "BlockLoader" */ '../../../components/blocks/BlockLoader');
 const AppBlockEmpty = () =>
-    import(/* webpackChunkName: "BlockEmpty" */ '../../components/blocks/BlockEmpty');
+    import(/* webpackChunkName: "BlockEmpty" */ '../../../components/blocks/BlockEmpty');
 const AppSelect = () =>
-    import(/* webpackChunkName: "Select" */ '../../components/forms/selects/Select');
+    import(/* webpackChunkName: "Select" */ '../../../components/forms/selects/Select');
 import AppOrderItem from './shared/components/order-item/order-item';
 
 export default {
     name: 'app-orders-page',
     components: { AppBlockLoader, AppBlockEmpty, AppSelect, AppOrderItem },
-    mixins: [scroll],
+    mixins: [getOnScrollMixin],
     props: {},
     data: () => ({
         loading: true,

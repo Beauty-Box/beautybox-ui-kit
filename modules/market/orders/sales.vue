@@ -3,12 +3,12 @@
         <app-block-loader v-if="loading" bgc="#fff" />
         <v-row v-else>
             <v-col cols="12" md="6">
-                <v-card :class="{ 'mx-4': isMobile }">
+                <!-- <v-card :class="{ 'mx-4': isMobile }">
                     <v-card-title class="mb-6">Моя скидка</v-card-title>
-                    <v-card-text class="primary--text" style="font-size: 32px; font-weight: 600">
+                    <v-card-text class="primary&#45;&#45;text" style="font-size: 32px; font-weight: 600">
                         {{ percent }} %
                     </v-card-text>
-                    <v-card-text class="primary--text pt-0 pb-0" style="font-size: 16px">
+                    <v-card-text class="primary&#45;&#45;text pt-0 pb-0" style="font-size: 16px">
                         {{ priceFilter(next_level_sum) }} до скидки {{ next_level_percent }}%
                     </v-card-text>
                     <v-card-actions class="pt-3">
@@ -20,7 +20,8 @@
                             color="#DE81E0"
                         />
                     </v-card-actions>
-                </v-card>
+                </v-card>-->
+                <app-sale-block :class="{ 'mx-4': $vuetify.breakpoint.mobile }" />
             </v-col>
             <v-col cols="12" md="6" :class="{ 'pb-0': isMobile }">
                 <v-card :class="{ 'elevation-0 rounded-0': isMobile }">
@@ -62,21 +63,17 @@
 </template>
 
 <script>
-import { priceFilter } from '@beautybox/core/filters';
 import { Sales } from '@beautybox/core/entity/Orders/Sales';
-
+const AppSaleBlock = () =>
+    import(/* webpackChunkName: "sale-block" */ './shared/components/sale-block');
 const AppBlockLoader = () =>
-    import(/* webpackChunkName: "BlockLoader" */ '../../components/blocks/BlockLoader');
+    import(/* webpackChunkName: "BlockLoader" */ '../../../components/blocks/BlockLoader');
 
 export default {
-    components: { AppBlockLoader },
+    components: { AppSaleBlock, AppBlockLoader },
     data: () => ({
         loading: true,
         current: 0,
-        next_level_sum: 0,
-        next_level_percent: 0,
-        progress_percent: 0,
-        percent: 0,
         discount_calculation: [],
     }),
     computed: {
@@ -90,23 +87,22 @@ export default {
             module: 'market',
             token: localStorage.getItem('access_token'),
         });
-        this.requestAll([this.getPercent(), this.getLevel(), this.getDiscount()]);
+        this.requestAll([this.getDiscount()]);
         this.requestEnd(() => {
             this.loading = false;
         });
     },
     methods: {
-        priceFilter,
-        async getPercent() {
+        /*async getPercent() {
             ({ percent: this.percent = 0 } = await Sales.getPercent());
-        },
-        async getLevel() {
+        },*/
+        /*async getLevel() {
             ({
                 next_level_sum: this.next_level_sum = 0,
                 next_level_percent: this.next_level_percent = 0,
                 progress_percent: this.progress_percent = 0,
             } = await Sales.getLevel());
-        },
+        },*/
         async getDiscount() {
             ({
                 discount_calculation: this.discount_calculation = [],

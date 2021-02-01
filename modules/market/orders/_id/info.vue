@@ -2,11 +2,11 @@
 import { Order } from '@beautybox/core/entity/Orders';
 
 const AppBlockLoader = () =>
-    import(/* webpackChunkName: "BlockLoader" */ '../../../components/blocks/BlockLoader');
+    import(/* webpackChunkName: "BlockLoader" */ '../../../../components/blocks/BlockLoader');
 const AppBtnCopy = () =>
-    import(/* webpackChunkName: "BtnCopy" */ '../../../components/buttons/AppBtnCopy');
+    import(/* webpackChunkName: "BtnCopy" */ '../../../../components/buttons/AppBtnCopy');
 
-import AppBottomSheet from '../../../components/bottom-sheet/BottomSheet';
+import AppBottomSheet from '../../../../components/bottom-sheet/BottomSheet';
 import AppProductPhoto from '../shared/components/order-item/order-item-product-photo';
 import AppOrderItemProduct from '../shared/components/order-item/order-item-product';
 import AppOrderItemStatus from '../shared/components/order-item/order-item-status';
