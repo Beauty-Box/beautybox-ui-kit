@@ -6,6 +6,7 @@
 
 .v-list-item {
     flex: initial;
+    flex-shrink: 0;
     overflow: hidden;
     border-radius: $border-radius;
     cursor: pointer;

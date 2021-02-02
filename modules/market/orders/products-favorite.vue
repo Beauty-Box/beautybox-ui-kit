@@ -7,13 +7,19 @@
         <app-block-loader v-if="loading" bgc="transparent" />
 
         <app-block-empty
-            v-else-if="!products.items.length"
+            v-else-if="!favorites.length"
             icon="cart"
-            title="В списке пока ничего нет"
+            title="В избранном пока ничего нет"
             text="Перейдите в магазин, чтобы найти все, что нужно"
         >
             <template #buttons>
-                <v-btn class="empty__btn" color="primary" large @click="goToMarket">
+                <v-btn
+                    large
+                    target="_blank"
+                    color="primary"
+                    class="empty__btn"
+                    href="https://beautybox.ru/market"
+                >
                     Перейти в магазин
                 </v-btn>
             </template>
@@ -57,27 +63,18 @@
                 <v-container class="py-0">
                     <v-row>
                         <v-col
-                            v-for="(product, index) in products.items"
+                            v-for="(product, index) in favorites"
                             :key="index"
                             cols="6"
-                            md="4"
+                            sm="4"
                             lg="4"
                             class="d-flex flex-column"
                         >
-                            <!-- <app-market-product-item
-                                class="flex-grow-1"
-                                :product="product"
-                                :in-cart="parseInt(itemsInCart[product.productID])"
-                                @add="addToCart(product.productID)"
-                                @remove="removeFromCart(product.productID)"
-                            />-->
                             <app-market-product-item
                                 :product="product"
                                 class="flex-grow-1"
                                 :is-favorite-ids="favoritesProductsId"
                                 :in-cart="parseInt(itemsInCart[product.productID])"
-                                @click:add-to-cart="addToCart(product.productID)"
-                                @click:remove-from-cart="removeFromCart(product.productID)"
                             />
                         </v-col>
                     </v-row>
@@ -98,8 +95,7 @@
 </template>
 
 <script>
-// import { SORT_FILTERS } from '../../constants';
-import { Products, Product } from '@beautybox/core/entity/Orders/Products';
+import { Products } from '@beautybox/core/entity/Orders/Products';
 import { objectToURLParams } from '@beautybox/core/utils';
 import { updateRouteMixin, getOnScrollMixin } from '../../../mixins';
 
@@ -112,15 +108,14 @@ import { productsFavoriteMixin } from './shared/mixins/products.mixin';
 import AppMarketProductItem from '../shared/components/market-product-item/market-product-item';
 
 export default {
+    name: 'app-products-favorite',
     components: { AppMarketProductItem, AppBlockLoader, AppBlockEmpty },
     mixins: [updateRouteMixin, getOnScrollMixin, productsFavoriteMixin],
     data: () => ({
         loading: true,
-        products: new Products(),
-        // modelSorting: 'newest',
         itemsInCart: [],
-        // favoritesProductsId: [],
-        // sortFilters: SORT_FILTERS,
+        favorites: [],
+        favoritesProductsId: [],
 
         // Get on scroll
         loadingProducts: false,
@@ -129,19 +124,6 @@ export default {
         readyToGetElements: true,
         heightForActiveScroll: 100,
     }),
-    /*computed: {
-        sortingBy: {
-            get() {
-                return this.$route.query.sort_by || 'newest';
-            },
-            set(value) {
-                this.$bus.$emit('change-sorting', { name: 'sort_by', value });
-            },
-        },
-        sortingMethod() {
-            return this.sortFilters.find((f) => f.value === this.sortingBy);
-        },
-    },*/
     async created() {
         await Products.createProvider({
             baseUrl: process.env.BASE_URL,
@@ -149,88 +131,75 @@ export default {
             token: localStorage.getItem('access_token'),
         });
 
-        this.requestAll([this.getFavoritesProductsId(), this.getProducts(), this.getCartItems()]);
+        this.requestAll([
+            this.getFavoritesProductsId(),
+            this.getFavoritesProducts(),
+            this.getCartItems(),
+        ]);
 
         this.requestEnd(() => {
             this.loading = false;
         });
 
-        this.$bus.$on('change-status', this.updateRoute);
         this.$bus.$on('change-category', this.updateRoute);
-        this.$bus.$on('change-sorting', this.updateRoute);
-        // this.$bus.$on('update:favorite-ids', this.getFavoritesProductsId);
-        this.$bus.$on('route-update', this.getProducts);
+        this.$bus.$on('route-update', this.getFavoritesProducts);
     },
     beforeDestroy() {
-        this.$bus.$off('change-status', this.updateRoute);
         this.$bus.$off('change-category', this.updateRoute);
-        this.$bus.$off('change-sorting', this.updateRoute);
-        // this.$bus.$off('update:favorite-ids', this.getFavoritesProductsId);
-        this.$bus.$off('route-update', this.getProducts);
+        this.$bus.$off('route-update', this.getFavoritesProducts);
     },
     methods: {
-        async getProducts() {
-            console.log('--- getProducts');
+        async getFavoritesProducts() {
+            console.log('--- getFavoritesProducts');
+            this.loading = true;
 
             ({
-                products: this.products.items,
+                favorites: this.favorites,
                 total: this.allItemsLength,
-            } = await Products.getProducts(objectToURLParams(this.$route.query)));
+            } = await Products.getFavoritesProducts(objectToURLParams(this.$route.query)));
 
-            this.nowItemsLength = this.products.items.length;
+            this.nowItemsLength = this.favorites.length;
+            this.loading = false;
         },
         async getCartItems() {
             this.itemsInCart = await Products.getCartItems();
+            console.log('--- getCartItems', this.itemsInCart);
         },
         async getFavoritesProductsId() {
             ({ favorites_id: this.favoritesProductsId } = await Products.getFavoritesProductsId());
-            console.log('--- favoritesProductsId', this.favoritesProductsId);
         },
         async onScrollEndHandler() {
             this.loadingProducts = true;
             this.readyToGetElements = false;
 
-            const query = { ...this.$route.query, skip: this.products.items.length };
-            const newProducts = (await Products.getProducts(objectToURLParams(query))).products;
+            const query = { ...this.$route.query, skip: this.favorites.length };
+            const newProducts = (await Products.getFavoritesProducts(objectToURLParams(query)))
+                .favorites;
 
-            this.products.items.push(...newProducts);
-            this.nowItemsLength = this.products.items.length;
+            this.favorites.push(...newProducts);
+            this.nowItemsLength = this.favorites.length;
 
-            if (this.products.items.length < this.allItemsLength) {
+            if (this.favorites.length < this.allItemsLength) {
                 this.readyToGetElements = true;
             }
 
             this.loadingProducts = false;
         },
 
-        /*changeSortingMethod(method) {
-            console.log('--- method', method);
-            // console.log('--- changeSortingMethod', this.sortingBy);
-            this.sortingBy = method;
-            // console.log('--- changeSortingMethod', this.sortingBy);
-            // console.log('--- sortingMethod', this.sortingMethod);
-            // this.replaceToQuery({ ...this.$route.query, ...this.sortingMethod.queryNew });
-        },*/
-
         addToCart(productID) {
-            console.log('--- addToCart');
             const formData = new FormData();
             formData.append('productID', productID);
             formData.append('quantity', 1);
-            Product.addToCart(formData);
+            Products.addToCart(formData);
 
             this.$set(this.itemsInCart, productID, 1);
         },
         removeFromCart(productID) {
-            console.log('--- removeFromCart');
             const formData = new FormData();
             formData.append('productID', productID);
-            Product.removeFromCart(formData);
+            Products.removeFromCart(formData);
 
             this.$set(this.itemsInCart, productID, 0);
-        },
-        goToMarket() {
-            window.location.href = '/market';
         },
     },
 };

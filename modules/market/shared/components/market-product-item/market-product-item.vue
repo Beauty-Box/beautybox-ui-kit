@@ -21,8 +21,8 @@
             </template>
             <app-btn-add-to-favorite
                 :active.sync="isFavorite"
-                @add="$emit('add-to-favorite')"
-                @remove="$emit('remove-from-favorite')"
+                @add="addToFavorites(product.productID)"
+                @remove="removeFromFavorites(product.productID)"
             />
         </v-card-title>
         <v-card-text
@@ -59,10 +59,21 @@
                 :disabled="!product.stock > 0"
                 :color="inCart ? 'success' : 'accent'"
                 class="u-text-initial"
+                @click="$emit('click:add-to-cart')"
             >
                 {{ buttonText(product) }}
             </v-btn>
-            <v-btn v-if="inCart" icon color="primary" @click="">
+            <v-btn
+                v-if="inCart"
+                depressed
+                height="32"
+                min-height="32"
+                min-width="32"
+                width="32"
+                color="muted"
+                title="Убрать из корзины"
+                @click="$emit('click:remove-from-cart')"
+            >
                 <v-icon>delete</v-icon>
             </v-btn>
         </v-card-actions>
@@ -70,7 +81,9 @@
 </template>
 
 <script>
+import { Product } from '@beautybox/core/entity/Orders/Products';
 import AppBtnAddToFavorite from '../../../../../components/buttons/BtnAddToFavorites';
+
 export default {
     name: 'app-market-product',
     components: { AppBtnAddToFavorite },
@@ -92,23 +105,25 @@ export default {
             type: Number,
             default: 0,
         },
-        isFavorite: {
-            type: Boolean,
-            default: false,
+        isFavoriteIds: {
+            type: Array,
+            default: () => [],
         },
     },
-    data: () => ({
-        // isFavorite: false,
-    }),
     computed: {
         inStock() {
             return Boolean(this.inCart)
                 ? 'https://schema.org/InStock'
                 : 'https://schema.org/OutOfStock';
         },
-        // isFavorite() {
-        //     return true;
-        // },
+        isFavorite: {
+            get() {
+                return Boolean(this.isFavoriteIds.find((i) => i === this.product.productID));
+            },
+            set() {
+                this.$bus.$emit('update:favorite-ids', this.product.productID);
+            },
+        },
     },
     methods: {
         trueEnding(amount) {
@@ -132,6 +147,12 @@ export default {
             }
 
             return 'Нет в наличии';
+        },
+        addToFavorites(id) {
+            Product.addToFavorites(parseInt(id));
+        },
+        removeFromFavorites(id) {
+            Product.removeFromFavorites(parseInt(id));
         },
     },
 };

@@ -2,16 +2,16 @@
     <v-card>
         <v-list-item>
             <v-list-item-content class="pt-4">
-                <v-list-item-title class="headline font-weight-bold mb-2">
+                <v-list-item-title class="headline font-weight-bold text-wrap mb-2">
                     Все для lash и brow мастеров
                 </v-list-item-title>
-                <v-list-item-subtitle>
+                <v-list-item-subtitle class="text-wrap">
                     Beauty Market - магазин косметики и расходных материалов
                 </v-list-item-subtitle>
             </v-list-item-content>
 
             <v-list-item-avatar tile rounded size="60">
-                <v-img src="/assets/logo_circle_white.svg" />
+                <v-img src="/assets/bbox_logo_circle_white.svg" />
             </v-list-item-avatar>
         </v-list-item>
 
@@ -70,6 +70,13 @@ export default {
         &__title,
         &__subtitle {
             cursor: default;
+        }
+    }
+
+    .headline {
+        @include max(xs) {
+            font-size: 22px !important;
+            line-height: 1.2 !important;
         }
     }
 }

@@ -103,9 +103,7 @@ export default {
                     v-for="(order, i) in orders.items"
                     :key="i"
                     v-bind="order"
-                    @click="
-                        $router.push({ name: 'page-order-info', params: { id: order.orderID } })
-                    "
+                    @click="$router.push({ name: 'order-info', params: { id: order.orderID } })"
                 />
                 <app-block-loader
                     v-if="ordersLoading"
@@ -114,6 +112,7 @@ export default {
                     size="30"
                 />
             </v-list>
+
             <app-block-empty
                 v-else
                 center
@@ -144,7 +143,7 @@ export default {
 .c-list-orders {
     padding: 0 !important;
 
-    @include min(sm) {
+    @include min(md) {
         border-radius: $border-radius !important;
         box-shadow: $box-shadow-secondary !important;
     }

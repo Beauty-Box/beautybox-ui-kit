@@ -67,7 +67,7 @@ export default {
 </script>
 
 <template>
-    <v-container class="container--md" :class="{ 'background--lighten px-0 pb-0': isMobile }">
+    <v-container class="container--md" :class="{ 'px-0 pb-0': isMobile }">
         <app-block-loader v-if="loading" bgc="#f2f2f7" />
         <template v-else>
             <div :class="{ 'mx-4': isMobile, 'mb-8': !isMobile }">
@@ -78,18 +78,7 @@ export default {
                     <app-order-item-status v-if="!isMobile" v-bind="order.status" class="ml-4" />
                 </div>
                 <div class="text--secondary d-flex" :class="{ 'mb-2': isMobile }">
-                    Номер заказа: &nbsp;
-                    <app-btn-copy
-                        :copy-text="String(order.orderID)"
-                        color="info"
-                        class="u-text-initial u-hide-before pa-0"
-                        small
-                        text
-                        title="Скопировать"
-                        style="height: auto; font-size: 16px"
-                    >
-                        {{ order.orderID }}
-                    </app-btn-copy>
+                    Номер заказа: &nbsp;{{ order.orderID }}
                 </div>
 
                 <!-- STATUS -->
@@ -152,6 +141,7 @@ export default {
             </div>
 
             <app-bottom-sheet
+                v-if="isMobile"
                 v-model="modelOrdersSheet"
                 :title="`${order.products.length} товара`"
                 btn-text="Закрыть"

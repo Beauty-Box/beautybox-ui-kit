@@ -1,6 +1,10 @@
 <script>
+const AppBtnCopy = () =>
+    import(/* webpackChunkName: "BtnCopy" */ '../../../../../../components/buttons/AppBtnCopy');
+
 export default {
     name: 'app-order-item-info',
+    components: { AppBtnCopy },
     props: {
         deliveryType: {
             type: String,
@@ -76,10 +80,11 @@ export default {
                         <v-list-item-subtitle class="text-no-wrap mt-1">
                             <app-btn-copy
                                 :copy-text="String(trackNumber)"
-                                color="info"
-                                class="u-text-initial u-hide-before pa-0"
                                 small
+                                color="info"
                                 title="Скопировать"
+                                class="u-text-initial u-hide-before pa-0"
+                                success-text="Трек-номер скопирован"
                             >
                                 {{ trackNumber }}
                             </app-btn-copy>

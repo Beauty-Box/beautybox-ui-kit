@@ -23,11 +23,15 @@
 
 <script>
 export default {
-    name: 'BBtnCopy',
+    name: 'app-btn-copy',
     props: {
         copyText: {
             type: String,
             required: true,
+        },
+        successText: {
+            type: String,
+            default: 'Ссылка скопирована',
         },
         small: {
             type: Boolean,
@@ -72,7 +76,7 @@ export default {
     },
     methods: {
         onCopy() {
-            this.messageSuccess('Ссылка скопирована');
+            this.messageSuccess(this.successText);
         },
         onError() {
             this.messageError('Произошла ошибка при копировании');

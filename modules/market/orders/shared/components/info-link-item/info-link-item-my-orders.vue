@@ -34,13 +34,21 @@ export default {
                 <v-list-item-subtitle>
                     {{
                         expect
-                            ? `Ожидается доставка ${count} ${count > 1 ? 'товаров' : 'товар'}`
+                            ? `Ожидается: ${count} ${count > 1 ? 'заказов' : 'заказ'}`
                             : 'Доставка не ожидается'
                     }}
                 </v-list-item-subtitle>
             </v-list-item-content>
             <v-list-item-icon>
                 <v-icon size="25">local_shipping</v-icon>
+                <v-badge
+                    bordered
+                    color="error"
+                    :content="count"
+                    overlap
+                    offset-y="-10"
+                    offset-x="5"
+                />
             </v-list-item-icon>
         </template>
     </v-list-item>

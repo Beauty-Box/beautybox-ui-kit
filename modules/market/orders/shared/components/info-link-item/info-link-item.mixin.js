@@ -10,7 +10,6 @@ const infoLinkItemMixin = {
     },
     methods: {
         getData() {
-            console.error('--- infoLinkItemMixin');
             throw 'getData in infoLinkItemMixin  is not defined';
         },
     },
