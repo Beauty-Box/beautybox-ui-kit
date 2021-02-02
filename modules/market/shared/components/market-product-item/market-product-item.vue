@@ -139,7 +139,7 @@ export default {
         },
         buttonText(product) {
             if (Boolean(this.inCart)) {
-                return 'В корзину';
+                return 'В корзине';
             }
 
             if (Boolean(product.stock)) {
@@ -160,10 +160,10 @@ export default {
                 return;
             }
 
-            this.$emit('click:add-to-cart');
+            this.$emit('click:add-to-cart', productID);
         },
         removeFromCart({ productID }) {
-            this.$emit('click:remove-from-cart');
+            this.$emit('click:remove-from-cart', productID);
         },
     },
 };

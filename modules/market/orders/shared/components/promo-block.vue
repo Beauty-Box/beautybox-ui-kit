@@ -75,8 +75,8 @@ export default {
 
     .headline {
         @include max(xs) {
-            font-size: 22px !important;
-            line-height: 1.2 !important;
+            font-size: 20px !important;
+            line-height: 1.1 !important;
         }
     }
 }

@@ -51,7 +51,7 @@ export default {
                 {{ name }}
             </v-list-item-title>
         </v-list-item-content>
-        <v-list-item-content>
+        <v-list-item-content class="ml-4">
             <v-list-item-title>{{ quantity }} шт</v-list-item-title>
         </v-list-item-content>
         <v-list-item-action>
@@ -59,7 +59,7 @@ export default {
                 {{ sum | price }}
             </v-list-item-title>
             <v-list-item-subtitle v-if="quantity > 1" class="d-flex align-center ml-auto">
-                {{ price | price }} за шт
+                {{ price | price }} / шт
             </v-list-item-subtitle>
         </v-list-item-action>
     </v-list-item>

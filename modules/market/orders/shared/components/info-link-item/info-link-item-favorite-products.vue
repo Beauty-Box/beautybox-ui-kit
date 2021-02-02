@@ -30,7 +30,7 @@ export default {
         <app-info-link-item-loader v-if="loading" />
         <template v-else>
             <v-list-item-content>
-                <v-list-item-title>Избранные товары</v-list-item-title>
+                <v-list-item-title>Избранное</v-list-item-title>
                 <v-list-item-subtitle>Товаров: {{ count }}</v-list-item-subtitle>
             </v-list-item-content>
             <v-list-item-icon>

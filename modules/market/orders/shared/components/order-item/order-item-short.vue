@@ -46,10 +46,8 @@ export default {
                 {{ name }}
             </v-list-item-title>
             <v-list-item-title class="mb-2">{{ sum | price }}</v-list-item-title>
-            <v-list-item-subtitle class="font-weight-regular mb-0">
-                {{ quantity }}
-                {{ quantity > 1 ? 'товара' : 'товар' }} &bull;
-                {{ price | price }}
+            <v-list-item-subtitle v-if="quantity > 1" class="font-weight-regular mb-0">
+                {{ quantity }} товара &bull; {{ price | price }}
             </v-list-item-subtitle>
         </v-list-item-content>
     </v-list-item>
