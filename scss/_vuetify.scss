@@ -44,20 +44,10 @@ $box-shadow-dropdown: 0 5px 5px -3px rgba(164, 173, 186, 0.25),
                 box-shadow: $box-shadow-base;
             }
         }
-
-        /*&.v-list {
-            &:not(.v-sheet--outlined) {
-                box-shadow: $box-shadow-base;
-
-                @include max(sm) {
-                    box-shadow: none;
-                }
-            }
-        }*/
     }
 
     .v-btn {
-        &:not(.v-btn--depressed):not(.v-btn--disabled):not(.v-btn--flat):not(.v-btn--text):not(.v-btn--icon) {
+        &:not(.v-btn--depressed):not(.v-btn--disabled):not(.v-btn--flat):not(.v-btn--text):not(.v-btn--icon):not(.elevation-0) {
             &:not(.white) {
                 box-shadow: 0 4px 6px 0 rgba(16, 25, 40, 0.1) !important;
 
@@ -85,21 +75,6 @@ $box-shadow-dropdown: 0 5px 5px -3px rgba(164, 173, 186, 0.25),
                 box-shadow: 0 3px 5px 0 rgba($color-border--light, 0.35) !important;
             }
         }
-
-        /*&.white {
-			box-shadow: 0 4px 6px 0 rgba(16, 25, 40, 0.1) !important;
-			font-weight: 600;
-			border: 1px solid $color-border-very-light !important;
-
-			&::before {
-				display: none !important;
-			}
-
-			&:hover {
-				transform: translateY(-1px);
-				box-shadow: 0 3px 5px 0 rgba(164, 173, 186, 0.25) !important;
-			}
-		}*/
     }
 
     .v-input--selection-controls .v-input__slot > .v-label,
@@ -480,7 +455,6 @@ $box-shadow-dropdown: 0 5px 5px -3px rgba(164, 173, 186, 0.25),
 } //.v-input
 
 .v-select {
-
     /*@include max(sm) {
         &__selections {
             line-height: 30px !important;
