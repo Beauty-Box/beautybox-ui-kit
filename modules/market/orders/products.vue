@@ -1,102 +1,3 @@
-<template>
-    <v-container
-        fluid
-        class="container--md u-no-padding-top--sm flex-grow-1"
-        :class="{ 'px-0': $vuetify.breakpoint.mobile }"
-    >
-        <app-block-loader v-if="loading" bgc="transparent" />
-
-        <app-block-empty
-            v-else-if="!products.items.length"
-            icon="cart"
-            title="В списке пока ничего нет"
-            text="Перейдите в магазин, чтобы найти все, что нужно"
-        >
-            <template #buttons>
-                <v-btn class="empty__btn" color="primary" large @click="goToMarket">
-                    Перейти в магазин
-                </v-btn>
-            </template>
-        </app-block-empty>
-
-        <v-card
-            v-else
-            v-scroll:#scroll-container="onScrollControl"
-            :flat="$vuetify.breakpoint.mobile"
-        >
-            <!-- <v-card-title :class="{ 'px-6': !$vuetify.breakpoint.mobile }">
-                  <div class="d-flex align-center justify-space-between flex-grow-1">
-                    <div v-if="!$vuetify.breakpoint.mobile">Товары</div>
-                    <div>
-                        <v-menu offset-y right nudge-right="-16">
-                            <template #activator="{ on }">
-                                <v-btn text :ripple="false" class="pa-0 u-hide-before" v-on="on">
-                                    {{ sortingMethod.text }}
-                                    <v-icon>keyboard_arrow_down</v-icon>
-                                </v-btn>
-                            </template>
-                            <v-list class="pa-0">
-                                <v-list-item
-                                    v-for="(filter, index) in sortFilters"
-                                    :key="index"
-                                    @click="changeSortingMethod(filter.value)"
-                                >
-                                    {{ filter.text }}
-                                </v-list-item>
-                            </v-list>
-                        </v-menu>
-                    </div>
-                </div>
-            </v-card-title>-->
-            <v-card-text
-                :class="{
-                    'pa-3': !$vuetify.breakpoint.mobile,
-                    'pa-0': $vuetify.breakpoint.mobile,
-                }"
-            >
-                <v-container class="py-0">
-                    <v-row>
-                        <v-col
-                            v-for="(product, index) in products.items"
-                            :key="index"
-                            cols="6"
-                            md="4"
-                            lg="4"
-                            class="d-flex flex-column"
-                        >
-                            <!-- <app-market-product-item
-                                class="flex-grow-1"
-                                :product="product"
-                                :in-cart="parseInt(itemsInCart[product.productID])"
-                                @add="addToCart(product.productID)"
-                                @remove="removeFromCart(product.productID)"
-                            />-->
-                            <app-market-product-item
-                                :product="product"
-                                class="flex-grow-1"
-                                :is-favorite-ids="favoritesProductsId"
-                                :in-cart="parseInt(itemsInCart[product.productID])"
-                                @click:add-to-cart="addToCart(product.productID)"
-                                @click:remove-from-cart="removeFromCart(product.productID)"
-                            />
-                        </v-col>
-                    </v-row>
-                    <v-row v-if="loadingProducts">
-                        <v-col>
-                            <app-block-loader
-                                size="30"
-                                min-height="30"
-                                position="static"
-                                bgc="transparent"
-                            />
-                        </v-col>
-                    </v-row>
-                </v-container>
-            </v-card-text>
-        </v-card>
-    </v-container>
-</template>
-
 <script>
 // import { SORT_FILTERS } from '../../constants';
 import { Products, Product } from '@beautybox/core/entity/Orders/Products';
@@ -108,12 +9,12 @@ const AppBlockEmpty = () =>
 const AppBlockLoader = () =>
     import(/* webpackChunkName: "BlockLoader" */ '../../../components/blocks/BlockLoader');
 
-import { productsFavoriteMixin } from './shared/mixins/products.mixin';
+import { productsFavoriteMixin, productsAddToCartMixin } from './shared/mixins/products.mixin';
 import AppMarketProductItem from '../shared/components/market-product-item/market-product-item';
 
 export default {
     components: { AppMarketProductItem, AppBlockLoader, AppBlockEmpty },
-    mixins: [updateRouteMixin, getOnScrollMixin, productsFavoriteMixin],
+    mixins: [updateRouteMixin, getOnScrollMixin, productsFavoriteMixin, productsAddToCartMixin],
     data: () => ({
         loading: true,
         products: new Products(),
@@ -212,7 +113,7 @@ export default {
             // this.replaceToQuery({ ...this.$route.query, ...this.sortingMethod.queryNew });
         },*/
 
-        addToCart(productID) {
+        /*addToCart(productID) {
             console.log('--- addToCart');
             const formData = new FormData();
             formData.append('productID', productID);
@@ -228,13 +129,112 @@ export default {
             Product.removeFromCart(formData);
 
             this.$set(this.itemsInCart, productID, 0);
-        },
+        },*/
         goToMarket() {
             window.location.href = '/market';
         },
     },
 };
 </script>
+
+<template>
+    <v-container
+        fluid
+        class="container--md u-no-padding-top--sm flex-grow-1"
+        :class="{ 'px-0': $vuetify.breakpoint.mobile }"
+    >
+        <app-block-loader v-if="loading" bgc="transparent" />
+
+        <app-block-empty
+            v-else-if="!products.items.length"
+            icon="cart"
+            title="В списке пока ничего нет"
+            text="Перейдите в магазин, чтобы найти все, что нужно"
+        >
+            <template #buttons>
+                <v-btn class="empty__btn" color="primary" large @click="goToMarket">
+                    Перейти в магазин
+                </v-btn>
+            </template>
+        </app-block-empty>
+
+        <v-card
+            v-else
+            v-scroll:#scroll-container="onScrollControl"
+            :flat="$vuetify.breakpoint.mobile"
+        >
+            <!-- <v-card-title :class="{ 'px-6': !$vuetify.breakpoint.mobile }">
+                  <div class="d-flex align-center justify-space-between flex-grow-1">
+                    <div v-if="!$vuetify.breakpoint.mobile">Товары</div>
+                    <div>
+                        <v-menu offset-y right nudge-right="-16">
+                            <template #activator="{ on }">
+                                <v-btn text :ripple="false" class="pa-0 u-hide-before" v-on="on">
+                                    {{ sortingMethod.text }}
+                                    <v-icon>keyboard_arrow_down</v-icon>
+                                </v-btn>
+                            </template>
+                            <v-list class="pa-0">
+                                <v-list-item
+                                    v-for="(filter, index) in sortFilters"
+                                    :key="index"
+                                    @click="changeSortingMethod(filter.value)"
+                                >
+                                    {{ filter.text }}
+                                </v-list-item>
+                            </v-list>
+                        </v-menu>
+                    </div>
+                </div>
+            </v-card-title>-->
+            <v-card-text
+                :class="{
+                    'pa-3': !$vuetify.breakpoint.mobile,
+                    'pa-0': $vuetify.breakpoint.mobile,
+                }"
+            >
+                <v-container class="py-0">
+                    <v-row>
+                        <v-col
+                            v-for="(product, index) in products.items"
+                            :key="index"
+                            cols="6"
+                            md="4"
+                            lg="4"
+                            class="d-flex flex-column"
+                        >
+                            <!-- <app-market-product-item
+                                class="flex-grow-1"
+                                :product="product"
+                                :in-cart="parseInt(itemsInCart[product.productID])"
+                                @add="addToCart(product.productID)"
+                                @remove="removeFromCart(product.productID)"
+                            />-->
+                            <app-market-product-item
+                                :product="product"
+                                class="flex-grow-1"
+                                :is-favorite-ids="favoritesProductsId"
+                                :in-cart="parseInt(itemsInCart[product.productID])"
+                                @click:add-to-cart="addToCart(product.productID)"
+                                @click:remove-from-cart="removeFromCart(product.productID)"
+                            />
+                        </v-col>
+                    </v-row>
+                    <v-row v-if="loadingProducts">
+                        <v-col>
+                            <app-block-loader
+                                size="30"
+                                min-height="30"
+                                position="static"
+                                bgc="transparent"
+                            />
+                        </v-col>
+                    </v-row>
+                </v-container>
+            </v-card-text>
+        </v-card>
+    </v-container>
+</template>
 
 <style lang="scss">
 .filter {

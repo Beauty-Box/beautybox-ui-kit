@@ -1,3 +1,5 @@
+import { Product } from '@beautybox/core/entity/Orders/Products';
+
 const productsFavoriteMixin = {
     data: () => ({
         favoritesProductsId: [],
@@ -20,5 +22,27 @@ const productsFavoriteMixin = {
     },
 };
 
-export { productsFavoriteMixin };
-export default { productsFavoriteMixin };
+const productsAddToCartMixin = {
+    methods: {
+        addToCart(productID) {
+            console.log('--- addToCart');
+            const formData = new FormData();
+            formData.append('productID', productID);
+            formData.append('quantity', 1);
+            Product.addToCart(formData);
+
+            this.$set(this.itemsInCart, productID, 1);
+        },
+        removeFromCart(productID) {
+            console.log('--- removeFromCart');
+            const formData = new FormData();
+            formData.append('productID', productID);
+            Product.removeFromCart(formData);
+
+            this.$set(this.itemsInCart, productID, 0);
+        },
+    },
+};
+
+export { productsFavoriteMixin, productsAddToCartMixin };
+export default { productsFavoriteMixin, productsAddToCartMixin };

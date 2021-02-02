@@ -59,7 +59,7 @@
                 :disabled="!product.stock > 0"
                 :color="inCart ? 'success' : 'accent'"
                 class="u-text-initial"
-                @click="$emit('click:add-to-cart')"
+                @click="addToCart(product)"
             >
                 {{ buttonText(product) }}
             </v-btn>
@@ -72,7 +72,7 @@
                 width="32"
                 color="muted"
                 title="Убрать из корзины"
-                @click="$emit('click:remove-from-cart')"
+                @click="removeFromCart(product)"
             >
                 <v-icon>delete</v-icon>
             </v-btn>
@@ -153,6 +153,17 @@ export default {
         },
         removeFromFavorites(id) {
             Product.removeFromFavorites(parseInt(id));
+        },
+        addToCart({ productID }) {
+            if (this.inCart) {
+                window.location.href = '/market/cart';
+                return;
+            }
+
+            this.$emit('click:add-to-cart');
+        },
+        removeFromCart({ productID }) {
+            this.$emit('click:remove-from-cart');
         },
     },
 };

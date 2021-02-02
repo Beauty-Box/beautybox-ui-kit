@@ -42,6 +42,7 @@ export default {
             <v-list-item-icon>
                 <v-icon size="25">local_shipping</v-icon>
                 <v-badge
+                    v-if="count"
                     bordered
                     color="error"
                     :content="count"
