@@ -4,7 +4,7 @@
         <meta itemprop="description" :content="product.description" />
         <v-card-title class="c-product__img">
             <template v-if="product.photo.length">
-                <link :key="index" itemprop="image" :href="photo" />
+                <link :key="index" itemprop="image" :href="product.photo" />
                 <v-img
                     :key="index"
                     min-height="180"
@@ -13,8 +13,20 @@
                     :src="product.photo || '/assets/empty.svg'"
                 />
             </template>
+            <!-- if photo is empty we show this plug -->
             <template v-else>
-                <v-img min-height="180" aspect-ratio="1" src="/assets/empty.svg" />
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 180">
+                    <rect width="180" height="180" fill="#F6F7FA" />
+                    <path
+                        fill="#CFD5D8"
+                        d="M90,84.2c-4.8,0-8.7,3.9-8.7,8.7s3.9,8.7,8.7,8.7s8.7-3.9,8.7-8.7
+                        C98.7,88.1,94.8,84.2,90,84.2z M113.2,75.5h-7c-1,0-1.9-0.7-2.3-1.6l-1.8-5.4c-0.4-1-1.3-1.6-2.3-1.6H80.2c-1,0-1.9,0.7-2.3,1.6
+                        l-1.8,5.4c-0.4,1-1.3,1.6-2.3,1.6h-7c-3.2,0-5.8,2.6-5.8,5.8v26.1c0,3.2,2.6,5.8,5.8,5.8h46.4c3.2,0,5.8-2.6,5.8-5.8V81.3
+                        C119,78.1,116.4,75.5,113.2,75.5L113.2,75.5z M90,107.4c-8,0-14.5-6.5-14.5-14.5S82,78.4,90,78.4s14.5,6.5,14.5,14.5
+                        S98,107.4,90,107.4L90,107.4z M111.2,85.4c-1.1,0-2-0.9-2-2c0-1.1,0.9-2,2-2c1.1,0,2,0.9,2,2C113.2,84.5,112.3,85.4,111.2,85.4
+                        C111.2,85.4,111.2,85.4,111.2,85.4L111.2,85.4z"
+                    />
+                </svg>
                 <link itemprop="image" href="/assets/empty.svg" />
             </template>
             <app-btn-add-to-favorite
