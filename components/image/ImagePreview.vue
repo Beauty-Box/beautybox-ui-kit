@@ -4,7 +4,7 @@
 
 <script>
 export default {
-    name: 'BScrollPhotosGallery',
+    name: 'app-scroll-photos-gallery',
     props: {
         items: {
             type: Array,
@@ -50,24 +50,30 @@ export default {
         }
     }
 }
+
 ::v-deep {
     .pswp__bg {
         background-color: rgba(103, 118, 140, 1);
     }
+
     .pswp__img {
         box-shadow: $box-shadow-base;
     }
+
     .pswp__top-bar {
         top: 50px;
     }
+
     .pswp__button--share,
     .pswp--supports-fs .pswp__button--fs {
         display: none !important;
     }
+
     .pswp__ui--fit .pswp__caption,
     .pswp__ui--fit .pswp__top-bar {
         background-color: transparent;
     }
+
     .pswp__ui--one-slide .pswp__button--arrow--left,
     .pswp__ui--one-slide .pswp__button--arrow--right,
     .pswp__ui--one-slide .pswp__counter {

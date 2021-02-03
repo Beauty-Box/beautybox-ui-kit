@@ -3,17 +3,15 @@
         <meta itemprop="name" :content="product.name" />
         <meta itemprop="description" :content="product.description" />
         <v-card-title class="c-product__img">
-            <template v-if="product.photos && product.photos.length">
-                <template v-for="(photo, index) in product.photos">
-                    <link :key="index" itemprop="image" :href="photo" />
-                    <v-img
-                        :key="index"
-                        min-height="180"
-                        aspect-ratio="1"
-                        :alt="product.name"
-                        :src="photo || '/assets/empty.svg'"
-                    />
-                </template>
+            <template v-if="product.photo.length">
+                <link :key="index" itemprop="image" :href="photo" />
+                <v-img
+                    :key="index"
+                    min-height="180"
+                    aspect-ratio="1"
+                    :alt="product.name"
+                    :src="product.photo || '/assets/empty.svg'"
+                />
             </template>
             <template v-else>
                 <v-img min-height="180" aspect-ratio="1" src="/assets/empty.svg" />
