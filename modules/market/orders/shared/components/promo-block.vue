@@ -56,11 +56,11 @@ export default {
     &.theme--light {
         &:not(.u-no-shadow) {
             transition: box-shadow 0.3s ease-out;
-            box-shadow: $box-shadow-secondary !important;
+            box-shadow: $box-shadow-base !important;
 
             &:hover {
                 @include min(xs) {
-                    box-shadow: $box-shadow-secondary--hover !important;
+                    box-shadow: $box-shadow-base--hover !important;
                 }
             }
         }

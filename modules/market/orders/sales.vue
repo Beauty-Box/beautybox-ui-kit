@@ -1,26 +1,56 @@
+<script>
+import { mapGetters } from 'vuex';
+import { Sales } from '@beautybox/core/entity/Orders/Sales';
+const AppSaleBlock = () =>
+    import(/* webpackChunkName: "sale-block" */ './shared/components/sale-block');
+const AppBlockLoader = () =>
+    import(/* webpackChunkName: "BlockLoader" */ '../../../components/blocks/BlockLoader');
+
+export default {
+    components: { AppSaleBlock, AppBlockLoader },
+    data: () => ({
+        loading: true,
+        current: 0,
+        discountCalculation: [],
+    }),
+    computed: {
+        ...mapGetters(['USER_INFO']),
+        isMobile() {
+            return this.$vuetify.breakpoint.mobile;
+        },
+        userPhone() {
+            return this.USER_INFO.phone;
+        },
+    },
+    created() {
+        Sales.createProvider({
+            baseUrl: process.env.BASE_URL,
+            module: 'market',
+            token: localStorage.getItem('access_token'),
+        });
+        this.requestAll([this.getDiscount(), this.getPercent()]);
+        this.requestEnd(() => {
+            this.loading = false;
+        });
+    },
+    methods: {
+        async getDiscount() {
+            ({ discount_calculation: this.discountCalculation = [] } = await Sales.getDiscount(
+                this.userPhone
+            ));
+        },
+        async getPercent() {
+            ({ percent: this.current = 0 } = await Sales.getPercent(this.userPhone));
+        },
+    },
+};
+</script>
+
 <template>
     <v-container class="container--md" :class="{ 'background--lighten px-0 pb-0': isMobile }">
         <app-block-loader v-if="loading" bgc="#fff" />
         <v-row v-else>
             <v-col cols="12" md="6">
-                <!-- <v-card :class="{ 'mx-4': isMobile }">
-                    <v-card-title class="mb-6">Моя скидка</v-card-title>
-                    <v-card-text class="primary&#45;&#45;text" style="font-size: 32px; font-weight: 600">
-                        {{ percent }} %
-                    </v-card-text>
-                    <v-card-text class="primary&#45;&#45;text pt-0 pb-0" style="font-size: 16px">
-                        {{ priceFilter(next_level_sum) }} до скидки {{ next_level_percent }}%
-                    </v-card-text>
-                    <v-card-actions class="pt-3">
-                        <v-progress-linear
-                            height="6"
-                            rounded
-                            :width="5"
-                            :value="progress_percent"
-                            color="#DE81E0"
-                        />
-                    </v-card-actions>
-                </v-card>-->
                 <app-sale-block :class="{ 'mx-4': $vuetify.breakpoint.mobile }" />
             </v-col>
             <v-col cols="12" md="6" :class="{ 'pb-0': isMobile }">
@@ -30,7 +60,7 @@
                         Скидка зависит от суммы ваших покупок за весь период
                     </v-card-text>
                     <v-stepper :value="current" vertical class="u-no-shadow pb-0">
-                        <template v-for="(item, index) in discount_calculation">
+                        <template v-for="(item, index) in discountCalculation">
                             <v-stepper-step
                                 :key="index"
                                 class="pb-6"
@@ -44,12 +74,12 @@
                                 :complete="index < current"
                             >
                                 <div class="d-flex justify-space-between" style="width: 100%">
-                                    <span>{{ item.sum }}</span>
+                                    <span>{{ item.sum | price }}</span>
                                     <span>{{ item.percent }}%</span>
                                 </div>
                             </v-stepper-step>
                             <v-stepper-content
-                                v-if="index + 1 < discount_calculation.length"
+                                v-if="index + 1 < discountCalculation.length"
                                 :key="index + 'd'"
                                 :step="''"
                                 :class="{ 'is-done': index + 1 < current }"
@@ -61,57 +91,6 @@
         </v-row>
     </v-container>
 </template>
-
-<script>
-import { Sales } from '@beautybox/core/entity/Orders/Sales';
-const AppSaleBlock = () =>
-    import(/* webpackChunkName: "sale-block" */ './shared/components/sale-block');
-const AppBlockLoader = () =>
-    import(/* webpackChunkName: "BlockLoader" */ '../../../components/blocks/BlockLoader');
-
-export default {
-    components: { AppSaleBlock, AppBlockLoader },
-    data: () => ({
-        loading: true,
-        current: 0,
-        discount_calculation: [],
-    }),
-    computed: {
-        isMobile() {
-            return this.$vuetify.breakpoint.mobile;
-        },
-    },
-    created() {
-        Sales.createProvider({
-            baseUrl: process.env.BASE_URL,
-            module: 'market',
-            token: localStorage.getItem('access_token'),
-        });
-        this.requestAll([this.getDiscount()]);
-        this.requestEnd(() => {
-            this.loading = false;
-        });
-    },
-    methods: {
-        /*async getPercent() {
-            ({ percent: this.percent = 0 } = await Sales.getPercent());
-        },*/
-        /*async getLevel() {
-            ({
-                next_level_sum: this.next_level_sum = 0,
-                next_level_percent: this.next_level_percent = 0,
-                progress_percent: this.progress_percent = 0,
-            } = await Sales.getLevel());
-        },*/
-        async getDiscount() {
-            ({
-                discount_calculation: this.discount_calculation = [],
-                current: this.current = 0,
-            } = await Sales.getDiscount());
-        },
-    },
-};
-</script>
 
 <style lang="scss" scoped>
 .v-application--is-ltr {
@@ -163,15 +142,6 @@ export default {
                     margin-right: 16px !important;
                 }
             }
-
-            &.is-next {
-            }
-
-            &:last-child {
-            }
-
-            &:not(:last-child) {
-            }
         }
     }
 
@@ -183,18 +153,18 @@ export default {
 .v-card {
     &:not(.u-no-shadow) {
         transition: box-shadow 0.3s ease-out;
-        box-shadow: $box-shadow-secondary !important;
+        box-shadow: $box-shadow-base !important;
 
         &:hover {
             @include min(xs) {
-                box-shadow: $box-shadow-secondary--hover !important;
+                box-shadow: $box-shadow-base--hover !important;
             }
         }
     }
 
     &__title {
         padding-bottom: 0;
-        color: #101928;
+        color: $color-primary;
         font-size: 20px;
         font-weight: 600;
     }

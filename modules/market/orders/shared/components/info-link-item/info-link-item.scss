@@ -11,6 +11,10 @@
     border-radius: $border-radius;
     cursor: pointer;
 
+    @include min(sm) {
+        padding: 0 $gutter;
+    }
+
     &::before {
         display: none;
     }
@@ -18,7 +22,7 @@
     &__title {
         margin-bottom: $base-indent / 2 !important;
         font-size: 18px;
-        font-weight: 600;
+        font-weight: 500;
         @include noselect;
     }
 
@@ -39,13 +43,13 @@
     &.theme--light {
         background-color: #fff;
 
-        &:not(.u-no-shadow) {
+        &:not(.u-no-shadow):not(.elevation-0) {
             transition: box-shadow 0.3s ease-out;
-            box-shadow: $box-shadow-secondary !important;
+            box-shadow: $box-shadow-base !important;
 
             &:hover {
                 @include min(xs) {
-                    box-shadow: $box-shadow-secondary--hover !important;
+                    box-shadow: $box-shadow-base--hover !important;
                 }
             }
         }

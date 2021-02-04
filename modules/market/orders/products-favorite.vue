@@ -89,22 +89,6 @@ export default {
 
             this.loadingProducts = false;
         },
-
-        /*addToCart(productID) {
-            const formData = new FormData();
-            formData.append('productID', productID);
-            formData.append('quantity', 1);
-            Products.addToCart(formData);
-
-            this.$set(this.itemsInCart, productID, 1);
-        },
-        removeFromCart(productID) {
-            const formData = new FormData();
-            formData.append('productID', productID);
-            Products.removeFromCart(formData);
-
-            this.$set(this.itemsInCart, productID, 0);
-        },*/
     },
 };
 </script>
@@ -141,30 +125,6 @@ export default {
             v-scroll:#scroll-container="onScrollControl"
             :flat="$vuetify.breakpoint.mobile"
         >
-            <!-- <v-card-title :class="{ 'px-6': !$vuetify.breakpoint.mobile }">
-                  <div class="d-flex align-center justify-space-between flex-grow-1">
-                    <div v-if="!$vuetify.breakpoint.mobile">Товары</div>
-                    <div>
-                        <v-menu offset-y right nudge-right="-16">
-                            <template #activator="{ on }">
-                                <v-btn text :ripple="false" class="pa-0 u-hide-before" v-on="on">
-                                    {{ sortingMethod.text }}
-                                    <v-icon>keyboard_arrow_down</v-icon>
-                                </v-btn>
-                            </template>
-                            <v-list class="pa-0">
-                                <v-list-item
-                                    v-for="(filter, index) in sortFilters"
-                                    :key="index"
-                                    @click="changeSortingMethod(filter.value)"
-                                >
-                                    {{ filter.text }}
-                                </v-list-item>
-                            </v-list>
-                        </v-menu>
-                    </div>
-                </div>
-            </v-card-title>-->
             <v-card-text
                 :class="{
                     'pa-3': !$vuetify.breakpoint.mobile,
@@ -206,17 +166,3 @@ export default {
         </v-card>
     </v-container>
 </template>
-
-<style lang="scss">
-.filter {
-    display: flex;
-    justify-items: center;
-    color: $color-text--light;
-    cursor: pointer;
-
-    &__icon {
-        margin-left: 5px;
-        width: 10px !important;
-    }
-}
-</style>

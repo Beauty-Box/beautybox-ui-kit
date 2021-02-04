@@ -145,7 +145,7 @@ export default {
 
     @include min(md) {
         border-radius: $border-radius !important;
-        box-shadow: $box-shadow-secondary !important;
+        box-shadow: $box-shadow-base !important;
     }
 }
 </style>

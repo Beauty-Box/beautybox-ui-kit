@@ -25,7 +25,6 @@ const productsFavoriteMixin = {
 const productsAddToCartMixin = {
     methods: {
         addToCart(productID) {
-            console.log('--- addToCart');
             const formData = new FormData();
             formData.append('productID', productID);
             formData.append('quantity', 1);
@@ -34,7 +33,6 @@ const productsAddToCartMixin = {
             this.$set(this.itemsInCart, productID, 1);
         },
         removeFromCart(productID) {
-            console.log('--- removeFromCart');
             const formData = new FormData();
             formData.append('productID', productID);
             Product.removeFromCart(formData);

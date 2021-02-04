@@ -18,10 +18,7 @@ export default {
     data: () => ({
         loading: true,
         products: new Products(),
-        // modelSorting: 'newest',
         itemsInCart: [],
-        // favoritesProductsId: [],
-        // sortFilters: SORT_FILTERS,
 
         // Get on scroll
         loadingProducts: false,
@@ -30,19 +27,6 @@ export default {
         readyToGetElements: true,
         heightForActiveScroll: 100,
     }),
-    /*computed: {
-        sortingBy: {
-            get() {
-                return this.$route.query.sort_by || 'newest';
-            },
-            set(value) {
-                this.$bus.$emit('change-sorting', { name: 'sort_by', value });
-            },
-        },
-        sortingMethod() {
-            return this.sortFilters.find((f) => f.value === this.sortingBy);
-        },
-    },*/
     async created() {
         await Products.createProvider({
             baseUrl: process.env.BASE_URL,
@@ -59,14 +43,12 @@ export default {
         this.$bus.$on('change-status', this.updateRoute);
         this.$bus.$on('change-category', this.updateRoute);
         this.$bus.$on('change-sorting', this.updateRoute);
-        // this.$bus.$on('update:favorite-ids', this.getFavoritesProductsId);
         this.$bus.$on('route-update', this.getProducts);
     },
     beforeDestroy() {
         this.$bus.$off('change-status', this.updateRoute);
         this.$bus.$off('change-category', this.updateRoute);
         this.$bus.$off('change-sorting', this.updateRoute);
-        // this.$bus.$off('update:favorite-ids', this.getFavoritesProductsId);
         this.$bus.$off('route-update', this.getProducts);
     },
     methods: {
@@ -130,9 +112,6 @@ export default {
 
             this.$set(this.itemsInCart, productID, 0);
         },*/
-        goToMarket() {
-            window.location.href = '/market';
-        },
     },
 };
 </script>
@@ -152,7 +131,13 @@ export default {
             text="Перейдите в магазин, чтобы найти все, что нужно"
         >
             <template #buttons>
-                <v-btn class="empty__btn" color="primary" large @click="goToMarket">
+                <v-btn
+                    large
+                    color="primary"
+                    class="empty__btn"
+                    target="_blank"
+                    href="https://beautybox.ru/market"
+                >
                     Перейти в магазин
                 </v-btn>
             </template>
@@ -163,30 +148,6 @@ export default {
             v-scroll:#scroll-container="onScrollControl"
             :flat="$vuetify.breakpoint.mobile"
         >
-            <!-- <v-card-title :class="{ 'px-6': !$vuetify.breakpoint.mobile }">
-                  <div class="d-flex align-center justify-space-between flex-grow-1">
-                    <div v-if="!$vuetify.breakpoint.mobile">Товары</div>
-                    <div>
-                        <v-menu offset-y right nudge-right="-16">
-                            <template #activator="{ on }">
-                                <v-btn text :ripple="false" class="pa-0 u-hide-before" v-on="on">
-                                    {{ sortingMethod.text }}
-                                    <v-icon>keyboard_arrow_down</v-icon>
-                                </v-btn>
-                            </template>
-                            <v-list class="pa-0">
-                                <v-list-item
-                                    v-for="(filter, index) in sortFilters"
-                                    :key="index"
-                                    @click="changeSortingMethod(filter.value)"
-                                >
-                                    {{ filter.text }}
-                                </v-list-item>
-                            </v-list>
-                        </v-menu>
-                    </div>
-                </div>
-            </v-card-title>-->
             <v-card-text
                 :class="{
                     'pa-3': !$vuetify.breakpoint.mobile,
@@ -203,13 +164,6 @@ export default {
                             lg="4"
                             class="d-flex flex-column"
                         >
-                            <!-- <app-market-product-item
-                                class="flex-grow-1"
-                                :product="product"
-                                :in-cart="parseInt(itemsInCart[product.productID])"
-                                @add="addToCart(product.productID)"
-                                @remove="removeFromCart(product.productID)"
-                            />-->
                             <app-market-product-item
                                 :product="product"
                                 class="flex-grow-1"

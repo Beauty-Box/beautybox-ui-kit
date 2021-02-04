@@ -40,4 +40,4 @@ export default {
     </v-list-item>
 </template>
 
-<style lang="scss" scoped src="./style.scss" />
+<style lang="scss" scoped src="./info-link-item.scss" />

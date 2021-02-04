@@ -19,11 +19,6 @@ export default {
     data: () => ({
         loading: true,
     }),
-    computed: {
-        isMobile() {
-            return this.$vuetify.breakpoint.mobile;
-        },
-    },
     async created() {},
     methods: {},
 };
@@ -32,15 +27,15 @@ export default {
 <template>
     <v-container
         class="container--md d-flex flex-column flex-grow-1"
-        :class="{ 'pt-6 pb-6': !isMobile }"
+        :class="{ 'pt-6 pb-6': !$vuetify.breakpoint.mobile }"
     >
         <app-promo-block class="mb-6" />
 
-        <!-- <app-sale-block
+        <app-sale-block
             class="mb-6"
             style="cursor: pointer"
             @click="$router.push({ name: 'orders-sale' })"
-        />-->
+        />
 
         <app-info-link-item-my-orders class="mb-6" @click="$router.push({ name: 'orders-all' })" />
 
