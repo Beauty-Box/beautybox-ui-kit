@@ -40,14 +40,17 @@ export default {
     methods: {
         priceFilter,
         async onShowCode() {
-            if (!this.barcode.large.length) {
-                ({ barcode: this.barcode.large = '' } = await Sales.getDiscountCard(
-                    this.USER_INFO.phone,
-                    6
-                ));
+            if (this.$vuetify.breakpoint.mobile) {
+                if (!this.barcode.large.length) {
+                    ({ barcode: this.barcode.large = '' } = await Sales.getDiscountCard(
+                        this.USER_INFO.phone,
+                        6
+                    ));
+                }
+                this.modelBarcode = true;
+            } else {
+                this.$router.push({ name: 'orders-sale' });
             }
-
-            this.modelBarcode = true;
         },
         async getPercent() {
             ({ percent: this.percent = 0 } = await Sales.getPercent(this.USER_INFO.phone));
