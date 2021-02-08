@@ -31,11 +31,7 @@ export default {
     >
         <app-promo-block class="mb-6" />
 
-        <app-sale-block
-            class="mb-6"
-            style="cursor: pointer"
-            @click="$router.push({ name: 'orders-sale' })"
-        />
+        <app-sale-block class="mb-6" style="cursor: pointer" />
 
         <app-info-link-item-my-orders class="mb-6" @click="$router.push({ name: 'orders-all' })" />
 
@@ -45,7 +41,7 @@ export default {
         />
 
         <app-info-link-item-favorite-products
-            class="mb-2"
+            class="mb-3"
             @click="$router.push({ name: 'orders-favorite-products' })"
         />
     </v-container>

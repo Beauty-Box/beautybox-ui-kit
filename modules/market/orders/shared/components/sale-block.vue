@@ -2,13 +2,19 @@
 import { mapGetters } from 'vuex';
 import { priceFilter } from '@beautybox/core/filters';
 import { Sales } from '@beautybox/core/entity/Orders/Sales';
+import AppBottomSheet from '../../../../../components/bottom-sheet/BottomSheet';
 import AppSkeletonBoilerplate from '../../../../../components/loaders/SkeletonBoilerplate';
 
 export default {
     name: 'app-sale-block',
-    components: { AppSkeletonBoilerplate },
+    components: { AppSkeletonBoilerplate, AppBottomSheet },
     data: () => ({
         loading: true,
+        barcode: {
+            small: '',
+            large: '',
+        },
+        modelBarcode: false,
         percent: 0,
         nextLevelSum: 0,
         nextLevelPercent: 0,
@@ -26,15 +32,31 @@ export default {
             module: 'market',
             token: localStorage.getItem('access_token'),
         });
-        this.requestAll([this.getPercent(), this.getLevel()]);
+        this.requestAll([this.getPercent(), this.getLevel(), this.getDiscountCard()]);
         this.requestEnd(() => {
             this.loading = false;
         });
     },
     methods: {
         priceFilter,
+        async onShowCode() {
+            if (!this.barcode.large.length) {
+                ({ barcode: this.barcode.large = '' } = await Sales.getDiscountCard(
+                    this.USER_INFO.phone,
+                    6
+                ));
+            }
+
+            this.modelBarcode = true;
+        },
         async getPercent() {
             ({ percent: this.percent = 0 } = await Sales.getPercent(this.USER_INFO.phone));
+        },
+        async getDiscountCard() {
+            ({ barcode: this.barcode.small = '' } = await Sales.getDiscountCard(
+                this.USER_INFO.phone,
+                3
+            ));
         },
         async getLevel() {
             ({
@@ -48,11 +70,16 @@ export default {
 </script>
 
 <template>
-    <v-card v-if="hasSale" v-on="$listeners">
+    <v-card v-if="hasSale" :ripple="false" v-on="$listeners" @click="onShowCode">
         <app-skeleton-boilerplate v-if="loading" type="heading, list-item" />
-        <template v-else>
-            <v-card-title class="py-4">Моя скидка</v-card-title>
-            <v-card-text class="sale-text"> {{ percent }} % </v-card-text>
+        <div v-else>
+            <div class="d-flex align-center">
+                <div class="d-flex flex-column flex-grow-1">
+                    <v-card-title class="py-4">Моя скидка</v-card-title>
+                    <v-card-text class="sale-text"> {{ percent }} % </v-card-text>
+                </div>
+                <div class="mr-4" v-html="barcode.small" />
+            </div>
             <v-card-text class="next-lvl-text">
                 {{ priceFilter(nextLevelSum) }} до скидки {{ nextLevelPercent }}%
             </v-card-text>
@@ -65,7 +92,25 @@ export default {
                     color="#de81e0"
                 />
             </v-card-actions>
-        </template>
+        </div>
+        <app-bottom-sheet v-if="$vuetify.breakpoint.mobile" v-model="modelBarcode" hide-footer>
+            <div class="d-flex flex-column align-center pt-6 pb-10">
+                <p class="text-center text--primary">
+                    Покажите QR-код менеджеру <br />
+                    для получения персональной скидки
+                </p>
+                <div class="my-6" v-html="barcode.large" />
+                <v-btn
+                    color="link"
+                    text
+                    :ripple="false"
+                    class="u-hide-before"
+                    @click="$router.push({ name: 'orders-sale' })"
+                >
+                    Узнать о системе скидок
+                </v-btn>
+            </div>
+        </app-bottom-sheet>
     </v-card>
 </template>
 
@@ -80,6 +125,10 @@ export default {
                 box-shadow: $box-shadow-base--hover !important;
             }
         }
+    }
+
+    &::before {
+        display: none;
     }
 
     &__title,

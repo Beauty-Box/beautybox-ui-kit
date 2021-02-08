@@ -1,5 +1,4 @@
 <script>
-// import { SORT_FILTERS } from '../../constants';
 import { Products, Product } from '@beautybox/core/entity/Orders/Products';
 import { objectToURLParams } from '@beautybox/core/utils';
 import { updateRouteMixin, getOnScrollMixin } from '../../../mixins';
@@ -189,17 +188,3 @@ export default {
         </v-card>
     </v-container>
 </template>
-
-<style lang="scss">
-.filter {
-    display: flex;
-    justify-items: center;
-    color: $color-text--light;
-    cursor: pointer;
-
-    &__icon {
-        margin-left: 5px;
-        width: 10px !important;
-    }
-}
-</style>
