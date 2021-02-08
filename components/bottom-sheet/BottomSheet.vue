@@ -1,5 +1,6 @@
 <template>
     <v-bottom-sheet
+        ref="draggableBlock"
         v-model="modal"
         scrollable
         retain-focus
@@ -9,11 +10,16 @@
         @click:outside="$emit('click:close')"
     >
         <v-sheet :tag="tag" elevation="0" @submit.prevent="onSubmit">
+            <div
+                class="btn-for-draggable"
+                @touchmove="onTouchMove"
+                @touchend="onTouchEnd"
+                @touchstart="onTouchStart"
+            />
             <div class="c-bottom-sheet__inner">
+                <b-btn-close v-if="closeBtn" has-bg size="25" @click="onClose" />
                 <div class="c-bottom-sheet__scroll-container" @scroll="onScroll">
                     <div>
-                        <b-btn-close v-if="closeBtn" has-bg size="30" @click="onClose" />
-
                         <div
                             v-if="title || subTitle"
                             class="c-bottom-sheet__header"
@@ -124,6 +130,15 @@ export default {
     data: () => ({
         isScrolled: false,
         heightForActiveScroll: 100,
+        palette: null,
+        scroll: {
+            blockHeight: null,
+            isTouched: false,
+            scrollHeight: null,
+            initialYPosition: 0,
+            currentY: 0,
+            lastY: 0,
+        },
     }),
     computed: {
         contentClass() {
@@ -158,10 +173,10 @@ export default {
                 this.onScrollCheckFixedSearch(e);
             }
         },
-        //Метод для фиксацияя строки поиска по скролу
+        /** Метод для фиксацияя строки поиска по скролу */
         onScrollCheckFixedSearch(e) {
-            let search = this.$refs.search;
-            let searchOffsetTop = search.offsetHeight;
+            const search = this.$refs.search;
+            const searchOffsetTop = search.offsetHeight;
 
             if (e.target.scrollTop >= searchOffsetTop) {
                 search.classList.add('is-fixed');
@@ -170,6 +185,42 @@ export default {
                 search.classList.remove('is-fixed');
                 this.isScrolled = false;
             }
+        },
+        onTouchStart() {
+            this.scroll.isTouched = true;
+
+            if (!this.palette) {
+                this.palette = this.$refs.draggableBlock.$refs.dialog;
+                this.scroll.blockHeight = this.palette.offsetHeight;
+            }
+        },
+        onTouchMove(e) {
+            this.scroll.currentY = e.changedTouches[0].clientY;
+            this.scroll.scrollHeight = e.changedTouches[0].pageY;
+
+            if (!this.scroll.initialYPosition) {
+                this.scroll.initialYPosition = this.scroll.currentY;
+            }
+
+            if (this.scroll.currentY > this.scroll.initialYPosition) {
+                const offset = this.scroll.scrollHeight - this.scroll.blockHeight + 90;
+                this.palette.style.cssText = `transform: scale3d(1, 1, 1) translate3d(0, ${offset}px, 0); transition: none 0s ease 0s;`;
+            }
+
+            if (this.scroll.currentY / 1.5 > this.scroll.blockHeight) {
+                this.scroll.isTouched = false;
+            }
+
+            this.scroll.lastY = this.scroll.currentY;
+        },
+        onTouchEnd() {
+            this.palette.style = '';
+
+            if (!this.scroll.isTouched) {
+                this.modal = false;
+            }
+
+            this.scroll.isTouched = false;
         },
     },
 };
