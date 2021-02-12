@@ -1,4 +1,4 @@
-import { Product } from '@beautybox/core/entity/Orders/Products';
+import { Product } from '@beautybox/core/entity/Market/Products';
 
 const productsFavoriteMixin = {
     data: () => ({

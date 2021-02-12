@@ -1,7 +1,7 @@
 <script>
 import { mapGetters } from 'vuex';
 import { priceFilter } from '@beautybox/core/filters';
-import { Sales } from '@beautybox/core/entity/Orders/Sales';
+import { Loyalty } from '@beautybox/core/entity/Market/Loyalty';
 import AppBottomSheet from '../../../../../components/bottom-sheet/BottomSheet';
 import AppSkeletonBoilerplate from '../../../../../components/loaders/SkeletonBoilerplate';
 
@@ -26,8 +26,11 @@ export default {
             return this.loading || this.percent;
         },
     },
-    created() {
-        Sales.createProvider({
+    async created() {
+        if (!Object.keys(this.$store.getters.USER_INFO).length) {
+            await this.$store.dispatch('GET_USER_INFO');
+        }
+        Loyalty.createProvider({
             baseUrl: process.env.BASE_URL,
             module: 'market',
             token: localStorage.getItem('access_token'),
@@ -42,7 +45,7 @@ export default {
         async onShowCode() {
             if (this.$vuetify.breakpoint.mobile) {
                 if (!this.barcode.large.length) {
-                    ({ barcode: this.barcode.large = '' } = await Sales.getDiscountCard(
+                    ({ barcode: this.barcode.large = '' } = await Loyalty.getDiscountCard(
                         this.USER_INFO.phone,
                         6
                     ));
@@ -53,10 +56,10 @@ export default {
             }
         },
         async getPercent() {
-            ({ percent: this.percent = 0 } = await Sales.getPercent(this.USER_INFO.phone));
+            ({ percent: this.percent = 0 } = await Loyalty.getPercent(this.USER_INFO.phone));
         },
         async getDiscountCard() {
-            ({ barcode: this.barcode.small = '' } = await Sales.getDiscountCard(
+            ({ barcode: this.barcode.small = '' } = await Loyalty.getDiscountCard(
                 this.USER_INFO.phone,
                 3
             ));
@@ -66,7 +69,7 @@ export default {
                 next_level_sum: this.nextLevelSum = 0,
                 next_level_percent: this.nextLevelPercent = 0,
                 progress_percent: this.progressPercent = 0,
-            } = await Sales.getLevel(this.USER_INFO.phone));
+            } = await Loyalty.getLevel(this.USER_INFO.phone));
         },
     },
 };

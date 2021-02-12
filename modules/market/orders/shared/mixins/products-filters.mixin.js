@@ -1,4 +1,4 @@
-import { Products } from '@beautybox/core/entity/Orders/Products';
+import { Products } from '@beautybox/core/entity/Market/Products';
 import { STATUS_FILTERS, SORT_FILTERS } from '../../../../../constants';
 
 const productsFiltersMixin = {

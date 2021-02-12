@@ -1,4 +1,4 @@
-import { Orders } from '@beautybox/core/entity/Orders';
+import { Orders } from '@beautybox/core/entity/Market/Orders';
 
 const ordersMixin = {
     data: () => ({

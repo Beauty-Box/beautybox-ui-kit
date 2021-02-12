@@ -1,5 +1,5 @@
 <script>
-import { Order } from '@beautybox/core/entity/Orders';
+import { Orders } from '@beautybox/core/entity/Market/Orders';
 
 const AppBlockLoader = () =>
     import(/* webpackChunkName: "BlockLoader" */ '../../../../components/blocks/BlockLoader');

@@ -1,5 +1,5 @@
 <script>
-import { Products } from '@beautybox/core/entity/Orders/Products';
+import { Products } from '@beautybox/core/entity/Market/Products';
 import { infoLinkItemMixin } from './info-link-item.mixin';
 import AppInfoLinkItemLoader from './info-link-item-loader';
 

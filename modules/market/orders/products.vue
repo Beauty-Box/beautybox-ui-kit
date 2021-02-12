@@ -1,5 +1,5 @@
 <script>
-import { Products, Product } from '@beautybox/core/entity/Orders/Products';
+import { Products, Product } from '@beautybox/core/entity/Market/Products';
 import { objectToURLParams } from '@beautybox/core/utils';
 import { updateRouteMixin, getOnScrollMixin } from '../../../mixins';
 

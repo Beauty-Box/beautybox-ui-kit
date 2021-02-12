@@ -1,5 +1,5 @@
 <script>
-import { Orders } from '@beautybox/core/entity/Orders';
+import { Orders } from '@beautybox/core/entity/Market/Orders';
 import { objectToURLParams } from '@beautybox/core/utils';
 import { getOnScrollMixin } from '../../../mixins/get-on-scroll.mixin';
 

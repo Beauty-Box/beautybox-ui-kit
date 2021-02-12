@@ -1,6 +1,6 @@
 <script>
 import { mapGetters } from 'vuex';
-import { Sales } from '@beautybox/core/entity/Orders/Sales';
+import { Loyalty } from '@beautybox/core/entity/Market/Loyalty';
 const AppSaleBlock = () =>
     import(/* webpackChunkName: "sale-block" */ './shared/components/sale-block');
 const AppBlockLoader = () =>
@@ -23,7 +23,7 @@ export default {
         },
     },
     created() {
-        Sales.createProvider({
+        Loyalty.createProvider({
             baseUrl: process.env.BASE_URL,
             module: 'market',
             token: localStorage.getItem('access_token'),
@@ -35,12 +35,12 @@ export default {
     },
     methods: {
         async getDiscount() {
-            ({ discount_calculation: this.discountCalculation = [] } = await Sales.getDiscount(
+            ({ discount_calculation: this.discountCalculation = [] } = await Loyalty.getDiscount(
                 this.userPhone
             ));
         },
         async getPercent() {
-            ({ percent: this.current = 0 } = await Sales.getPercent(this.userPhone));
+            ({ percent: this.current = 0 } = await Loyalty.getPercent(this.userPhone));
         },
     },
 };

@@ -91,7 +91,7 @@
 </template>
 
 <script>
-import { Product } from '@beautybox/core/entity/Orders/Products';
+import { Product } from '@beautybox/core/entity/Market/Products';
 import AppBtnAddToFavorite from '../../../../../components/buttons/BtnAddToFavorites';
 
 export default {
