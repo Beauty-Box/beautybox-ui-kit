@@ -1,3 +1,92 @@
+<script>
+import { Product } from '@beautybox/core/entity/Market/Products';
+import AppBtnAddToFavorite from '../../../../../components/buttons/BtnAddToFavorites';
+
+export default {
+    name: 'app-market-product',
+    components: { AppBtnAddToFavorite },
+    filters: {
+        numberToPrice(price, currency = 'RUB') {
+            return new Intl.NumberFormat('ru-RU', {
+                style: 'currency',
+                currency,
+                minimumFractionDigits: 0,
+            }).format(parseFloat(price));
+        },
+    },
+    props: {
+        product: {
+            type: Object,
+            required: true,
+        },
+        inCart: {
+            type: Number,
+            default: 0,
+        },
+        isFavoriteIds: {
+            type: Array,
+            default: () => [],
+        },
+    },
+    computed: {
+        inStock() {
+            return Boolean(this.inCart)
+                ? 'https://schema.org/InStock'
+                : 'https://schema.org/OutOfStock';
+        },
+        isFavorite: {
+            get() {
+                return Boolean(this.isFavoriteIds.find((i) => i === this.product.productID));
+            },
+            set() {
+                this.$bus.$emit('update:favorite-ids', this.product.productID);
+            },
+        },
+    },
+    methods: {
+        trueEnding(amount) {
+            if (amount % 100 <= 20 && amount % 100 >= 5) {
+                return 'товаров';
+            }
+
+            if (amount % 10 === 1) {
+                return 'товар';
+            }
+
+            return 'товара';
+        },
+        buttonText(product) {
+            if (Boolean(this.inCart)) {
+                return 'В корзине';
+            }
+
+            if (Boolean(product.stock)) {
+                return 'В корзину';
+            }
+
+            return 'Нет в наличии';
+        },
+        addToFavorites(id) {
+            Product.addToFavorites(parseInt(id));
+        },
+        removeFromFavorites(id) {
+            Product.removeFromFavorites(parseInt(id));
+        },
+        addToCart({ productID }) {
+            if (this.inCart) {
+                window.open('https://beautybox.ru/market/cart', '_blank');
+                return;
+            }
+
+            this.$emit('click:add-to-cart', productID);
+        },
+        removeFromCart({ productID }) {
+            this.$emit('click:remove-from-cart', productID);
+        },
+    },
+};
+</script>
+
 <template>
     <v-card flat itemscope class="c-product" itemtype="https://schema.org/Product">
         <meta itemprop="name" :content="product.name" />
@@ -89,95 +178,6 @@
         </v-card-actions>
     </v-card>
 </template>
-
-<script>
-import { Product } from '@beautybox/core/entity/Market/Products';
-import AppBtnAddToFavorite from '../../../../../components/buttons/BtnAddToFavorites';
-
-export default {
-    name: 'app-market-product',
-    components: { AppBtnAddToFavorite },
-    filters: {
-        numberToPrice(price, currency = 'RUB') {
-            return new Intl.NumberFormat('ru-RU', {
-                style: 'currency',
-                currency,
-                minimumFractionDigits: 0,
-            }).format(parseFloat(price));
-        },
-    },
-    props: {
-        product: {
-            type: Object,
-            required: true,
-        },
-        inCart: {
-            type: Number,
-            default: 0,
-        },
-        isFavoriteIds: {
-            type: Array,
-            default: () => [],
-        },
-    },
-    computed: {
-        inStock() {
-            return Boolean(this.inCart)
-                ? 'https://schema.org/InStock'
-                : 'https://schema.org/OutOfStock';
-        },
-        isFavorite: {
-            get() {
-                return Boolean(this.isFavoriteIds.find((i) => i === this.product.productID));
-            },
-            set() {
-                this.$bus.$emit('update:favorite-ids', this.product.productID);
-            },
-        },
-    },
-    methods: {
-        trueEnding(amount) {
-            if (amount % 100 <= 20 && amount % 100 >= 5) {
-                return 'товаров';
-            }
-
-            if (amount % 10 === 1) {
-                return 'товар';
-            }
-
-            return 'товара';
-        },
-        buttonText(product) {
-            if (Boolean(this.inCart)) {
-                return 'В корзине';
-            }
-
-            if (Boolean(product.stock)) {
-                return 'В корзину';
-            }
-
-            return 'Нет в наличии';
-        },
-        addToFavorites(id) {
-            Product.addToFavorites(parseInt(id));
-        },
-        removeFromFavorites(id) {
-            Product.removeFromFavorites(parseInt(id));
-        },
-        addToCart({ productID }) {
-            if (this.inCart) {
-                window.open('https://beautybox.ru/market/cart', '_blank');
-                return;
-            }
-
-            this.$emit('click:add-to-cart', productID);
-        },
-        removeFromCart({ productID }) {
-            this.$emit('click:remove-from-cart', productID);
-        },
-    },
-};
-</script>
 
 <style lang="scss">
 .c-product {

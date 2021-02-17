@@ -30,6 +30,15 @@ export default {
         },
     },
     data: () => ({}),
+    computed: {
+        shortProductList() {
+            if (this.products.length > 2) {
+                return this.products.slice(0, 3);
+            } else {
+                return this.products;
+            }
+        },
+    },
     methods: {
         checkPhoto(item) {
             return item.photo.length ? item.photo : EMPTY_PHOTO;
@@ -63,7 +72,7 @@ export default {
         <v-list-item-action v-if="products.length">
             <div class="d-flex align-center">
                 <v-img
-                    v-for="(product, j) in products"
+                    v-for="(product, j) in shortProductList"
                     :key="j"
                     max-width="60"
                     max-height="60"
