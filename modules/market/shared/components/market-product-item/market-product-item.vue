@@ -74,7 +74,7 @@ export default {
         },
         addToCart({ productID }) {
             if (this.inCart) {
-                window.open('https://beautybox.ru/market/cart', '_blank');
+                window.open(window.location.origin + '/market/cart', '_blank');
                 return;
             }
 
