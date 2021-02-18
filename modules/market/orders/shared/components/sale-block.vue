@@ -16,7 +16,7 @@ export default {
         },
         modelBarcode: false,
         percent: 0,
-        nextLevelSum: 0,
+        nextLevelSum: null,
         nextLevelPercent: 0,
         progressPercent: 0,
     }),
@@ -87,7 +87,10 @@ export default {
                 <div class="mr-4" v-html="barcode.small" />
             </div>
             <v-card-text class="next-lvl-text">
-                {{ priceFilter(nextLevelSum) }} до скидки {{ nextLevelPercent }}%
+                <span v-if="nextLevelSum !== 0">
+                    {{ priceFilter(nextLevelSum) }} до скидки {{ nextLevelPercent }}%
+                </span>
+                <span v-if="nextLevelSum === 0"> Максимальная скидка </span>
             </v-card-text>
             <v-card-actions class="pt-2" :class="{ 'pb-6': !$vuetify.breakpoint.mobile }">
                 <v-progress-linear
