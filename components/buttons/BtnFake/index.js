@@ -21,6 +21,10 @@ export default {
             type: String,
             default: 'button',
         },
+        obscureSubTitle: {
+            type: Boolean,
+            default: false,
+        },
     },
     render(h) {
         return h(
@@ -57,6 +61,7 @@ export default {
                             {
                                 class: {
                                     'c-fake-btn__subtitle': true,
+                                    'text-truncate': this.obscureSubTitle,
                                 },
                             },
                             this.subTitle

@@ -34,7 +34,7 @@
         flex-direction: column;
         flex-grow: 1;
         align-items: flex-start;
-        justify-content: flex-end;
+        max-width: 94%;
         height: auto;
         padding: $base-indent 0;
     } //.c-fake-btn__inner
@@ -48,6 +48,7 @@
     } //.c-fake-btn__title
 
     &__subtitle {
+        max-width: 100%;
         height: 20px;
         font-size: 14px;
         font-weight: 300;
@@ -66,9 +67,11 @@
     } //.c-fake-btn__label
 
     &__icon {
+        flex-shrink: 0;
         width: 15px;
         height: 15px;
         margin-right: 4px;
+        margin-left: auto;
         fill: currentColor;
         color: currentColor;
 
