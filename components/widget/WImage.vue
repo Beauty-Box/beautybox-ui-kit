@@ -11,25 +11,44 @@
                 <v-btn
                     v-if="index > 0"
                     icon
-                    class="c-img-load__btn"
+                    class="c-img-load__btn v-btn--flat"
                     color="white"
                     title="Сделать главной"
-                    @click="upPhoto()"
+                    :ripple="false"
+                    @click="up()"
                 >
                     <v-icon>upload</v-icon>
                 </v-btn>
-                <v-btn class="c-img-load__btn" color="white" icon @click="rotatePhoto(-90)">
+                <v-btn
+                    class="c-img-load__btn v-btn--flat"
+                    color="white"
+                    :ripple="false"
+                    icon
+                    @click="rotatePhoto(-90)"
+                >
                     <v-icon>rotate_left</v-icon>
                 </v-btn>
-                <v-btn class="c-img-load__btn" color="white" icon @click="rotatePhoto(90)">
+                <v-btn
+                    class="c-img-load__btn v-btn--flat"
+                    color="white"
+                    :ripple="false"
+                    icon
+                    @click="rotatePhoto(90)"
+                >
                     <v-icon>rotate_right</v-icon>
                 </v-btn>
-                <v-btn class="c-img-load__btn" color="white" icon @click="deletePhoto">
+                <v-btn
+                    class="c-img-load__btn v-btn--flat"
+                    color="white"
+                    :ripple="false"
+                    icon
+                    @click="deletePhoto"
+                >
                     <v-icon>delete</v-icon>
                 </v-btn>
                 <!-- <v-btn
                     v-if="image.uploadFilesID"
-                    class="c-img-load__btn"
+                    class="c-img-load__btn v-btn--flat"
                     color="white"
                     icon
                     @click="cropDialog = true"
@@ -128,12 +147,14 @@ export default {
                 canvas.toBlob((blob) => this.$emit('rotate', { blob, index: this.index }));
             };
         },
-        upPhoto() {
-            this.$fetch.put('/addresses/file-main', {
+        async up() {
+            await this.$fetch.put('/addresses/file-main', {
                 albumID: this.$route.params.id,
                 main: this.$route.query.mainAlbum,
                 uploadFileID: this.imageData.uploadFilesID,
             });
+            this.$emit('up');
+            this.messageSuccess('Обновленно главное фото альбома');
         },
     },
 };
