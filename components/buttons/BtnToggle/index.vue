@@ -54,7 +54,7 @@ export default {
         color: $color-primary !important;
 
         &.v-item--active {
-            background-color: $color-info;
+            background-color: $color-info !important;
             color: #fff !important;
         }
     }
