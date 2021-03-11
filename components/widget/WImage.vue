@@ -1,21 +1,31 @@
 <template>
     <v-card>
         <v-img
-            :key="image.uploadFilesID"
-            :src="image.image.length ? image.image : empty"
-            :lazy-src="image.image.length ? image.image : empty"
+            :key="imageData.uploadFilesID"
+            :src="imageData.image.length ? imageData.image : empty"
+            :lazy-src="imageData.image.length ? imageData.image : empty"
             aspect-ratio="1"
             class="c-img-load"
         >
-            <div v-if="image.image.length" class="c-img-load__action">
-                <v-btn class="c-img-load__btn" color="white" icon @click="deletePhoto">
-                    <v-icon>delete</v-icon>
+            <div v-if="imageData.image.length" class="c-img-load__action">
+                <v-btn
+                    v-if="index > 0"
+                    icon
+                    class="c-img-load__btn"
+                    color="white"
+                    title="Сделать главной"
+                    @click="upPhoto()"
+                >
+                    <v-icon>upload</v-icon>
                 </v-btn>
                 <v-btn class="c-img-load__btn" color="white" icon @click="rotatePhoto(-90)">
                     <v-icon>rotate_left</v-icon>
                 </v-btn>
                 <v-btn class="c-img-load__btn" color="white" icon @click="rotatePhoto(90)">
                     <v-icon>rotate_right</v-icon>
+                </v-btn>
+                <v-btn class="c-img-load__btn" color="white" icon @click="deletePhoto">
+                    <v-icon>delete</v-icon>
                 </v-btn>
                 <!-- <v-btn
                     v-if="image.uploadFilesID"
@@ -30,11 +40,11 @@
         </v-img>
 
         <m-upload-avatar
-            v-if="image.image.length"
+            v-if="imageData.image.length"
             v-model="cropDialog"
             edit
-            :crop="image.crop"
-            :image="image.originalImage"
+            :crop="imageData.crop"
+            :image="imageData.originalImage"
             @success="cropImage"
             @cancel="cropDialog = false"
         />
@@ -58,26 +68,29 @@ export default {
             default: false,
         },
     },
-    data: () => ({
-        cropDialog: false,
-        empty: '/assets/empty.svg',
-    }),
+    data() {
+        return {
+            cropDialog: false,
+            empty: '/assets/empty.svg',
+            imageData: this.image,
+        };
+    },
     mounted() {
-        console.log('image', this.image);
+        console.log('image', this.imageData);
     },
     methods: {
         async deletePhoto() {
-            this.$emit('delete', { image: this.image, index: this.index });
+            this.$emit('delete', { image: this.imageData, index: this.index });
         },
         cropImage(e) {
             this.cropDialog = false;
-            this.image.image = e.image;
-            this.image.crop = e.crop;
+            this.imageData.image = e.image;
+            this.imageData.crop = e.crop;
             this.$emit('crop', e);
         },
         rotatePhoto(angle) {
-            if (this.image.uploadFilesID) {
-                this.$fetch.put(`/addresses/file/${this.image.uploadFilesID}/rotate`, {
+            if (this.imageData.uploadFilesID) {
+                this.$fetch.put(`/addresses/file/${this.imageData.uploadFilesID}/rotate`, {
                     angle: -angle,
                 });
             }
@@ -87,7 +100,7 @@ export default {
 
             const image = document.createElement('img');
             image.crossOrigin = 'anonymous';
-            image.src = this.image.image;
+            image.src = this.imageData.image;
 
             image.onload = () => {
                 if (image.width > 1000 || image.height > 1000) {
@@ -111,9 +124,16 @@ export default {
 
                 ctx.drawImage(image, -canvas.width / 2, -canvas.height / 2);
 
-                this.image.image = canvas.toDataURL();
+                this.imageData.image = canvas.toDataURL();
                 canvas.toBlob((blob) => this.$emit('rotate', { blob, index: this.index }));
             };
+        },
+        upPhoto() {
+            this.$fetch.put('/addresses/file-main', {
+                albumID: this.$route.params.id,
+                main: this.$route.query.mainAlbum,
+                uploadFileID: this.imageData.uploadFilesID,
+            });
         },
     },
 };
