@@ -14,7 +14,13 @@
 
         <template v-else>
             <template>
-                <crop-image :image="img || image" :crop="crop" @change="getCrop" />
+                <crop-image
+                    :aspect-ratio="cropAspectRatio"
+                    :box="box"
+                    :image="img || image"
+                    :crop="crop"
+                    @change="getCrop"
+                />
                 <v-row>
                     <v-col class="d-flex justify-center align-center">
                         <image-user-avatar :image="cropImg" size="80" />
@@ -63,6 +69,14 @@ export default {
         crop: {
             type: [Object, String],
             default: null,
+        },
+        box: {
+            type: Boolean,
+            default: false,
+        },
+        cropAspectRatio: {
+            type: Number,
+            default: 1,
         },
         image: {
             type: String,

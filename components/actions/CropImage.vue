@@ -8,7 +8,7 @@
         "
         :src="image"
         :stencil-props="{
-            aspectRatio: 1,
+            aspectRatio,
             previewClassname: 'preview',
             handlersClassnames: {
                 default: 'handler',
@@ -25,6 +25,10 @@ export default {
     name: 'CropImage',
     components: { Cropper, CircleStencil, RectangleStencil },
     props: {
+        aspectRatio: {
+            type: Number,
+            default: 1,
+        },
         image: {
             type: String,
             default: null,

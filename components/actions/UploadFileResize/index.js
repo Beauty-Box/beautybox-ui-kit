@@ -35,11 +35,15 @@ export default {
                     img.onload = () => {
                         const ratio = img.width / img.height;
 
+                        const targetDimension = 2500;
+
                         if (img.width > img.height) {
-                            canvas.width = img.width > 1000 ? 1000 : img.width;
+                            canvas.width =
+                                img.width > targetDimension ? targetDimension : img.width;
                             canvas.height = canvas.width / ratio;
                         } else {
-                            canvas.height = img.height > 1000 ? 1000 : img.height;
+                            canvas.height =
+                                img.height > targetDimension ? targetDimension : img.height;
                             canvas.width = canvas.height * ratio;
                         }
 

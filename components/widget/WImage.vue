@@ -20,6 +20,16 @@
                     <v-icon>upload</v-icon>
                 </v-btn>
                 <v-btn
+                    icon
+                    class="c-img-load__btn v-btn--flat"
+                    color="white"
+                    :ripple="false"
+                    title="Обрезать"
+                    @click="cropDialog = true"
+                >
+                    <v-icon>crop</v-icon>
+                </v-btn>
+                <v-btn
                     class="c-img-load__btn v-btn--flat"
                     color="white"
                     :ripple="false"
@@ -46,15 +56,6 @@
                 >
                     <v-icon>delete</v-icon>
                 </v-btn>
-                <!-- <v-btn
-                    v-if="image.uploadFilesID"
-                    class="c-img-load__btn v-btn--flat"
-                    color="white"
-                    icon
-                    @click="cropDialog = true"
-                >
-                    <v-icon>crop</v-icon>
-                </v-btn>-->
             </div>
         </v-img>
 
@@ -62,6 +63,8 @@
             v-if="imageData.image.length"
             v-model="cropDialog"
             edit
+            box
+            :crop-aspect-ratio="0"
             :crop="imageData.crop"
             :image="imageData.originalImage"
             @success="cropImage"
@@ -71,8 +74,14 @@
 </template>
 
 <script>
+const MUploadAvatar = () =>
+    import(/* webpackChunkName: "MUploadAvatar" */ '../modals/MUploadAvatar');
+
 export default {
     name: 'WImage',
+    components: {
+        MUploadAvatar,
+    },
     props: {
         image: {
             type: Object,
@@ -92,6 +101,11 @@ export default {
             cropDialog: false,
             empty: '/assets/empty.svg',
             imageData: this.image,
+            isCropping: false,
+            isBusy: false,
+            imageToCrop: null,
+            croppedImage: null,
+            crop: {},
         };
     },
     mounted() {
@@ -154,7 +168,7 @@ export default {
                 uploadFileID: this.imageData.uploadFilesID,
             });
             this.$emit('up');
-            this.messageSuccess('Обновленно главное фото альбома');
+            this.messageSuccess('Обновлено главное фото альбома');
         },
     },
 };
