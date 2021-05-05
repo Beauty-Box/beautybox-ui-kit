@@ -2,6 +2,7 @@
     <div>
         <b-input
             v-model="computedTitle"
+            v-bind="$attrs"
             readonly
             :label="label"
             :disabled="disabled"
@@ -11,7 +12,11 @@
             :error-messages="disabled ? [] : errorMessages"
             @click="modal = true"
             @click:clear="$emit('clear')"
-        />
+        >
+            <template #messages="{ messages }">
+                <slot name="messages" v-bind="{ messages }" />
+            </template>
+        </b-input>
         <input type="hidden" :value="selected" :name="name" />
         <v-bottom-sheet
             v-model="modal"
@@ -78,7 +83,7 @@ const BInputSearch = () =>
     import(/* webpackChunkName: "InputSearch" */ '../forms/inputs/InputSearch');
 
 export default {
-    name: 'b-bottom-sheet-search',
+    name: 'BBottomSheetSearch',
     components: { BBtnClose, BInput, BInputSearch },
     mixins: [getOnScrollMixin, modalToggleMixin, modalOverlayColorMixin],
     props: {
