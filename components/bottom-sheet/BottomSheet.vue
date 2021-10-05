@@ -62,7 +62,7 @@ import { getOnScrollMixin, modalToggleMixin, modalOverlayColorMixin } from '../.
 const BBtnClose = () => import(/* webpackChunkName: "BtnClose" */ '../buttons/BtnClose');
 
 export default {
-    name: 'b-bottom-sheet',
+    name: 'BBottomSheet',
     components: { BBtnClose },
     mixins: [getOnScrollMixin, modalToggleMixin, modalOverlayColorMixin],
     props: {
@@ -191,8 +191,9 @@ export default {
 
             if (!this.palette) {
                 this.palette = this.$refs.draggableBlock.$refs.dialog;
-                this.scroll.blockHeight = this.palette.offsetHeight;
             }
+            this.scroll.blockHeight = this.palette.offsetHeight;
+            console.log('this.palette.offsetHeight', this.palette.offsetHeight);
         },
         onTouchMove(e) {
             this.scroll.currentY = e.changedTouches[0].clientY;
@@ -204,6 +205,9 @@ export default {
 
             if (this.scroll.currentY > this.scroll.initialYPosition) {
                 const offset = this.scroll.scrollHeight - this.scroll.blockHeight + 90;
+                console.log('scroll offset', offset);
+                console.log('this.scroll.scrollHeight', this.scroll.scrollHeight);
+                console.log(' this.scroll.blockHeight', this.scroll.blockHeight);
                 this.palette.style.cssText = `transform: scale3d(1, 1, 1) translate3d(0, ${offset}px, 0); transition: none 0s ease 0s;`;
             }
 
