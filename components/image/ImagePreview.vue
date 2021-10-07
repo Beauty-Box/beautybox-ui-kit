@@ -4,7 +4,7 @@
 
 <script>
 export default {
-    name: 'app-scroll-photos-gallery',
+    name: 'AppScrollPhotosGallery',
     props: {
         items: {
             type: Array,
@@ -38,6 +38,7 @@ export default {
         @include max(sm) {
             margin-bottom: -30px !important;
             padding-bottom: 30px !important;
+            align-items: center;
         }
 
         & > figure {
