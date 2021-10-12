@@ -19,7 +19,7 @@
             <div class="c-bottom-sheet__inner">
                 <b-btn-close v-if="closeBtn" has-bg size="25" @click="onClose" />
                 <div class="c-bottom-sheet__scroll-container" @scroll="onScroll">
-                    <div>
+                    <div class="overflow-x-hidden mt-2">
                         <div
                             v-if="title || subTitle"
                             class="c-bottom-sheet__header"
@@ -62,7 +62,7 @@ import { getOnScrollMixin, modalToggleMixin, modalOverlayColorMixin } from '../.
 const BBtnClose = () => import(/* webpackChunkName: "BtnClose" */ '../buttons/BtnClose');
 
 export default {
-    name: 'b-bottom-sheet',
+    name: 'BBottomSheet',
     components: { BBtnClose },
     mixins: [getOnScrollMixin, modalToggleMixin, modalOverlayColorMixin],
     props: {
