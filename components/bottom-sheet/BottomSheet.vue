@@ -138,6 +138,8 @@ export default {
             initialYPosition: 0,
             currentY: 0,
             lastY: 0,
+            closeThreshold: 100,
+            windowHeight: window.innerHeight,
         },
     }),
     computed: {
@@ -195,7 +197,6 @@ export default {
             this.scroll.blockHeight = this.palette.offsetHeight;
         },
         onTouchMove(e) {
-            const windowHeight = window.innerHeight;
             this.scroll.currentY = e.changedTouches[0].clientY;
             this.scroll.scrollHeight = e.changedTouches[0].pageY;
             if (!this.scroll.initialYPosition) {
@@ -203,12 +204,12 @@ export default {
             }
             let offset = 0;
             if (this.scroll.currentY > this.scroll.initialYPosition) {
-                offset = this.scroll.blockHeight - (windowHeight - this.scroll.currentY);
-                console.log('offset', offset);
+                offset =
+                    this.scroll.blockHeight - (this.scroll.windowHeight - this.scroll.currentY);
                 this.palette.style.cssText = `transform: scale3d(1, 1, 1) translate3d(0, ${offset}px, 0); transition: none 0s ease 0s;`;
             }
             // if (this.scroll.currentY / 1.5 > this.scroll.blockHeight) {
-            if (this.scroll.blockHeight < offset + 90) {
+            if (this.scroll.blockHeight < offset + this.scroll.closeThreshold) {
                 this.scroll.isTouched = false;
             }
 
