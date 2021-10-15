@@ -49,6 +49,10 @@ export default {
             type: Boolean,
             default: false,
         },
+        headerBtnHideShadow: {
+            type: Boolean,
+            default: false,
+        },
     },
     computed: {
         titleIsVisible() {
@@ -115,6 +119,7 @@ export default {
                     {
                         class: {
                             'u-text-initial font-weight-medium ml-auto': true,
+                            'elevation-0': this.headerBtnHideShadow,
                         },
                         props: {
                             depressed: true,
