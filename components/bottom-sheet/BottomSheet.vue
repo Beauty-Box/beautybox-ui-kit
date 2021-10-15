@@ -135,7 +135,6 @@ export default {
             blockHeight: null,
             isTouched: false,
             scrollHeight: null,
-            screenHeight: 0,
             initialYPosition: 0,
             currentY: 0,
             lastY: 0,
@@ -196,21 +195,20 @@ export default {
             this.scroll.blockHeight = this.palette.offsetHeight;
         },
         onTouchMove(e) {
+            const windowHeight = window.innerHeight;
             this.scroll.currentY = e.changedTouches[0].clientY;
-            //this.scroll.scrollHeight = e.changedTouches[0].pageY;
-            this.scroll.screenHeight = e.changedTouches[0].screenY;
+            this.scroll.scrollHeight = e.changedTouches[0].pageY;
             if (!this.scroll.initialYPosition) {
                 this.scroll.initialYPosition = this.scroll.currentY;
             }
-            console.log('popup scroll object', this.scroll);
+            let offset = 0;
             if (this.scroll.currentY > this.scroll.initialYPosition) {
-                //const offset = this.scroll.scrollHeight - this.scroll.blockHeight + 90;
-                const offset = this.scroll.screenHeight - this.scroll.blockHeight + 90;
+                offset = this.scroll.blockHeight - (windowHeight - this.scroll.currentY);
                 console.log('offset', offset);
                 this.palette.style.cssText = `transform: scale3d(1, 1, 1) translate3d(0, ${offset}px, 0); transition: none 0s ease 0s;`;
             }
-            console.log('this.scroll.blockHeight', this.scroll.blockHeight);
-            if (this.scroll.currentY / 1.5 > this.scroll.blockHeight) {
+            // if (this.scroll.currentY / 1.5 > this.scroll.blockHeight) {
+            if (this.scroll.blockHeight < offset + 90) {
                 this.scroll.isTouched = false;
             }
 
