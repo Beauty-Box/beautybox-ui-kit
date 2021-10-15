@@ -135,6 +135,7 @@ export default {
             blockHeight: null,
             isTouched: false,
             scrollHeight: null,
+            screenHeight: 0,
             initialYPosition: 0,
             currentY: 0,
             lastY: 0,
@@ -191,22 +192,24 @@ export default {
 
             if (!this.palette) {
                 this.palette = this.$refs.draggableBlock.$refs.dialog;
-                this.scroll.blockHeight = this.palette.offsetHeight;
             }
+            this.scroll.blockHeight = this.palette.offsetHeight;
         },
         onTouchMove(e) {
             this.scroll.currentY = e.changedTouches[0].clientY;
-            this.scroll.scrollHeight = e.changedTouches[0].pageY;
-
+            //this.scroll.scrollHeight = e.changedTouches[0].pageY;
+            this.scroll.screenHeight = e.changedTouches[0].screenY;
             if (!this.scroll.initialYPosition) {
                 this.scroll.initialYPosition = this.scroll.currentY;
             }
-
+            console.log('popup scroll object', this.scroll);
             if (this.scroll.currentY > this.scroll.initialYPosition) {
-                const offset = this.scroll.scrollHeight - this.scroll.blockHeight + 90;
+                //const offset = this.scroll.scrollHeight - this.scroll.blockHeight + 90;
+                const offset = this.scroll.screenHeight - this.scroll.blockHeight + 90;
+                console.log('offset', offset);
                 this.palette.style.cssText = `transform: scale3d(1, 1, 1) translate3d(0, ${offset}px, 0); transition: none 0s ease 0s;`;
             }
-
+            console.log('this.scroll.blockHeight', this.scroll.blockHeight);
             if (this.scroll.currentY / 1.5 > this.scroll.blockHeight) {
                 this.scroll.isTouched = false;
             }
