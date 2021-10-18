@@ -138,7 +138,7 @@ export default {
             initialYPosition: 0,
             currentY: 0,
             lastY: 0,
-            closeThreshold: 100,
+            closeThreshold: 150,
             windowHeight: window.innerHeight,
         },
     }),
@@ -209,7 +209,7 @@ export default {
                 this.palette.style.cssText = `transform: scale3d(1, 1, 1) translate3d(0, ${offset}px, 0); transition: none 0s ease 0s;`;
             }
             // if (this.scroll.currentY / 1.5 > this.scroll.blockHeight) {
-            if (this.scroll.blockHeight < offset + this.scroll.closeThreshold) {
+            if (this.scroll.blockHeight * 0.5 < offset) {
                 this.scroll.isTouched = false;
             }
 
