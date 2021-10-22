@@ -152,6 +152,7 @@ export default {
                                 class: {
                                     'c-box__header': true,
                                     'justify-start': this.backBtn,
+                                    'align-center': this.headerBtnHideShadow,
                                 },
                             },
                             [
