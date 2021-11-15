@@ -63,7 +63,7 @@ export const vuetify = new Vuetify({
                 // Social colors
                 whatsapp: '#23d364',
                 viber: '#7d3daf',
-                vk: '#4a76a8',
+                vk: '#2787f5',
             },
             dark: {
                 background: '#2f2f2f',
@@ -79,7 +79,7 @@ export const vuetify = new Vuetify({
                 // Social color
                 whatsapp: '#23d364',
                 viber: '#7d3daf',
-                vk: '#4a76a8',
+                vk: '#2787f5',
             },
         },
     },
