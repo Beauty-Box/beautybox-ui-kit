@@ -65,7 +65,7 @@ export default {
                             : this.lazyValue,
                 },
                 attrs: {
-                    ...this.attrs$,
+                    ...this.$attrs,
                     autofocus: this.autofocus,
                     disabled: this.isDisabled,
                     id: this.computedId,
