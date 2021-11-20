@@ -19,7 +19,11 @@
             <div class="c-bottom-sheet__inner">
                 <b-btn-close v-if="closeBtn" has-bg size="25" @click="onClose" />
                 <div class="c-bottom-sheet__scroll-container" @scroll="onScroll">
-                    <div class="overflow-x-hidden mt-2" :class="{ 'px-4': $isMobile }">
+                    <div
+                        class="overflow-x-hidden mt-2"
+                        :class="{ 'px-4': $isMobile }"
+                        @scroll="onScroll"
+                    >
                         <div
                             v-if="title || subTitle"
                             class="c-bottom-sheet__header"
@@ -126,6 +130,10 @@ export default {
             type: Boolean,
             default: false,
         },
+        maxHeight: {
+            type: [Number, String],
+            default: undefined,
+        },
     },
     data: () => ({
         isScrolled: false,
@@ -169,8 +177,8 @@ export default {
             this.modal = false;
         },
         onScroll(e) {
+            this.$emit('popup:scroll', e);
             this.onScrollControl(e);
-
             if (this.$refs.search) {
                 this.onScrollCheckFixedSearch(e);
             }
