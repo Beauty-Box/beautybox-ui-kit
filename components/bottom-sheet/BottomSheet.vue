@@ -130,10 +130,6 @@ export default {
             type: Boolean,
             default: false,
         },
-        maxHeight: {
-            type: [Number, String],
-            default: undefined,
-        },
     },
     data: () => ({
         isScrolled: false,
