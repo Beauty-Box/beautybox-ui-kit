@@ -16,8 +16,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: eslint
+      - name: setup
         run: make setup
 
       - name: eslint
         run: make lint
+
+      - name: eslint-fix
+        run: make lint-fix
