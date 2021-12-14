@@ -1,7 +1,5 @@
 const ImageUserAvatar = () =>
-    import(
-        /* webpackChunkName: "ImageUserAvatar" */ '../../image/ImageUserAvatar'
-    );
+    import(/* webpackChunkName: "ImageUserAvatar" */ '../../image/ImageUserAvatar');
 
 export default {
     components: { ImageUserAvatar },

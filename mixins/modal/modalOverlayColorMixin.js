@@ -7,7 +7,7 @@ const modalOverlayColorMixin = {
         overlayColor: {
             type: String,
             default: 'rgba(103, 118, 140, 0.5)',
-        }
+        },
     },
 };
 
