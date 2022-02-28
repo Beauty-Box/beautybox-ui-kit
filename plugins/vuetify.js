@@ -64,6 +64,7 @@ export const vuetify = new Vuetify({
                 whatsapp: '#23d364',
                 viber: '#7d3daf',
                 vk: '#2787f5',
+                telegram: '#5EB5F7',
             },
             dark: {
                 background: '#2f2f2f',
@@ -80,6 +81,7 @@ export const vuetify = new Vuetify({
                 whatsapp: '#23d364',
                 viber: '#7d3daf',
                 vk: '#2787f5',
+                telegram: '#5EB5F7',
             },
         },
     },
