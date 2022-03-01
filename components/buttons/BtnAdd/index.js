@@ -51,38 +51,38 @@ export default {
         },
     },
     render(h) {
-        if (this.$vuetify.breakpoint.mobile) {
-            return h('v-fab-transition', {}, [
-                h(
-                    'v-btn',
-                    {
-                        class: {
-                            'c-btn-add': true,
-                        },
-                        props: {
-                            transition: this.transition,
-                            fab: this.fab,
-                            dark: this.dark,
-                            fixed: this.fixed,
-                            right: this.right,
-                            bottom: this.bottom,
-                            color: this.color,
-                            ripple: this.ripple,
-                            to: this.to,
-                            forever: this.forever,
-                        },
-                        on: this.$listeners,
+        //if (this.$vuetify.breakpoint.mobile) {
+        return h('v-fab-transition', {}, [
+            h(
+                'v-btn',
+                {
+                    class: {
+                        'c-btn-add': true,
                     },
-                    [
-                        this.$slots.default,
-                        h('b-svg', {
-                            props: {
-                                name: 'plus--bold',
-                            },
-                        }),
-                    ]
-                ),
-            ]);
-        }
+                    props: {
+                        transition: this.transition,
+                        fab: this.fab,
+                        dark: this.dark,
+                        fixed: this.fixed,
+                        right: this.right,
+                        bottom: this.bottom,
+                        color: this.color,
+                        ripple: this.ripple,
+                        to: this.to,
+                        forever: this.forever,
+                    },
+                    on: this.$listeners,
+                },
+                [
+                    this.$slots.default,
+                    h('b-svg', {
+                        props: {
+                            name: 'plus--bold',
+                        },
+                    }),
+                ]
+            ),
+        ]);
+        // }
     },
 };
