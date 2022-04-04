@@ -44,7 +44,7 @@
                     </div>
 
                     <div class="c-bottom-sheet__footer">
-                        <v-btn large block color="primary" :ripple="false" @click="modal = false">
+                        <v-btn large block color="primary" :ripple="false" @click="success">
                             Готово
                         </v-btn>
                     </div>
@@ -120,6 +120,10 @@ export default {
         close() {
             this.modal = false;
             this.$emit('close');
+        },
+        success() {
+            this.$emit('save');
+            this.modal = false;
         },
         openBottomSheet() {
             this.modal = true;
