@@ -12,7 +12,10 @@
     >
         <v-card
             :tag="tag"
-            :style="{ minHeight: isNumber(minHeight) ? minHeight + 'px' : minHeight }"
+            :style="{
+                minHeight: isNumber(minHeight) ? minHeight + 'px' : minHeight,
+                ...contentStyles,
+            }"
             @submit.prevent="$emit('submit', $event)"
             @reset.prevent="$emit('reset', $event)"
         >
@@ -22,9 +25,16 @@
             <v-card-title v-if="title">
                 <span>{{ title }}</span>
             </v-card-title>
+            <!--      Custom title slot      -->
+            <!--            && !$slots.title-->
+            <!--            <template v-if="$slots.title">-->
+            <!--                <slot name="title" />-->
+            <!--            </template>-->
 
             <!-- BODY -->
-            <v-card-text :class="[{ 'is-relative': loading }, bodyClass]">
+            <v-card-text
+                :class="[{ 'is-relative': loading, 'hide-padding': hidePadding }, bodyClass]"
+            >
                 <b-block-loader v-if="loading" />
                 <template v-else>
                     <slot />
@@ -44,6 +54,7 @@
 <script>
 import { isNumber } from '@beautybox/core/helpers';
 import { modalToggleMixin, modalOverlayColorMixin } from '../../../mixins';
+
 const BBtnClose = () => import(/* webpackChunkName: "BlockLoader" */ '../../buttons/BtnClose');
 const BBlockLoader = () => import(/* webpackChunkName: "BlockLoader" */ '../../blocks/BlockLoader');
 
@@ -95,6 +106,14 @@ export default {
         closeIsDisabled: {
             type: Boolean,
             default: false,
+        },
+        hidePadding: {
+            type: Boolean,
+            default: false,
+        },
+        contentStyles: {
+            type: Object,
+            default: () => ({}),
         },
     },
     computed: {
@@ -167,6 +186,10 @@ export default {
 
         &.is-relative {
             position: relative;
+        }
+
+        &.hide-padding {
+            padding: 0 !important;
         }
     }
 
