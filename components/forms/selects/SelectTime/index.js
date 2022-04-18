@@ -78,6 +78,10 @@ export default {
                     }
                     return h('div', { class: 'b-select-time__item' }, children);
                 },
+                // message: (props) => {
+                //     console.log('message props', props);
+                //     return h('div', {}, '123');
+                // },
             },
         });
     },
