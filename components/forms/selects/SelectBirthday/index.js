@@ -134,8 +134,8 @@ export default {
     }),
     computed: {
         fullBirthday() {
-            if (!this.dayBirthday || !this.monthBirthday) {
-                return 'null-null-null';
+            if (!this.dayBirthday || !this.monthBirthday || !this.yearBirthday) {
+                return 'null';
             } else {
                 return `${this.yearBirthday}-${this.monthBirthday}-${this.dayBirthday}`;
             }
