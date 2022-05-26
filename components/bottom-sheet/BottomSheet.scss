@@ -1,6 +1,6 @@
 .c-bottom-sheet {
     // !! todo протетсировать ширину всплывающего окна в crm  и линке !!
-    flex: 1 1 auto;
+    flex: 1 1 auto !important;
     margin: 0 $base-indent $base-indent !important;
     overflow: hidden !important;
     border-radius: $border-radius !important;
