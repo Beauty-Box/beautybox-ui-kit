@@ -25,11 +25,6 @@
             <v-card-title v-if="title">
                 <span>{{ title }}</span>
             </v-card-title>
-            <!--      Custom title slot      -->
-            <!--            && !$slots.title-->
-            <!--            <template v-if="$slots.title">-->
-            <!--                <slot name="title" />-->
-            <!--            </template>-->
 
             <!-- BODY -->
             <v-card-text
