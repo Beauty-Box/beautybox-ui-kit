@@ -19,11 +19,7 @@
             <div class="c-bottom-sheet__inner">
                 <b-btn-close v-if="closeBtn" has-bg size="25" @click="onClose" />
                 <div class="c-bottom-sheet__scroll-container" @scroll="onScroll">
-                    <div
-                        class="overflow-x-hidden mt-5"
-                        :class="{ 'px-4': $isMobile }"
-                        @scroll="onScroll"
-                    >
+                    <div class="overflow-x-hidden mt-5" @scroll="onScroll">
                         <div
                             v-if="title || subTitle"
                             class="c-bottom-sheet__header"

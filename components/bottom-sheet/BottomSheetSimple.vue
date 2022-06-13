@@ -1,15 +1,20 @@
 <template>
     <div>
-        <b-input
-            v-model="title"
-            :label="label"
-            readonly
-            :clearable="clearable"
-            :error-messages="errorMessages"
-            @click="openBottomSheet"
-            @click:clear="$emit('clear')"
-        />
-        <input type="hidden" :value="selected" :name="name" />
+        <div v-if="!customElement">
+            <b-input
+                :value="title"
+                :label="label"
+                readonly
+                :clearable="clearable"
+                :error-messages="errorMessages"
+                @click="openBottomSheet"
+                @click:clear="$emit('clear')"
+            />
+            <input type="hidden" :value="selected" :name="name" />
+        </div>
+        <div v-else>
+            <slot name="element" />
+        </div>
         <v-bottom-sheet
             v-model="modal"
             scrollable
@@ -39,7 +44,7 @@
                     </div>
 
                     <div class="c-bottom-sheet__footer">
-                        <v-btn large block color="primary" :ripple="false" @click="modal = false">
+                        <v-btn large block color="primary" :ripple="false" @click="success">
                             Готово
                         </v-btn>
                     </div>
@@ -53,14 +58,19 @@
 import { modalToggleMixin, modalOverlayColorMixin } from '../../mixins';
 const BBtnClose = () => import(/* webpackChunkName: "BtnClose" */ '../buttons/BtnClose');
 const BInput = () => import(/* webpackChunkName: "Input" */ '../forms/inputs/Input');
+const BtnFake = () => import(/* webpackChunkName: "Input" */ '../buttons/BtnFake');
 const BInputSearch = () =>
     import(/* webpackChunkName: "InputSearch" */ '../forms/inputs/InputSearch');
 
 export default {
     name: 'BBottomSheetSimple',
-    components: { BBtnClose, BInput, BInputSearch },
+    components: { BBtnClose, BInput, BInputSearch, BtnFake },
     mixins: [modalToggleMixin, modalOverlayColorMixin],
     props: {
+        customElement: {
+            type: Boolean,
+            default: false,
+        },
         selected: {
             type: [Number, String],
             required: true,
@@ -110,6 +120,10 @@ export default {
         close() {
             this.modal = false;
             this.$emit('close');
+        },
+        success() {
+            this.$emit('save');
+            this.modal = false;
         },
         openBottomSheet() {
             this.modal = true;

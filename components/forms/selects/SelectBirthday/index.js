@@ -73,39 +73,40 @@ export default {
                             class: 'py-0',
                         },
                         [
-                            !this.yearBirthdayToggle
-                                ? h(
-                                      'v-btn',
-                                      {
-                                          props: {
-                                              disabled: !this.monthBirthday || !this.dayBirthday,
-                                              ripple: false,
-                                              text: true,
-                                              color: 'link',
-                                              large: true,
-                                              depressed: true,
-                                          },
-                                          class: {
-                                              'u-text-initial u-text-weight--normal like-link mt-5 pa-0': true,
-                                          },
-                                          on: {
-                                              click: () =>
-                                                  (this.yearBirthdayToggle = !this
-                                                      .yearBirthdayToggle),
-                                          },
-                                      },
-                                      ['Выбрать год']
-                                  )
-                                : h('b-auto-complete', {
-                                      props: {
-                                          value: this.year,
-                                          items: this.yearArray,
-                                          label: 'Год',
-                                      },
-                                      on: {
-                                          input: (event) => (this.year = event),
-                                      },
-                                  }),
+                            // !this.yearBirthdayToggle
+                            //     ? h(
+                            //           'v-btn',
+                            //           {
+                            //               props: {
+                            //                   disabled: !this.monthBirthday || !this.dayBirthday,
+                            //                   ripple: false,
+                            //                   text: true,
+                            //                   color: 'link',
+                            //                   large: true,
+                            //                   depressed: true,
+                            //               },
+                            //               class: {
+                            //                   'u-text-initial u-text-weight--normal like-link mt-5 pa-0': true,
+                            //               },
+                            //               on: {
+                            //                   click: () =>
+                            //                       (this.yearBirthdayToggle = !this
+                            //                           .yearBirthdayToggle),
+                            //               },
+                            //           },
+                            //           ['Выбрать год']
+                            //       )
+                            //     :
+                            h('b-auto-complete', {
+                                props: {
+                                    value: this.year,
+                                    items: this.yearArray,
+                                    label: 'Год',
+                                },
+                                on: {
+                                    input: (event) => (this.year = event),
+                                },
+                            }),
                         ]
                     ),
                     h('input', {
@@ -133,10 +134,10 @@ export default {
     }),
     computed: {
         fullBirthday() {
-            if (!this.dayBirthday || !this.monthBirthday) {
-                return 'null.null.null';
+            if (!this.dayBirthday || !this.monthBirthday || !this.yearBirthday) {
+                return null;
             } else {
-                return `${this.dayBirthday}.${this.monthBirthday}.${this.yearBirthday || null}`;
+                return `${this.yearBirthday}-${this.monthBirthday}-${this.dayBirthday}`;
             }
         },
         day: {
@@ -171,9 +172,9 @@ export default {
         this.dayBirthday = this.value.day;
         this.monthBirthday = this.value.month;
         this.yearBirthday = this.value.year;
-        if (this.yearBirthday) {
-            this.yearBirthdayToggle = true;
-        }
+        // if (this.yearBirthday) {
+        //     this.yearBirthdayToggle = true;
+        // }
         if (this.monthBirthday) {
             this.validateMonth();
         }
