@@ -66,6 +66,7 @@ export const vuetify = new Vuetify({
                 vk: '#2787f5',
                 telegram: '#5EB5F7',
             },
+
             dark: {
                 background: '#2f2f2f',
                 primary: '#6b6b6b',
