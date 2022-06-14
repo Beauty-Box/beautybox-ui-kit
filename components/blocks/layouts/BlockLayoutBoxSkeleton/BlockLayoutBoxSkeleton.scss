@@ -2,8 +2,8 @@
     background-color: #fff;
 
     @include min(md) {
-        border-radius: $border-radius;
-        box-shadow: $box-shadow-base;
+        border-radius: $border-radius * 2;
+        box-shadow: $box-shadow-light;
     }
 
     &__header {
