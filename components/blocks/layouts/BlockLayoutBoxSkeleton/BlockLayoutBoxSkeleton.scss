@@ -2,8 +2,8 @@
     background-color: #fff;
 
     @include min(md) {
-        border-radius: $border-radius;
-        box-shadow: $box-shadow-base;
+        border-radius: $border-radius-card;
+        box-shadow: $box-shadow-light;
     }
 
     &__header {
@@ -13,7 +13,7 @@
         background-color: #fff;
 
         @include min(md) {
-            border-radius: $border-radius $border-radius 0 0;
+            border-radius: $border-radius-card $border-radius-card 0 0;
         }
 
         @include max(xs) {
@@ -57,7 +57,7 @@
         padding: $gutter;
 
         @include min(md) {
-            border-radius: 0 0 $border-radius $border-radius;
+            border-radius: 0 0 $border-radius-card $border-radius-card;
         }
 
         @include max(xs) {
