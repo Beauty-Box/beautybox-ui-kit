@@ -36,6 +36,7 @@
         "react-dom": "16.x",
         "react-is": "^16.8.0",
         "svgo-loader": "^2.2.1",
+        "swiper-vue2": "^1.0.9",
         "swiper": "^8.3.0",
         "vue": "^2.6.12",
         "vue-advanced-cropper": "^0.17.8",

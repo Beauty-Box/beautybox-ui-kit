@@ -2,7 +2,6 @@
     <swiper
         :slides-per-view="slidesPerView"
         :space-between="spaceBetween"
-        :modules="modules"
         navigation
         class="c-slider"
     >
@@ -19,8 +18,10 @@
 
 <script>
 import { Navigation } from 'swiper';
-import { Swiper } from 'swiper/vue';
-import 'swiper/css/bundle';
+import { Swiper, SwiperCore } from 'swiper-vue2';
+import 'swiper/swiper-bundle.css';
+
+SwiperCore.use([Navigation]);
 
 export default {
     name: 'SwiperSlider',
@@ -48,7 +49,7 @@ export default {
             nextEl: '.swiper-button-next',
             prevEl: '.swiper-button-prev',
         },
-        modules: [Navigation],
+        // modules: [Navigation],
         /*breakpoints: {
             480: {
                 slidesPerView: 2,
