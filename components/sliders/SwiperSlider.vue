@@ -1,5 +1,11 @@
 <template>
-    <swiper :options="swiperOption" class="c-slider">
+    <swiper
+        :slides-per-view="slidesPerView"
+        :space-between="spaceBetween"
+        :modules="modules"
+        navigation
+        class="c-slider"
+    >
         <slot name="default" />
 
         <div slot="button-prev" class="swiper-button-prev">
@@ -12,8 +18,9 @@
 </template>
 
 <script>
-import { Swiper } from 'vue-awesome-swiper';
-import 'swiper/css/swiper.min.css';
+import { Navigation } from 'swiper';
+import { Swiper } from 'swiper/vue';
+import 'swiper/css/bundle';
 
 export default {
     name: 'SwiperSlider',
@@ -24,7 +31,7 @@ export default {
             default: 1.5,
         },
         sliderSpaceBetween: {
-            type: [Number, String],
+            type: [Number],
             default: 16,
         },
         freeMode: {
@@ -33,23 +40,24 @@ export default {
         },
     },
     data: (vm) => ({
-        swiperOption: {
-            slidesPerView: vm.sliderSlidesPerView,
-            spaceBetween: vm.sliderSpaceBetween,
-            freeMode: vm.freeMode,
-            navigation: {
-                nextEl: '.swiper-button-next',
-                prevEl: '.swiper-button-prev',
-            },
-            /*breakpoints: {
-                480: {
-                    slidesPerView: 2,
-                },
-                768: {
-                    slidesPerView: 4,
-                },
-            },*/
+        //swiperOption: {
+        slidesPerView: vm.sliderSlidesPerView,
+        spaceBetween: vm.sliderSpaceBetween,
+        //freeMode: vm.freeMode,
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
         },
+        modules: [Navigation],
+        /*breakpoints: {
+            480: {
+                slidesPerView: 2,
+            },
+            768: {
+                slidesPerView: 4,
+            },
+        },*/
+        // },
     }),
 };
 </script>
