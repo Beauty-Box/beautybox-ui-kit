@@ -32,6 +32,9 @@ const getOnScrollMixin = {
         onScrollControl(e) {
             if (this.readyToGetElementsForChildren) {
                 this.bottom = this.bottomVisible(e.target);
+            } else {
+                // если нету готовности получать новые элементы - то низа достингуть нельзя, флаг должен быть установлен в начальное состояние
+                this.bottom = false;
             }
         },
     },
