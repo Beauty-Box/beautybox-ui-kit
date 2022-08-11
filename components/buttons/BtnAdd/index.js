@@ -53,6 +53,14 @@ export default {
             ...VBtn.options.outlined,
             default: false,
         },
+        depressed: {
+            ...VBtn.options.depressed,
+            default: false,
+        },
+        plain: {
+            ...VBtn.options.plain,
+            default: false,
+        },
     },
     render(h) {
         //if (this.$vuetify.breakpoint.mobile) {
@@ -75,6 +83,8 @@ export default {
                         to: this.to,
                         forever: this.forever,
                         outlined: this.outlined,
+                        depressed: this.depressed,
+                        plain: this.plain,
                     },
                     on: this.$listeners,
                 },
