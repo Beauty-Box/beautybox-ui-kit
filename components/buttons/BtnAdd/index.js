@@ -49,6 +49,10 @@ export default {
             ...VBtn.options.color,
             default: 'primary',
         },
+        outlined: {
+            ...VBtn.options.outlined,
+            default: false,
+        },
     },
     render(h) {
         //if (this.$vuetify.breakpoint.mobile) {
@@ -70,6 +74,7 @@ export default {
                         ripple: this.ripple,
                         to: this.to,
                         forever: this.forever,
+                        outlined: this.outlined,
                     },
                     on: this.$listeners,
                 },
