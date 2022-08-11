@@ -83,6 +83,7 @@ export default {
                     h('b-svg', {
                         props: {
                             name: 'plus--bold',
+                            fill: this.outlined ? this.color : '',
                         },
                     }),
                 ]
