@@ -112,29 +112,35 @@ export default {
             );
         }
 
-        if (this.btnText && this.btnIsVisible) {
-            headerBtn.push(
-                h(
-                    'v-btn',
-                    {
-                        class: {
-                            'u-text-initial font-weight-medium ml-auto': true,
-                            'elevation-0': this.headerBtnHideShadow,
+        if (this.btnIsVisible) {
+            if (!!this.$slots.headerBtn) {
+                headerBtn.push(
+                    h('div', { class: { 'c-box__btn-container': true } }, this.$slots.headerBtn)
+                );
+            } else if (!!this.btnText) {
+                headerBtn.push(
+                    h(
+                        'v-btn',
+                        {
+                            class: {
+                                'u-text-initial font-weight-medium ml-auto': true,
+                                'elevation-0': this.headerBtnHideShadow,
+                            },
+                            props: {
+                                depressed: true,
+                                color: 'muted',
+                                ripple: false,
+                                small: this.$vuetify.breakpoint.xs,
+                            },
+                            on: {
+                                ...this.$listeners,
+                                click: () => this.$emit('click:header-btn'),
+                            },
                         },
-                        props: {
-                            depressed: true,
-                            color: 'muted',
-                            ripple: false,
-                            small: this.$vuetify.breakpoint.xs,
-                        },
-                        on: {
-                            ...this.$listeners,
-                            click: () => this.$emit('click:header-btn'),
-                        },
-                    },
-                    this.btnText
-                )
-            );
+                        this.btnText
+                    )
+                );
+            }
         }
 
         if (this.loading) {
