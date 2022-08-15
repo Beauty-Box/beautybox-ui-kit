@@ -1,6 +1,6 @@
 import BSelect from '../Select';
 const VIcon = () => import(/* webpackChunkName: "VIcon" */ 'vuetify/lib/components/VIcon');
-import { genFullTime } from '@beautybox/core/helpers';
+import { genFullTime } from '@beautybox/core/utils';
 import './SelectTime.scss';
 
 export default {
@@ -24,14 +24,10 @@ export default {
             type: Array,
             default: () => [],
         },
-        interval: {
-            type: [Number, String],
-            default: 15,
-        },
     },
     computed: {
         elements() {
-            return genFullTime(parseInt(this.startWith), parseInt(this.interval));
+            return genFullTime(parseInt(this.startWith));
         },
     },
     render(h) {
