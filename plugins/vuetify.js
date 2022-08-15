@@ -56,6 +56,7 @@ export const vuetify = new Vuetify({
                 background: '#101928', // Задано
                 'background--light': '#eef0f2', // Задано
                 'background--lighten': '#f7f7f8', // Задано
+                'info--light': '#ecf4ff',
                 // Text colors
                 'color-text': '#101928', //* Задано
                 // Border colors
