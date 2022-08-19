@@ -8,6 +8,7 @@
         :overlay-color="overlayColor"
         :overlay-opacity="overlayOpacity"
         :fullscreen="computedFullScreen"
+        :content-class="contentClass"
         @click:outside="$emit('click:outside', $event)"
     >
         <v-card
@@ -109,6 +110,10 @@ export default {
         contentStyles: {
             type: Object,
             default: () => ({}),
+        },
+        contentClass: {
+            type: String,
+            default: '',
         },
     },
     computed: {
