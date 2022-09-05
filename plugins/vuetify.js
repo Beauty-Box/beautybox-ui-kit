@@ -52,7 +52,7 @@ export const vuetify = new Vuetify({
                 info: '#037aff', //* Задано
                 link: '#2b72bd', //* Задано
                 ripple: '#67768c', //* Задано
-                action: '#4395FD',
+                'info--active': '#4395FD',
                 // Background colors
                 background: '#101928', // Задано
                 'background--light': '#eef0f2', // Задано
@@ -80,7 +80,7 @@ export const vuetify = new Vuetify({
                 error: '#f33155',
                 link: '#2b72bd', //* Задано
                 colorText: '#585a59',
-                action: '#4395FD',
+                'info--active': '#4395FD',
                 // Social color
                 whatsapp: '#23d364',
                 viber: '#7d3daf',
