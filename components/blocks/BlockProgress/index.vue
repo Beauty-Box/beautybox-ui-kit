@@ -48,6 +48,6 @@ export default {
         background-color: var(--fill-color, #101928);
         border-radius: $border-radius-card * 2.5;
         transition: width 0.4s ease 0s;
-    },
+    }
 }
 </style>
