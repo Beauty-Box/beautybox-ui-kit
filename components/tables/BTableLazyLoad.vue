@@ -4,7 +4,23 @@
             <thead v-if="showHeaderAll || !$vuetify.breakpoint.mobile">
                 <slot name="table-head" />
             </thead>
-            <tbody v-scroll:#scroll-container="onScrollControl">
+            <tbody v-if="useIntersection">
+                <slot v-if="$slots['table-body']" name="table-body" />
+                <tr v-if="loading">
+                    <td colspan="100%" align="center" :style="{ position: 'relative' }">
+                        <b-block-loader position="static" size="30" style="max-height: 60px" />
+                    </td>
+                </tr>
+                <tr v-else-if="nowItemsLength < allItemsLength">
+                    <td
+                        v-intersect.quiet="onIntersectBottom"
+                        colspan="100%"
+                        align="center"
+                        :style="{ position: 'relative' }"
+                    />
+                </tr>
+            </tbody>
+            <tbody v-else v-scroll:#scroll-container="onScrollControl">
                 <slot v-if="$slots['table-body']" name="table-body" />
                 <tr v-if="loading">
                     <td colspan="100%" align="center" :style="{ position: 'relative' }">
@@ -21,7 +37,7 @@ import { getOnScrollMixin } from '../../mixins';
 const BBlockLoader = () => import(/* webpackChunkName: "BlockLoader" */ '../blocks/BlockLoader');
 
 export default {
-    name: 'b-table-lazy-load',
+    name: 'BTableLazyLoad',
     components: { BBlockLoader },
     mixins: [getOnScrollMixin],
     props: {
@@ -35,7 +51,8 @@ export default {
         },
         onScrollEndHandler: {
             type: Function,
-            required: true,
+            required: false,
+            default: () => {},
         },
         allItemsLength: {
             type: Number,
@@ -48,6 +65,18 @@ export default {
         showHeaderAll: {
             type: Boolean,
             default: false,
+        },
+        useIntersection: {
+            type: Boolean,
+            default: false,
+        },
+    },
+    methods: {
+        onIntersectBottom(entries, observer, isIntersecting) {
+            if (isIntersecting && !this.loading) {
+                console.log('intersect in table');
+                this.$emit('reach-bottom');
+            }
         },
     },
 };
