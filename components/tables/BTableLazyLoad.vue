@@ -76,7 +76,6 @@ export default {
             const bcr = entries[0].boundingClientRect;
             const isBottomVisible = bcr.bottom > 0;
             if (isIntersecting && !this.loading && isBottomVisible) {
-                console.log('intersect in table', isBottomVisible);
                 this.$emit('reach-bottom');
             }
         },
