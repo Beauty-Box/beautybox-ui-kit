@@ -11,7 +11,7 @@
         <form class="full-screen__form" @submit.prevent="submit">
             <!-- HEADER -->
             <div ref="header" class="full-screen__header">
-                <h2 ref="title" class="full-screen__title">
+                <h2 ref="title" class="full-screen__title full-screen__title--bold">
                     {{ title || $route.meta.title }}
                 </h2>
                 <b-btn-close size="40" class="full-screen__btn-close" @click="redirect" />

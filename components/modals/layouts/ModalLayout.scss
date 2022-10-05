@@ -122,6 +122,10 @@ $image-width: 450px;
             font-weight: 500;
             line-height: 16px;
         }
+
+        &--bold {
+            font-weight: 600;
+        }
     } //.full-screen__title
 
     &__btn-close {
