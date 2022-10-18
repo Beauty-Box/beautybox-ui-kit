@@ -11,7 +11,12 @@
         :width="width"
     >
         <template #default>
-            <b-btn-close size="35" type="button" @click.stop="modal = false" />
+            <b-btn-close
+                size="35"
+                type="button"
+                :class="{ 'c-btn-close--opposite': closeOpposite }"
+                @click.stop="modal = false"
+            />
             <slot />
         </template>
     </v-navigation-drawer>
@@ -35,6 +40,10 @@ export default {
             type: Boolean,
             default: true,
         },
+        closeOpposite: {
+            type: Boolean,
+            default: false,
+        },
     },
 };
 </script>
@@ -49,6 +58,13 @@ export default {
     @include max(xs) {
         top: 5px;
         right: 5px;
+    }
+
+    &--opposite {
+        left: 10px;
+        @include max(xs) {
+            left: 5px;
+        }
     }
 }
 </style>
