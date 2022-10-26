@@ -14,7 +14,11 @@
                 <h2 ref="title" class="full-screen__title full-screen__title--bold">
                     {{ title || $route.meta.title }}
                 </h2>
-                <b-btn-close size="40" class="full-screen__btn-close" @click="redirect" />
+                <b-btn-close
+                    size="40"
+                    class="full-screen__btn-close"
+                    @click="$emit('click:close')"
+                />
             </div>
 
             <!-- CONTENT -->
