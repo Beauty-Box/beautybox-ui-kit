@@ -1,6 +1,6 @@
 import Vue, { PropType, PropOptions } from 'vue';
 
-type value = boolean | string | Array<any> | number| object;
+type value = boolean | string | Array<any> | number | object;
 
 const modalToggleMixin = Vue.extend({
     props: {
