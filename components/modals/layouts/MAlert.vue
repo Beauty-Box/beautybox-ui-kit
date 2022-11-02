@@ -8,7 +8,14 @@
         :persistent="persistent"
         @click:outside="$emit('cancel')"
     >
-        <v-card :loading="loading" tag="form" @submit.prevent="$emit('submit', $event)">
+        <v-card
+            :loading="loading"
+            tag="form"
+            :style="{
+                ...contentStyles,
+            }"
+            @submit.prevent="$emit('submit', $event)"
+        >
             <v-card-title v-if="title || $slots.header" class="c-modal-alert__header">
                 <slot name="header">
                     <template>
@@ -112,6 +119,10 @@ export default {
         cancelBtnColor: {
             type: String,
             default: 'primary',
+        },
+        contentStyles: {
+            type: Object,
+            default: () => ({}),
         },
     },
 };
