@@ -154,7 +154,7 @@ export default {
             max-width: 83%;
             margin: auto;
             font-size: 23px;
-            font-weight: 300;
+            font-weight: 600;
             line-height: 32px;
             text-align: center;
             @include text-overflow;

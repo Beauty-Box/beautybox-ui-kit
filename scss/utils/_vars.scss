@@ -33,6 +33,9 @@ $color-action: #4395fd;
 
 $color-link: $color-info;
 $color-info--light: #ecf4ff;
+$color-success--light: #34c759;
+$color-success--bright: #43b581;
+$color-error--bright: #da2346;
 
 $color-disabled: #67768c;
 $color-disabled-text: #67768c;
@@ -92,6 +95,7 @@ $color-bg: #2f2f2f;
 $color-bg--light: #eee;
 $color-bg--lighten: $gray--lighten;
 $color-bg--lightest: #f7f7f8;
+$color-bg--semi-light: #f7f5fd;
 $color-bg--hover: #fbfbfb;
 $color-bg--instagram: linear-gradient(
     to bottom left,
