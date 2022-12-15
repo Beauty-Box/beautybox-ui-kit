@@ -169,18 +169,3 @@ $z-index: (
     'overlay': 1000,
     'modal': 1010,
 ) !default;
-
-// CSS Variables
-:root {
-    --max-width: 1200px;
-    --gutter: 24px;
-    --base-indent: 16px;
-    --color-primary: #101928;
-    --color-secondary: #67768c;
-}
-
-@media screen and (max-width: 480px) {
-    :root {
-        --gutter: 16px;
-    }
-}
