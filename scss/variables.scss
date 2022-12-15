@@ -1,6 +1,7 @@
 @import './utils/_all';
 @import './base/_base64icons';
-@import '~vuetify/src/styles/styles.sass';
+//@import '~vuetify/src/styles/styles.sass';
+@import '~vuetify/src/styles/settings/colors.scss';
 
 // General
 $body-font-family: $font-family-base !default;
