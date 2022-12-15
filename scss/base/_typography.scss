@@ -4,30 +4,30 @@ strong {
     font-weight: 600;
 }
 
-a {
-    outline: none;
-    color: $color-accent;
-    text-decoration: none;
-    @include tr;
+// a {
+//     outline: none;
+//     color: $color-accent;
+//     text-decoration: none;
+//     @include tr;
 
-    &:hover {
-        color: lighten($color-accent, 10%);
-    }
+//     &:hover {
+//         color: lighten($color-accent, 10%);
+//     }
 
-    @each $name, $color in $button-colors {
-        &.color-#{$name} {
-            color: $color;
+// @each $name, $color in $button-colors {
+//     &.color-#{$name} {
+//         color: $color;
 
-            &:hover {
-                color: $color;
-            }
-        }
-    }
+//         &:hover {
+//             color: $color;
+//         }
+//     }
+// }
 
-    &.is-disable {
-        pointer-events: none;
-    }
-}
+//     &.is-disable {
+//         pointer-events: none;
+//     }
+// }
 
 h1,
 .h1,
@@ -75,7 +75,7 @@ h2,
 
 h3,
 .h3 {
-    font-size: 28px;
+    font-size: 24px;
     font-weight: 500;
     line-height: 1.25em;
     @include max-screen(1024) {
