@@ -11,6 +11,11 @@ $text-weight: (
     light: 300,
 );
 
+$line-height: (
+    small: 1.2,
+    normal: 1.5,
+);
+
 /*.text {
     color: $color-text;
     font-size: $font-size-base;
@@ -58,6 +63,14 @@ $text-weight: (
             }
         }
     } //.u-text-weight
+
+    &-height {
+        @each $name, $number in $line-height {
+            &--#{$name} {
+                line-height: $number !important;
+            }
+        }
+    } //.u-text-height
 
     &-initial {
         text-transform: initial;
