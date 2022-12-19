@@ -17,6 +17,9 @@
                 :class="{ 'c-btn-close--opposite': closeOpposite }"
                 @click.stop="modal = false"
             />
+            <div v-if="!!$slots['button-back']" class="c-btn-back">
+                <slot name="button-back" />
+            </div>
             <slot />
         </template>
     </v-navigation-drawer>
@@ -65,6 +68,14 @@ export default {
         @include max(xs) {
             left: 5px;
         }
+    }
+}
+.c-btn-back {
+    position: absolute;
+    left: 0;
+    top: 10px;
+    @include max(xs) {
+        top: 5px;
     }
 }
 </style>
