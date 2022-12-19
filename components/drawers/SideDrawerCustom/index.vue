@@ -12,7 +12,7 @@
     >
         <template #default>
             <div class="c-close-box" :class="{ 'c-close-box--opposite': closeOpposite }">
-                <b-btn-close size="35" type="button" @click.stop="modal = false" />
+                <b-btn-close size="28" type="button" @click.stop="modal = false" />
                 <div v-if="!!$slots['button-back']">
                     <slot name="button-back" />
                 </div>
