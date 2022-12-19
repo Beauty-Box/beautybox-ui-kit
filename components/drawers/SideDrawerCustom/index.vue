@@ -11,7 +11,7 @@
         :width="width"
     >
         <template #default>
-            <div class="button-box" :class="{ 'button-box--opposite': closeOpposite }">
+            <div class="c-close-box" :class="{ 'c-close-box--opposite': closeOpposite }">
                 <b-btn-close size="35" type="button" @click.stop="modal = false" />
                 <div v-if="!!$slots['button-back']">
                     <slot name="button-back" />
@@ -49,7 +49,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.button-box {
+.c-close-box {
     position: absolute;
     display: flex;
     top: 10px;
