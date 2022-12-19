@@ -11,14 +11,11 @@
         :width="width"
     >
         <template #default>
-            <b-btn-close
-                size="35"
-                type="button"
-                :class="{ 'c-btn-close--opposite': closeOpposite }"
-                @click.stop="modal = false"
-            />
-            <div v-if="!!$slots['button-back']" class="c-btn-back">
-                <slot name="button-back" />
+            <div class="button-box" :class="{ 'button-box--opposite': closeOpposite }">
+                <b-btn-close size="35" type="button" @click.stop="modal = false" />
+                <div v-if="!!$slots['button-back']">
+                    <slot name="button-back" />
+                </div>
             </div>
             <slot />
         </template>
@@ -52,8 +49,9 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.c-btn-close {
+.button-box {
     position: absolute;
+    display: flex;
     top: 10px;
     right: 10px;
     z-index: z(fixed);
@@ -68,14 +66,6 @@ export default {
         @include max(xs) {
             left: 5px;
         }
-    }
-}
-.c-btn-back {
-    position: absolute;
-    left: 0;
-    top: 10px;
-    @include max(xs) {
-        top: 5px;
     }
 }
 </style>
