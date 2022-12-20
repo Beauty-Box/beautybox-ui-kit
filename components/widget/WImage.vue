@@ -129,6 +129,7 @@ export default {
             }
 
             const canvas = document.createElement('canvas');
+            canvas.crossOrigin = 'anonymous';
             const ctx = canvas.getContext('2d');
 
             const image = document.createElement('img');
