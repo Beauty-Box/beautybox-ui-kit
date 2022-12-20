@@ -132,7 +132,6 @@ export default {
             const ctx = canvas.getContext('2d');
 
             const image = new Image();
-            console.log('call image', JSON.stringify(this.imageData));
             image.src = this.imageData.image;
 
             image.onload = () => {
