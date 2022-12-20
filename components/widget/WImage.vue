@@ -129,11 +129,10 @@ export default {
             }
 
             const canvas = document.createElement('canvas');
-            canvas.crossOrigin = 'anonymous';
             const ctx = canvas.getContext('2d');
 
-            const image = document.createElement('img');
-            image.crossOrigin = 'anonymous';
+            const image = new Image();
+            console.log('call image', JSON.stringify(this.imageData));
             image.src = this.imageData.image;
 
             image.onload = () => {
