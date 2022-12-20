@@ -132,6 +132,7 @@ export default {
             const ctx = canvas.getContext('2d');
 
             const image = new Image();
+            image.crossOrigin = 'anonymous';
             image.src = this.imageData.image;
 
             image.onload = () => {
