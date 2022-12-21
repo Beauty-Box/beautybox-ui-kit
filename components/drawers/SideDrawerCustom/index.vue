@@ -11,12 +11,12 @@
         :width="width"
     >
         <template #default>
-            <b-btn-close
-                size="35"
-                type="button"
-                :class="{ 'c-btn-close--opposite': closeOpposite }"
-                @click.stop="modal = false"
-            />
+            <div class="c-close-box" :class="{ 'c-close-box--opposite': closeOpposite }">
+                <b-btn-close size="28" type="button" @click.stop="modal = false" />
+                <div v-if="!!$slots['button-back']">
+                    <slot name="button-back" />
+                </div>
+            </div>
             <slot />
         </template>
     </v-navigation-drawer>
@@ -49,8 +49,9 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.c-btn-close {
+.c-close-box {
     position: absolute;
+    display: flex;
     top: 10px;
     right: 10px;
     z-index: z(fixed);
