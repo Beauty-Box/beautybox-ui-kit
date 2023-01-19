@@ -53,7 +53,6 @@ export default {
     position: absolute;
     display: flex;
     top: 10px;
-    right: 10px;
     z-index: z(fixed);
 
     @include max(xs) {
@@ -65,6 +64,13 @@ export default {
         left: 10px;
         @include max(xs) {
             left: 5px;
+        }
+    }
+
+    &:not(&--opposite) {
+        right: 10px;
+        @include max(xs) {
+            right: 5px;
         }
     }
 }
