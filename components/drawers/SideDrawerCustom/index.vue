@@ -74,4 +74,8 @@ export default {
         }
     }
 }
+
+.v-navigation-drawer {
+    transition-property: transform, visibility;
+}
 </style>
