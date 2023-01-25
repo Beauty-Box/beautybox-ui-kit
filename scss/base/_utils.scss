@@ -224,6 +224,12 @@ $line-height: (
     }
 }
 
+.u-hover-underline {
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
 .u-hidden {
     display: none;
 
