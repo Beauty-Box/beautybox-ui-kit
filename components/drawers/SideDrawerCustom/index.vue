@@ -4,6 +4,7 @@
         fixed
         :right="right"
         touchless
+        stateless
         temporary
         tag="div"
         overlay-opacity="1"
@@ -12,7 +13,7 @@
     >
         <template #default>
             <div class="c-close-box" :class="{ 'c-close-box--opposite': closeOpposite }">
-                <b-btn-close size="28" type="button" @click.stop="modal = false" />
+                <b-btn-close size="28" type="button" @click.stop="onClose" />
                 <div v-if="!!$slots['button-back']">
                     <slot name="button-back" />
                 </div>
@@ -43,6 +44,11 @@ export default {
         closeOpposite: {
             type: Boolean,
             default: false,
+        },
+    },
+    methods: {
+        onClose() {
+            this.modal = false;
         },
     },
 };
