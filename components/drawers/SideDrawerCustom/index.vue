@@ -4,7 +4,7 @@
         fixed
         :right="right"
         touchless
-        stateless
+        disable-route-watcher
         temporary
         tag="div"
         overlay-opacity="1"
