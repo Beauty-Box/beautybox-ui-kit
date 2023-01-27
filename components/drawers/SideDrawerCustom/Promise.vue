@@ -71,12 +71,13 @@ export default {
 
             return modalPromise;
         },
-        confirm() {
-            this.$options.modalController.resolve(true);
+        // value может быть любым объектом
+        confirm(value = {}) {
+            this.$options.modalController.resolve(value);
             this.modal = false;
         },
-        close() {
-            this.$options.modalController.resolve(false);
+        close(value = {}) {
+            this.$options.modalController.resolve(value);
             this.modal = false;
         },
     },
