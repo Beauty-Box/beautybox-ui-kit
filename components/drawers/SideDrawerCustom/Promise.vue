@@ -113,5 +113,6 @@ export default {
 
 .v-navigation-drawer {
     transition-property: transform, visibility;
+    z-index: z(modal);
 }
 </style>
