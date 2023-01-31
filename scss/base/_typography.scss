@@ -85,13 +85,9 @@ h6,
 }
 
 .h4 {
-    margin-bottom: $half-indent;
     font-size: 18px;
-    font-weight: 400;
-    line-height: 1.22222222em;
-    @include max(sm) {
-        line-height: 1.11111111em;
-    }
+    font-weight: 600;
+    line-height: 1.2;
 }
 
 .h5,

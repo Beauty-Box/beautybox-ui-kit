@@ -4,7 +4,6 @@
         fixed
         :right="right"
         touchless
-        disable-route-watcher
         temporary
         tag="div"
         overlay-opacity="1"
@@ -13,7 +12,7 @@
     >
         <template #default>
             <div class="c-close-box" :class="{ 'c-close-box--opposite': closeOpposite }">
-                <b-btn-close size="28" type="button" @click.stop="onClose" />
+                <b-btn-close size="28" type="button" @click.stop="close" />
                 <div v-if="!!$slots['button-back']">
                     <slot name="button-back" />
                 </div>
@@ -21,17 +20,16 @@
             <slot />
         </template>
     </v-navigation-drawer>
+    <!-- проп который закрывает дравел при изменении роута disable-route-watcher -->
 </template>
 
 <script>
-import { modalToggleMixin } from '../../../mixins';
 const BSvg = () => import(/* webpackChunkName: "Svg" */ '../../icons/Svg');
 const BBtnClose = () => import(/* webpackChunkName: "BtnClose" */ '../../buttons/BtnClose');
 
 export default {
     name: 'BSideDrawerCustom',
     components: { BSvg, BBtnClose },
-    mixins: [modalToggleMixin],
     props: {
         width: {
             type: [String, Number],
@@ -46,8 +44,40 @@ export default {
             default: false,
         },
     },
+    modalController: null,
+    data() {
+        return {
+            modal: false,
+        };
+    },
+    watch: {
+        modal(value) {
+            if (!value) {
+                this.close();
+            }
+        },
+    },
     methods: {
-        onClose() {
+        open() {
+            let resolve;
+            let reject;
+
+            const modalPromise = new Promise((ok, fail) => {
+                resolve = ok;
+                reject = fail;
+            });
+            this.$options.modalController = { resolve, reject };
+            this.modal = true;
+
+            return modalPromise;
+        },
+        // value может быть любым объектом
+        confirm(value = {}) {
+            this.$options.modalController.resolve(value);
+            this.modal = false;
+        },
+        close(value = {}) {
+            this.$options.modalController.resolve(value);
             this.modal = false;
         },
     },
@@ -83,5 +113,6 @@ export default {
 
 .v-navigation-drawer {
     transition-property: transform, visibility;
+    z-index: z(modal);
 }
 </style>
