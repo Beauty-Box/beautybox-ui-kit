@@ -20,6 +20,7 @@
                     <v-icon>upload</v-icon>
                 </v-btn>
                 <v-btn
+                    v-if="!!imageData.uploadFilesID"
                     icon
                     class="c-img-load__btn v-btn--flat"
                     color="white"
