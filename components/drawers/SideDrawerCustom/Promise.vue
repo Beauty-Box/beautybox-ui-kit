@@ -54,6 +54,7 @@ export default {
         modal(value) {
             if (!value) {
                 this.close();
+                this.$emit('close');
             }
         },
     },
