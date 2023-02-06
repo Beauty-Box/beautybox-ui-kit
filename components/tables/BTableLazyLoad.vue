@@ -82,3 +82,14 @@ export default {
     },
 };
 </script>
+
+<style scoped lang="scss">
+.v-data-table > .v-data-table__wrapper tbody tr:last-child:hover td {
+    &:last-child {
+        border-bottom-right-radius: $border-radius-table !important;
+    }
+    &:first-child {
+        border-bottom-left-radius: $border-radius-table !important;
+    }
+}
+</style>
