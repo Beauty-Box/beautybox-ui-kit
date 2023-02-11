@@ -1,5 +1,5 @@
 <template>
-    <v-simple-table>
+    <v-simple-table :fixed-header="fixedHeader">
         <template #default>
             <thead v-if="showHeaderAll || !$vuetify.breakpoint.mobile">
                 <slot name="table-head" />
@@ -67,6 +67,10 @@ export default {
             default: false,
         },
         useIntersection: {
+            type: Boolean,
+            default: false,
+        },
+        fixedHeader: {
             type: Boolean,
             default: false,
         },
