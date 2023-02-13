@@ -13,8 +13,13 @@
             class="c-avatar__img"
             @error="error = true"
         />
-        <span v-else-if="name" class="c-avatar__letter" :style="{ '--size': size + 'rem' }">
-            {{ name[0] }}
+        <span
+            v-else-if="name"
+            class="c-avatar__letter"
+            :class="[`${letterColor}--text`]"
+            :style="{ '--size': size + 'rem' }"
+        >
+            {{ initials }}
         </span>
         <svg
             v-else
