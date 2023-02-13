@@ -1,5 +1,5 @@
 <template>
-    <v-simple-table :fixed-header="fixedHeader">
+    <v-simple-table :fixed-header="fixedHeader" :height="height">
         <template #default>
             <thead v-if="showHeaderAll || !$vuetify.breakpoint.mobile">
                 <slot name="table-head" />
@@ -73,6 +73,10 @@ export default {
         fixedHeader: {
             type: Boolean,
             default: false,
+        },
+        height: {
+            type: [Number, String],
+            default: 'auto',
         },
     },
     methods: {
