@@ -62,7 +62,7 @@ export const imageMixin = {
                     .join('');
 
                 if (this.emptyTwoLetters && letters.length > 1) {
-                    return letters;
+                    return letters[0] + letters[1];
                 } else {
                     return letters[0];
                 }
