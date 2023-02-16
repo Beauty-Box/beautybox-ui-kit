@@ -1,5 +1,5 @@
 <template>
-    <v-simple-table :fixed-header="fixedHeader">
+    <v-simple-table :fixed-header="fixedHeader" :height="height">
         <template #default>
             <thead v-if="showHeaderAll || !$vuetify.breakpoint.mobile">
                 <slot name="table-head" />
@@ -74,6 +74,10 @@ export default {
             type: Boolean,
             default: false,
         },
+        height: {
+            type: [Number, String],
+            default: 'auto',
+        },
     },
     methods: {
         onIntersectBottom(entries, observer, isIntersecting) {
@@ -88,12 +92,16 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.v-data-table > .v-data-table__wrapper tbody tr:last-child:hover td {
-    &:last-child {
-        border-bottom-right-radius: $border-radius-table !important;
-    }
-    &:first-child {
-        border-bottom-left-radius: $border-radius-table !important;
+.v-data-table .v-data-table__wrapper {
+    tbody {
+        & tr:last-child:hover td {
+            &:last-child {
+                border-bottom-right-radius: $border-radius-table !important;
+            }
+            &:first-child {
+                border-bottom-left-radius: $border-radius-table !important;
+            }
+        }
     }
 }
 </style>

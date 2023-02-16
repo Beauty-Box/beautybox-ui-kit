@@ -11,6 +11,10 @@ export const imageMixin = {
             type: String,
             default: 'grey lighten-4',
         },
+        letterColor: {
+            type: String,
+            default: 'primary',
+        },
         square: {
             type: Boolean,
             default: false,
@@ -26,6 +30,10 @@ export const imageMixin = {
         name: {
             type: String,
             default: null,
+        },
+        emptyTwoLetters: {
+            type: Boolean,
+            default: false,
         },
     },
     data: () => ({
@@ -43,6 +51,23 @@ export const imageMixin = {
             } else {
                 return `${this.image}?hash=${Math.random().toString(16)}`;
             }
+        },
+
+        initials() {
+            let letters = '';
+            if (!!this.name) {
+                letters = this.name
+                    .split(' ')
+                    .map((word) => word[0])
+                    .join('');
+
+                if (this.emptyTwoLetters && letters.length > 1) {
+                    return letters[0] + letters[1];
+                } else {
+                    return letters[0];
+                }
+            }
+            return letters;
         },
     },
 };
