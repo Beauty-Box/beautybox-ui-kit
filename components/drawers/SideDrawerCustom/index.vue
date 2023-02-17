@@ -58,25 +58,24 @@ export default {
 .c-close-box {
     position: absolute;
     display: flex;
-    top: 10px;
+    top: 14px;
     z-index: z(fixed);
 
     @include max(xs) {
-        top: 5px;
-        right: 5px;
+        top: 7px;
     }
 
     &--opposite {
-        left: 10px;
+        left: $gutter;
         @include max(xs) {
-            left: 5px;
+            left: $half-indent;
         }
     }
 
     &:not(&--opposite) {
-        right: 10px;
+        right: $gutter;
         @include max(xs) {
-            right: 5px;
+            right: $half-indent;
         }
     }
 }

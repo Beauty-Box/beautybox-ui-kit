@@ -12,7 +12,7 @@
     >
         <template #default>
             <div class="c-close-box" :class="{ 'c-close-box--opposite': closeOpposite }">
-                <b-btn-close size="28" type="button" @click.stop="close" />
+                <b-btn-close size="20" type="button" @click.stop="close" />
                 <div v-if="!!$slots['button-back']">
                     <slot name="button-back" />
                 </div>
@@ -89,25 +89,24 @@ export default {
 .c-close-box {
     position: absolute;
     display: flex;
-    top: 10px;
+    top: 14px;
     z-index: z(fixed);
 
     @include max(xs) {
-        top: 5px;
-        right: 5px;
+        top: 7px;
     }
 
     &--opposite {
-        left: 10px;
+        left: $gutter;
         @include max(xs) {
-            left: 5px;
+            left: $half-indent;
         }
     }
 
     &:not(&--opposite) {
-        right: 10px;
+        right: $gutter;
         @include max(xs) {
-            right: 5px;
+            right: $half-indent;
         }
     }
 }
