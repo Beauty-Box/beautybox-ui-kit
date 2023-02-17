@@ -68,14 +68,18 @@ export default {
             },
             [
                 h('div', [
-                    h('v-progress-circular', {
-                        props: {
-                            color: this.color,
-                            indeterminate: this.indeterminate,
-                            size: this.size,
-                            width: this.width,
+                    h(
+                        'v-progress-circular',
+                        {
+                            props: {
+                                color: this.color,
+                                indeterminate: this.indeterminate,
+                                size: this.size,
+                                width: this.width,
+                            },
                         },
-                    }),
+                        this.$slots.default
+                    ),
                 ]),
             ]
         );
