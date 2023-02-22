@@ -68,6 +68,10 @@ $button-sizes: (
             }
         }
     }
+
+    &:hover::before {
+        opacity: 0;
+    }
     &--rounded {
         border-radius: $border-radius-button-primary;
     }
