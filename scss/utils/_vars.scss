@@ -121,8 +121,24 @@ $box-shadow-light: 0 4px 8px rgba(16, 25, 40, 0.08);
 $box-shadow-base--active: 0 0 4px 0 rgba(16, 25, 40, 0.08);
 $box-shadow-base--hover: 0 5px 15px 5px rgba(164, 173, 186, 0.25);
 $box-shadow-sticky-block: 0 15px 15px -15px rgba(222, 227, 231, 0.9);
-// Buttons shadow color's
-$box-shadow-button-primary--hover: 0 3px 5px 0 #a4adba;
+
+$box-shadow-colors: () !default;
+$box-shadow-colors: map-deep-merge(
+    (
+        'primary': $color-primary,
+        'secondary': $color-secondary,
+        'muted': $color-muted,
+        'accent': $color-accent,
+        'info': $color-info,
+        'success': $color-success,
+        'warning': $color-warning,
+        'anchor': $color-anchor,
+        'error': $color-error,
+        'action': $color-action,
+    ),
+    $box-shadow-colors
+);
+
 // Icon color's
 $color-icon: $color-text;
 $color-icon--light: $color-text--light;

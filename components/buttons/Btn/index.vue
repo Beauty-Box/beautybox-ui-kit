@@ -3,9 +3,9 @@
         dark
         large
         :ripple="false"
-        color="primary darken"
+        :color="color"
         class="button u-text-weight--medium"
-        :class="[`button--${size}`, { 'button--rounded': rounded }]"
+        :class="[`button--${size}`, { 'button--rounded': rounded }, `button--${color}`]"
         v-bind="$props"
         v-on="$listeners"
     >
@@ -19,12 +19,17 @@ import { defineComponent } from 'vue';
 import VBtn from 'vuetify/lib/components/VBtn';
 
 export default defineComponent({
+    name: 'BBtn',
     components: { VBtn },
     props: {
         ...VBtn.options.props,
         rounded: {
             type: Boolean,
             default: true,
+        },
+        color: {
+            type: String,
+            default: 'primary',
         },
         size: {
             type: String,
@@ -33,6 +38,9 @@ export default defineComponent({
                 return ['medium', 'x-medium'].includes(value);
             },
         },
+    },
+    mounted() {
+        console.log(this.$vuetify.theme.currentTheme);
     },
     setup() {
         return {};
@@ -45,15 +53,19 @@ $button-sizes: (
     'medium': 44px,
     'x-medium': 48px,
 );
+
 .button {
     // vuetify стили которые идут с импортантом переопределить можно только так, или через id
     // id использовать нельзя, так как это ui-kit, а id должен быть уникальным на странице
     .theme--light
         &:not(.v-btn--depressed):not(.v-btn--disabled):not(.v-btn--flat):not(.v-btn--text):not(.v-btn--icon):not(.elevation-0):not(.white) {
         box-shadow: none !important;
-
-        &:hover {
-            box-shadow: $box-shadow-button-primary--hover !important;
+        @each $name, $color in $box-shadow-colors {
+            &.button--#{$name} {
+                &:hover {
+                    box-shadow: 0 3px 5px 0 rgba($color, 0.3) !important;
+                }
+            }
         }
     }
     &--rounded {
