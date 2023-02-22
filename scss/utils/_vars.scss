@@ -89,10 +89,13 @@ $input-color-border: $color-border;
 $input-color-border--hover: $color-border--dark;
 $input-shadow--hover: 0 2px 4px 0 rgba(0, 0, 0, 0.05), 0 0 4px 0 rgba(0, 0, 0, 0.05);
 
+// border radius
 $border-radius: 4px;
 $border-radius-card: 8px;
 $border-radius-large: $border-radius * 4;
 $border-radius-table: $border-radius * 4;
+// buttons
+$border-radius-button-primary: $border-radius * 2;
 
 // Background color's
 $color-bg--darken: #191919;
@@ -118,7 +121,8 @@ $box-shadow-light: 0 4px 8px rgba(16, 25, 40, 0.08);
 $box-shadow-base--active: 0 0 4px 0 rgba(16, 25, 40, 0.08);
 $box-shadow-base--hover: 0 5px 15px 5px rgba(164, 173, 186, 0.25);
 $box-shadow-sticky-block: 0 15px 15px -15px rgba(222, 227, 231, 0.9);
-
+// Buttons shadow color's
+$box-shadow-button-primary--hover: 0 3px 5px 0 #a4adba;
 // Icon color's
 $color-icon: $color-text;
 $color-icon--light: $color-text--light;
