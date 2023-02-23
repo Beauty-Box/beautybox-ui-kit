@@ -39,9 +39,6 @@ export default defineComponent({
             },
         },
     },
-    mounted() {
-        console.log(this.$vuetify.theme.currentTheme);
-    },
     setup() {
         return {};
     },
