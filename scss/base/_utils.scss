@@ -227,6 +227,7 @@ $line-height: (
 }
 
 .u-hover-underline {
+    text-decoration: none;
     &:hover {
         text-decoration: underline;
     }
