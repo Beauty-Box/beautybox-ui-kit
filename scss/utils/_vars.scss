@@ -141,6 +141,18 @@ $box-shadow-colors: map-deep-merge(
     $box-shadow-colors
 );
 
+$visit-status-colors: () !default;
+$visit-status-colors: map-deep-merge(
+    (
+        'new': $color-new,
+        'working': $color-warning,
+        'done': $color-success,
+        'cancel': $color-error,
+        'completed': $gray--lighten,
+    ),
+    $visit-status-colors
+);
+
 // Icon color's
 $color-icon: $color-text;
 $color-icon--light: $color-text--light;
