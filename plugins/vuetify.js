@@ -2,14 +2,16 @@ import Vue from 'vue';
 import Vuetify, { VApp, VMain, VRow, VCol } from 'vuetify/lib';
 import ru from 'vuetify/lib/locale/ru';
 
-Vue.use(Vuetify, {
-    // components: {
-    //     VApp,
-    //     VMain,
-    //     VRow,
-    //     VCol,
-    // },
-});
+Vue.use(Vuetify);
+
+// , {
+// components: {
+//     VApp,
+//     VMain,
+//     VRow,
+//     VCol,
+// },
+//}
 
 export const vuetify = new Vuetify({
     lang: {
