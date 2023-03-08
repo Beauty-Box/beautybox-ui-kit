@@ -1,15 +1,15 @@
-const EmptyLayout = () => import(/* webpackChunkName: "EmptyLayout" */ '../layouts/EmptyLayout');
-const ErrorLayout = () => import(/* webpackChunkName: "ErrorLayout" */ '../layouts/ErrorLayout');
+const EmptyLayout = () => import(/* webpackChunkName: "EmptyLayout" */ './../layouts/EmptyLayout');
+const ErrorLayout = () => import(/* webpackChunkName: "ErrorLayout" */ './../layouts/ErrorLayout');
 const Forbidden = () =>
-    import(/* webpackChunkName: "Forbidden" */ '../components/pages/Errors/Forbidden');
+    import(/* webpackChunkName: "Forbidden" */ './../components/pages/Errors/Forbidden');
 const NotFound = () =>
-    import(/* webpackChunkName: "NotFound" */ '../components/pages/Errors/NotFound');
+    import(/* webpackChunkName: "NotFound" */ './../components/pages/Errors/NotFound');
 const ServerError = () =>
-    import(/* webpackChunkName: "ServerError" */ '../components/pages/Errors/ServerError');
+    import(/* webpackChunkName: "ServerError" */ './../components/pages/Errors/ServerError');
 const BadRequest = () =>
-    import(/* webpackChunkName: "BadRequest" */ '../components/pages/Errors/BadRequest');
+    import(/* webpackChunkName: "BadRequest" */ './../components/pages/Errors/BadRequest');
 const UnknownError = () =>
-    import(/* webpackChunkName: "UnknownError" */ '../components/pages/Errors/UnknownError');
+    import(/* webpackChunkName: "UnknownError" */ './../components/pages/Errors/UnknownError');
 
 import { mapGetters } from 'vuex';
 
