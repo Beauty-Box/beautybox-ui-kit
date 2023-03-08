@@ -34,12 +34,12 @@
 
 <script>
 import { modalToggleMixin } from '../../../mixins';
-const BSvg = () => import(/* webpackChunkName: "Svg" */ '../../icons/Svg');
+const VSvg = () => import(/* webpackChunkName: "Svg" */ '../../icons/Svg');
 const BBtnClose = () => import(/* webpackChunkName: "BtnClose" */ '../../buttons/BtnClose');
 
 export default {
     name: 'BSideDrawer',
-    components: { BSvg, BBtnClose },
+    components: { VSvg, BBtnClose },
     mixins: [modalToggleMixin],
     props: {
         title: {

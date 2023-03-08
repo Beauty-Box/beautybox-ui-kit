@@ -2,13 +2,13 @@
     <v-app class="not-found">
         <div class="not-found__inner">
             <i class="not-found__icon not-found__icon--left">
-                <b-svg name="404_broken" lg />
+                <v-svg name="404_broken" lg />
             </i>
             <i class="not-found__icon not-found__icon--top">
-                <b-svg name="404_calendar" lg />
+                <v-svg name="404_calendar" lg />
             </i>
             <i class="not-found__icon not-found__icon--right">
-                <b-svg name="404_staff" lg />
+                <v-svg name="404_staff" lg />
             </i>
             <router-view />
         </div>

@@ -2,11 +2,11 @@ import './BtnClose.scss';
 
 import VBtn from 'vuetify/lib/components/VBtn';
 import VIcon from 'vuetify/lib/components/VIcon';
-import BSvg from '../../icons/Svg';
+import VSvg from '../../icons/Svg';
 
 export default {
     name: 'BBtnClose',
-    components: { VBtn, VIcon, BSvg },
+    components: { VBtn, VIcon, VSvg },
     props: {
         ...VBtn.options.props,
         size: {
@@ -45,7 +45,7 @@ export default {
             children.push(h('v-icon', { props: { size: this.size / 1.3 } }, 'close'));
         } else {
             children.push(
-                h('b-svg', {
+                h('v-svg', {
                     props: { name: 'close' },
                     attrs: { style: { width: this.size / 2, height: this.size / 2 } },
                 })

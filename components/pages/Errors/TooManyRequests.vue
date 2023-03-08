@@ -2,13 +2,13 @@
     <v-app class="l-not-found">
         <div class="l-not-found__inner">
             <i class="l-not-found__icon l-not-found__icon--left">
-                <b-svg name="404_broken" lg />
+                <v-svg name="404_broken" lg />
             </i>
             <i class="l-not-found__icon l-not-found__icon--top">
-                <b-svg name="404_calendar" lg />
+                <v-svg name="404_calendar" lg />
             </i>
             <i class="l-not-found__icon l-not-found__icon--right">
-                <b-svg name="404_staff" lg />
+                <v-svg name="404_staff" lg />
             </i>
             <b-block-empty title="Ошибка при запросе" class="l-not-found__empty">
                 <template #text>
@@ -34,13 +34,13 @@
 </template>
 
 <script>
-const BSvg = () => import(/* webpackChunkName: "BSvg" */ '../../../components/icons/Svg');
+const VSvg = () => import(/* webpackChunkName: "VSvg" */ '../../../components/icons/Svg');
 const BBlockEmpty = () =>
     import(/* webpackChunkName: "BlockEmpty" */ '../../../components/blocks/BlockEmpty');
 
 export default {
     components: {
-        BSvg,
+        VSvg,
         BBlockEmpty,
     },
     data: () => ({

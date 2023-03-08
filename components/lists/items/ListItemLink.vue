@@ -22,7 +22,7 @@
             v-else-if="svg || item.icon"
             class="list-item__action list-item__action--icon"
         >
-            <b-svg v-if="svg" :name="svg" />
+            <v-svg v-if="svg" :name="svg" />
             <v-icon v-else-if="item.icon">{{ item.icon }}</v-icon>
         </v-list-item-action>
         <v-list-item-content>

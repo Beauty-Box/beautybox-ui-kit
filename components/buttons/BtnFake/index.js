@@ -1,9 +1,9 @@
 import './BtnFake.scss';
-import BSvg from '../../icons/Svg';
+import VSvg from '../../icons/Svg';
 
 export default {
     name: 'BtnFake',
-    components: { BSvg },
+    components: { VSvg },
     props: {
         title: {
             type: String,
@@ -68,7 +68,7 @@ export default {
                         ),
                     ]
                 ),
-                h('b-svg', {
+                h('v-svg', {
                     class: {
                         'c-fake-btn__icon': true,
                     },

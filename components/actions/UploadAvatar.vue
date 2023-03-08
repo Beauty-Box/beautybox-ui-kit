@@ -13,7 +13,7 @@
                 />
                 <div class="c-avatar-upload__overlay" @click="loadPhoto">
                     <v-icon v-if="avatar">edit</v-icon>
-                    <b-svg v-else name="plus--bold" />
+                    <v-svg v-else name="plus--bold" />
                 </div>
             </div>
             <template v-if="avatarChanged">
@@ -85,7 +85,7 @@
 </template>
 
 <script>
-const BSvg = () => import(/* webpackChunkName: "icon-svg" */ '../icons/Svg');
+const VSvg = () => import(/* webpackChunkName: "icon-svg" */ '../icons/Svg');
 const MUploadAvatar = () =>
     import(/* webpackChunkName: "MUploadAvatar" */ '../modals/MUploadAvatar');
 const ImageUserAvatar = () =>
@@ -94,7 +94,7 @@ const ImageUserAvatar = () =>
 export default {
     name: 'UploadAvatar',
     components: {
-        BSvg,
+        VSvg,
         MUploadAvatar,
         ImageUserAvatar,
     },

@@ -2,7 +2,7 @@ import './BtnDraggable.scss';
 
 import VBtn from 'vuetify/lib/components/VBtn';
 import VIcon from 'vuetify/lib/components/VIcon';
-// import BSvg from '../../icons/Svg';
+// import VSvg from '../../icons/Svg';
 
 export default {
     name: 'BBtnDraggable',
@@ -44,7 +44,7 @@ export default {
                 on: this.$listeners,
             },
             [
-                /*h('b-svg', {
+                /*h('v-svg', {
                     props: {
                         size: this.iconSize,
                         color: this.color,
