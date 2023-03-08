@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import Vuetify, { VApp, VMain, VRow, VCol } from 'vuetify/lib';
-export * as Components from 'vuetify/lib/components';
-export * as Directives from 'vuetify/lib/directives';
+import * as Components from 'vuetify/lib/components';
+import * as Directives from 'vuetify/lib/directives';
 import ru from 'vuetify/lib/locale/ru';
 
 Vue.use(Vuetify, {
