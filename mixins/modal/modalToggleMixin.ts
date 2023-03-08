@@ -1,8 +1,8 @@
-import Vue, { PropType, PropOptions } from 'vue';
+import { defineComponent, PropType, PropOptions } from 'vue';
 
 type value = boolean | string | Array<any> | number | object;
 
-const modalToggleMixin = Vue.extend({
+const modalToggleMixin = defineComponent({
     props: {
         value: {
             type: [Boolean, String, Array, Number, Object] as PropType<value>,
