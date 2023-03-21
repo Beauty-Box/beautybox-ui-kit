@@ -37,6 +37,10 @@ export default {
             type: Boolean,
             default: false,
         },
+        noClickAnimation: {
+            type: Boolean,
+            default: false,
+        },
     },
     computed: {
         overlay: {
@@ -72,6 +76,7 @@ export default {
         persistent
         :transition="transition"
         hide-overlay
+        :no-click-animation="noClickAnimation"
         content-class="full-screen full-screen--not-equal"
     >
         <form

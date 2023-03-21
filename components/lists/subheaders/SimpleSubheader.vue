@@ -24,7 +24,7 @@ export default {
 .v-subheader {
     justify-content: flex-start;
     background-color: $color-bg--lightest;
-    color: #878c93;
+    color: $gray-subheader;
     font-size: 13px;
     font-weight: 500;
     line-height: 1;

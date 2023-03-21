@@ -4,3 +4,4 @@ export * from './BtnCopy';
 export * from './BtnDraggable';
 export * from './BtnFake';
 export * from './BtnWide';
+export * from './BtnPrimary';

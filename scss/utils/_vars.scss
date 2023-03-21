@@ -17,6 +17,7 @@ $spacer: 4px;
 $gutter: $spacer * 6;
 $base-indent: $spacer * 4;
 $half-indent: $spacer * 3;
+$large-indent: $spacer * 10;
 
 //Base Variables
 $color-accent: #ff8272;
@@ -52,6 +53,7 @@ $gray: #585a59;
 $gray--light: #9b9b9b;
 $gray--lighten: #dee3e7;
 $gray--lightest: $color-muted;
+$gray-subheader: #878c93;
 
 // Text color's
 // $color-text--darkest : $gray--darkest;
@@ -89,10 +91,14 @@ $input-color-border: $color-border;
 $input-color-border--hover: $color-border--dark;
 $input-shadow--hover: 0 2px 4px 0 rgba(0, 0, 0, 0.05), 0 0 4px 0 rgba(0, 0, 0, 0.05);
 
+// border radius
 $border-radius: 4px;
 $border-radius-card: 8px;
 $border-radius-large: $border-radius * 4;
 $border-radius-table: $border-radius * 4;
+// buttons
+$border-radius-button-primary: $border-radius * 2;
+$border-radius-largest: $border-radius * 5;
 
 // Background color's
 $color-bg--darken: #191919;
@@ -119,11 +125,40 @@ $box-shadow-base--active: 0 0 4px 0 rgba(16, 25, 40, 0.08);
 $box-shadow-base--hover: 0 5px 15px 5px rgba(164, 173, 186, 0.25);
 $box-shadow-sticky-block: 0 15px 15px -15px rgba(222, 227, 231, 0.9);
 
+$box-shadow-colors: () !default;
+$box-shadow-colors: map-deep-merge(
+    (
+        'primary': $color-primary,
+        'secondary': $color-secondary,
+        'muted': $color-muted,
+        'accent': $color-accent,
+        'info': $color-info,
+        'success': $color-success,
+        'warning': $color-warning,
+        'anchor': $color-anchor,
+        'error': $color-error,
+        'action': $color-action,
+    ),
+    $box-shadow-colors
+);
+
+$visit-status-colors: () !default;
+$visit-status-colors: map-deep-merge(
+    (
+        'new': $color-new,
+        'working': $color-warning,
+        'done': $color-success,
+        'cancel': $color-error,
+        'completed': $gray--lighten,
+    ),
+    $visit-status-colors
+);
+
 // Icon color's
 $color-icon: $color-text;
 $color-icon--light: $color-text--light;
 $color-icon--lighten: #a4adba;
-
+$color-icon--gray: #e1e4e8;
 // Icon size's
 $icons-sizes: () !default;
 $icons-sizes: map-deep-merge(

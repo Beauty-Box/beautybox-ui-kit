@@ -178,8 +178,6 @@ $line-height: (
 } //.u-border
 
 .u-box-shadow {
-    box-shadow: $box-shadow-base !important;
-
     @each $screen, $number in $breakpoints {
         @include min(#{$screen}) {
             &--#{$screen} {
@@ -191,6 +189,10 @@ $line-height: (
                 box-shadow: none !important;
             }
         }
+    }
+    &,
+    .theme--light &.v-btn.white {
+        box-shadow: $box-shadow-base !important;
     }
 
     &-secondary {
@@ -227,6 +229,7 @@ $line-height: (
 }
 
 .u-hover-underline {
+    text-decoration: none;
     &:hover {
         text-decoration: underline;
     }

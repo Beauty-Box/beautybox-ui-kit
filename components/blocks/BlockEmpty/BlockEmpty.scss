@@ -56,7 +56,9 @@
         @include max(xs) {
             font-size: 21px;
         }
-
+        &--normal {
+            font-size: 16px;
+        }
         & + .c-empty__text {
             margin-top: $base-indent / 2;
         }

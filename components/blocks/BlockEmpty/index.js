@@ -31,6 +31,10 @@ export default {
             type: [String, Number],
             default: '35',
         },
+        titleNormal: {
+            type: Boolean,
+            deafult: false,
+        },
     },
     render(h) {
         const textWidth = isNumber(this.textWidth) ? `${this.textWidth}ch` : this.textWidth;
@@ -58,6 +62,7 @@ export default {
                     {
                         class: {
                             'c-empty__title': true,
+                            'c-empty__title--normal': this.titleNormal,
                         },
                         style: {
                             maxWidth: textWidth,
