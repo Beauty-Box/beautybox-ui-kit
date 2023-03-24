@@ -1,10 +1,10 @@
 <template>
     <v-btn
-        dark
+        :dark="isDark"
         large
         :ripple="false"
         :color="color"
-        class="button u-text-weight--medium"
+        class="button u-text-weight--medium px-4"
         :class="[`button--${size}`, { 'button--rounded': rounded }, `button--${color}`]"
         v-bind="$props"
         v-on="$listeners"
@@ -39,8 +39,12 @@ export default defineComponent({
             },
         },
     },
-    setup() {
-        return {};
+    setup(props, { emit }) {
+        const isDark = computed(() => {
+            props.color === 'primary';
+        });
+
+        return { isDark };
     },
 });
 </script>
@@ -55,7 +59,7 @@ $button-sizes: (
     // vuetify стили которые идут с импортантом переопределить можно только так, или через id
     // id использовать нельзя, так как это ui-kit, а id должен быть уникальным на странице
     .theme--light
-        &:not(.v-btn--depressed):not(.v-btn--disabled):not(.v-btn--flat):not(.v-btn--text):not(.v-btn--icon):not(.elevation-0):not(.white) {
+        &:not(.v-btn--depressed):not(.v-btn--disabled):not(.v-btn--flat):not(.v-btn--text):not(.v-btn--icon):not(.elevation-0) {
         box-shadow: none !important;
         @each $name, $color in $box-shadow-colors {
             &.button--#{$name} {
@@ -64,8 +68,19 @@ $button-sizes: (
                 }
             }
         }
-    }
 
+        &.button--white {
+            box-shadow: $box-shadow-base !important;
+            &:hover {
+                // тень для белой кноп при наведении еще обсудить
+                box-shadow: 0 3px 5px 0 rgba($color-primary, 0.3) !important;
+            }
+        }
+    }
+    & ::v-deep svg {
+        fill: currentColor;
+        color: inherit;
+    }
     &:hover::before {
         opacity: 0;
     }
