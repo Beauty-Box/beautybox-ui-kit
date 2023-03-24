@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import { defineComponent } from 'vue';
+import { defineComponent, computed } from 'vue';
 
 import VBtn from 'vuetify/lib/components/VBtn';
 
@@ -41,7 +41,7 @@ export default defineComponent({
     },
     setup(props, { emit }) {
         const isDark = computed(() => {
-            props.color === 'primary';
+            return props.color === 'primary';
         });
 
         return { isDark };
@@ -72,8 +72,7 @@ $button-sizes: (
         &.button--white {
             box-shadow: $box-shadow-base !important;
             &:hover {
-                // тень для белой кноп при наведении еще обсудить
-                box-shadow: 0 3px 5px 0 rgba($color-primary, 0.3) !important;
+                box-shadow: 0 3px 5px 0 rgba($color-border--light, 0.35) !important;
             }
         }
     }
