@@ -97,9 +97,11 @@ export default defineComponent({
         const modules: Record<string, AsyncComponentLoader> = import.meta.glob(
             '../../../assets/spriteSVG/*.svg'
         );
-        const component = computed(() =>
-            defineAsyncComponent(modules[`../../../assets/spriteSVG/${props.name}.svg`])
-        );
+        const component = computed(() => {
+            const icon = modules[`../../../assets/spriteSVG/${props.name}.svg`];
+            console.log('icon', icon);
+            return defineAsyncComponent(icon);
+        });
 
         return { component };
     },
