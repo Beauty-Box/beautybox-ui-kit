@@ -99,7 +99,7 @@ export default defineComponent({
         // );
         const component = computed(() => {
             //  const icon = modules[`../../assets/spriteSVG/${props.name}.svg`];
-            const icon = () => import(`../../assets/spriteSVG/${props.name}.svg?component`);
+            const icon = () => import(`../../assets/spriteSVG/${props.name}.svg`);
 
             console.log('icon', icon);
             return defineAsyncComponent(icon);
