@@ -95,7 +95,7 @@ export default defineComponent({
 
     setup(props, { emit }) {
         const modules: Record<string, AsyncComponentLoader> = import.meta.glob(
-            '../../assets/spriteSVG/*.svg'
+            '../../assets/spriteSVG/*.svg?component'
         );
         const component = computed(() => {
             const icon = modules[`../../assets/spriteSVG/${props.name}.svg`];
