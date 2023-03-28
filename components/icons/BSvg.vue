@@ -11,7 +11,6 @@
 
 <script lang="ts">
 import { defineComponent, computed, defineAsyncComponent } from 'vue';
-import { AsyncComponentLoader } from 'vue/types/v3-define-async-component';
 
 export default defineComponent({
     name: 'BSvg',
