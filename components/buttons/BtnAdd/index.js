@@ -2,7 +2,7 @@ import './BtnAdd.scss';
 import VBtn from 'vuetify/lib/components/VBtn';
 import { VFabTransition } from 'vuetify/lib/components/transitions';
 import svgComponentMixin from '../../../mixins/svgComponent.mixin';
-const BSvg = () => import('../components/icons/BSvg.vue');
+const BSvg = () => import('../../icons/BSvg.vue');
 
 export default {
     name: 'BBtnAdd',
