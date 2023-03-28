@@ -2,12 +2,12 @@ import './BtnClose.scss';
 
 import VBtn from 'vuetify/lib/components/VBtn';
 import VIcon from 'vuetify/lib/components/VIcon';
-import VSvg from '../../icons/Svg';
-import BSvg from '../../icons/BSvg.vue';
+import svgComponentMixin from '../../../mixins/svgComponent.mixin';
 
 export default {
     name: 'BBtnClose',
-    components: { VBtn, VIcon, VSvg, BSvg },
+    components: { VBtn, VIcon },
+    mixins: [svgComponentMixin],
     props: {
         ...VBtn.options.props,
         size: {
@@ -38,11 +38,6 @@ export default {
         text: {
             type: Boolean,
             default: true,
-        },
-    },
-    computed: {
-        svgComponent() {
-            return typeof process !== 'undefined' ? 'v-svg' : 'b-svg';
         },
     },
     render(h) {
