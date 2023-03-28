@@ -65,6 +65,7 @@ export default {
     },
     render(h) {
         //if (this.$vuetify.breakpoint.mobile) {
+        console.log('btn add svgComponent', this.svgComponent);
         return h('v-fab-transition', {}, [
             h(
                 'v-btn',
