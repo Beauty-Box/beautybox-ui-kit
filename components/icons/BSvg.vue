@@ -1,10 +1,8 @@
-<!-- eslint-disable vue/no-parsing-error -->
 <template>
     <component
         :is="component"
         :class="classes"
         :style="styles"
-        xmlns="http://www.w3.org/2000/svg"
         :aria-labelledby="name"
         focusable="false"
         role="img"
