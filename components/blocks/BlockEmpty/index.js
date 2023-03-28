@@ -1,11 +1,12 @@
 import './BlockEmpty.scss';
 
 import VSvg from '../../icons/Svg';
+import BSvg from '../../icons/BSvg.vue';
 import { isNumber } from '@beautybox/core/utils';
 
 export default {
     name: 'BlockEmpty',
-    components: { VSvg },
+    components: { VSvg, BSvg },
     props: {
         icon: {
             type: String,
@@ -36,13 +37,18 @@ export default {
             deafult: false,
         },
     },
+    computed: {
+        svgComponent() {
+            return typeof require !== 'undefined' ? 'v-svg' : 'b-svg';
+        },
+    },
     render(h) {
         const textWidth = isNumber(this.textWidth) ? `${this.textWidth}ch` : this.textWidth;
         let children = [this.$slots.image];
 
         if (!this.$slots.image && this.icon) {
             children.push(
-                h('v-svg', {
+                h(this.svgComponent, {
                     class: {
                         'icon c-empty__icon': true,
                         ['icon-' + this.icon]: true,
