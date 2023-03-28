@@ -3,7 +3,7 @@ import './BtnClose.scss';
 import VBtn from 'vuetify/lib/components/VBtn';
 import VIcon from 'vuetify/lib/components/VIcon';
 import VSvg from '../../icons/Svg';
-import BSvg from '../../icons/BSvg';
+import BSvg from '../../icons/BSvg.vue';
 
 export default {
     name: 'BBtnClose',
