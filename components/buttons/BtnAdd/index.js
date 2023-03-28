@@ -1,13 +1,12 @@
 import './BtnAdd.scss';
-import { resolveDynamicComponent } from 'vue';
 import VBtn from 'vuetify/lib/components/VBtn';
 import { VFabTransition } from 'vuetify/lib/components/transitions';
 import svgComponentMixin from '../../../mixins/svgComponent.mixin';
+const BSvg = () => import('../components/icons/BSvg.vue');
 
 export default {
     name: 'BBtnAdd',
-    components: { VBtn, VFabTransition },
-    mixins: [svgComponentMixin],
+    components: { VBtn, VFabTransition, BSvg },
     props: {
         ...VBtn.options.props,
         fab: {
@@ -65,7 +64,6 @@ export default {
     },
     render(h) {
         //if (this.$vuetify.breakpoint.mobile) {
-        console.log('btn add svgComponent', this.svgComponent);
         return h('v-fab-transition', {}, [
             h(
                 'v-btn',
@@ -92,7 +90,7 @@ export default {
                 },
                 [
                     this.$slots.default,
-                    h(resolveDynamicComponent(this.svgComponent), {
+                    h('b-svg', {
                         props: {
                             name: 'plus--bold',
                             fill: this.outlined ? this.color : '',
