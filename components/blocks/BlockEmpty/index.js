@@ -39,6 +39,7 @@ export default {
     },
     computed: {
         svgComponent() {
+            console.log(typeof require);
             return typeof require !== 'undefined' ? 'v-svg' : 'b-svg';
         },
     },
@@ -47,6 +48,7 @@ export default {
         let children = [this.$slots.image];
 
         if (!this.$slots.image && this.icon) {
+            console.log('svgComponent', this.svgComponent);
             children.push(
                 h(this.svgComponent, {
                     class: {
