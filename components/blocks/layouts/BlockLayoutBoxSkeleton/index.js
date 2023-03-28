@@ -3,11 +3,12 @@ import './BlockLayoutBoxSkeleton.scss';
 import VBtn from 'vuetify/lib/components/VBtn';
 import VIcon from 'vuetify/lib/components/VIcon';
 import VSkeletonLoader from 'vuetify/lib/components/VSkeletonLoader';
-const VSvg = () => import(/* webpackChunkName: "icon-svg" */ '../../../icons/Svg');
+import svgComponentMixin from '../../../../mixins/svgComponent.mixin';
 
 export default {
     name: 'BBlockLayoutBoxSkeleton',
-    components: { VBtn, VIcon, VSvg, VSkeletonLoader },
+    components: { VBtn, VIcon, VSkeletonLoader },
+    mixins: [svgComponentMixin],
     props: {
         loading: {
             type: Boolean,
@@ -107,7 +108,7 @@ export default {
                         },
                     },
                     // [h('v-icon', {}, 'west')]
-                    [h('v-svg', { props: { name: 'arrow-long--left', sm: true } })]
+                    [h(this.svgComponent, { props: { name: 'arrow-long--left', sm: true } })]
                 )
             );
         }

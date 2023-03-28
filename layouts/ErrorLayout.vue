@@ -2,13 +2,13 @@
     <v-app class="not-found">
         <div class="not-found__inner">
             <i class="not-found__icon not-found__icon--left">
-                <v-svg name="404_broken" lg />
+                <component :is="svgComponent" name="404_broken" lg />
             </i>
             <i class="not-found__icon not-found__icon--top">
-                <v-svg name="404_calendar" lg />
+                <component :is="svgComponent" name="404_calendar" lg />
             </i>
             <i class="not-found__icon not-found__icon--right">
-                <v-svg name="404_staff" lg />
+                <component :is="svgComponent" name="404_staff" lg />
             </i>
             <router-view />
         </div>
@@ -16,6 +16,14 @@
         <div class="not-found__block-shadow" />
     </v-app>
 </template>
+
+<script>
+import svgComponentMixin from '../../../mixins/svgComponent.mixin';
+
+export default {
+    mixins: [svgComponentMixin],
+};
+</script>
 
 <style lang="scss" scoped>
 .not-found {

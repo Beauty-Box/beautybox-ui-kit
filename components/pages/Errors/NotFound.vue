@@ -2,13 +2,13 @@
     <v-app class="l-not-found">
         <div class="l-not-found__inner">
             <i class="l-not-found__icon l-not-found__icon--left">
-                <v-svg name="404_broken" lg />
+                <component :is="svgComponent" name="404_broken" lg />
             </i>
             <i class="l-not-found__icon l-not-found__icon--top">
-                <v-svg name="404_calendar" lg />
+                <component :is="svgComponent" name="404_calendar" lg />
             </i>
             <i class="l-not-found__icon l-not-found__icon--right">
-                <v-svg name="404_staff" lg />
+                <component :is="svgComponent" name="404_staff" lg />
             </i>
             <b-block-empty title="Страница не найдена" class="l-not-found__empty">
                 <template #text>
@@ -29,15 +29,15 @@
 </template>
 
 <script>
-const VSvg = () => import(/* webpackChunkName: "Svg" */ '../../../components/icons/Svg');
 const BBlockEmpty = () =>
     import(/* webpackChunkName: "BlockEmpty" */ '../../../components/blocks/BlockEmpty');
+import svgComponentMixin from '../../../mixins/svgComponent.mixin';
 
 export default {
     components: {
-        VSvg,
         BBlockEmpty,
     },
+    mixins: [svgComponentMixin],
     methods: {
         goHome() {
             window.location.replace(

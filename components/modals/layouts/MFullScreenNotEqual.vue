@@ -2,12 +2,12 @@
 import { modalMixin } from '../../../mixins';
 const BBlockLoader = () => import(/* webpackChunkName: "BlockLoader" */ '../../blocks/BlockLoader');
 const BBtnClose = () => import(/* webpackChunkName: "BtnClose" */ '../../buttons/BtnClose');
-const VSvg = () => import(/* webpackChunkName: "Svg" */ '../../icons/Svg');
+import svgComponentMixin from '../../../mixins/svgComponent.mixin';
 
 export default {
     name: 'MFullScreenNotEqual',
-    components: { BBlockLoader, BBtnClose, VSvg },
-    mixins: [modalMixin],
+    components: { BBlockLoader, BBtnClose },
+    mixins: [modalMixin, svgComponentMixin],
     props: {
         bgc: {
             type: String,
@@ -147,7 +147,7 @@ export default {
                 <div v-if="overlay" class="overlay" @click="overlay = false">
                     <div class="overlay__btn">
                         <div class="overlay__icon">
-                            <v-svg name="close" />
+                            <component :is="svgComponent" name="close" />
                             <span>esc</span>
                         </div>
                         <div class="overlay__text">Нажмите esc чтобы закрыть</div>
