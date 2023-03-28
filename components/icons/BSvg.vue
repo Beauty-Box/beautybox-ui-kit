@@ -98,6 +98,8 @@ export default defineComponent({
             //  const icon = modules[`../../assets/spriteSVG/${props.name}.svg`];
             const icon = () => import(`../../assets/spriteSVG/${props.name}.svg?component`);
             return defineAsyncComponent(icon);
+            // загрузка иконок и vue template compiler
+            // @see https://github.com/jpkleemans/vite-svg-loader/issues/76
         });
 
         return { component };
