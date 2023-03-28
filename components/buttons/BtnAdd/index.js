@@ -92,8 +92,7 @@ export default {
                 },
                 [
                     this.$slots.default,
-                    // this.svgComponent
-                    h('v-svg', {
+                    h(this.svgComponent, {
                         props: {
                             name: 'plus--bold',
                             fill: this.outlined ? this.color : '',
