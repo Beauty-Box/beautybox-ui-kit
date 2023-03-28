@@ -42,7 +42,7 @@ export default {
     },
     computed: {
         svgComponent() {
-            return !!require ? 'v-svg' : 'b-svg';
+            return typeof require !== 'undefined' ? 'v-svg' : 'b-svg';
         },
     },
     render(h) {
