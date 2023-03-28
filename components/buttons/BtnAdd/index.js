@@ -89,8 +89,8 @@ export default {
                     on: this.$listeners,
                 },
                 [
-                    this.$slots.default,
-                    h(BSvg, {
+                    // this.$slots.default,
+                    h('b-svg', {
                         props: {
                             name: 'plus--bold',
                             fill: this.outlined ? this.color : '',
