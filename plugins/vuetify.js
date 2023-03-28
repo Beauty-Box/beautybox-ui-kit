@@ -32,7 +32,7 @@ export const vuetify = new Vuetify({
             variations: false,
             // customProperties: true,
             minifyTheme: function (css) {
-                return process.env.NODE_ENV === 'production'
+                return import.meta.env.MODE === 'production'
                     ? css.replace(/[\r\n|\r|\n]/g, '')
                     : css;
             },
