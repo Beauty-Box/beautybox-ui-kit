@@ -64,41 +64,41 @@ export default {
     },
     render(h) {
         //if (this.$vuetify.breakpoint.mobile) {
-        // return h('v-fab-transition', {}, [
-        //     h(
-        //         'v-btn',
-        //         {
-        //             class: {
-        //                 'c-btn-add': true,
-        //             },
-        //             props: {
-        //                 transition: this.transition,
-        //                 fab: this.fab,
-        //                 dark: this.dark,
-        //                 fixed: this.fixed,
-        //                 right: this.right,
-        //                 bottom: this.bottom,
-        //                 color: this.color,
-        //                 ripple: this.ripple,
-        //                 to: this.to,
-        //                 forever: this.forever,
-        //                 outlined: this.outlined,
-        //                 depressed: this.depressed,
-        //                 plain: this.plain,
-        //             },
-        //             on: this.$listeners,
-        //         },
-        //         [
-        //             this.$slots.default,
-        return h('b-svg', {
-            props: {
-                name: 'plus--bold',
-                fill: this.outlined ? this.color : '',
-            },
-        });
-        //         ]
-        //     ),
-        // ]);
+        return h('v-fab-transition', {}, [
+            h(
+                'v-btn',
+                {
+                    class: {
+                        'c-btn-add': true,
+                    },
+                    props: {
+                        transition: this.transition,
+                        fab: this.fab,
+                        dark: this.dark,
+                        fixed: this.fixed,
+                        right: this.right,
+                        bottom: this.bottom,
+                        color: this.color,
+                        ripple: this.ripple,
+                        to: this.to,
+                        forever: this.forever,
+                        outlined: this.outlined,
+                        depressed: this.depressed,
+                        plain: this.plain,
+                    },
+                    on: this.$listeners,
+                },
+                [
+                    this.$slots.default,
+                    h('b-svg', {
+                        props: {
+                            name: 'plus--bold',
+                            fill: this.outlined ? this.color : '',
+                        },
+                    }),
+                ]
+            ),
+        ]);
         // }
     },
 };
