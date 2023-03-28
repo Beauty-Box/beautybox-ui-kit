@@ -2,11 +2,11 @@ import './BtnAdd.scss';
 import VBtn from 'vuetify/lib/components/VBtn';
 import { VFabTransition } from 'vuetify/lib/components/transitions';
 import svgComponentMixin from '../../../mixins/svgComponent.mixin';
-const BSvg = () => import('../../icons/BSvg.vue');
 
 export default {
     name: 'BBtnAdd',
-    components: { VBtn, VFabTransition, BSvg },
+    components: { VBtn, VFabTransition },
+    mixins: [svgComponentMixin],
     props: {
         ...VBtn.options.props,
         fab: {
@@ -90,7 +90,7 @@ export default {
                 },
                 [
                     this.$slots.default,
-                    h('b-svg', {
+                    h(this.svgComponent, {
                         props: {
                             name: 'plus--bold',
                             fill: this.outlined ? this.color : '',
