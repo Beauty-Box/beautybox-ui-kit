@@ -1,5 +1,5 @@
 import './BtnAdd.scss';
-
+import { resolveDynamicComponent } from 'vue';
 import VBtn from 'vuetify/lib/components/VBtn';
 import { VFabTransition } from 'vuetify/lib/components/transitions';
 import svgComponentMixin from '../../../mixins/svgComponent.mixin';
@@ -92,7 +92,7 @@ export default {
                 },
                 [
                     this.$slots.default,
-                    h(this.svgComponent, {
+                    h(resolveDynamicComponent(this.svgComponent), {
                         props: {
                             name: 'plus--bold',
                             fill: this.outlined ? this.color : '',
