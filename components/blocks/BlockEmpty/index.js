@@ -39,8 +39,8 @@ export default {
     },
     computed: {
         svgComponent() {
-            console.log(typeof require);
-            return typeof require !== 'undefined' ? 'v-svg' : 'b-svg';
+            console.log(typeof process);
+            return typeof process !== 'undefined' ? 'v-svg' : 'b-svg';
         },
     },
     render(h) {
