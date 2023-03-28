@@ -3,10 +3,11 @@ import './BtnClose.scss';
 import VBtn from 'vuetify/lib/components/VBtn';
 import VIcon from 'vuetify/lib/components/VIcon';
 import VSvg from '../../icons/Svg';
+import BSvg from '../../icons/BSvg';
 
 export default {
     name: 'BBtnClose',
-    components: { VBtn, VIcon, VSvg },
+    components: { VBtn, VIcon, VSvg, BSvg },
     props: {
         ...VBtn.options.props,
         size: {
@@ -39,13 +40,18 @@ export default {
             default: true,
         },
     },
+    computed: {
+        svgComponent() {
+            return !!require ? 'v-svg' : 'b-svg';
+        },
+    },
     render(h) {
         let children = [];
         if (this.hasBg) {
             children.push(h('v-icon', { props: { size: this.size / 1.3 } }, 'close'));
         } else {
             children.push(
-                h('v-svg', {
+                h(this.svgComponent, {
                     props: { name: 'close' },
                     attrs: { style: { width: this.size / 2, height: this.size / 2 } },
                 })
