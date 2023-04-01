@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import svgComponentMixin from '../../../mixins/svgComponent.mixin';
+import svgComponentMixin from '../mixins/svgComponent.mixin';
 
 export default {
     mixins: [svgComponentMixin],
