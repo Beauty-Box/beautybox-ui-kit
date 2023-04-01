@@ -11,6 +11,7 @@
 
 <script lang="ts">
 import { defineComponent, computed, defineAsyncComponent } from 'vue';
+import { AsyncComponentLoader } from 'vue/types/v3-define-async-component';
 
 export default defineComponent({
     name: 'BSvg',
@@ -91,12 +92,12 @@ export default defineComponent({
     // },
 
     setup(props, { emit }) {
-        // const modules: Record<string, AsyncComponentLoader> = import.meta.glob(
-        //     '../../assets/spriteSVG/*.svg?component'
-        // );
+        const modules: Record<string, AsyncComponentLoader> = import.meta.glob(
+            '../../assets/spriteSVG/*.svg?component'
+        );
         const component = computed(() => {
-            //  const icon = modules[`../../assets/spriteSVG/${props.name}.svg`];
-            const icon = () => import(`../../assets/spriteSVG/${props.name}.svg?component`);
+            const icon = modules[`../../assets/spriteSVG/${props.name}.svg`];
+            //const icon = () => import(`../../assets/spriteSVG/${props.name}.svg?component`);
             return defineAsyncComponent(icon);
             // загрузка иконок и vue template compiler
             // @see https://github.com/jpkleemans/vite-svg-loader/issues/76
