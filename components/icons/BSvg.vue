@@ -10,8 +10,9 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed, defineAsyncComponent } from 'vue';
+import { defineComponent, computed, defineAsyncComponent, PropType } from 'vue';
 import type { AsyncComponentLoader } from 'vue/types/v3-define-async-component';
+import { isNumber } from '@beautybox/core/helpers';
 
 export default defineComponent({
     name: 'BSvg',
@@ -25,21 +26,9 @@ export default defineComponent({
             type: String,
             required: true,
         },
-        xs: {
-            type: Boolean,
-            default: false,
-        },
-        sm: {
-            type: Boolean,
-            default: false,
-        },
-        md: {
-            type: Boolean,
-            default: false,
-        },
-        lg: {
-            type: Boolean,
-            default: false,
+        size: {
+            type: [Number, String],
+            default: 20,
         },
     },
     computed: {
@@ -47,49 +36,15 @@ export default defineComponent({
             return {
                 icon: true,
                 ['icon-' + this.name]: this.name,
-                'icon--xs': this.xs,
-                'icon--sm': this.sm,
-                'icon--md': this.md,
-                'icon--lg': this.lg,
             };
         },
         styles() {
             return {
                 fill: this.fill,
+                '--size': this.sizeIcon,
             };
         },
-        // iconPath() {
-        //     let icon = require(`../../../assets/spriteSVG/${this.name}.svg`);
-        //     if (Object.prototype.hasOwnProperty.call(icon, 'default')) {
-        //         icon = icon.default;
-        //     }
-        //     return icon.url;
-        // },
     },
-    // render(h) {
-    //     return h(
-    //         'svg',
-    //         {
-    //             class: this.classes,
-    //             style: this.styles,
-    //             attrs: {
-    //                 xmlns: 'http://www.w3.org/2000/svg',
-    //                 'aria-labelledby': this.name,
-    //                 focusable: false,
-    //                 role: 'img',
-    //                 ...this.$attrs,
-    //             },
-    //         },
-    //         [
-    //             h('use', {
-    //                 attrs: {
-    //                     href: this.iconPath,
-    //                     xmlns: 'http://www.w3.org/2000/svg',
-    //                 },
-    //             }),
-    //         ]
-    //     );
-    // },
 
     setup(props, { emit }) {
         const modules: Record<string, AsyncComponentLoader> = import.meta.glob(
@@ -103,9 +58,19 @@ export default defineComponent({
             // @see https://github.com/jpkleemans/vite-svg-loader/issues/76
         });
 
-        return { component };
+        const sizeIcon = computed(() => {
+            return isNumber(String(props.size)) ? `${props.size}px` : props.size;
+        });
+
+        return { component, sizeIcon };
     },
 });
 </script>
 
-<style scoped lang="scss" src="./Svg/Svg.scss"></style>
+<style scoped lang="scss">
+.icon {
+    display: inline-flex;
+    width: var(--size, 20px);
+    height: var(--size, 20px);
+} //.icon
+</style>
