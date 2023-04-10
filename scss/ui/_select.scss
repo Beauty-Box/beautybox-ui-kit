@@ -14,7 +14,7 @@
             display: block;
         }
     }
-    :not(.select-color__selected) {
+    .v-chip:not(.select-color__selected) {
         .icon {
             display: none;
         }
