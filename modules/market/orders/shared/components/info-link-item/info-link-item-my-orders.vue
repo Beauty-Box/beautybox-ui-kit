@@ -4,12 +4,12 @@ import { infoLinkItemMixin } from './info-link-item.mixin';
 import AppInfoLinkItemLoader from './info-link-item-loader';
 
 export default {
-    name: 'app-info-link-item-my-orders',
+    name: 'AppInfoLinkItemMyOrders',
     components: { AppInfoLinkItemLoader },
     mixins: [infoLinkItemMixin],
     created() {
         Products.createProvider({
-            baseUrl: process.env.BASE_URL,
+            baseUrl: import.meta.env.VITE_BASE_URL,
             module: 'market',
             token: localStorage.getItem('access_token'),
         });

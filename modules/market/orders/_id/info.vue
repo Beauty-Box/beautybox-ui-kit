@@ -14,7 +14,7 @@ import AppOrderItemShort from '../shared/components/order-item/order-item-short'
 import AppOrderItemInfo from '../shared/components/order-item/order-item-info';
 
 export default {
-    name: 'app-order-info',
+    name: 'AppOrderInfo',
     components: {
         AppBtnCopy,
         AppBlockLoader,
@@ -37,7 +37,7 @@ export default {
     },
     async created() {
         await Order.createProvider({
-            baseUrl: process.env.BASE_URL,
+            baseUrl: import.meta.env.VITE_BASE_URL,
             module: 'market',
             token: localStorage.getItem('access_token'),
         });

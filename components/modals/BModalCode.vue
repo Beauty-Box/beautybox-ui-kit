@@ -122,7 +122,7 @@ export default {
             };
 
             ({ errors: this.errors = {}, ...response } = await new Provider(
-                process.env.BASE_URL,
+                import.meta.env.VITE_BASE_URL,
                 'auth'
             ).post('/confirm-sms', data));
 
@@ -159,7 +159,7 @@ export default {
             };
 
             ({ left: this.countSms, errors = {}, ...response } = await new Provider(
-                process.env.BASE_URL,
+                import.meta.env.VITE_BASE_URL,
                 'auth'
             ).post('/send-sms', data));
 
