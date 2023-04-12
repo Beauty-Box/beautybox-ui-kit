@@ -2,13 +2,13 @@
     <v-app id="app" class="l-not-found" data-server-rendered="true">
         <div class="l-not-found__inner">
             <i class="l-not-found__icon l-not-found__icon--left">
-                <component :is="svgComponent" name="404_broken" lg />
+                <component :is="svgComponent" name="404_broken" :size="56" />
             </i>
             <i class="l-not-found__icon l-not-found__icon--top">
-                <component :is="svgComponent" name="404_calendar" lg />
+                <component :is="svgComponent" name="404_calendar" :size="56" />
             </i>
             <i class="l-not-found__icon l-not-found__icon--right">
-                <component :is="svgComponent" name="404_staff" lg />
+                <component :is="svgComponent" name="404_staff" :size="56" />
             </i>
             <b-block-empty title="Доступ запрещен" class="l-not-found__empty">
                 <template #text>
