@@ -68,7 +68,7 @@ export default defineComponent({
 </script>
 
 <style scoped lang="scss">
-.icon {
+:where(.icon) {
     display: inline-flex;
     width: var(--size, 20px);
     height: var(--size, 20px);
