@@ -1,9 +1,9 @@
 import './BtnFake.scss';
-import BSvg from '../../icons/Svg';
+import svgComponentMixin from '../../../mixins/svgComponent.mixin';
 
 export default {
     name: 'BtnFake',
-    components: { BSvg },
+    mixins: [svgComponentMixin],
     props: {
         title: {
             type: String,
@@ -68,7 +68,7 @@ export default {
                         ),
                     ]
                 ),
-                h('b-svg', {
+                h(this.svgComponent, {
                     class: {
                         'c-fake-btn__icon': true,
                     },

@@ -1,11 +1,11 @@
 import './BlockEmpty.scss';
+import svgComponentMixin from '../../../mixins/svgComponent.mixin';
 
-import VSvg from '../../icons/Svg';
 import { isNumber } from '@beautybox/core/utils';
 
 export default {
     name: 'BlockEmpty',
-    components: { VSvg },
+    mixins: [svgComponentMixin],
     props: {
         icon: {
             type: String,
@@ -36,13 +36,14 @@ export default {
             deafult: false,
         },
     },
+
     render(h) {
         const textWidth = isNumber(this.textWidth) ? `${this.textWidth}ch` : this.textWidth;
         let children = [this.$slots.image];
 
         if (!this.$slots.image && this.icon) {
             children.push(
-                h('v-svg', {
+                h(this.svgComponent, {
                     class: {
                         'icon c-empty__icon': true,
                         ['icon-' + this.icon]: true,

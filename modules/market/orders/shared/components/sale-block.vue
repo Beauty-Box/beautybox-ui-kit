@@ -6,7 +6,7 @@ import AppBottomSheet from '../../../../../components/bottom-sheet/BottomSheet';
 import AppSkeletonBoilerplate from '../../../../../components/loaders/SkeletonBoilerplate';
 
 export default {
-    name: 'app-sale-block',
+    name: 'AppSaleBlock',
     components: { AppSkeletonBoilerplate, AppBottomSheet },
     data: () => ({
         loading: true,
@@ -31,7 +31,7 @@ export default {
             await this.$store.dispatch('GET_USER_INFO');
         }
         Loyalty.createProvider({
-            baseUrl: process.env.BASE_URL,
+            baseUrl: import.meta.env.VITE_BASE_URL,
             module: 'market',
             token: localStorage.getItem('access_token'),
         });

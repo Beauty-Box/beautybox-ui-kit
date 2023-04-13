@@ -1,6 +1,5 @@
 .select-color {
     .icon {
-        display: none;
         width: 32px;
         height: 32px;
         fill: #fff;
@@ -13,6 +12,11 @@
 
         .icon {
             display: block;
+        }
+    }
+    .v-chip:not(.select-color__selected) {
+        .icon {
+            display: none;
         }
     }
 

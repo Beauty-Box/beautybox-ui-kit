@@ -1,14 +1,12 @@
 import Vue from 'vue';
 import Vuetify, { VApp, VMain, VRow, VCol } from 'vuetify/lib';
+import * as Components from 'vuetify/lib/components';
+import * as Directives from 'vuetify/lib/directives';
 import ru from 'vuetify/lib/locale/ru';
 
 Vue.use(Vuetify, {
-    components: {
-        VApp,
-        VMain,
-        VRow,
-        VCol,
-    },
+    components: Components,
+    directives: Directives,
 });
 
 export const vuetify = new Vuetify({
@@ -34,7 +32,7 @@ export const vuetify = new Vuetify({
             variations: false,
             // customProperties: true,
             minifyTheme: function (css) {
-                return process.env.NODE_ENV === 'production'
+                return import.meta.env.MODE === 'production'
                     ? css.replace(/[\r\n|\r|\n]/g, '')
                     : css;
             },

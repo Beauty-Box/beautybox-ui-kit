@@ -2,13 +2,13 @@
     <v-app class="l-not-found">
         <div class="l-not-found__inner">
             <i class="l-not-found__icon l-not-found__icon--left">
-                <b-svg name="404_broken" lg />
+                <component :is="svgComponent" name="404_broken" :size="56" />
             </i>
             <i class="l-not-found__icon l-not-found__icon--top">
-                <b-svg name="404_calendar" lg />
+                <component :is="svgComponent" name="404_calendar" :size="56" />
             </i>
             <i class="l-not-found__icon l-not-found__icon--right">
-                <b-svg name="404_staff" lg />
+                <component :is="svgComponent" name="404_staff" :size="56" />
             </i>
             <b-block-empty title="Ошибка при запросе" class="l-not-found__empty">
                 <template #text>
@@ -34,15 +34,15 @@
 </template>
 
 <script>
-const BSvg = () => import(/* webpackChunkName: "BSvg" */ '../../../components/icons/Svg');
 const BBlockEmpty = () =>
     import(/* webpackChunkName: "BlockEmpty" */ '../../../components/blocks/BlockEmpty');
+import svgComponentMixin from '../../../mixins/svgComponent.mixin';
 
 export default {
     components: {
-        BSvg,
         BBlockEmpty,
     },
+    mixins: [svgComponentMixin],
     data: () => ({
         timer: 60,
     }),

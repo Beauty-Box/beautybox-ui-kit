@@ -2,7 +2,7 @@
     display: inline-flex;
     width: $icon-size;
     height: $icon-size;
-    fill: var(--fill, $color-icon);
+    // fill: var(--fill, $color-icon);
 
     @each $size, $value in $icons-sizes {
         &--#{$size} {
