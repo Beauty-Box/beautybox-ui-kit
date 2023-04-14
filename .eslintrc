@@ -8,7 +8,9 @@
     "extends": [
         "prettier",
         "plugin:vue/strongly-recommended",
-        "prettier/vue"
+        "prettier/vue",
+        "@vue/typescript/recommended",
+        "@vue/prettier/@typescript-eslint"
     ],
     "rules": {
         "curly": [
@@ -134,7 +136,7 @@
         "vue/valid-v-model": "off"
     },
     "parserOptions": {
-        "parser": "babel-eslint",
+        "parser": "@typescript-eslint/parser",
         "sourceType": "module",
         "ecmaVersion": 2018
     },

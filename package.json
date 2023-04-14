@@ -1,152 +1,136 @@
 {
-    "name": "@beautybox/ui-kit",
-    "version": "1.0.0",
-    "private": true,
-    "repository": {
-        "type": "git",
-        "url": "https://gitlab.beautybox.ru/beautybox/frontend/beautybox-ui-kit"
-    },
-    "license": "MIT",
-    "scripts": {
-        "serve": "start-storybook -p 5555 -s ./",
-        "build": "build-storybook -o ./dist",
-        "deploy": "build-storybook -o ./dist_new",
-        "lint:scripts": "eslint --config ./.eslintrc --fix --ext .js,.vue --ignore-path ./.eslintignore",
-        "lint:styles": "stylelint --config /.stylelintrc --fix **/*.{scss,sass} --ignore-path ./.stylelintignore",
-        "lint": "yarn run lint:scripts && yarn run lint:styles",
-        "test": "jest -u"
-    },
-    "husky": {
-        "hooks": {
-            "pre-commit": "lint-staged"
-        }
-    },
-    "lint-staged": {
-        "*.{js,vue}": "eslint --config ./.eslintrc --fix --ext .js,.vue --ignore-path ./.eslintignore",
-        "**/*.{scss,sass}": [
-            "stylelint --config /.stylelintrc --fix **/*.{scss,sass} --ignore-path ./.stylelintignore",
-            "prettier --write"
-        ]
-    },
-    "dependencies": {
-        "@storybook/addon-storyshots": "^6.1.9",
-        "cross-env": "^7.0.2",
-        "express": "^4.17.1",
-        "react": "^16.13.1",
-        "react-dom": "16.x",
-        "react-is": "^16.8.0",
-        "svgo-loader": "^2.2.1",
-        "swiper": "5.x",
-        "vue": "^2.7.14",
-        "vue-advanced-cropper": "^0.17.8",
-        "vue-awesome-swiper": "^4.1.1",
-        "vue-clipboard2": "^0.3.1",
-        "vue-the-mask": "^0.11.1",
-        "vuedraggable": "^2.24.3",
-        "vuetify": "^2.3.17",
-        "vuex": "^3.5.1"
-    },
-    "devDependencies": {
-        "@babel/core": "^7.11.5",
-        "@babel/plugin-transform-runtime": "^7.12.1",
-        "@babel/preset-env": "^7.12.7",
-        "@babel/preset-stage-2": "^7.8.3",
-        "@storybook/addon-docs": "^6.0.21",
-        "@storybook/addon-jest": "^6.0.28",
-        "@storybook/addon-knobs": "^6.0.21",
-        "@storybook/addon-storysource": "^6.0.28",
-        "@storybook/addon-viewport": "^6.0.28",
-        "@storybook/core": "^6.0.21",
-        "@storybook/vue": "^6.0.21",
-        "@types/jest": "^26.0.15",
-        "@vue/test-utils": "^1.1.1",
-        "babel-eslint": "^10.0.1",
-        "babel-loader": "^8.1.0",
-        "babel-plugin-module-resolver": "^4.0.0",
-        "babel-plugin-require-context-hook": "^1.0.0",
-        "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
-        "babel-preset-vue": "^2.0.2",
-        "connect-history-api-fallback": "^1.6.0",
-        "copy-webpack-plugin": "^6.3.0",
-        "cross-env": "^7.0.2",
-        "css-loader": "^4.2.2",
-        "css-mqpacker": "^7.0.0",
-        "cssnano": "^4.1.10",
-        "eslint": "^7.8.0",
-        "eslint-config-prettier": "^6.11.0",
-        "eslint-plugin-import": "^2.20.2",
-        "eslint-plugin-prettier": "^3.1.3",
-        "eslint-plugin-vue": "^7.1.0",
-        "html-webpack-plugin": "^4.5.0",
-        "husky": "^4.2.5",
-        "jest": "^26.6.3",
-        "lint-staged": "^10.2.13",
-        "preload-webpack-plugin": "3.0.0-beta.3",
-        "prettier": "^2.1.1",
-        "regenerator-runtime": "*",
-        "sass": "^1.26.9",
-        "sass-loader": "^10.0.1",
-        "script-ext-html-webpack-plugin": "^2.1.4",
-        "style-loader": "^1.2.1",
-        "stylelint": "^13.7.0",
-        "stylelint-config-prettier": "^8.0.1",
-        "stylelint-config-standard": "^20.0.0",
-        "stylelint-order": "^4.1.0",
-        "stylelint-scss": "^3.18.0",
-        "stylelint-selector-bem-pattern": "^2.1.0",
-        "stylelint-webpack-plugin": "^2.0.0",
-        "svg-loader": "^0.0.2",
-        "svg-sprite-loader": "^5.0.0",
-        "svgo": "^1.3.2",
-        "ts-loader": "6.2.2",
-        "typescript": "*",
-        "vue-jest": "^3.0.7",
-        "vue-loader": "~15.9.8",
-        "vue-template-compiler": "^2.6.12",
-        "vuetify-loader": "^1.5.0",
-        "webpack": "4.42.0",
-        "webpack-cli": "^4.2.0",
-        "vite": "^4.1.4",
-        "@vitejs/plugin-vue2": "^2.2.0",
-        "vite-svg-loader": "^4.0.0"
-    },
-    "peerDependencies": {
-        "@vue/compiler-sfc": "^2.7.0 || ^3.0.0",
-        "vite": "^2.0.0 || ^3.0.0-0 || ^4.0.0"
-    },
-    "peerDependenciesMeta": {
-        "@vue/compiler-sfc": {
-          "optional": true
-        }
-    },
-    "resolutions": {
-        "@vue/compiler-sfc": "^2.7.14"
-    },
-    "jest": {
-        "transform": {
-            "^.+\\.js$": "babel-jest",
-            "^.+\\.vue$": "vue-jest"
-        },
-        "transformIgnorePatterns": [],
-        "moduleNameMapper": {
-            "^.+\\.(css|less|scss|sass|svg)$": "babel-jest"
-        },
-        "moduleFileExtensions": [
-            "js",
-            "json",
-            "vue"
-        ],
-        "moduleDirectories": [
-            "node_modules"
-        ],
-        "globals": {
-            "vue-jest": {
-                "resources": {
-                    "scss": [
-                        "./scss/variables.scss"
-                    ]
-                }
-            }
-        }
+  "name": "@beautybox/ui-kit",
+  "version": "1.0.0",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.beautybox.ru/beautybox/frontend/beautybox-ui-kit"
+  },
+  "license": "MIT",
+  "scripts": {
+    "serve": "storybook dev -p 5555 -s ./",
+    "build": "storybook build -o ./dist",
+    "deploy": "storybook build -o ./dist_new",
+    "lint:scripts": "eslint --config ./.eslintrc --fix --ext .js,.vue --ignore-path ./.eslintignore",
+    "lint:styles": "stylelint --config /.stylelintrc --fix **/*.{scss,sass} --ignore-path ./.stylelintignore",
+    "lint": "yarn run lint:scripts && yarn run lint:styles",
+    "test": "jest -u"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
     }
+  },
+  "lint-staged": {
+    "*.{js,vue}": "eslint --config ./.eslintrc --fix --ext .js,.vue --ignore-path ./.eslintignore",
+    "**/*.{scss,sass}": [
+      "stylelint --config /.stylelintrc --fix **/*.{scss,sass} --ignore-path ./.stylelintignore",
+      "prettier --write"
+    ]
+  },
+  "dependencies": {
+    "@beautybox/core": "Beauty-Box/beautybox-base#march/vite",
+    "cross-env": "^7.0.2",
+    "express": "^4.17.1",
+    "react": "^16.13.1",
+    "react-dom": "16.x",
+    "react-is": "^16.8.0",
+    "svgo-loader": "^2.2.1",
+    "swiper": "5.x",
+    "vue": "^2.7.14",
+    "vue-advanced-cropper": "^0.17.8",
+    "vue-awesome-swiper": "^4.1.1",
+    "vue-clipboard2": "^0.3.1",
+    "vue-the-mask": "^0.11.1",
+    "vuedraggable": "^2.24.3",
+    "vuetify": "^2.3.17",
+    "vuex": "^3.5.1"
+  },
+  "devDependencies": {
+    "@types/beautybox__core": "Beauty-Box/beautybox-base-types",
+    "@babel/core": "^7.11.5",
+    "@babel/plugin-transform-runtime": "^7.12.1",
+    "@babel/preset-env": "^7.12.7",
+    "@babel/preset-stage-2": "^7.8.3",
+    "@storybook/addon-docs": "^7.0.4",
+    "@storybook/addon-jest": "^7.0.4",
+    "@storybook/addon-storysource": "^7.0.4",
+    "@storybook/addon-storyshots": "^7.0.4",
+    "@storybook/addon-viewport": "^7.0.4",
+    "@storybook/addon-links": "^7.0.4",
+    "@storybook/addon-essentials": "^7.0.4",
+    "@storybook/vue": "^7.0.4",
+    "@storybook/vue-vite": "^7.0.4",
+    "@types/jest": "^26.0.15",
+    "@vitejs/plugin-vue2": "^2.2.0",
+    "@vue/test-utils": "^1.1.1",
+    "babel-eslint": "^10.0.1",
+    "babel-plugin-module-resolver": "^4.0.0",
+    "babel-plugin-require-context-hook": "^1.0.0",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
+    "babel-preset-vue": "^2.0.2",
+    "connect-history-api-fallback": "^1.6.0",
+    "@typescript-eslint/eslint-plugin": "^5.40.1",
+    "@typescript-eslint/parser": "^5.40.1",
+    "@vue/eslint-config-prettier": "^6.0.0",
+    "@vue/eslint-config-typescript": "^11.0.2",
+    "cross-env": "^7.0.2",
+    "css-loader": "^4.2.2",
+    "css-mqpacker": "^7.0.0",
+    "cssnano": "^4.1.10",
+    "eslint": "^7.8.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-import": "^2.20.2",
+    "eslint-plugin-prettier": "^3.1.3",
+    "eslint-plugin-vue": "^7.1.0",
+    "husky": "^4.2.5",
+    "jest": "^26.6.3",
+    "lint-staged": "^10.2.13",
+    "prettier": "^2.1.1",
+    "regenerator-runtime": "*",
+    "sass": "^1.26.9",
+    "storybook": "^7.0.4",
+    "stylelint": "^13.7.0",
+    "stylelint-config-prettier": "^8.0.1",
+    "stylelint-config-standard": "^20.0.0",
+    "stylelint-order": "^4.1.0",
+    "stylelint-scss": "^3.18.0",
+    "stylelint-selector-bem-pattern": "^2.1.0",
+    "svgo": "^1.3.2",
+    "typescript": "^4.8.4",
+    "vite": "^4.2.1",
+    "vite-svg-loader": "^4.0.0",
+    "vue-jest": "^3.0.7",
+    "vue-template-compiler": "^2.7.14"
+  },
+  "peerDependencies": {
+    "vite": "^4.0.0"
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.js$": "babel-jest",
+      "^.+\\.vue$": "vue-jest"
+    },
+    "transformIgnorePatterns": [],
+    "moduleNameMapper": {
+      "^.+\\.(css|less|scss|sass|svg)$": "babel-jest"
+    },
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "vue"
+    ],
+    "moduleDirectories": [
+      "node_modules"
+    ],
+    "globals": {
+      "vue-jest": {
+        "resources": {
+          "scss": [
+            "./scss/variables.scss"
+          ]
+        }
+      }
+    }
+  }
 }
