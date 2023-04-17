@@ -1,12 +1,12 @@
 import Vue from 'vue';
 import Vuetify, { VApp, VMain, VRow, VCol } from 'vuetify/lib';
-import * as Components from 'vuetify/lib/components';
-import * as Directives from 'vuetify/lib/directives';
+//import * as Components from 'vuetify/lib/components';
+//import * as Directives from 'vuetify/lib/directives';
 import ru from 'vuetify/lib/locale/ru';
 
 Vue.use(Vuetify, {
-    components: Components,
-    directives: Directives,
+    // components: Components,
+    //   directives: Directives,
 });
 
 export const vuetify = new Vuetify({
