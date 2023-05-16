@@ -15,7 +15,7 @@ const draggable = () => import(/* webpackChunkName: "Vuedraggable" */ 'vuedragga
 import { modalToggleMixin } from '../../mixins';
 
 export default {
-    name: 'list-draggable',
+    name: 'ListDraggable',
     components: {
         draggable,
     },
@@ -25,6 +25,10 @@ export default {
             type: String,
             required: true,
         },
+        tag: {
+            type: String,
+            default: 'div',
+        },
     },
     data: () => ({}),
     computed: {
@@ -33,6 +37,7 @@ export default {
                 animation: 200,
                 disabled: false,
                 ghostClass: 'ghost',
+                tag: this.tag,
             };
         },
     },
