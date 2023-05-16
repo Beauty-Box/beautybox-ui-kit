@@ -1,6 +1,7 @@
 $input-offset: $gutter / 2;
 
 .c-input {
+    border-radius: $border-radius-input;
     &--inline {
         position: relative;
         display: flex;
