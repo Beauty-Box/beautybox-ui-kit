@@ -93,7 +93,7 @@
         </span>
 
         <span
-            v-else-if="nowItemsLength < allItemsLength"
+            v-else-if="nowItemsLength < allItemsLength && useIntersection"
             v-intersect.quiet="onIntersectBottom"
             colspan="100%"
             align="center"
