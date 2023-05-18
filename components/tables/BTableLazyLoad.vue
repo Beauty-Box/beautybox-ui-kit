@@ -1,6 +1,6 @@
 <template>
     <div>
-        <v-simple-table :fixed-header="fixedHeader" :height="height">
+        <v-simple-table :fixed-header="fixedHeader" :height="height" :class="className">
             <template #default>
                 <thead v-if="showHeaderAll || !$vuetify.breakpoint.mobile">
                     <slot name="table-head" />
@@ -88,15 +88,13 @@
             </template>
         </v-simple-table>
 
-        <span v-if="loading" :style="{ position: 'relative' }">
+        <div v-if="loading" class="py-4 loading">
             <b-block-loader position="static" size="30" style="max-height: 60px" />
-        </span>
+        </div>
 
-        <span
+        <div
             v-else-if="nowItemsLength < allItemsLength && useIntersection"
             v-intersect.quiet="onIntersectBottom"
-            colspan="100%"
-            align="center"
             :style="{ position: 'relative', height: 'auto' }"
         />
     </div>
@@ -161,6 +159,10 @@ export default {
             type: [Number, String],
             default: 'auto',
         },
+        className: {
+            type: String,
+            default: '',
+        },
     },
     computed: {
         tableBody() {
@@ -180,6 +182,14 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.loading {
+    position: relative;
+    background-color: #fff;
+    @include border(top);
+    border-bottom-left-radius: $border-radius-table;
+    border-bottom-right-radius: $border-radius-table;
+}
+
 .v-data-table .v-data-table__wrapper {
     tbody {
         & tr:last-child:hover td {
