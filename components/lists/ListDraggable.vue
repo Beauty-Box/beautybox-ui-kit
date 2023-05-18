@@ -6,9 +6,7 @@
         v-bind="dragOptions"
         @end="$emit('dragEnd', modal)"
     >
-        <template #default>
-            <slot />
-        </template>
+        <slot />
         <template #header>
             <slot name="header" />
         </template>
