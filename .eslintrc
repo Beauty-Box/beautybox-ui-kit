@@ -8,7 +8,9 @@
     "extends": [
         "prettier",
         "plugin:vue/strongly-recommended",
-        "prettier/vue"
+        "prettier/vue",
+        "@vue/typescript/recommended",
+        "@vue/prettier/@typescript-eslint"
     ],
     "rules": {
         "curly": [
@@ -131,10 +133,11 @@
         "vue/no-unused-components": "off",
         "vue/no-confusing-v-for-v-if": "error",
         "vue/valid-v-on": "off",
-        "vue/valid-v-model": "off"
+        "vue/valid-v-model": "off",
+        "@typescript-eslint/ban-ts-comment": "off"
     },
     "parserOptions": {
-        "parser": "babel-eslint",
+        "parser": "@typescript-eslint/parser",
         "sourceType": "module",
         "ecmaVersion": 2018
     },
