@@ -61,19 +61,20 @@ const emit = defineEmits<Emits>();
                 transform: unset;
                 box-shadow: none !important;
             }
+            &::before {
+                opacity: 1;
+                background-color: #fff;
+            }
         }
         &.button-round--fill {
+            background-color: v-bind('color') !important;
+            color: #fff !important;
+            box-shadow: $box-shadow-base !important;
             &:hover {
-                background-color: v-bind('color') !important;
-                color: #fff !important;
-                box-shadow: $box-shadow-base !important;
             }
         }
     }
-    &::before {
-        opacity: 1;
-        background-color: #fff;
-    }
+
     &:hover {
         border-color: currentColor;
     }
