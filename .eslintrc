@@ -135,6 +135,7 @@
         "vue/valid-v-on": "off",
         "vue/valid-v-model": "off",
         "@typescript-eslint/ban-ts-comment": "off",
+        "@typescript-eslint/no-this-alias": "off",
         "prefer-const": "off"
     },
     "parserOptions": {
