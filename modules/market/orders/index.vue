@@ -19,8 +19,6 @@ export default {
     data: () => ({
         loading: true,
     }),
-    async created() {},
-    methods: {},
 };
 </script>
 

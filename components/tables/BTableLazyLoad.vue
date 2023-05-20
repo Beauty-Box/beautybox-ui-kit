@@ -93,6 +93,7 @@ export default {
         onScrollEndHandler: {
             type: Function,
             required: false,
+            // eslint-disable-next-line
             default: () => {},
         },
         allItemsLength: {

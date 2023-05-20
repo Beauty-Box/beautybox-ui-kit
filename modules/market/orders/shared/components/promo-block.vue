@@ -42,10 +42,6 @@ export default {
     async created() {
         this.loading = false;
     },
-    mounted() {},
-    methods: {
-        async getData() {},
-    },
 };
 </script>
 
