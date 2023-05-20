@@ -6,7 +6,7 @@
         :style="{ '--cursor': cursor }"
         v-on="$listeners"
     >
-        <template v-slot:default="{ active, toggle }">
+        <template #default="{ active, toggle }">
             <image-user-avatar
                 v-if="avatar"
                 :name="item.name"
