@@ -2,11 +2,11 @@
     <v-btn
         :ripple="false"
         large
-        :elevation="variant === 'outline'"
         class="button-round"
         :class="[`button-round--${variant}`]"
         @click="emit('click')"
     >
+        <!-- :elevation="variant === 'outline' ? undefined : 0" -->
         <div class="d-flex align-center button-round__content">
             <slot />
             <v-svg v-if="appendIcon" :name="appendIcon" class="button-round-icon" />
