@@ -2,12 +2,12 @@
     <v-btn
         :ripple="false"
         large
-        class="button-round"
+        class="button-round px-4"
         :class="[`button-round--${variant}`]"
         @click="emit('click')"
     >
-        <!-- :elevation="variant === 'outline' ? undefined : 0" -->
         <div class="d-flex align-center button-round__content">
+            <v-svg v-if="prependIcon" :name="prependIcon" class="button-round-icon" />
             <slot />
             <v-svg v-if="appendIcon" :name="appendIcon" class="button-round-icon" />
         </div>
@@ -23,6 +23,7 @@ import { PropsVariant } from '../../../composables/ui/useVariant';
 const VSvg = defineAsyncComponent(() => import('../../icons/BSvg.vue'));
 
 interface Props {
+    prependIcon?: string;
     appendIcon?: string;
     variant?: PropsVariant['variant'];
     color?: string;
@@ -33,6 +34,7 @@ interface Emits {
 }
 
 const props = withDefaults(defineProps<Props>(), {
+    prependIcon: undefined,
     appendIcon: undefined,
     variant: 'outline',
     color: '#101928',
@@ -79,7 +81,7 @@ const emit = defineEmits<Emits>();
         border-color: currentColor;
     }
     &__content {
-        column-gap: $half-indent;
+        column-gap: $spacer * 2;
     }
 
     &-icon {
