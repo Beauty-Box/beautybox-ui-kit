@@ -192,6 +192,7 @@ $breakpoints: (
     'md': 1024px,
     'mdX': 1280px,
     'lg': 1366px,
+    'lgX': 1440px,
 ) !default;
 
 $breakpoints-min: (
@@ -203,6 +204,7 @@ $breakpoints-min: (
     'md': 1023px,
     'mdX': 1280px,
     'lg': 1365px,
+    'lgX': 1439px,
 ) !default;
 
 // Z-index
