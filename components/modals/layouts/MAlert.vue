@@ -163,8 +163,13 @@ export default {
         border-top-left-radius: 0 !important;
         border-top-right-radius: 0 !important;
         font-weight: 500 !important;
-        text-transform: capitalize;
 
+        & ::v-deep .v-btn__content {
+            display: inline-block;
+            &::first-letter {
+                text-transform: uppercase;
+            }
+        }
         @include max(sm) {
             font-size: 17px;
             font-weight: 400;
