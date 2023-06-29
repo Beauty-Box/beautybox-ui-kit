@@ -56,7 +56,9 @@ export default {
             );
         }
 
-        if (this.title.length) {
+        children.push(this.$slots.title);
+
+        if (!this.$slots.title && this.title.length) {
             children.push(
                 h(
                     'h4',
@@ -68,13 +70,16 @@ export default {
                         style: {
                             maxWidth: textWidth,
                         },
+                        slot: 'title',
                     },
                     [this.title]
                 )
             );
         }
 
-        if (this.text.length) {
+        children.push(this.$slots.text);
+
+        if (!this.$slots.text && this.text.length) {
             children.push(
                 h(
                     'p',
@@ -85,6 +90,7 @@ export default {
                         style: {
                             maxWidth: textWidth,
                         },
+                        slot: 'text',
                     },
                     [this.text]
                 )
