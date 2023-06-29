@@ -15,9 +15,6 @@
         @click.stop="onCopy"
     >
         <slot />
-        <!--  v-clipboard:copy.stop="copyText"
-        v-clipboard:success="onCopy"
-        v-clipboard:error="onError" -->
     </v-btn>
 </template>
 
