@@ -25,21 +25,23 @@
         <template v-if="!withOutFooter" #append>
             <slot v-if="$slots.footer" name="footer" />
             <template v-else>
-                <v-btn type="reset" color="white" large @click="modal = false"> Отменить </v-btn>
-                <v-btn type="submit" color="primary" large> Сохранить </v-btn>
+                <b-btn type="reset" color="white" @click="modal = false"> Отменить </b-btn>
+                <b-btn type="submit" color="primary"> Сохранить </b-btn>
             </template>
         </template>
     </v-navigation-drawer>
 </template>
 
 <script>
+import { defineAsyncComponent } from 'vue';
 import { modalToggleMixin } from '../../../mixins';
-const VSvg = () => import(/* webpackChunkName: "Svg" */ '../../icons/Svg');
-const BBtnClose = () => import(/* webpackChunkName: "BtnClose" */ '../../buttons/BtnClose');
+const VSvg = defineAsyncComponent(() => import('../../icons/Svg'));
+const BBtn = defineAsyncComponent(() => import('../../buttons/Btn/index.vue'));
+const BBtnClose = defineAsyncComponent(() => import('../../buttons/BtnClose'));
 
 export default {
     name: 'BSideDrawer',
-    components: { VSvg, BBtnClose },
+    components: { VSvg, BBtn, BBtnClose },
     mixins: [modalToggleMixin],
     props: {
         title: {
