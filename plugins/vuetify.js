@@ -47,7 +47,7 @@ export const vuetify = new Vuetify({
                 success: '#43B581', //* Задано
                 warning: '#ffc107', //* Задано
                 error: '#f74969', //* Задано
-                info: '#037aff', //* Задано
+                info: '#0a84ff', //* Задано
                 link: '#2b72bd', //* Задано
                 ripple: '#67768c', //* Задано
                 'info--active': '#4395FD',

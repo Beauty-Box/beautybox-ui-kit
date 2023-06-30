@@ -26,10 +26,9 @@ $color-secondary: #67768c;
 $color-muted: #eef2f7;
 
 $color-success: #8cc152;
-$color-info: #2b72bd;
+$color-info: #0a84ff;
 $color-warning: #ffc107;
 $color-error: #f74969;
-$color-anchor: #037aff;
 $color-action: #4395fd;
 $color-new: #1a73e8;
 
@@ -40,7 +39,6 @@ $color-success--bright: #43b581;
 $color-error--light: #ff2d55;
 $color-error--bright: #da2346;
 $color-accent--bright: #ff5640;
-$color-info--bright: #0a84ff;
 
 $color-disabled: #67768c;
 $color-disabled-text: #67768c;
@@ -138,7 +136,6 @@ $box-shadow-colors: map-deep-merge(
         'info': $color-info,
         'success': $color-success,
         'warning': $color-warning,
-        'anchor': $color-anchor,
         'error': $color-error,
         'action': $color-action,
     ),
