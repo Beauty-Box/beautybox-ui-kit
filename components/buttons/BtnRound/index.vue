@@ -2,7 +2,7 @@
     <v-btn
         :ripple="false"
         large
-        class="button-round px-4"
+        class="button-round"
         :class="[`button-round--${variant}`]"
         @click="emit('click')"
     >
@@ -15,7 +15,7 @@
 </template>
 
 <script setup lang="ts">
-import { defineAsyncComponent } from 'vue';
+import { defineAsyncComponent, computed } from 'vue';
 // @ts-ignore
 import VBtn from 'vuetify/lib/components/VBtn';
 import { PropsVariant } from '../../../composables/ui/useVariant';
@@ -27,6 +27,7 @@ interface Props {
     appendIcon?: string;
     variant?: PropsVariant['variant'];
     color?: string;
+    padding?: number | string;
 }
 
 interface Emits {
@@ -38,9 +39,16 @@ const props = withDefaults(defineProps<Props>(), {
     appendIcon: undefined,
     variant: 'outline',
     color: '#101928',
+    padding: '16px',
 });
 
 const emit = defineEmits<Emits>();
+
+const paddings = computed(() => {
+    const horizontal = typeof props.padding === 'number' ? `${props.padding}px` : props.padding;
+
+    return `0 ${horizontal}`;
+});
 </script>
 
 <style scoped lang="scss">
@@ -52,6 +60,7 @@ const emit = defineEmits<Emits>();
     border-width: 1px;
     border-style: solid;
     border-color: #fff;
+    padding: v-bind('paddings') !important;
 
     .theme--light
         &:not(.v-btn--depressed):not(.v-btn--disabled):not(.v-btn--flat):not(.v-btn--text):not(.v-btn--icon):not(.elevation-0) {
