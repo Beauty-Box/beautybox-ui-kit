@@ -45,8 +45,6 @@ const props = withDefaults(defineProps<Props>(), {
 
 const { listeners } = useDividedListeners();
 
-console.log('listeners in button', listeners.value);
-
 const paddings = computed(() => {
     const horizontal = typeof props.padding === 'number' ? `${props.padding}px` : props.padding;
 
