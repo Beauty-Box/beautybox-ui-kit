@@ -4,12 +4,16 @@
         large
         class="button-round"
         :class="[`button-round--${variant}`]"
-        v-on="$listeners"
+        v-on="listeners['content']"
     >
         <div class="d-flex align-center button-round__content">
-            <v-svg v-if="prependIcon" :name="prependIcon" class="button-round-icon" />
+            <div v-if="prependIcon" class="d-flex align-center" v-on="listeners['prepend']">
+                <v-svg :name="prependIcon" class="button-round-icon" />
+            </div>
             <slot />
-            <v-svg v-if="appendIcon" :name="appendIcon" class="button-round-icon" />
+            <div v-if="appendIcon" class="d-flex align-center" v-on="listeners['append']">
+                <v-svg :name="appendIcon" class="button-round-icon" />
+            </div>
         </div>
     </v-btn>
 </template>
@@ -19,6 +23,7 @@ import { defineAsyncComponent, computed } from 'vue';
 // @ts-ignore
 import VBtn from 'vuetify/lib/components/VBtn';
 import { PropsVariant } from '../../../composables/ui/useVariant';
+import { useDividedListeners } from '../../../composables/useDividedListeners';
 
 const VSvg = defineAsyncComponent(() => import('../../icons/BSvg.vue'));
 
@@ -37,6 +42,10 @@ const props = withDefaults(defineProps<Props>(), {
     color: '#101928',
     padding: '16px',
 });
+
+const { listeners } = useDividedListeners();
+
+console.log('listeners in button', listeners.value);
 
 const paddings = computed(() => {
     const horizontal = typeof props.padding === 'number' ? `${props.padding}px` : props.padding;
