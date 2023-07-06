@@ -4,7 +4,7 @@
         large
         class="button-round"
         :class="[`button-round--${variant}`]"
-        @click="emit('click')"
+        v-on="$listeners"
     >
         <div class="d-flex align-center button-round__content">
             <v-svg v-if="prependIcon" :name="prependIcon" class="button-round-icon" />
@@ -30,10 +30,6 @@ interface Props {
     padding?: number | string;
 }
 
-interface Emits {
-    (e: 'click'): void;
-}
-
 const props = withDefaults(defineProps<Props>(), {
     prependIcon: undefined,
     appendIcon: undefined,
@@ -41,8 +37,6 @@ const props = withDefaults(defineProps<Props>(), {
     color: '#101928',
     padding: '16px',
 });
-
-const emit = defineEmits<Emits>();
 
 const paddings = computed(() => {
     const horizontal = typeof props.padding === 'number' ? `${props.padding}px` : props.padding;
