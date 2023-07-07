@@ -6,6 +6,7 @@
         :class="[`button-round--${variant}`]"
         :href="href"
         :to="to"
+        :value="value"
         v-on="listeners['content']"
     >
         <div class="d-flex align-center button-round__content">
@@ -37,6 +38,7 @@ interface Props {
     padding?: number | string;
     href?: string;
     to?: string | Record<string, any>;
+    value?: unknown;
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -47,6 +49,7 @@ const props = withDefaults(defineProps<Props>(), {
     padding: '16px',
     href: undefined,
     to: undefined,
+    value: undefined,
 });
 
 const { listeners } = useDividedListeners();
