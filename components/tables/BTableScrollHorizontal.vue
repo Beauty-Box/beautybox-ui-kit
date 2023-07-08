@@ -94,8 +94,8 @@ export default {
     overflow: hidden;
     overflow-y: auto;
 
-    @include min(mdX) {
-        max-height: calc(100vh - 225px);
+    @include min(md) {
+        max-height: calc(100vh - 316px);
     }
 
     @include max(sm) {
