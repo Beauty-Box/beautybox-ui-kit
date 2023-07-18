@@ -1,5 +1,7 @@
 import VAutocomplete from 'vuetify/lib/components/VAutocomplete';
 import { selectProps } from '../../../../mixins';
+import '../select.scss';
+
 export default {
     name: 'AutoComplete',
     extends: VAutocomplete,

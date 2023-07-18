@@ -1,14 +1,14 @@
 import VChipGroup from 'vuetify/lib/components/VChipGroup/VChipGroup';
 import VChip from 'vuetify/lib/components/VChip/VChip';
-import BSvg from '../../../icons/Svg';
+import svgComponentMixin from '../../../../mixins/svgComponent.mixin';
 
 export default {
     name: 'BSelectColor',
     components: {
         VChipGroup,
         VChip,
-        BSvg,
     },
+    mixins: [svgComponentMixin],
     props: {
         items: {
             type: Array,
@@ -65,7 +65,7 @@ export default {
                     style: { height: '42px', width: '42px' },
                 },
                 [
-                    h('b-svg', {
+                    h(this.svgComponent, {
                         attrs: {
                             name: 'checked--bold',
                         },

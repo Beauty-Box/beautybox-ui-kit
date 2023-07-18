@@ -1,8 +1,5 @@
 <template>
     <v-btn
-        v-clipboard:copy.stop="copyText"
-        v-clipboard:success="onCopy"
-        v-clipboard:error="onError"
         :icon="icon"
         :small="small"
         :large="large"
@@ -15,7 +12,7 @@
         :color="color"
         class="u-text-initial"
         :text="text"
-        @click.stop
+        @click.stop="onCopy"
     >
         <slot />
     </v-btn>
@@ -32,6 +29,10 @@ export default {
         successText: {
             type: String,
             default: 'Ссылка скопирована',
+        },
+        errorText: {
+            type: String,
+            default: 'Произошла ошибка при копировании',
         },
         small: {
             type: Boolean,
@@ -75,11 +76,17 @@ export default {
         },
     },
     methods: {
-        onCopy() {
-            this.messageSuccess(this.successText);
-        },
-        onError() {
-            this.messageError('Произошла ошибка при копировании');
+        async onCopy() {
+            if (!!navigator.clipboard) {
+                try {
+                    await navigator.clipboard.writeText(this.copyText);
+                    this.messageSuccess(this.successText);
+                } catch (error) {
+                    this.messageError(this.errorText);
+                }
+            } else {
+                this.messageError(this.errorText);
+            }
         },
     },
 };

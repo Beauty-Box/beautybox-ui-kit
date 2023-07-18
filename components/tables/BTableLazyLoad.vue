@@ -4,30 +4,70 @@
             <thead v-if="showHeaderAll || !$vuetify.breakpoint.mobile">
                 <slot name="table-head" />
             </thead>
-            <tbody v-if="useIntersection">
+            <component
+                :is="tableBody"
+                v-if="useIntersection"
+                tag="tbody"
+                v-bind="draggableProps"
+                v-on="draggableListeners"
+            >
                 <slot v-if="$slots['table-body']" name="table-body" />
-                <tr v-if="loading">
-                    <td colspan="100%" align="center" :style="{ position: 'relative' }">
-                        <b-block-loader position="static" size="30" style="max-height: 60px" />
-                    </td>
-                </tr>
-                <tr v-else-if="nowItemsLength < allItemsLength">
-                    <td
-                        v-intersect.quiet="onIntersectBottom"
-                        colspan="100%"
-                        align="center"
-                        :style="{ position: 'relative', height: 'auto' }"
-                    />
-                </tr>
-            </tbody>
-            <tbody v-else v-scroll:#scroll-container="onScrollControl">
+                <template #footer>
+                    <tr v-if="loading">
+                        <td colspan="100%" align="center" :style="{ position: 'relative' }">
+                            <b-block-loader position="static" size="30" style="max-height: 60px" />
+                        </td>
+                    </tr>
+                    <tr v-else-if="nowItemsLength < allItemsLength">
+                        <td
+                            v-intersect.quiet="onIntersectBottom"
+                            colspan="100%"
+                            align="center"
+                            :style="{ position: 'relative', height: 'auto' }"
+                        />
+                    </tr>
+                </template>
+                <template v-if="!draggable">
+                    <tr v-if="loading">
+                        <td colspan="100%" align="center" :style="{ position: 'relative' }">
+                            <b-block-loader position="static" size="30" style="max-height: 60px" />
+                        </td>
+                    </tr>
+                    <tr v-else-if="nowItemsLength < allItemsLength">
+                        <td
+                            v-intersect.quiet="onIntersectBottom"
+                            colspan="100%"
+                            align="center"
+                            :style="{ position: 'relative', height: 'auto' }"
+                        />
+                    </tr>
+                </template>
+            </component>
+            <!-- старая реализация подгрузки по скроллу, по возможности убрать-->
+            <component
+                :is="tableBody"
+                v-else
+                v-scroll:#scroll-container="onScrollControl"
+                tag="tbody"
+                v-bind="draggableProps"
+                v-on="draggableListeners"
+            >
                 <slot v-if="$slots['table-body']" name="table-body" />
-                <tr v-if="loading">
-                    <td colspan="100%" align="center" :style="{ position: 'relative' }">
-                        <b-block-loader position="static" size="30" style="max-height: 60px" />
-                    </td>
-                </tr>
-            </tbody>
+                <template #footer>
+                    <tr v-if="loading">
+                        <td colspan="100%" align="center" :style="{ position: 'relative' }">
+                            <b-block-loader position="static" size="30" style="max-height: 60px" />
+                        </td>
+                    </tr>
+                </template>
+                <template v-if="!draggable">
+                    <tr v-if="loading">
+                        <td colspan="100%" align="center" :style="{ position: 'relative' }">
+                            <b-block-loader position="static" size="30" style="max-height: 60px" />
+                        </td>
+                    </tr>
+                </template>
+            </component>
         </template>
     </v-simple-table>
 </template>
@@ -35,10 +75,11 @@
 <script>
 import { getOnScrollMixin } from '../../mixins';
 const BBlockLoader = () => import(/* webpackChunkName: "BlockLoader" */ '../blocks/BlockLoader');
+const Draggable = () => import(/* webpackChunkName: "Vuedraggable" */ 'vuedraggable');
 
 export default {
     name: 'BTableLazyLoad',
-    components: { BBlockLoader },
+    components: { BBlockLoader, Draggable },
     mixins: [getOnScrollMixin],
     props: {
         loading: {
@@ -52,6 +93,7 @@ export default {
         onScrollEndHandler: {
             type: Function,
             required: false,
+            // eslint-disable-next-line
             default: () => {},
         },
         allItemsLength: {
@@ -74,9 +116,26 @@ export default {
             type: Boolean,
             default: false,
         },
+        draggable: {
+            type: Boolean,
+            default: false,
+        },
+        draggableProps: {
+            type: Object,
+            default: () => ({}),
+        },
+        draggableListeners: {
+            type: Object,
+            default: () => ({}),
+        },
         height: {
             type: [Number, String],
             default: 'auto',
+        },
+    },
+    computed: {
+        tableBody() {
+            return this.draggable ? 'draggable' : 'tbody';
         },
     },
     methods: {
@@ -98,6 +157,7 @@ export default {
             &:last-child {
                 border-bottom-right-radius: $border-radius-table !important;
             }
+
             &:first-child {
                 border-bottom-left-radius: $border-radius-table !important;
             }

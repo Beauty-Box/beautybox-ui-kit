@@ -6,6 +6,7 @@
         hide-overlay
         :tag="tag"
         :transition="false"
+        :no-click-animation="noClickAnimation"
         content-class="full-screen"
     >
         <form class="full-screen__form" @submit.prevent="submit">
@@ -72,6 +73,10 @@ export default {
         transition: {
             type: String,
             default: 'slide-y-reverse-transition',
+        },
+        noClickAnimation: {
+            type: Boolean,
+            default: false,
         },
     },
 };

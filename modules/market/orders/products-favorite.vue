@@ -12,7 +12,7 @@ import { productsFavoriteMixin, productsAddToCartMixin } from './shared/mixins/p
 import AppMarketProductItem from '../shared/components/market-product-item/market-product-item';
 
 export default {
-    name: 'app-products-favorite',
+    name: 'AppProductsFavorite',
     components: { AppMarketProductItem, AppBlockLoader, AppBlockEmpty },
     mixins: [updateRouteMixin, getOnScrollMixin, productsFavoriteMixin, productsAddToCartMixin],
     data: () => ({
@@ -30,7 +30,7 @@ export default {
     }),
     async created() {
         await Products.createProvider({
-            baseUrl: process.env.BASE_URL,
+            baseUrl: import.meta.env.VITE_BASE_URL,
             module: 'market',
             token: localStorage.getItem('access_token'),
         });

@@ -2,7 +2,7 @@
     "compilerOptions": {
         "allowJs": true,
         "target": "es5",
-        "module": "es2015",
+        "module": "esnext",
         // this enables stricter inference for data properties on `this`
         "strict": true,
         "jsx": "preserve",
@@ -13,7 +13,7 @@
         "sourceMap": true,
         "baseUrl": ".",
         "types": [
-            "webpack-env"
+            "webpack-env", "vite/client"
         ],
         "paths": {
             "@/*": [

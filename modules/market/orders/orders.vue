@@ -12,7 +12,7 @@ const AppSelect = () =>
 import AppOrderItem from './shared/components/order-item/order-item';
 
 export default {
-    name: 'app-orders-page',
+    name: 'AppOrdersPage',
     components: { AppBlockLoader, AppBlockEmpty, AppSelect, AppOrderItem },
     mixins: [getOnScrollMixin],
     props: {},
@@ -51,7 +51,7 @@ export default {
     },
     async created() {
         Orders.createProvider({
-            baseUrl: process.env.BASE_URL,
+            baseUrl: import.meta.env.VITE_BASE_URL,
             module: 'market',
             token: localStorage.getItem('access_token'),
         });

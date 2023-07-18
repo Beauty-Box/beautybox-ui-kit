@@ -7,23 +7,42 @@
         @end="$emit('dragEnd', modal)"
     >
         <slot />
+        <template #header>
+            <slot name="header" />
+        </template>
+        <template #footer>
+            <slot name="footer" />
+        </template>
     </draggable>
 </template>
 
 <script>
 const draggable = () => import(/* webpackChunkName: "Vuedraggable" */ 'vuedraggable');
+// import draggable from 'vuedraggable';
 import { modalToggleMixin } from '../../mixins';
 
 export default {
-    name: 'list-draggable',
+    name: 'ListDraggable',
     components: {
         draggable,
     },
     mixins: [modalToggleMixin],
     props: {
+        filter: {
+            type: String,
+            default: undefined,
+        },
+        draggable: {
+            type: String,
+            default: undefined,
+        },
         handle: {
             type: String,
             required: true,
+        },
+        tag: {
+            type: String,
+            default: 'div',
         },
     },
     data: () => ({}),
@@ -33,6 +52,9 @@ export default {
                 animation: 200,
                 disabled: false,
                 ghostClass: 'ghost',
+                tag: this.tag,
+                filter: this.filter,
+                draggable: this.draggable,
             };
         },
     },

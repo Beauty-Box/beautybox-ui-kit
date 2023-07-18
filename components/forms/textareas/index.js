@@ -1,4 +1,5 @@
 import VTextarea from 'vuetify/lib/components/VTextarea';
+import './textarea.scss';
 
 export default {
     name: 'Textarea',
@@ -34,6 +35,7 @@ export default {
         classes() {
             return {
                 ...VTextarea.options.computed.classes.call(this),
+                'c-textarea': true,
                 'form-items-inline': true,
                 'primary--text': true,
             };

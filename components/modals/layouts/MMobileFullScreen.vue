@@ -2,11 +2,11 @@
 import { modalMixin, modalToggleMixin, modalOverlayColorMixin } from '../../../mixins';
 const BBlockLoader = () => import(/* webpackChunkName: "BlockLoader" */ '../../blocks/BlockLoader');
 const BBtnClose = () => import(/* webpackChunkName: "BtnClose" */ '../../buttons/BtnClose');
-const BSvg = () => import(/* webpackChunkName: "Svg" */ '../../icons/Svg');
+const VSvg = () => import(/* webpackChunkName: "Svg" */ '../../icons/Svg');
 
 export default {
     name: 'MMobileFullScreen',
-    components: { BBlockLoader, BSvg, BBtnClose },
+    components: { BBlockLoader, VSvg, BBtnClose },
     mixins: [modalMixin, modalToggleMixin, modalOverlayColorMixin],
     props: {
         loading: {

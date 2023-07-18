@@ -8,7 +8,9 @@
     "extends": [
         "prettier",
         "plugin:vue/strongly-recommended",
-        "prettier/vue"
+        "prettier/vue",
+        "@vue/typescript/recommended",
+        "@vue/prettier/@typescript-eslint"
     ],
     "rules": {
         "curly": [
@@ -75,7 +77,7 @@
             }
         ],
         "vue/custom-event-name-casing": "off",
-        "vue/component-definition-name-casing": ["error", "PascalCase"],
+        "vue/component-definition-name-casing": "off",
         "vue/html-self-closing": ["error", {
             "html": {
                 "void": "always",
@@ -131,10 +133,13 @@
         "vue/no-unused-components": "off",
         "vue/no-confusing-v-for-v-if": "error",
         "vue/valid-v-on": "off",
-        "vue/valid-v-model": "off"
+        "vue/valid-v-model": "off",
+        "@typescript-eslint/ban-ts-comment": "off",
+        "@typescript-eslint/no-this-alias": "off",
+        "prefer-const": "off"
     },
     "parserOptions": {
-        "parser": "babel-eslint",
+        "parser": "@typescript-eslint/parser",
         "sourceType": "module",
         "ecmaVersion": 2018
     },

@@ -100,7 +100,7 @@ export default {
     data() {
         return {
             cropDialog: false,
-            empty: '/assets/empty.svg',
+            empty: '../../assets/empty.svg',
             imageData: this.image,
             isCropping: false,
             isBusy: false,
