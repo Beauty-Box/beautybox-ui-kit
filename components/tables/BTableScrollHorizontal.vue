@@ -7,14 +7,27 @@
             '--scrollColsWidth': scrollColsWidth,
             '--tdWidth': tdWidth,
         }"
-        @scroll="testEvent"
+        :class="{ 'table-scroll--custom-header': customHeader }"
     >
-        <div class="table-scroll__inner">
-            <div class="table-scroll__fixed-col">
-                <slot name="table-fixed-col" />
+        <div class="d-flex flex-column table-scroll__wrapper">
+            <div v-if="'table-header' in $slots" class="table-scroll__header">
+                <slot name="table-header" />
             </div>
-            <div class="table-scroll__scroll-cols" @scroll="scrollCols">
-                <slot name="table-scroll-cols" />
+
+            <div class="table-scroll__inner">
+                <div
+                    class="table-scroll__fixed-col"
+                    :class="{ 'table-scroll__fixed-col--hide-header': customHeader }"
+                >
+                    <slot name="table-fixed-col" />
+                </div>
+                <div
+                    class="table-scroll__scroll-cols"
+                    :class="{ 'table-scroll__scroll-cols--hide-header': customHeader }"
+                    @scroll="scrollCols"
+                >
+                    <slot name="table-scroll-cols" />
+                </div>
             </div>
         </div>
     </div>
@@ -28,6 +41,10 @@ export default {
             default: 0,
         },
         loading: {
+            type: Boolean,
+            default: false,
+        },
+        customHeader: {
             type: Boolean,
             default: false,
         },
@@ -49,9 +66,6 @@ export default {
         });
     },
     methods: {
-        testEvent(event) {
-            console.log('event', event.target.scrollTop);
-        },
         scrollCols(event) {
             event.target.querySelector('thead').scrollLeft = event.target.scrollLeft;
         },
@@ -90,7 +104,7 @@ export default {
 .table-scroll {
     position: relative;
     background-color: #fff;
-    box-shadow: $box-shadow-base;
+
     overflow: hidden;
     overflow-y: auto;
 
@@ -114,9 +128,25 @@ export default {
         width: 100%;
         max-width: 100%;
     } //.table-scroll__inner
+    &:not(&--custom-header) {
+        box-shadow: $box-shadow-base;
+    }
+    &--custom-header {
+        .table-scroll__inner {
+            box-shadow: $box-shadow-base;
+            border-radius: $border-radius-table;
+            & tbody {
+                border-radius: $border-radius-table $border-radius-table 0 0;
+            }
+        }
+    }
 
+    &__header {
+        position: sticky;
+        top: 0;
+        z-index: 2;
+    }
     &__fixed-col {
-        padding-top: 45px;
         flex-basis: 25%;
         flex-shrink: 0;
         @include border(right);
@@ -144,10 +174,12 @@ export default {
                 align-items: center;
             }
         }
+        &:not(&--hide-header) {
+            padding-top: 45px;
+        }
     } //.table-scroll__fixed-col
 
     &__scroll-cols {
-        padding-top: 45px;
         flex-basis: 75%;
         flex-grow: 1;
         overflow-x: auto;
@@ -216,6 +248,10 @@ export default {
             button:disabled {
                 cursor: default;
             }
+        }
+
+        &:not(&--hide-header) {
+            padding-top: 45px;
         }
     } //.table-scroll__scroll-cols
 
