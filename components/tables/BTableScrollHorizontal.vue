@@ -128,16 +128,14 @@ export default {
         width: 100%;
         max-width: 100%;
     } //.table-scroll__inner
+
     &:not(&--custom-header) {
         box-shadow: $box-shadow-base;
     }
+
     &--custom-header {
         .table-scroll__inner {
             box-shadow: $box-shadow-base;
-            border-radius: $border-radius-table;
-            & tbody {
-                border-radius: $border-radius-table $border-radius-table 0 0;
-            }
         }
     }
 
