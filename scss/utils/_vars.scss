@@ -142,14 +142,22 @@ $box-shadow-colors: map-deep-merge(
     $box-shadow-colors
 );
 
+$color-visit-status-new: #5856d6;
+$color-visit-status-warning: #ff9500;
+$color-visit-status-success: $color-success--light;
+$color-visit-status-error: $color-error--light;
+$color-visit-status-noShow: $color-error--light;
+$color-visit-status-completed: $color-secondary;
+
 $visit-status-colors: () !default;
 $visit-status-colors: map-deep-merge(
     (
-        'new': $color-new,
-        'working': $color-warning,
-        'done': $color-success,
-        'cancel': $color-error,
-        'completed': $gray--lighten,
+        'new': $color-visit-status-new,
+        'working': $color-visit-status-warning,
+        'done': $color-visit-status-success,
+        'cancel': $color-visit-status-error,
+        'noShow': $color-visit-status-noShow,
+        'completed': $color-visit-status-completed,
     ),
     $visit-status-colors
 );
@@ -213,18 +221,3 @@ $z-index: (
     'overlay': 1000,
     'modal': 1010,
 ) !default;
-
-// CSS Variables
-:root {
-    --max-width: 1200px;
-    --gutter: 24px;
-    --base-indent: 16px;
-    --color-primary: #101928;
-    --color-secondary: #67768c;
-}
-
-@media screen and (max-width: 480px) {
-    :root {
-        --gutter: 16px;
-    }
-}
