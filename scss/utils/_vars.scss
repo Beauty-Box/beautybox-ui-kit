@@ -34,6 +34,7 @@ $color-new: #1a73e8;
 
 $color-link: $color-info;
 $color-info--light: #ecf4ff;
+$color-warning--light: #ff9500;
 $color-success--light: #34c759;
 $color-success--bright: #43b581;
 $color-error--light: #ff2d55;
@@ -143,7 +144,7 @@ $box-shadow-colors: map-deep-merge(
 );
 
 $color-visit-status-new: #5856d6;
-$color-visit-status-warning: #ff9500;
+$color-visit-status-warning: $color-warning--light;
 $color-visit-status-success: $color-success--light;
 $color-visit-status-error: $color-error--light;
 $color-visit-status-noShow: $color-error--light;
