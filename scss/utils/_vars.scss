@@ -34,6 +34,7 @@ $color-new: #1a73e8;
 
 $color-link: $color-info;
 $color-info--light: #ecf4ff;
+$color-warning--light: #ff9500;
 $color-success--light: #34c759;
 $color-success--bright: #43b581;
 $color-error--light: #ff2d55;
@@ -45,12 +46,13 @@ $color-disabled-text: #67768c;
 
 // Gray color's
 $gray--darkest: #242626;
-$gray--darken: #353737;
+$gray--darken: #a4adba;
 $gray--dark: #464646;
 $gray: #585a59;
 $gray--light: #9b9b9b;
 $gray--lighten: #dee3e7;
 $gray--lightest: $color-muted;
+
 $gray-subheader: #878c93;
 
 // Text color's
@@ -142,14 +144,22 @@ $box-shadow-colors: map-deep-merge(
     $box-shadow-colors
 );
 
+$color-visit-status-new: #5856d6;
+$color-visit-status-warning: $color-warning--light;
+$color-visit-status-success: $color-success--light;
+$color-visit-status-error: $color-error--light;
+$color-visit-status-noShow: $color-error--light;
+$color-visit-status-completed: $color-secondary;
+
 $visit-status-colors: () !default;
 $visit-status-colors: map-deep-merge(
     (
-        'new': $color-new,
-        'working': $color-warning,
-        'done': $color-success,
-        'cancel': $color-error,
-        'completed': $gray--lighten,
+        'new': $color-visit-status-new,
+        'working': $color-visit-status-warning,
+        'done': $color-visit-status-success,
+        'cancel': $color-visit-status-error,
+        'noShow': $color-visit-status-noShow,
+        'completed': $color-visit-status-completed,
     ),
     $visit-status-colors
 );
@@ -213,18 +223,3 @@ $z-index: (
     'overlay': 1000,
     'modal': 1010,
 ) !default;
-
-// CSS Variables
-:root {
-    --max-width: 1200px;
-    --gutter: 24px;
-    --base-indent: 16px;
-    --color-primary: #101928;
-    --color-secondary: #67768c;
-}
-
-@media screen and (max-width: 480px) {
-    :root {
-        --gutter: 16px;
-    }
-}
