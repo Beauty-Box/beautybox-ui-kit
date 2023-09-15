@@ -30,8 +30,8 @@
 @function map-deep-get($map, $keys...) {
     @each $key in $keys {
         $map: map-get($map, $key);
-        @return $map;
     }
+    @return $map;
 }
 
 @function map-deep-merge($parent-map, $child-map) {
