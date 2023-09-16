@@ -140,6 +140,7 @@ $box-shadow-colors: map-deep-merge(
         'warning': $color-warning,
         'error': $color-error,
         'action': $color-action,
+        'info--active': $color-action,
     ),
     $box-shadow-colors
 );

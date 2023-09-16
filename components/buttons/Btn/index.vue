@@ -41,7 +41,7 @@ export default defineComponent({
     },
     setup(props, { emit }) {
         const isDark = computed(() => {
-            return props.color === 'primary';
+            return props.color === 'primary' || props.dark;
         });
 
         return { isDark };
