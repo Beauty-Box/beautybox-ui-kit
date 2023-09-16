@@ -10,6 +10,7 @@ $image-width: 450px;
     background-color: #fff;
 
     &:not(.has-transition) {
+
         /*Disable Animation*/
         transform: none !important;
         transition-property: none !important;
