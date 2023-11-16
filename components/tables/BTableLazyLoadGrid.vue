@@ -3,31 +3,46 @@
         <thead v-if="showHeaderAll || !$vuetify.breakpoint.mobile" class="table__head">
             <slot name="table-head" />
         </thead>
-        <tbody class="table__body">
+        <component
+            :is="tableBody"
+            tag="tbody"
+            v-bind="draggableProps"
+            class="table__body"
+            v-on="draggableListeners"
+        >
             <slot v-if="$slots['table-body']" name="table-body" />
-            <tr v-if="loading">
-                <td colspan="100%" align="center" :style="{ position: 'relative' }">
-                    <b-block-loader position="static" size="30" style="max-height: 60px" />
-                </td>
-            </tr>
-            <tr v-else-if="nowItemsLength < allItemsLength">
-                <td
-                    v-intersect.quiet="onIntersectBottom"
-                    colspan="100%"
-                    align="center"
-                    :style="{ position: 'relative', height: 'auto' }"
-                />
-            </tr>
-        </tbody>
+            <template #footer>
+                <tr v-if="loading">
+                    <td class="table--center table__loader">
+                        <b-block-loader position="static" size="30" style="max-height: 60px" />
+                    </td>
+                </tr>
+                <tr v-else-if="nowItemsLength < allItemsLength">
+                    <td v-intersect.quiet="onIntersectBottom" class="table--center" />
+                </tr>
+            </template>
+            <template v-if="!draggable">
+                <tr v-if="loading">
+                    <td class="table--center table__loader">
+                        <b-block-loader position="static" size="30" style="max-height: 60px" />
+                    </td>
+                </tr>
+                <tr v-else-if="nowItemsLength < allItemsLength">
+                    <td v-intersect.quiet="onIntersectBottom" class="table--center" />
+                </tr>
+            </template>
+        </component>
     </table>
 </template>
 
 <script>
-const BBlockLoader = () => import(/* webpackChunkName: "BlockLoader" */ '../blocks/BlockLoader');
+import { defineAsyncComponent } from 'vue';
+const BBlockLoader = defineAsyncComponent(() => import('../blocks/BlockLoader'));
+const Draggable = defineAsyncComponent(() => import('vuedraggable'));
 
 export default {
     name: 'BTableLazyLoadGrid',
-    components: { BBlockLoader },
+    components: { BBlockLoader, Draggable },
     props: {
         loading: {
             type: Boolean,
@@ -53,6 +68,27 @@ export default {
             type: [Number, String],
             default: 'auto',
         },
+        draggable: {
+            type: Boolean,
+            default: false,
+        },
+        draggableProps: {
+            type: Object,
+            default: () => ({}),
+        },
+        draggableListeners: {
+            type: Object,
+            default: () => ({}),
+        },
+        backgroundColor: {
+            type: String,
+            default: '#fff',
+        },
+    },
+    computed: {
+        tableBody() {
+            return this.draggable ? 'draggable' : 'tbody';
+        },
     },
     methods: {
         onIntersectBottom(entries, observer, isIntersecting) {
@@ -67,20 +103,14 @@ export default {
 </script>
 
 <style scoped lang="scss">
-// .v-data-table > .v-data-table__wrapper tbody tr:last-child:hover td {
-//     &:last-child {
-//         border-bottom-right-radius: $border-radius-table !important;
-//     }
-//     &:first-child {
-//         border-bottom-left-radius: $border-radius-table !important;
-//     }
-// }
-
 .table {
-    --cols: 5;
+    $self: &;
     display: grid !important;
-    grid-template-columns: repeat(var(--cols, auto-fit), minmax(auto, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
     overflow: auto;
+    background-color: v-bind(backgroundColor);
+    border-radius: $border-radius-table;
+    box-shadow: $box-shadow-base;
 
     &__head,
     &__body {
@@ -93,9 +123,51 @@ export default {
         margin-left: 0 !important;
         margin-right: 0 !important;
     }
+    &__head,
+    &__body {
+        tr th,
+        ::v-deep tr {
+            &:not(:last-child) td {
+                border-bottom: thin solid $gray--lighten;
+            }
+            &:hover td {
+                background-color: $color-bg--hover;
+            }
+        }
+    }
+    &__head th,
+    &__body td,
+    &__body ::v-deep td {
+        padding: $base-indent;
+
+        &:first-child {
+            padding-left: $gutter;
+        }
+
+        &:last-child {
+            padding-right: $gutter;
+        }
+    }
+
+    &__head th {
+        user-select: none;
+        font-size: 15px;
+        font-weight: 500;
+        line-height: 1.1;
+        cursor: pointer;
+    }
     &__body > tr {
         margin-left: 0 !important;
         margin-right: 0 !important;
+    }
+    &--center {
+        position: relative;
+        height: auto;
+        grid-column: 1 / -1;
+    }
+    td#{$self}__loader {
+        padding-top: $spacer * 2;
+        padding-bottom: $spacer * 2;
     }
 }
 </style>
